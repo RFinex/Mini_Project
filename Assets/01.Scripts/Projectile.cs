@@ -46,5 +46,15 @@ public abstract class Projectile : MonoBehaviour, IPoolable
         timer += Time.deltaTime;
     }
 
+    public virtual void SetDamage(int damage)
+    {
+        this.damage = damage;
+    }
+
+    public virtual void SetDirection(float dir)
+    {
+        this.dir = dir;
+    }
+
     public abstract void ReturnPool();
 }
