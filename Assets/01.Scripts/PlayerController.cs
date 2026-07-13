@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
         col = GetComponent<Collider2D>();
         speed = 5f;
         jumpPower = 12f;
+        jumpCount = 0;
+        jumpCountMax = 2;
     }
 
 
@@ -57,6 +59,9 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        if (jumpCount >= jumpCountMax)
+            return;
+
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
         if (isGround)
             jumpCount++;
@@ -66,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     private void GroundCheck()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(1f, 0.1f), 0f, Vector2.down, 0.9f, groundLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(1f, 0.1f), 0f, Vector2.down, 0.5f, groundLayer);
 
         isGround = hit.collider == null ? false : true;
 
@@ -79,6 +84,6 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawCube(transform.position - new Vector3(0, 0.9f, 0), new Vector2(1f, 0.1f));
+        Gizmos.DrawCube(transform.position - new Vector3(0, 0.5f, 0), new Vector2(1f, 0.1f));
     }
 }
