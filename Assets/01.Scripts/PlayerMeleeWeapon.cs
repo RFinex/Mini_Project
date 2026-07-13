@@ -52,13 +52,13 @@ public class PlayerMeleeWeapon : PlayerWeapon
             .OnStart(() =>
             {
                 tr.emitting = true;
+                canAttack = false;
                 StartCoroutine(AttackCoolTime());
             })
             .OnComplete(() =>
             {
                 attackPos.localRotation = Quaternion.identity;
                 tr.emitting = false;
-                canAttack = false;
             });
     }
 
