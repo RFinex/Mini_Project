@@ -1,14 +1,19 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerRangeWeapon : MonoBehaviour
+public class PlayerRangeWeapon : PlayerWeapon
 {
-    void Start()
+    protected override void Awake()
     {
-        
+        base.Awake();
+        damage = 1;
     }
 
-    void Update()
+    protected override void Attack()
     {
-        
+        if (Keyboard.current.zKey.wasPressedThisFrame)
+        {
+
+        }
     }
 }
