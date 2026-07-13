@@ -15,13 +15,11 @@ public abstract class Projectile : MonoBehaviour, IPoolable
 
     protected virtual void Awake()
     {
-        lifeTime = 3f;
         timer = 0f;
     }
 
-    protected void OnEnable()
+    protected virtual void OnEnable()
     {
-        lifeTime = 3f;
         timer = 0f;
         StartCoroutine(LifeDelay());
     }

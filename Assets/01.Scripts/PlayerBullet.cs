@@ -7,6 +7,13 @@ public class PlayerBullet : Projectile
     {
         base.Awake();
         rb = GetComponent<Rigidbody2D>();
+        lifeTime = 1f;
+    }
+
+    protected override void OnEnable()
+    {
+        lifeTime = 1f;
+        base.OnEnable();
     }
 
     void Start()
@@ -16,6 +23,6 @@ public class PlayerBullet : Projectile
 
     public override void ReturnPool()
     {
-        ObjectPoolManager.instance.ReturnObject("playerBullet", this.gameObject)
+        ObjectPoolManager.instance.ReturnObject("playerBullet", this.gameObject);
     }
 }
