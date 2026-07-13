@@ -79,9 +79,9 @@ public class PlayerController : MonoBehaviour
                 GetDirection(dir);
             }
             rangeWeapon.AttackPosDirection(isFlip);
-            meleeWeapon.AttackPosDirection(isFlip);
+            //meleeWeapon.AttackPosDirection(isFlip);
             rangeWeapon.GetDirection(bulletDir);
-            meleeWeapon.GetDirection(bulletDir);
+            //meleeWeapon.GetDirection(bulletDir);
         }
         rb.linearVelocity = new Vector2(dir * speed, rb.linearVelocity.y);
     }
