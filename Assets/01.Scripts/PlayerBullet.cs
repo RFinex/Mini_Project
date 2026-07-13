@@ -13,12 +13,18 @@ public class PlayerBullet : Projectile
     protected override void OnEnable()
     {
         lifeTime = 1f;
+        speed = 10f;
         base.OnEnable();
     }
 
-    void Start()
+    protected void Start()
     {
         
+    }
+
+    protected void FixedUpdate()
+    {
+        rb.linearVelocity = Vector3.right * speed * dir;
     }
 
     public override void ReturnPool()
