@@ -13,7 +13,7 @@ public abstract class Projectile : MonoBehaviour, IPoolable
 
     protected Rigidbody2D rb;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         lifeTime = 3f;
         timer = 0f;
