@@ -10,7 +10,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpPower;
 
-    [SerializeField] bool isGround;
+    [SerializeField] private bool isGround;
+    [SerializeField] private int jumpCount;
+    private int jumpCountMax;
+
+    [SerializeField] LayerMask groundLayer;
+    
 
     private void Awake()
     {
@@ -24,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         PlayerControll();
+        GroundCheck();
     }
 
     private void PlayerControll()
@@ -38,16 +44,35 @@ public class PlayerController : MonoBehaviour
         {
             dir += 1;
         }
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            Jump();
+        }
+    }    
+
+    private void FixedUpdate()
+    {
+        rb.linearVelocity = new Vector2(dir * speed, rb.linearVelocity.y);
     }
 
     private void Jump()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
-
+        if (isGround)
+            jumpCount++;
+        else
+            jumpCount += 2;
     }
 
-    private void FixedUpdate()
+    private void GroundCheck()
     {
-        rb.linearVelocity = new Vector2(dir * speed, rb.linearVelocity.y);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(1f, 0.1f), 0f, Vector2.down, 0.9f, groundLayer);
+
+        isGround = hit.collider == null ? false : true;
+
+        if (isGround && rb.linearVelocity.y <= 0.1f)
+        {
+            jumpCount = 0;
+        }
     }
 }
