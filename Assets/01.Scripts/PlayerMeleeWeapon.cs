@@ -5,10 +5,12 @@ using UnityEngine.InputSystem;
 public class PlayerMeleeWeapon : PlayerWeapon
 {
     private float delay;
-    private float angle = -150;
+    private float angle = -120;
 
     bool isAttack;
     private Tween swingTween;
+
+    private TrailRenderer tr;
 
     protected override void Awake()
     {
@@ -16,6 +18,8 @@ public class PlayerMeleeWeapon : PlayerWeapon
         damage = 5;
         isAttack = false;
         delay = 0.2f;
+        tr = GetComponent<TrailRenderer>();
+        tr.emitting = false;
     }
 
     protected override void Attack()
@@ -32,10 +36,17 @@ public class PlayerMeleeWeapon : PlayerWeapon
 
         attackPos.localRotation = Quaternion.identity;
 
-        swingTween = attackPos.DORotate(new Vector3(0f, 0f, angle), 0.2f)
+        float rAngle = attackPos.localPosition.x < 0 ? -angle : angle;
+
+        swingTween = attackPos.DORotate(new Vector3(0f, 0f, rAngle), delay)
             .SetEase(Ease.OutExpo)
             .SetLink(gameObject)
-            .OnComplete(() => attackPos.localRotation = Quaternion.identity);
+            .OnStart(() => tr.emitting = true)
+            .OnComplete(() =>
+            {
+                attackPos.localRotation = Quaternion.identity;
+                tr.emitting = false;
+            });
 
     }
 }
