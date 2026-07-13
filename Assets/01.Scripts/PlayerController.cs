@@ -5,26 +5,34 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Collider2D col;
+    private SpriteRenderer sr;
 
     private float dir;
+    private float bulletDir;
     [SerializeField] private float speed;
     [SerializeField] private float jumpPower;
 
+    private bool isFlip;
     [SerializeField] private bool isGround;
     [SerializeField] private int jumpCount;
     private int jumpCountMax;
 
     [SerializeField] LayerMask groundLayer;
+
+    PlayerWeapon rangeWeapon;
     
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        sr = GetComponent<SpriteRenderer>();
+        rangeWeapon = GetComponentInChildren<PlayerRangeWeapon>(true);
         speed = 5f;
         jumpPower = 12f;
         jumpCount = 0;
         jumpCountMax = 2;
+        isFlip = false;
     }
 
 
@@ -54,6 +62,23 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (dir != 0)
+        {
+            if (dir > 0)
+            {
+                isFlip = false;
+                sr.flipX = isFlip;
+                GetDirection(dir);
+            }
+            else
+            {
+                isFlip = true;
+                sr.flipX = isFlip;
+                GetDirection(dir);
+            }
+            rangeWeapon.AttackPosDirection(isFlip);
+            rangeWeapon.GetDirection(bulletDir);
+        }
         rb.linearVelocity = new Vector2(dir * speed, rb.linearVelocity.y);
     }
 
@@ -85,5 +110,10 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawCube(transform.position - new Vector3(0, 0.5f, 0), new Vector2(1f, 0.1f));
+    }
+
+    private void GetDirection(float dir)
+    {
+        bulletDir = dir;
     }
 }

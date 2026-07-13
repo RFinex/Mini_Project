@@ -10,7 +10,7 @@ public abstract class PlayerWeapon : MonoBehaviour
     
     protected virtual void Awake()
     {
-        basePos = transform.localPosition;
+        basePos = attackPos.localPosition;
         dir = 1;
     }
 
@@ -21,9 +21,9 @@ public abstract class PlayerWeapon : MonoBehaviour
 
     public void AttackPosDirection(bool isFlip)
     {
-        Vector2 currentPos = transform.localPosition;
+        Vector2 currentPos = attackPos.localPosition;
         currentPos.x = isFlip ? -basePos.x : basePos.x;
-        transform.localPosition = currentPos;
+        attackPos.localPosition = currentPos;
     }
 
     public void GetDirection(float dir)
