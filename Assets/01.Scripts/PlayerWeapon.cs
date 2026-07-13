@@ -11,7 +11,7 @@ public abstract class PlayerWeapon : MonoBehaviour
     protected virtual void Awake()
     {
         basePos = attackPos.localPosition;
-        dir = 1;
+        dir = 1f;
     }
 
     void Update()

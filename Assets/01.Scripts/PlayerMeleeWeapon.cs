@@ -1,14 +1,41 @@
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerMeleeWeapon : MonoBehaviour
+public class PlayerMeleeWeapon : PlayerWeapon
 {
-    void Start()
+    private float delay;
+    private float startAngle = 60;
+    private float endAngle = -60;
+
+    bool isAttack;
+
+    protected override void Awake()
     {
-        
+        base.Awake();
+        isAttack = false;
     }
 
     void Update()
     {
         
+    }
+
+    protected override void Attack()
+    {
+        if (Keyboard.current.zKey.wasPressedThisFrame)
+        {
+
+        }
+    }
+
+    protected void Swing()
+    {
+        isAttack = true;
+
+        transform.localRotation = Quaternion.Euler(0f, 0f, startAngle);
+
+        transform.DORotate(new Vector3(0f, 0f, endAngle), delay);
+
     }
 }
