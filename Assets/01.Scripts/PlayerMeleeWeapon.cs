@@ -13,6 +13,8 @@ public class PlayerMeleeWeapon : PlayerWeapon
     bool canAttack;
     private Tween swingTween;
 
+    WaitForSeconds waitCool;
+
     private TrailRenderer tr;
 
     protected override void Awake()
@@ -25,6 +27,7 @@ public class PlayerMeleeWeapon : PlayerWeapon
         tr.emitting = false;
         coolTime = 0.5f;
         timer = 0;
+        waitCool = new WaitForSeconds(coolTime);
     }
 
     protected override void Attack()
@@ -53,6 +56,7 @@ public class PlayerMeleeWeapon : PlayerWeapon
             {
                 tr.emitting = true;
                 canAttack = false;
+                StopAllCoroutines();
                 StartCoroutine(AttackCoolTime());
             })
             .OnComplete(() =>
@@ -64,18 +68,9 @@ public class PlayerMeleeWeapon : PlayerWeapon
 
     private IEnumerator AttackCoolTime()
     {
-        while (!canAttack)
-        {
-            timer += Time.deltaTime;
-            if (timer >= coolTime)
-            {
-                canAttack = true;
-                timer = 0;
-            }
+        yield return waitCool;
 
-            yield return null;
-        }
-        
+        canAttack = true;        
     }
 
 }
