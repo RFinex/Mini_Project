@@ -13,7 +13,11 @@ public class PlayerRangeWeapon : PlayerWeapon
     {
         if (Keyboard.current.zKey.wasPressedThisFrame)
         {
-
+            GameObject bullet = ObjectPoolManager.instance.GetObject("playerBullet");
+            bullet.transform.position = attackPos.position;
+            Projectile bCom = bullet.GetComponent<PlayerBullet>();
+            bCom.SetDirection(dir);
+            bCom.SetDamage(damage);
         }
     }
 }
