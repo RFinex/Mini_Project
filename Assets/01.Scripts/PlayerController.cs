@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sr;
 
     private float dir;
-    private float bulletDir;
+    private float attackDir;
     [SerializeField] private float speed;
     [SerializeField] private float jumpPower;
 
@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
 
     PlayerWeapon rangeWeapon;
+    PlayerWeapon meleeWeapon;
+
+    bool isRange;
+    bool isMelee;
     
 
     private void Awake()
@@ -28,11 +32,19 @@ public class PlayerController : MonoBehaviour
         col = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
         rangeWeapon = GetComponentInChildren<PlayerRangeWeapon>(true);
+        meleeWeapon = GetComponentInChildren<PlayerMeleeWeapon>(true);
         speed = 5f;
         jumpPower = 12f;
         jumpCount = 0;
         jumpCountMax = 2;
         isFlip = false;
+        isRange = true;
+        isMelee = false;
+    }
+
+    private void Start()
+    {
+        meleeWeapon.gameObject.SetActive(false);
     }
 
 
@@ -58,7 +70,29 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
+        if (Keyboard.current.tabKey.wasPressedThisFrame)
+        {
+            ChangeWeapon();
+        }
     }    
+
+    private void ChangeWeapon()
+    {
+        if (isRange)
+        {
+            rangeWeapon.gameObject.SetActive(false);
+            meleeWeapon.gameObject.SetActive(true);
+            isRange = false;
+            isMelee = true;
+        }
+        else if (isMelee)
+        {
+            rangeWeapon.gameObject.SetActive(true);
+            meleeWeapon.gameObject.SetActive(false);
+            isRange = true;
+            isMelee = false;
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -76,8 +110,17 @@ public class PlayerController : MonoBehaviour
                 sr.flipX = isFlip;
                 GetDirection(dir);
             }
-            rangeWeapon.AttackPosDirection(isFlip);
-            rangeWeapon.GetDirection(bulletDir);
+
+            if (isRange && !isMelee)
+            {
+                rangeWeapon.AttackPosDirection(isFlip);
+                rangeWeapon.GetDirection(attackDir);
+            }
+            else if (!isRange && isMelee)
+            {
+                meleeWeapon.AttackPosDirection(isFlip);
+                meleeWeapon.GetDirection(attackDir);
+            }
         }
         rb.linearVelocity = new Vector2(dir * speed, rb.linearVelocity.y);
     }
@@ -114,6 +157,6 @@ public class PlayerController : MonoBehaviour
 
     private void GetDirection(float dir)
     {
-        bulletDir = dir;
+        attackDir = dir;
     }
 }

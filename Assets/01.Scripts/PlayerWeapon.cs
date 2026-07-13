@@ -14,7 +14,7 @@ public abstract class PlayerWeapon : MonoBehaviour
         dir = 1f;
     }
 
-    void Update()
+    protected void Update()
     {
         Attack();
     }
