@@ -21,10 +21,12 @@ public abstract class Projectile : MonoBehaviour, IPoolable
     protected virtual void OnEnable()
     {
         timer = 0f;
+        dir = 1f;
+        StopAllCoroutines();
         StartCoroutine(LifeDelay());
     }
 
-    void Start()
+    protected void Start()
     {
         StartCoroutine(LifeDelay());
     }

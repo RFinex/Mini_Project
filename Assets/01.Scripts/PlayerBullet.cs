@@ -17,11 +17,6 @@ public class PlayerBullet : Projectile
         base.OnEnable();
     }
 
-    protected void Start()
-    {
-        
-    }
-
     protected void FixedUpdate()
     {
         rb.linearVelocity = Vector3.right * speed * dir;
