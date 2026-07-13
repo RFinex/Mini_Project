@@ -9,17 +9,13 @@ public class PlayerMeleeWeapon : PlayerWeapon
     private float endAngle = -60;
 
     bool isAttack;
+    private Tween swingTween;
 
     protected override void Awake()
     {
         base.Awake();
         isAttack = false;
-        delay = 1f;
-    }
-
-    void Update()
-    {
-        
+        delay = 0.2f;
     }
 
     protected override void Attack()
@@ -32,13 +28,14 @@ public class PlayerMeleeWeapon : PlayerWeapon
 
     protected void Swing()
     {
-        isAttack = true;
+        swingTween?.Kill();
 
-        transform.localRotation = Quaternion.Euler(0f, 0f, startAngle);
+        attackPos.localRotation = Quaternion.Euler(0f, 0f, startAngle);
 
-        transform.DORotate(new Vector3(0f, 0f, endAngle), delay)
-            .SetEase(Ease.OutCubic)
-            .SetLink(gameObject);
+        swingTween = attackPos.DORotate(new Vector3(0f, 0f, endAngle), 0.2f)
+            .SetEase(Ease.OutExpo)
+            .SetLink(gameObject)
+            .OnComplete(() => attackPos.localRotation = Quaternion.identity);
 
     }
 }
