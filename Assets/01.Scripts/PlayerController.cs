@@ -75,4 +75,10 @@ public class PlayerController : MonoBehaviour
             jumpCount = 0;
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawCube(transform.position - new Vector3(0, 0.9f, 0), new Vector2(1f, 0.1f));
+    }
 }
