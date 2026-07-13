@@ -14,6 +14,7 @@ public class PlayerMeleeWeapon : PlayerWeapon
     {
         base.Awake();
         isAttack = false;
+        delay = 1f;
     }
 
     void Update()
@@ -25,7 +26,7 @@ public class PlayerMeleeWeapon : PlayerWeapon
     {
         if (Keyboard.current.zKey.wasPressedThisFrame)
         {
-
+            Swing();
         }
     }
 
@@ -35,7 +36,9 @@ public class PlayerMeleeWeapon : PlayerWeapon
 
         transform.localRotation = Quaternion.Euler(0f, 0f, startAngle);
 
-        transform.DORotate(new Vector3(0f, 0f, endAngle), delay);
+        transform.DORotate(new Vector3(0f, 0f, endAngle), delay)
+            .SetEase(Ease.OutCubic)
+            .SetLink(gameObject);
 
     }
 }
