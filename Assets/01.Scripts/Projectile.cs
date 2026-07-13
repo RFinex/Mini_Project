@@ -1,6 +1,7 @@
 using UnityEngine;
+using System.Collections;
 
-public class Projectile : MonoBehaviour
+public abstract class Projectile : MonoBehaviour, IPoolable
 {
     protected float speed;
     [SerializeField] protected float lifeTime;
@@ -8,14 +9,44 @@ public class Projectile : MonoBehaviour
 
     protected int damage;
 
+    protected float dir;
+
+    protected Rigidbody2D rb;
+
+    protected void Awake()
+    {
+        lifeTime = 3f;
+        timer = 0f;
+    }
+
+    protected void OnEnable()
+    {
+        lifeTime = 3f;
+        timer = 0f;
+        StartCoroutine(LifeDelay());
+    }
 
     void Start()
     {
-        
+        StartCoroutine(LifeDelay());
     }
 
-    void Update()
+    protected IEnumerator LifeDelay()
     {
-        
+        while (true)
+        {
+            if (timer >= lifeTime)
+            {
+                ReturnPool();
+            }
+            yield return null;
+        }
     }
+
+    protected void Update()
+    {
+        timer += Time.deltaTime;
+    }
+
+    public abstract void ReturnPool();
 }
