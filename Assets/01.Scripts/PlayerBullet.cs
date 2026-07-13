@@ -1,16 +1,39 @@
 using UnityEngine;
 
-public class PlayerBullet : MonoBehaviour
+public class PlayerBullet : Projectile
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    protected override void Awake()
     {
-        
+        base.Awake();
+        rb = GetComponent<Rigidbody2D>();
+        lifeTime = 1f;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnEnable()
     {
-        
+        lifeTime = 1f;
+        speed = 10f;
+        base.OnEnable();
+    }
+
+    protected void FixedUpdate()
+    {
+        rb.linearVelocity = Vector3.right * speed * dir;
+    }
+
+    public override void SetDamage(int damage)
+    {
+        base.SetDamage(damage);
+    }
+
+    public override void SetDirection(float dir)
+    {
+        base.SetDirection(dir);
+    }
+
+    public override void ReturnPool()
+    {
+        ObjectPoolManager.instance.ReturnObject("playerBullet", this.gameObject);
     }
 }
