@@ -23,7 +23,7 @@ public class PlayerMeleeWeapon : PlayerWeapon
         motionDelay = 0.2f;
         tr = GetComponent<TrailRenderer>();
         tr.emitting = false;
-        coolTime = 1f;
+        coolTime = 0.5f;
         timer = 0;
     }
 
@@ -49,13 +49,16 @@ public class PlayerMeleeWeapon : PlayerWeapon
         swingTween = attackPos.DORotate(new Vector3(0f, 0f, rAngle), motionDelay)
             .SetEase(Ease.OutExpo)
             .SetLink(gameObject)
-            .OnStart(() => tr.emitting = true)
+            .OnStart(() =>
+            {
+                tr.emitting = true;
+                StartCoroutine(AttackCoolTime());
+            })
             .OnComplete(() =>
             {
                 attackPos.localRotation = Quaternion.identity;
                 tr.emitting = false;
                 canAttack = false;
-                StartCoroutine(AttackCoolTime());
             });
     }
 

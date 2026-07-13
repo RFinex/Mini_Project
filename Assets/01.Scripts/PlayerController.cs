@@ -42,6 +42,11 @@ public class PlayerController : MonoBehaviour
         isMelee = false;
     }
 
+    private void Start()
+    {
+        meleeWeapon.gameObject.SetActive(false);
+    }
+
 
     private void Update()
     {
