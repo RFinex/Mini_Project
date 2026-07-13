@@ -23,7 +23,7 @@ public class ObjectPoolManager : MonoBehaviour
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
 
-        poolSize = 50;
+        poolSize = 5;
 
         foreach(GameObject obj in objList)
         {
