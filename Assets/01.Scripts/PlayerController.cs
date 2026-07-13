@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
 
     PlayerWeapon rangeWeapon;
+    PlayerWeapon meleeWeapon;
     
 
     private void Awake()
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
         col = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
         rangeWeapon = GetComponentInChildren<PlayerRangeWeapon>(true);
+        meleeWeapon = GetComponentInChildren<PlayerMeleeWeapon>(true);
         speed = 5f;
         jumpPower = 12f;
         jumpCount = 0;
@@ -77,7 +79,9 @@ public class PlayerController : MonoBehaviour
                 GetDirection(dir);
             }
             rangeWeapon.AttackPosDirection(isFlip);
+            meleeWeapon.AttackPosDirection(isFlip);
             rangeWeapon.GetDirection(bulletDir);
+            meleeWeapon.GetDirection(bulletDir);
         }
         rb.linearVelocity = new Vector2(dir * speed, rb.linearVelocity.y);
     }

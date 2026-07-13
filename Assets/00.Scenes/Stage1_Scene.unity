@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &100229924
 Transform:
   m_ObjectHideFlags: 0
@@ -581,7 +581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052365e97278ef34f8059488f3283133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMeleeWeapon
-  attackPos: {fileID: 0}
+  attackPos: {fileID: 1330113345}
 --- !u!96 &833819554
 TrailRenderer:
   serializedVersion: 4

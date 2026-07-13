@@ -5,8 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerMeleeWeapon : PlayerWeapon
 {
     private float delay;
-    private float startAngle = 60;
-    private float endAngle = -60;
+    private float angle = -150;
 
     bool isAttack;
     private Tween swingTween;
@@ -14,6 +13,7 @@ public class PlayerMeleeWeapon : PlayerWeapon
     protected override void Awake()
     {
         base.Awake();
+        damage = 5;
         isAttack = false;
         delay = 0.2f;
     }
@@ -30,9 +30,9 @@ public class PlayerMeleeWeapon : PlayerWeapon
     {
         swingTween?.Kill();
 
-        attackPos.localRotation = Quaternion.Euler(0f, 0f, startAngle);
+        attackPos.localRotation = Quaternion.identity;
 
-        swingTween = attackPos.DORotate(new Vector3(0f, 0f, endAngle), 0.2f)
+        swingTween = attackPos.DORotate(new Vector3(0f, 0f, angle), 0.2f)
             .SetEase(Ease.OutExpo)
             .SetLink(gameObject)
             .OnComplete(() => attackPos.localRotation = Quaternion.identity);
