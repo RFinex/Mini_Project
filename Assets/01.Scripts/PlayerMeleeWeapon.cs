@@ -15,16 +15,12 @@ public class PlayerMeleeWeapon : PlayerWeapon
 
     WaitForSeconds waitCool;
 
-    private TrailRenderer tr;
-
     protected override void Awake()
     {
         base.Awake();
         damage = 5;
         canAttack = true;
         motionDelay = 0.2f;
-        tr = GetComponent<TrailRenderer>();
-        tr.emitting = false;
         coolTime = 0.5f;
         timer = 0;
         waitCool = new WaitForSeconds(coolTime);
@@ -54,16 +50,11 @@ public class PlayerMeleeWeapon : PlayerWeapon
             .SetLink(gameObject)
             .OnStart(() =>
             {
-                tr.emitting = true;
                 canAttack = false;
                 StopAllCoroutines();
                 StartCoroutine(AttackCoolTime());
             })
-            .OnComplete(() =>
-            {
-                attackPos.localRotation = Quaternion.identity;
-                tr.emitting = false;
-            });
+            .OnComplete(() => attackPos.localRotation = Quaternion.identity);
     }
 
     private IEnumerator AttackCoolTime()
