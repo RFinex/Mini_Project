@@ -7,13 +7,17 @@ public class PlayerController : MonoBehaviour
     private Collider2D col;
 
     private float dir;
-    private float speed;
+    [SerializeField] private float speed;
+    [SerializeField] private float jumpPower;
+
+    [SerializeField] bool isGround;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         speed = 5f;
+        jumpPower = 12f;
     }
 
 
@@ -34,6 +38,12 @@ public class PlayerController : MonoBehaviour
         {
             dir += 1;
         }
+    }
+
+    private void Jump()
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
+
     }
 
     private void FixedUpdate()
