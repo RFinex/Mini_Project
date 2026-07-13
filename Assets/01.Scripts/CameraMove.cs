@@ -5,7 +5,7 @@ public class CameraMove : MonoBehaviour
     private Camera camera;
     private float screenHalfSizeX;
     private float screenHalfSizeY;
-    [SerializeField] Transform target;
+    [SerializeField] private Transform target;
 
     private void Awake()
     {

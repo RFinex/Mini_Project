@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Background : MonoBehaviour
 {
-    Transform back;
+    private Transform back;
 
-    float backgroundWidth;
-    float backgroundHeight;
+    private float backgroundWidth;
+    private float backgroundHeight;
 
     [SerializeField] Transform target;
 
@@ -17,7 +17,7 @@ public class Background : MonoBehaviour
         backgroundHeight = back.GetComponent<SpriteRenderer>().bounds.size.y;
     }
 
-    void Update()
+    private void Update()
     {
         if (back.position.x < target.position.x - backgroundWidth / 2)
         {
