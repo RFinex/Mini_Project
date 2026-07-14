@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isLaunch;
     private bool canDash;
     private bool isDash;
+    private bool isAntiGravity;
 
     private float baseGravity;
 
@@ -54,6 +55,7 @@ public class PlayerController : MonoBehaviour
         isLaunch = false;
         canDash = false;
         isDash = false;
+        isAntiGravity = false;
         rb.gravityScale = 2.5f;
         baseGravity = rb.gravityScale;
         baseSpeed = speed;
@@ -242,6 +244,13 @@ public class PlayerController : MonoBehaviour
         rb.gravityScale = baseGravity;
         rb.linearVelocity = Vector2.zero;
         isDash = false;
+    }
+
+    public void AntiGravity(bool isAnti)
+    {
+        isAntiGravity = isAnti;
+        rb.gravityScale = isAntiGravity ? -baseGravity : baseGravity;
+        sr.flipY = isAntiGravity;
     }
 
     private void GroundCheck()
