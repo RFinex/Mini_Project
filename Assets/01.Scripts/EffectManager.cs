@@ -26,9 +26,4 @@ public class EffectManager : MonoBehaviour
             ps.Play();
         }
     }
-
-    void Update()
-    {
-        
-    }
 }

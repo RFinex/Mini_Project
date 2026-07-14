@@ -184,6 +184,10 @@ public class PlayerController : MonoBehaviour
     {
         isDead = false;
 
+        sr.enabled = true;
+        rangeWeapon.gameObject.SetActive(true);
+        meleeWeapon.gameObject.SetActive(false);
+        UIManager.instance.OffCenterText();
     }
 
     private void GetDirection(float dir)

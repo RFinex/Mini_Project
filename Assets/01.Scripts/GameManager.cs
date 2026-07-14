@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Transform respawn;
     GameObject player;
+    PlayerController pc;
 
     private void Awake()
     {
@@ -17,11 +18,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         player = GameObject.Find("Player");
-    }
-
-    void Start()
-    {
-        
+        pc = player.GetComponent<PlayerController>();
     }
 
     void Update()
@@ -29,6 +26,7 @@ public class GameManager : MonoBehaviour
         if (Keyboard.current.rKey.wasPressedThisFrame)
         {
             player.transform.position = respawn.position;
+            pc.Revive();
         }
     }
 }

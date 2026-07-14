@@ -26,6 +26,11 @@ public class PlayerMeleeWeapon : PlayerWeapon
         waitCool = new WaitForSeconds(coolTime);
     }
 
+    protected void OnEnable()
+    {
+        canAttack = true;
+    }
+
     protected override void Attack()
     {
         if (Keyboard.current.zKey.wasPressedThisFrame)

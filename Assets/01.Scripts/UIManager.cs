@@ -38,4 +38,8 @@ public class UIManager : MonoBehaviour
         centerText.gameObject.SetActive(true);
         centerText.text = "Game Over Press 'R' Key";
     }
+    public void OffCenterText()
+    {
+        centerText.gameObject.SetActive(false);
+    }
 }
