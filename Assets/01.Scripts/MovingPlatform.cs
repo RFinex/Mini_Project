@@ -16,8 +16,8 @@ public class MovingPlatform : MonoBehaviour
     private Vector3 endPos;
 
     // 올라탈 때 속도, 돌아갈 때 속도
-    private float passiveSpeed;
-    private float passiveSpeed2;
+    [SerializeField] private float passiveSpeed;
+    [SerializeField] private float passiveSpeed2;
 
     private Tween moveTween;
     private Tween moveTween2;
