@@ -95,7 +95,8 @@ public class PlayerController : MonoBehaviour
                 isHold = false;
                 isLaunch = true;
                 rb.gravityScale = 0;
-                rb.linearVelocity = launchDir.normalized * speed;
+                rb.linearVelocity = launchDir.normalized * speed * 2;
+                dir = 0;
             }
             return;
         }
@@ -107,27 +108,33 @@ public class PlayerController : MonoBehaviour
                 rb.gravityScale = baseGravity;
                 isLaunch = false;
             }
+            return;
         }
 
+        
+        if (!isLaunch)
+        {
+            dir = 0;
 
-        dir = 0;
+            if (Keyboard.current.leftArrowKey.isPressed)
+            {
+                dir += -1;
+            }
+            if (Keyboard.current.rightArrowKey.isPressed)
+            {
+                dir += 1;
+            }
+            if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                Jump();
+            }
+            if (Keyboard.current.tabKey.wasPressedThisFrame)
+            {
+                ChangeWeapon();
+            }
+        }
+        
 
-        if (Keyboard.current.leftArrowKey.isPressed)
-        {
-            dir += -1;
-        }
-        if (Keyboard.current.rightArrowKey.isPressed)
-        {
-            dir += 1;
-        }
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            Jump();
-        }
-        if (Keyboard.current.tabKey.wasPressedThisFrame)
-        {
-            ChangeWeapon();
-        }
     }    
 
     private void ChangeWeapon()
@@ -176,7 +183,8 @@ public class PlayerController : MonoBehaviour
                 meleeWeapon.GetDirection(attackDir);
             }
         }
-        if (!isDead)
+
+        if (!isDead && !isHold && !isLaunch)
         {
             rb.linearVelocity = new Vector2(dir * speed, rb.linearVelocity.y);
         }
@@ -199,9 +207,12 @@ public class PlayerController : MonoBehaviour
         jumpCount = 1;
     }
 
-    public void LaunchPlayer()
+    public void LaunchPlayer(Vector3 target)
     {
-
+        transform.position = target;
+        isHold = true;
+        rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = 0;
     }
 
     private void GroundCheck()
