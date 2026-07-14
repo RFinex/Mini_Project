@@ -64,8 +64,11 @@ public class MovingPlatform : MonoBehaviour
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            collision.transform.SetParent(null);
-            
+            if (gameObject.activeInHierarchy)
+            {
+                collision.transform.SetParent(null);
+            }
+
             if (isPassive)
             {
                 moveTween?.Kill();

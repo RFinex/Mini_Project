@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     {
         respawn = GameObject.Find("RespawnPoint").transform;
         player = GameObject.Find("Player");
+        player.transform.position = respawn.position;
 
         EffectManager.instance.Init();
         UIManager.instance.Init();
@@ -37,7 +38,6 @@ public class GameManager : MonoBehaviour
         if (Keyboard.current.rKey.wasPressedThisFrame)
         {
             RestartScene();
-            player.transform.position = respawn.position;
         }
     }
 
