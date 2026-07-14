@@ -176,18 +176,8 @@ public class PlayerController : MonoBehaviour
         sr.enabled = false;
         rangeWeapon.gameObject.SetActive(false);
         meleeWeapon.gameObject.SetActive(false);
-        rb.linearVelocity = Vector2.zero;        
+        rb.linearVelocity = Vector2.zero;
         UIManager.instance.OnGameOverText();
-    }
-
-    public void Revive()
-    {
-        isDead = false;
-
-        sr.enabled = true;
-        rangeWeapon.gameObject.SetActive(true);
-        meleeWeapon.gameObject.SetActive(false);
-        UIManager.instance.OffCenterText();
     }
 
     private void GetDirection(float dir)

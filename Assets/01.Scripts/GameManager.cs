@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,14 +20,27 @@ public class GameManager : MonoBehaviour
 
         player = GameObject.Find("Player");
         pc = player.GetComponent<PlayerController>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        //respawn = GameObject.Find("RespawnPoint").transform;
+        //player = GameObject.Find("Player");
     }
 
     void Update()
     {
         if (Keyboard.current.rKey.wasPressedThisFrame)
         {
+            RestartScene();
             player.transform.position = respawn.position;
-            pc.Revive();
         }
+    }
+
+    private void RestartScene()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 }

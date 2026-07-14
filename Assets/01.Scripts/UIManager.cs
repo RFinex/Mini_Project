@@ -20,26 +20,16 @@ public class UIManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-
-    }
-
-    private void Start()
-    {
-        
-    }
-
-    private void Update()
-    {
-        
+        centerText = GameObject.Find("CenterText").GetComponent<TextMeshProUGUI>();
+        centerText.text = "";
     }
 
     public void OnGameOverText()
     {
-        centerText.gameObject.SetActive(true);
         centerText.text = "Game Over Press 'R' Key";
     }
     public void OffCenterText()
     {
-        centerText.gameObject.SetActive(false);
+        centerText.text = "";
     }
 }
