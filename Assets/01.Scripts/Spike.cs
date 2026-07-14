@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class Spike : MonoBehaviour
 {
-    void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-    void Update()
-    {
-        
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            collision.GetComponent<PlayerController>().CollisionObject();
+        }
     }
 }

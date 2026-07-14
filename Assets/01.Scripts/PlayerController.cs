@@ -155,6 +155,16 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawCube(transform.position - new Vector3(0, 0.5f, 0), new Vector2(1f, 0.1f));
     }
 
+    public void CollisionObject()
+    {
+        Die();
+    }
+
+    private void Die()
+    {
+
+    }
+
     private void GetDirection(float dir)
     {
         attackDir = dir;

@@ -1,8 +1,11 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
+    [SerializeField] TextMeshProUGUI centerText;
 
     private void Awake()
     {
@@ -11,14 +14,27 @@ public class UIManager : MonoBehaviour
         else
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    void Start()
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+
+    }
+
+    private void Start()
     {
         
     }
 
-    void Update()
+    private void Update()
     {
         
+    }
+
+    public void OnGameOverText()
+    {
+        centerText.text = "Game Over Press 'R' Key"
     }
 }
