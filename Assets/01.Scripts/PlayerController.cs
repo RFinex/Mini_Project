@@ -24,7 +24,9 @@ public class PlayerController : MonoBehaviour
 
     bool isRange;
     bool isMelee;
-    
+    bool isDead;
+
+    [SerializeField] GameObject deathParticle;
 
     private void Awake()
     {
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
         isFlip = false;
         isRange = true;
         isMelee = false;
+        isDead = false;
     }
 
     private void Start()
@@ -56,6 +59,9 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerControll()
     {
+        if (isDead)
+            return;
+
         dir = 0;
 
         if (Keyboard.current.leftArrowKey.isPressed)
@@ -162,7 +168,14 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
+        isDead = true;
+        if (deathParticle != null)
+        {
+            Instantiate(deathParticle, transform.position, Quaternion.identity);
+        }
 
+        sr.enabled = false;
+        UIManager.instance.OnGameOverText();
     }
 
     private void GetDirection(float dir)
