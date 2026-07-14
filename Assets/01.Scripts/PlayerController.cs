@@ -17,14 +17,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int jumpCount;
     private int jumpCountMax;
 
-    [SerializeField] LayerMask groundLayer;
+    [SerializeField] private LayerMask groundLayer;
 
-    PlayerWeapon rangeWeapon;
-    PlayerWeapon meleeWeapon;
+    private PlayerWeapon rangeWeapon;
+    private PlayerWeapon meleeWeapon;
 
-    bool isRange;
-    bool isMelee;
-    [SerializeField] bool isDead;
+    private bool isRange;
+    private bool isMelee;
+    [SerializeField] private bool isDead;
+    [SerializeField] private bool isHold;
+    [SerializeField] private bool isLaunch;
+
+    private float baseGravity;
 
 
     private void Awake()
@@ -42,6 +46,9 @@ public class PlayerController : MonoBehaviour
         isRange = true;
         isMelee = false;
         isDead = false;
+        isHold = false;
+        isLaunch = false;
+        rb.gravityScale = 3;
     }
 
     private void Start()
@@ -60,6 +67,35 @@ public class PlayerController : MonoBehaviour
     {
         if (isDead)
             return;
+
+        if (isHold)
+        {
+            Vector2 launchDir = Vector2.zero;
+
+            if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
+            {
+                launchDir.x = -1;
+            }
+            if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
+            {
+                launchDir.x = 1;
+            }
+            if (Keyboard.current.upArrowKey.wasPressedThisFrame)
+            {
+                launchDir.y = 1;
+            }
+            if (Keyboard.current.downArrowKey.wasPressedThisFrame)
+            {
+                launchDir.y = -1;
+            }
+
+            if (launchDir != Vector2.zero)
+            {
+                isHold = false;
+                isLaunch = true;
+            }
+        }
+
 
         dir = 0;
 
@@ -148,6 +184,11 @@ public class PlayerController : MonoBehaviour
     public void AddJump()
     {
         jumpCount = 1;
+    }
+
+    public void LaunchPlayer()
+    {
+
     }
 
     private void GroundCheck()
