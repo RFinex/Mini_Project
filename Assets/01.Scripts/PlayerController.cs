@@ -145,6 +145,11 @@ public class PlayerController : MonoBehaviour
             jumpCount += 2;
     }
 
+    public void AddJump()
+    {
+        jumpCount = 1;
+    }
+
     private void GroundCheck()
     {
         RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(1f, 0.1f), 0f, Vector2.down, 0.5f, groundLayer);
