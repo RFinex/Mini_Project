@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
         player = GameObject.Find("Player");
         pc = player.GetComponent<PlayerController>();
+        
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 

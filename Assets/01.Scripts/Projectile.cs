@@ -1,11 +1,11 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public abstract class Projectile : MonoBehaviour, IPoolable
 {
     protected float speed;
     [SerializeField] protected float lifeTime;
-    [SerializeField] protected float timer;
 
     protected int damage;
 
@@ -13,40 +13,33 @@ public abstract class Projectile : MonoBehaviour, IPoolable
 
     protected Rigidbody2D rb;
 
-    protected virtual void Awake()
-    {
-        timer = 0f;
-    }
+    protected WaitForSeconds wait;
 
     protected virtual void OnEnable()
     {
-        timer = 0f;
         dir = 1f;
-        StopAllCoroutines();
-        StartCoroutine(LifeDelay());
+        //StopAllCoroutines();
+        //StartCoroutine(LifeDelay());
+        SceneManager.sceneLoaded += BulletReturn;
     }
 
-    protected void Start()
+    protected void OnDisable()
     {
-        StartCoroutine(LifeDelay());
+        //StopAllCoroutines();
+        SceneManager.sceneLoaded -= BulletReturn;
     }
 
-    protected IEnumerator LifeDelay()
+    protected virtual void BulletReturn(Scene scene, LoadSceneMode mode)
     {
-        while (true)
-        {
-            if (timer >= lifeTime)
-            {
-                ReturnPool();
-            }
-            yield return null;
-        }
+        ReturnPool();
     }
 
-    protected void Update()
-    {
-        timer += Time.deltaTime;
-    }
+    //protected IEnumerator LifeDelay()
+    //{
+    //    yield return wait;
+
+    //    ReturnPool();
+    //}
 
     public virtual void SetDamage(int damage)
     {

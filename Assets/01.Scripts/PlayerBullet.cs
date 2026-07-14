@@ -3,18 +3,18 @@ using UnityEngine;
 public class PlayerBullet : Projectile
 {
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         rb = GetComponent<Rigidbody2D>();
-        lifeTime = 1f;
+        lifeTime = 3f;
+        wait = new WaitForSeconds(lifeTime);
     }
 
     protected override void OnEnable()
     {
-        lifeTime = 1f;
-        speed = 10f;
         base.OnEnable();
+        lifeTime = 3f;
+        speed = 10f;
     }
 
     protected void FixedUpdate()

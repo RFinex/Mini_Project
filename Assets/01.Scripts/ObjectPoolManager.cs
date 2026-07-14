@@ -53,7 +53,8 @@ public class ObjectPoolManager : MonoBehaviour
         }
         else
         {
-            GameObject go = Instantiate(objList.Find(obj => obj.name == name));
+            Transform parent = transform.Find($"{name}_Pool");
+            GameObject go = Instantiate(objList.Find(obj => obj.name == name), parent);
             return go;
         }        
     }
