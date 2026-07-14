@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     bool isRange;
     bool isMelee;
-    bool isDead;
+    [SerializeField] bool isDead;
 
     [SerializeField] GameObject deathParticle;
 
