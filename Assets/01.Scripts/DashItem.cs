@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class JumpItem : Item
+public class DashItem : Item
 {
-
     private void Awake()
     {
         wait = new WaitForSeconds(delay);
@@ -14,8 +13,7 @@ public class JumpItem : Item
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            collision.GetComponent<PlayerController>().AddJump();
-            StartCoroutine(ItemRespawn());
+            collision.GetComponent<PlayerController>().DashOn();
         }
-    }    
+    }
 }
