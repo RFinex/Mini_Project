@@ -1,16 +1,22 @@
 using UnityEngine;
 
-public class NormalGravityItem : MonoBehaviour
+public class NormalGravityItem : Item
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private bool isAnti = false;
+
+    private void Awake()
     {
-        
+        wait = new WaitForSeconds(delay);
+        col = GetComponent<Collider2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            collision.GetComponent<PlayerController>().AntiGravity(isAnti);
+            StartCoroutine(ItemRespawn());
+        }
     }
 }
