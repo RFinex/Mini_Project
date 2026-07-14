@@ -117,7 +117,6 @@ public class PlayerController : MonoBehaviour
             }
             return;
         }
-
         
         if (!isLaunch)
         {
@@ -139,7 +138,7 @@ public class PlayerController : MonoBehaviour
             {
                 ChangeWeapon();
             }
-            if (Keyboard.current.shiftKey.wasPressedThisFrame)
+            if (Keyboard.current.shiftKey.wasPressedThisFrame && canDash)
             {
                 StartCoroutine(Dash());
             }
@@ -233,6 +232,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Dash()
     {
+        canDash = false;
         isDash = true;
         rb.gravityScale = 0;
         rb.linearVelocity = new Vector2(isFlip ? -speed * 5 : speed * 5, 0);

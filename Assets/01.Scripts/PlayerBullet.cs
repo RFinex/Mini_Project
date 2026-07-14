@@ -32,13 +32,14 @@ public class PlayerBullet : Projectile
         base.SetDirection(dir);
     }
 
-    private void OnBecameInvisible()
-    {
-        ReturnPool();
-    }
+    //private void OnBecameInvisible()
+    //{     
+    //    Debug.Log($"{this.gameObject.name}/visible");
+    //    ReturnPool();
+    //}
 
     public override void ReturnPool()
-    {
+    {        
         ObjectPoolManager.instance.ReturnObject("playerBullet", this.gameObject);
     }
 }

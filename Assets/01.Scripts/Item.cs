@@ -10,7 +10,7 @@ public abstract class Item : MonoBehaviour
 
     protected abstract void OnTriggerEnter2D(Collider2D collision);
 
-    protected IEnumerator ItemRespawn()
+    protected virtual IEnumerator ItemRespawn()
     {
         col.enabled = false;
         sr.color = new Color(1, 1, 1, 0.2f);

@@ -18,14 +18,13 @@ public abstract class Projectile : MonoBehaviour, IPoolable
     protected virtual void OnEnable()
     {
         dir = 1f;
-        //StopAllCoroutines();
-        //StartCoroutine(LifeDelay());
+        StopAllCoroutines();
+        StartCoroutine(LifeDelay());
         SceneManager.sceneLoaded += BulletReturn;
     }
 
     protected void OnDisable()
     {
-        //StopAllCoroutines();
         SceneManager.sceneLoaded -= BulletReturn;
     }
 
@@ -34,12 +33,12 @@ public abstract class Projectile : MonoBehaviour, IPoolable
         ReturnPool();
     }
 
-    //protected IEnumerator LifeDelay()
-    //{
-    //    yield return wait;
+    protected IEnumerator LifeDelay()
+    {
+        yield return wait;
 
-    //    ReturnPool();
-    //}
+        ReturnPool();
+    }
 
     public virtual void SetDamage(int damage)
     {

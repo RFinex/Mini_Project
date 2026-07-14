@@ -34,6 +34,7 @@ public class ObjectPoolManager : MonoBehaviour
             for (int i = 0; i < poolSize; i++)
             {
                 GameObject go = Instantiate(obj, parentPool.transform);
+                go.name = $"{go.name}{i}";
                 go.SetActive(false);
                 pools[obj.name].Enqueue(go);
             }
