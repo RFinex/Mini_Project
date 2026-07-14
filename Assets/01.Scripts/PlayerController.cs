@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private float attackDir;
     [SerializeField] private float speed;
     [SerializeField] private float jumpPower;
+    private float baseSpeed;
 
     private bool isFlip;
     [SerializeField] private bool isGround;
@@ -27,6 +29,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isDead;
     [SerializeField] private bool isHold;
     [SerializeField] private bool isLaunch;
+    private bool canDash;
+    private bool isDash;
 
     private float baseGravity;
 
@@ -39,7 +43,7 @@ public class PlayerController : MonoBehaviour
         rangeWeapon = GetComponentInChildren<PlayerRangeWeapon>(true);
         meleeWeapon = GetComponentInChildren<PlayerMeleeWeapon>(true);
         speed = 5f;
-        jumpPower = 12f;
+        jumpPower = 14f;
         jumpCount = 0;
         jumpCountMax = 2;
         isFlip = false;
@@ -48,8 +52,11 @@ public class PlayerController : MonoBehaviour
         isDead = false;
         isHold = false;
         isLaunch = false;
-        rb.gravityScale = 3;
+        canDash = false;
+        isDash = false;
+        rb.gravityScale = 2.5f;
         baseGravity = rb.gravityScale;
+        baseSpeed = speed;
     }
 
     private void Start()
@@ -132,6 +139,10 @@ public class PlayerController : MonoBehaviour
             {
                 ChangeWeapon();
             }
+            if (Keyboard.current.shiftKey.wasPressedThisFrame)
+            {
+                StartCoroutine(Dash());
+            }
         }
         
 
@@ -184,7 +195,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (!isDead && !isHold && !isLaunch)
+        if (!isDead && !isHold && !isLaunch && !isDash)
         {
             rb.linearVelocity = new Vector2(dir * speed, rb.linearVelocity.y);
         }
@@ -213,6 +224,24 @@ public class PlayerController : MonoBehaviour
         isHold = true;
         rb.linearVelocity = Vector2.zero;
         rb.gravityScale = 0;
+    }
+
+    public void DashOn()
+    {
+        canDash = true;
+    }
+
+    private IEnumerator Dash()
+    {
+        isDash = true;
+        rb.gravityScale = 0;
+        rb.linearVelocity = new Vector2(isFlip ? -speed * 5 : speed * 5, 0);
+
+        yield return new WaitForSeconds(0.1f);
+
+        rb.gravityScale = baseGravity;
+        rb.linearVelocity = Vector2.zero;
+        isDash = false;
     }
 
     private void GroundCheck()
