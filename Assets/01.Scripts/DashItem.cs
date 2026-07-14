@@ -14,6 +14,7 @@ public class DashItem : Item
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             collision.GetComponent<PlayerController>().DashOn();
+            StartCoroutine(ItemRespawn());
         }
     }
 }

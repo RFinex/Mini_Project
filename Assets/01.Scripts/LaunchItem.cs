@@ -14,6 +14,7 @@ public class LaunchItem : Item
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             collision.GetComponent<PlayerController>().LaunchPlayer(transform.position);
+            StartCoroutine(ItemRespawn());
         }
     }
 }
