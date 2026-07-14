@@ -128,7 +128,10 @@ public class PlayerController : MonoBehaviour
                 meleeWeapon.GetDirection(attackDir);
             }
         }
-        rb.linearVelocity = new Vector2(dir * speed, rb.linearVelocity.y);
+        if (!isDead)
+        {
+            rb.linearVelocity = new Vector2(dir * speed, rb.linearVelocity.y);
+        }
     }
 
     private void Jump()
@@ -171,10 +174,16 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         if (deathParticle != null)
         {
-            Instantiate(deathParticle, transform.position, Quaternion.identity);
+            GameObject particle = ObjectPoolManager.instance.GetObject("deathParticle");
+            particle.transform.position = transform.position;
+            ParticleSystem ps = particle.GetComponent<ParticleSystem>();
+            ps.Play();
         }
 
         sr.enabled = false;
+        rangeWeapon.gameObject.SetActive(false);
+        meleeWeapon.gameObject.SetActive(false);
+        rb.linearVelocity = Vector2.zero;        
         UIManager.instance.OnGameOverText();
     }
 
