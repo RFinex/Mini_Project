@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour
 
     public void OnGameOverText()
     {
-        centerText.text = "Game Over Press 'R' Key"
+        centerText.gameObject.SetActive(true);
+        centerText.text = "Game Over Press 'R' Key";
     }
 }
