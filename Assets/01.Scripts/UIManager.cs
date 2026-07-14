@@ -14,11 +14,9 @@ public class UIManager : MonoBehaviour
         else
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void Init()
     {
         centerText = GameObject.Find("CenterText").GetComponent<TextMeshProUGUI>();
         centerText.text = "";

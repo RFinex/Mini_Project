@@ -1,5 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EffectManager : MonoBehaviour
 {
@@ -14,6 +14,12 @@ public class EffectManager : MonoBehaviour
         else
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
+        
+    }
+
+    public void Init()
+    {
+        target = GameObject.Find("Player").transform;
     }
 
     public void ShowDeathParticle()

@@ -79,6 +79,11 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        isQuitting = true;
+    }
+
     private void OnApplicationQuit()
     {
         isQuitting = true;

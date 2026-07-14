@@ -25,8 +25,11 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        //respawn = GameObject.Find("RespawnPoint").transform;
-        //player = GameObject.Find("Player");
+        respawn = GameObject.Find("RespawnPoint").transform;
+        player = GameObject.Find("Player");
+
+        EffectManager.instance.Init();
+        UIManager.instance.Init();
     }
 
     void Update()
