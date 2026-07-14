@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
+
+        player = GameObject.Find("Player");
     }
 
     void Start()

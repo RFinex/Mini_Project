@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     bool isMelee;
     [SerializeField] bool isDead;
 
-    [SerializeField] GameObject deathParticle;
 
     private void Awake()
     {
@@ -172,19 +171,19 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         isDead = true;
-        if (deathParticle != null)
-        {
-            GameObject particle = ObjectPoolManager.instance.GetObject("deathParticle");
-            particle.transform.position = transform.position;
-            ParticleSystem ps = particle.GetComponent<ParticleSystem>();
-            ps.Play();
-        }
 
+        EffectManager.instance.ShowDeathParticle();
         sr.enabled = false;
         rangeWeapon.gameObject.SetActive(false);
         meleeWeapon.gameObject.SetActive(false);
         rb.linearVelocity = Vector2.zero;        
         UIManager.instance.OnGameOverText();
+    }
+
+    public void Revive()
+    {
+        isDead = false;
+
     }
 
     private void GetDirection(float dir)
