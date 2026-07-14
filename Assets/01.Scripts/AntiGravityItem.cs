@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class AntiGravityItem : Item
 {
@@ -18,5 +19,16 @@ public class AntiGravityItem : Item
             collision.GetComponent<PlayerController>().AntiGravity(isAnti);
             StartCoroutine(ItemRespawn());
         }
+    }
+
+    protected override IEnumerator ItemRespawn()
+    {
+        col.enabled = false;
+        sr.color = new Color(0, 0, 1, 0.2f);
+
+        yield return wait;
+
+        col.enabled = true;
+        sr.color = new Color(0, 0, 1, 1);
     }
 }

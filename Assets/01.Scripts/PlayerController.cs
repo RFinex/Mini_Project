@@ -207,7 +207,9 @@ public class PlayerController : MonoBehaviour
         if (jumpCount >= jumpCountMax)
             return;
 
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
+        float gravityJump = isAntiGravity ? -jumpPower : jumpPower;
+
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, gravityJump);
         if (isGround)
             jumpCount++;
         else
@@ -255,7 +257,9 @@ public class PlayerController : MonoBehaviour
 
     private void GroundCheck()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(1f, 0.1f), 0f, Vector2.down, 0.5f, groundLayer);
+        Vector2 gravity = isAntiGravity ? Vector2.up : Vector2.down;
+
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(1f, 0.1f), 0f, gravity, 0.5f, groundLayer);
 
         isGround = hit.collider == null ? false : true;
 
@@ -267,8 +271,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        float gravityY = isAntiGravity ? -0.5f : 0.5f;
         Gizmos.color = Color.green;
-        Gizmos.DrawCube(transform.position - new Vector3(0, 0.5f, 0), new Vector2(1f, 0.1f));
+        Gizmos.DrawCube(transform.position - new Vector3(0, gravityY, 0), new Vector2(1f, 0.1f));
     }
 
     public void CollisionObject()
