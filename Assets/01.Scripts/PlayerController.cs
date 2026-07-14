@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         isHold = false;
         isLaunch = false;
         rb.gravityScale = 3;
+        baseGravity = rb.gravityScale;
     }
 
     private void Start()
@@ -93,6 +94,18 @@ public class PlayerController : MonoBehaviour
             {
                 isHold = false;
                 isLaunch = true;
+                rb.gravityScale = 0;
+                rb.linearVelocity = launchDir.normalized * speed;
+            }
+            return;
+        }
+
+        if (isLaunch)
+        {
+            if (Keyboard.current.anyKey.wasPressedThisFrame)
+            {
+                rb.gravityScale = baseGravity;
+                isLaunch = false;
             }
         }
 
