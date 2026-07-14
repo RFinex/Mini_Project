@@ -15,6 +15,10 @@ public class MovingPlatform : MonoBehaviour
     private Vector3 startPos;
     private Vector3 endPos;
 
+    // 올라탈 때 속도, 돌아갈 때 속도
+    private float passiveSpeed;
+    private float passiveSpeed2;
+
     private Tween moveTween;
     private Tween moveTween2;
 
@@ -38,13 +42,45 @@ public class MovingPlatform : MonoBehaviour
             Vector2 contact = collision.GetContact(0).normal;
             if (contact.y < -0.9f)
             {
-                collision.gameObject.transform.SetParent(transform);
+                collision.transform.SetParent(transform);
                 if (isPassive)
                 {
+                    moveTween?.Kill();
+                    moveTween2?.Kill();
 
+                    moveTween = transform.DOMove(endPos, passiveSpeed)
+                        .SetSpeedBased()
+                        .SetLink(gameObject)
+                        .SetEase(ease);
                 }
-
             }
         }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (isQuitting)
+            return;
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            collision.transform.SetParent(null);
+            
+            if (isPassive)
+            {
+                moveTween?.Kill();
+                moveTween2?.Kill();
+
+                moveTween2 = transform.DOMove(startPos, passiveSpeed2)
+                    .SetSpeedBased()
+                    .SetLink(gameObject)
+                    .SetEase(ease);
+            }
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        isQuitting = true;
     }
 }
