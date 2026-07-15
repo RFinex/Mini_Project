@@ -35,12 +35,19 @@ public class PlayerController : MonoBehaviour
 
     private float baseGravity;
 
+    // 애니메이션
+    private Animator animator;
+    private int isMove;
+    private int isJump;
+    private int isFall;
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         rangeWeapon = GetComponentInChildren<PlayerRangeWeapon>(true);
         meleeWeapon = GetComponentInChildren<PlayerMeleeWeapon>(true);
         speed = 5f;
