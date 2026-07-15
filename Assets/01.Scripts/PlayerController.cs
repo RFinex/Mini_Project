@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         rangeWeapon = GetComponentInChildren<PlayerRangeWeapon>(true);
         meleeWeapon = GetComponentInChildren<PlayerMeleeWeapon>(true);
         speed = 5f;
-        jumpPower = 14f;
+        jumpPower = 10f;
         jumpCount = 0;
         jumpCountMax = 2;
         isFlip = false;
