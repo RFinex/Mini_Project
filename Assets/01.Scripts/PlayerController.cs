@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         canDash = false;
         isDash = false;
         isAntiGravity = false;
-        rb.gravityScale = 2.5f;
+        rb.gravityScale = 3f;
         baseGravity = rb.gravityScale;
         baseSpeed = speed;
     }
