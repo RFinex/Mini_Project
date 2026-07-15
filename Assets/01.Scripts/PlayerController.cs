@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerControll();
         GroundCheck();
+        FallCheck();
     }
 
     private void PlayerControll()
@@ -205,6 +206,7 @@ public class PlayerController : MonoBehaviour
     {
         if (dir != 0)
         {
+            animator.SetBool(isMove, true);
             if (dir > 0)
             {
                 isFlip = false;
@@ -229,6 +231,10 @@ public class PlayerController : MonoBehaviour
                 meleeWeapon.GetDirection(attackDir);
             }
         }
+        else
+        {
+            animator.SetBool(isMove, false);
+        }
 
         if (!isDead && !isHold && !isLaunch && !isDash)
         {
@@ -248,6 +254,8 @@ public class PlayerController : MonoBehaviour
             jumpCount++;
         else
             jumpCount += 2;
+
+        animator.SetBool(isJump, true);
     }
 
     public void AddJump()
@@ -300,6 +308,19 @@ public class PlayerController : MonoBehaviour
         if (isGround && rb.linearVelocity.y <= 0.1f)
         {
             jumpCount = 0;
+            animator.SetBool(isFall, false);
+        }
+    }
+
+    private void FallCheck()
+    {
+        bool isFalling = isAntiGravity ? rb.linearVelocity.y > 0.1f : rb.linearVelocity.y < -0.1f;
+
+        animator.SetBool(isFall, isFalling);
+
+        if (isFalling)
+        {
+            animator.SetBool(isJump, false);
         }
     }
 
