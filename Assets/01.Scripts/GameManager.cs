@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     {
         respawn = GameObject.Find("RespawnPoint").transform;
         player = GameObject.Find("Player");
-        player.transform.position = respawn.position;
+        //player.transform.position = respawn.position;
 
         EffectManager.instance.Init();
         UIManager.instance.Init();
