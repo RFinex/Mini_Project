@@ -314,6 +314,7 @@ public class PlayerController : MonoBehaviour
         rangeWeapon.gameObject.SetActive(false);
         meleeWeapon.gameObject.SetActive(false);
         rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = 0f;
         UIManager.instance.OnGameOverText();
     }
 
