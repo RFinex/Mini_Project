@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isDead)
             return;
-
+        // 발사 장치에 접촉 시 해당 조작으로 변경
         if (isHold)
         {
             Vector2 launchDir = Vector2.zero;
@@ -98,18 +98,19 @@ public class PlayerController : MonoBehaviour
             {
                 launchDir.y = -1;
             }
-
+            
             if (launchDir != Vector2.zero)
             {
                 isHold = false;
                 isLaunch = true;
                 rb.gravityScale = 0;
-                rb.linearVelocity = launchDir.normalized * speed * 2;
+                rb.linearVelocity = launchDir.normalized * speed * 3;
                 dir = 0;
             }
             return;
         }
 
+        // 발사 도중 아무 조작 입력 시 원상태로 복구
         if (isLaunch)
         {
             if (Keyboard.current.anyKey.wasPressedThisFrame)
@@ -117,34 +118,56 @@ public class PlayerController : MonoBehaviour
                 rb.gravityScale = baseGravity;
                 isLaunch = false;
             }
-            return;
         }
-        
-        if (!isLaunch)
-        {
-            dir = 0;
 
-            if (Keyboard.current.leftArrowKey.isPressed)
-            {
-                dir += -1;
-            }
-            if (Keyboard.current.rightArrowKey.isPressed)
-            {
-                dir += 1;
-            }
-            if (Keyboard.current.spaceKey.wasPressedThisFrame)
-            {
-                Jump();
-            }
-            if (Keyboard.current.tabKey.wasPressedThisFrame)
-            {
-                ChangeWeapon();
-            }
-            if (Keyboard.current.shiftKey.wasPressedThisFrame && canDash)
-            {
-                StartCoroutine(Dash());
-            }
+        dir = 0;
+
+        if (Keyboard.current.leftArrowKey.isPressed)
+        {
+            dir += -1;
         }
+        if (Keyboard.current.rightArrowKey.isPressed)
+        {
+            dir += 1;
+        }
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            Jump();
+        }
+        if (Keyboard.current.tabKey.wasPressedThisFrame)
+        {
+            ChangeWeapon();
+        }
+        if (Keyboard.current.shiftKey.wasPressedThisFrame && canDash)
+        {
+            StartCoroutine(Dash());
+        }
+
+        //if (!isLaunch)
+        //{
+        //    dir = 0;
+
+        //    if (Keyboard.current.leftArrowKey.isPressed)
+        //    {
+        //        dir += -1;
+        //    }
+        //    if (Keyboard.current.rightArrowKey.isPressed)
+        //    {
+        //        dir += 1;
+        //    }
+        //    if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        //    {
+        //        Jump();
+        //    }
+        //    if (Keyboard.current.tabKey.wasPressedThisFrame)
+        //    {
+        //        ChangeWeapon();
+        //    }
+        //    if (Keyboard.current.shiftKey.wasPressedThisFrame && canDash)
+        //    {
+        //        StartCoroutine(Dash());
+        //    }
+        //}
         
 
     }    
