@@ -71,6 +71,9 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         meleeWeapon.gameObject.SetActive(false);
+        isMove = Animator.StringToHash("isMove");
+        isJump = Animator.StringToHash("isJump");
+        isFall = Animator.StringToHash("isFall");
     }
 
 
