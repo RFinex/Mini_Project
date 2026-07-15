@@ -113,7 +113,8 @@ public class PlayerController : MonoBehaviour
         // 발사 도중 아무 조작 입력 시 원상태로 복구
         if (isLaunch)
         {
-            if (Keyboard.current.anyKey.wasPressedThisFrame)
+            float nowSpeed = rb.linearVelocity.sqrMagnitude;
+            if (Keyboard.current.anyKey.wasPressedThisFrame || nowSpeed <= 0.1f)
             {
                 rb.gravityScale = baseGravity;
                 isLaunch = false;
@@ -282,7 +283,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 gravity = isAntiGravity ? Vector2.up : Vector2.down;
 
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(1f, 0.1f), 0f, gravity, 0.5f, groundLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(1f, 0.2f), 0f, gravity, 0.5f, groundLayer);
 
         isGround = hit.collider == null ? false : true;
 
@@ -296,7 +297,7 @@ public class PlayerController : MonoBehaviour
     {
         float gravityY = isAntiGravity ? -0.5f : 0.5f;
         Gizmos.color = Color.green;
-        Gizmos.DrawCube(transform.position - new Vector3(0, gravityY, 0), new Vector2(1f, 0.1f));
+        Gizmos.DrawCube(transform.position - new Vector3(0, gravityY, 0), new Vector2(1f, 0.2f));
     }
 
     public void CollisionObject()
