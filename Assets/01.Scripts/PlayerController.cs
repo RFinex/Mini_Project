@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     // 애니메이션
     private Animator animator;
-    private int isMove;
+    private int isWalk;
     private int isJump;
     private int isFall;
 
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         meleeWeapon.gameObject.SetActive(false);
-        isMove = Animator.StringToHash("isMove");
+        isWalk = Animator.StringToHash("isWalk");
         isJump = Animator.StringToHash("isJump");
         isFall = Animator.StringToHash("isFall");
     }
@@ -206,7 +206,7 @@ public class PlayerController : MonoBehaviour
     {
         if (dir != 0)
         {
-            animator.SetBool(isMove, true);
+            animator.SetBool(isWalk, true);
             if (dir > 0)
             {
                 isFlip = false;
@@ -233,7 +233,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            animator.SetBool(isMove, false);
+            animator.SetBool(isWalk, false);
         }
 
         if (!isDead && !isHold && !isLaunch && !isDash)
