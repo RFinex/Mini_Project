@@ -263,9 +263,9 @@ public class PlayerController : MonoBehaviour
         canDash = false;
         isDash = true;
         rb.gravityScale = 0;
-        rb.linearVelocity = new Vector2(isFlip ? -speed * 7 : speed * 7, 0);
+        rb.linearVelocity = new Vector2(isFlip ? -speed * 5 : speed * 5, 0);
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
 
         rb.gravityScale = baseGravity;
         rb.linearVelocity = Vector2.zero;
