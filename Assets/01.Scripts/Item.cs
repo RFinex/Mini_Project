@@ -11,6 +11,7 @@ public abstract class Item : MonoBehaviour
         
     protected abstract void OnTriggerEnter2D(Collider2D collision);
 
+    // 아이템 재생성 쿨타임
     protected virtual IEnumerator ItemRespawn()
     {
         col.enabled = false;
