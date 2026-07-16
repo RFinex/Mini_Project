@@ -3,7 +3,8 @@ using UnityEngine;
 public enum SFXType
 {
     Jump,
-    DoubleJump
+    DoubleJump,
+    Shoot
 }
 
 public class SoundManager : MonoBehaviour
