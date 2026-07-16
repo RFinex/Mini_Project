@@ -88,6 +88,7 @@ public class UIManager : MonoBehaviour
     {
         Sequence sequence = DOTween.Sequence();
         TextMeshProUGUI saveText = ObjectPoolManager.instance.GetObject("SaveCheckText").GetComponent<TextMeshProUGUI>();
+        saveText.alpha = 1f;
         saveText.transform.SetParent(worldCanvas.transform);
         saveText.transform.position = save;
 
