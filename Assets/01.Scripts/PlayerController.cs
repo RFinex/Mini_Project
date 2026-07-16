@@ -249,7 +249,10 @@ public class PlayerController : MonoBehaviour
 
         float gravityJump = isAntiGravity ? -jumpPower : jumpPower;
 
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, gravityJump);
+        if (!isLaunch)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, gravityJump);
+        }
         if (isGround)
             jumpCount++;
         else

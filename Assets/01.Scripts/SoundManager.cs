@@ -1,11 +1,19 @@
 using UnityEngine;
 
+public enum SFXType
+{
+
+}
+
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
 
     [SerializeField] private AudioSource bgmSource;
     [SerializeField] private AudioSource sfxSource;
+
+    [SerializeField] private AudioClip bgmClip;
+    [SerializeField] private AudioClip[] sfxClip;
 
     private void Awake()
     {
