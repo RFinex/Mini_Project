@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private int jumpCountMax;
 
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask movingGroundLayer;
 
     private PlayerWeapon rangeWeapon;
     private PlayerWeapon meleeWeapon;
