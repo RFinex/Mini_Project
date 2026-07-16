@@ -247,8 +247,6 @@ public class PlayerController : MonoBehaviour
         if (jumpCount >= jumpCountMax)
             return;
 
-        animator.SetBool(isJump, true);
-
         float gravityJump = isAntiGravity ? -jumpPower : jumpPower;
 
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, gravityJump);
@@ -257,6 +255,7 @@ public class PlayerController : MonoBehaviour
         else
             jumpCount += 2;
 
+        animator.SetBool(isJump, true);
     }
 
     public void AddJump()
