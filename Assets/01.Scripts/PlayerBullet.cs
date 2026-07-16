@@ -14,7 +14,7 @@ public class PlayerBullet : Projectile
     {
         base.OnEnable();
         lifeTime = 3f;
-        speed = 10f;
+        speed = 15f;
     }
 
     protected void FixedUpdate()
