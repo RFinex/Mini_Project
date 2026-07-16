@@ -15,7 +15,6 @@ public class UIManager : MonoBehaviour
 
     private  Canvas uiCanvas;
     private Canvas worldCanvas;
-    [SerializeField] private GameObject saveTextObject;
 
     private void Awake()
     {
@@ -33,7 +32,6 @@ public class UIManager : MonoBehaviour
         centerText.text = "";
         uiCanvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
         worldCanvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
-        saveTextObject = GameObject.Find("SaveCheckText");
 
         if (option != null)
             Destroy(option);
@@ -90,6 +88,7 @@ public class UIManager : MonoBehaviour
     {
         Sequence sequence = DOTween.Sequence();
         TextMeshProUGUI saveText = ObjectPoolManager.instance.GetObject("SaveCheckText").GetComponent<TextMeshProUGUI>();
+        saveText.transform.SetParent(worldCanvas.transform);
         saveText.transform.position = save;
 
         sequence.Append(saveText.transform.DOMoveY(saveText.transform.position.y + 1f, 1.5f))
