@@ -254,9 +254,15 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, gravityJump);
         }
         if (isGround)
+        {
             jumpCount++;
+            SoundManager.instance.PlaySFX(SFXType.Jump);
+        }
         else
+        {
             jumpCount += 2;
+            SoundManager.instance.PlaySFX(SFXType.DoubleJump);
+        }
 
         animator.SetBool(isJump, true);
     }

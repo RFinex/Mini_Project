@@ -2,7 +2,8 @@ using UnityEngine;
 
 public enum SFXType
 {
-
+    Jump,
+    DoubleJump
 }
 
 public class SoundManager : MonoBehaviour
@@ -65,6 +66,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    // 음소거 설정 저장
     public void SetMuteBGM(bool isMute)
     {
         bgmSource.mute = isMute;
@@ -77,6 +79,7 @@ public class SoundManager : MonoBehaviour
         PlayerPrefs.SetInt(ConstString.SFXMute, isMute ? 1 : 0);
     }
 
+    // 볼륨 정보 외부 제공용
     public float GetBGMVolume()
     {
         return bgmSource.volume;
@@ -85,5 +88,13 @@ public class SoundManager : MonoBehaviour
     public float GetSFXVolume()
     {
         return sfxSource.volume;
+    }
+
+    public void PlaySFX(SFXType type)
+    {
+        if ((int)type > sfxClip.Length)
+            return;
+
+        sfxSource.PlayOneShot(sfxClip[(int)type]);
     }
 }
