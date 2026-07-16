@@ -9,6 +9,7 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private Vector3 dir;
     [SerializeField] private float delay;
     [SerializeField] private Ease ease;
+    [SerializeField] private LoopType loopType;
 
     [SerializeField] private bool isPassive = false;
 
@@ -29,7 +30,7 @@ public class MovingPlatform : MonoBehaviour
         if (!isPassive)
         {
             transform.DOMove(dir, delay).SetRelative()
-                .SetLoops(-1, loopType: LoopType.Yoyo)
+                .SetLoops(-1, loopType)
                 .SetLink(gameObject)
                 .SetEase(ease);
         }

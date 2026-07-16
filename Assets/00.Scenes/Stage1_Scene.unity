@@ -477,6 +477,7 @@ MonoBehaviour:
   dir: {x: 30, y: 0, z: 0}
   delay: 0
   ease: 10
+  loopType: 0
   isPassive: 1
   passiveSpeed: 5
   passiveSpeed2: 5
@@ -1268,6 +1269,7 @@ MonoBehaviour:
   dir: {x: -20, y: 0, z: 0}
   delay: 6
   ease: 10
+  loopType: 1
   isPassive: 0
   passiveSpeed: 0
   passiveSpeed2: 0
