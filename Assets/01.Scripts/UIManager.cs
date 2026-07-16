@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     private GameObject dimObject;
 
     private Canvas uiCanvas;
+    private Canvas worldCanvas;
+    [SerializeField]
 
     private void Awake()
     {
@@ -29,6 +31,7 @@ public class UIManager : MonoBehaviour
         timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
         centerText.text = "";
         uiCanvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
+        worldCanvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
 
         if (option != null)
             Destroy(option);
@@ -79,5 +82,10 @@ public class UIManager : MonoBehaviour
     {
         option.SetActive(false);
         dimObject.SetActive(false);
+    }
+
+    public void SaveTextOn()
+    {
+
     }
 }
