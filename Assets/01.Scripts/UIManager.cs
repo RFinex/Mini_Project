@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -12,7 +13,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject dim;
     private GameObject dimObject;
 
-    private Canvas uiCanvas;
+    private  Canvas uiCanvas;
+    private Canvas worldCanvas;
 
     private void Awake()
     {
@@ -29,6 +31,7 @@ public class UIManager : MonoBehaviour
         timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
         centerText.text = "";
         uiCanvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
+        worldCanvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
 
         if (option != null)
             Destroy(option);
@@ -79,5 +82,19 @@ public class UIManager : MonoBehaviour
     {
         option.SetActive(false);
         dimObject.SetActive(false);
+    }
+
+    public void SaveTextOn(Vector3 save)
+    {
+        Sequence sequence = DOTween.Sequence();
+        TextMeshProUGUI saveText = ObjectPoolManager.instance.GetObject("SaveCheckText").GetComponent<TextMeshProUGUI>();
+        saveText.alpha = 1f;
+        saveText.transform.SetParent(worldCanvas.transform);
+        saveText.transform.position = save;
+
+        sequence.Append(saveText.transform.DOMoveY(saveText.transform.position.y + 1f, 1.5f))
+            .Join(saveText.DOFade(0f, 1.5f))
+            .OnComplete(() => ObjectPoolManager.instance.ReturnObject("SaveCheckText", saveText.gameObject))
+            .SetLink(saveText.gameObject, LinkBehaviour.KillOnDisable);
     }
 }
