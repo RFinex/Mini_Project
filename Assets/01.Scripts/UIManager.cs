@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     public void Init()
     {
         centerText = GameObject.Find("CenterText").GetComponent<TextMeshProUGUI>();
+        timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
         centerText.text = "";
     }
 
