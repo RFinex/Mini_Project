@@ -5615,7 +5615,10 @@ MonoBehaviour:
   bgmSource: {fileID: 1354371044}
   sfxSource: {fileID: 1354371043}
   bgmClip: {fileID: 0}
-  sfxClip: []
+  sfxClip:
+  - {fileID: 8300000, guid: 74c685feddd405c4188002fd3e849ddf, type: 3}
+  - {fileID: 8300000, guid: 14f9f749fbd2d0b4685d15b84cb725a7, type: 3}
+  - {fileID: 8300000, guid: 2c9a0a65b85654145a16edcdc9d5cdbd, type: 3}
 --- !u!4 &1354371046
 Transform:
   m_ObjectHideFlags: 0
