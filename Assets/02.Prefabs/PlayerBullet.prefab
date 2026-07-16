@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1478711893677800754}
   - component: {fileID: 6587915019102915283}
   - component: {fileID: 227561010365382194}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: playerBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBullet
   lifeTime: 0
-  timer: 0
 --- !u!212 &1478711893677800754
 SpriteRenderer:
   serializedVersion: 2
@@ -167,7 +166,7 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
+  m_CompositeOperation: 1
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5

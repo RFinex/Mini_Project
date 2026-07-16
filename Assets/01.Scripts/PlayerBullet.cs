@@ -42,4 +42,12 @@ public class PlayerBullet : Projectile
     {        
         ObjectPoolManager.instance.ReturnObject("playerBullet", this.gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            ReturnPool();
+        }
+    }
 }
