@@ -4,6 +4,9 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
 
+    [SerializeField] AudioSource bgmSource;
+    [SerializeField] AudioSource sfxSource;
+
     private void Awake()
     {
         if (instance == null)
@@ -12,13 +15,10 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
     }
-    void Start()
-    {
-        
-    }
 
-    void Update()
+    public void SetBgmVolume(float vol)
     {
-        
+        bgmSource.volume = vol;
+        P
     }
 }
