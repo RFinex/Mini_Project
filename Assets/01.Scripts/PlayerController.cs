@@ -300,9 +300,9 @@ public class PlayerController : MonoBehaviour
     private void GroundCheck()
     {
         Vector2 gravity = isAntiGravity ? Vector2.up : Vector2.down;
-        Vector2 check = new Vector2(transform.position.x - 0.06f, transform.position.y);
+        Vector2 check = new Vector2(transform.position.x - 0.08f, transform.position.y);
 
-        RaycastHit2D hit = Physics2D.BoxCast(check, new Vector2(0.64f, 0.1f), 0f, gravity, 0.4f, groundLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(check, new Vector2(0.85f, 0.1f), 0f, gravity, 0.55f, groundLayer);
 
         isGround = hit.collider == null ? false : true;
 
@@ -327,10 +327,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        float gravityY = isAntiGravity ? -0.4f : 0.4f;
+        float gravityY = isAntiGravity ? -0.55f : 0.55f;
         Gizmos.color = Color.green;
-        Vector3 gizmos = new Vector3(transform.position.x - 0.06f, transform.position.y - gravityY, 0);
-        Gizmos.DrawCube(gizmos, new Vector2(0.64f, 0.1f));
+        Vector3 gizmos = new Vector3(transform.position.x - 0.08f, transform.position.y - gravityY, 0);
+        Gizmos.DrawCube(gizmos, new Vector2(0.85f, 0.1f));
     }
 
     public void CollisionObject()
