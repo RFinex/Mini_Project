@@ -4,8 +4,8 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
 
-    [SerializeField] AudioSource bgmSource;
-    [SerializeField] AudioSource sfxSource;
+    [SerializeField] private AudioSource bgmSource;
+    [SerializeField] private AudioSource sfxSource;
 
     private void Awake()
     {
