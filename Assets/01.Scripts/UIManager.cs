@@ -70,6 +70,9 @@ public class UIManager : MonoBehaviour
         {
             dimObject.SetActive(true);
         }
+
+        dimObject.transform.SetAsLastSibling();
+        option.transform.SetAsLastSibling();
     }
 
     public void CloseOptionPanel()

@@ -1,0 +1,19 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class OptionButton : MonoBehaviour
+{
+    private Button btn;
+
+    private void Awake()
+    {
+        btn = GetComponent<Button>();
+
+        btn.onClick.AddListener(OpenOptionPanel);
+    }
+
+    private void OpenOptionPanel()
+    {
+        UIManager.instance.OpenOptionPanel();
+    }
+}
