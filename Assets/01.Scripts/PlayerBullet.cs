@@ -14,7 +14,7 @@ public class PlayerBullet : Projectile
     {
         base.OnEnable();
         lifeTime = 3f;
-        speed = 10f;
+        speed = 15f;
     }
 
     protected void FixedUpdate()
@@ -41,5 +41,13 @@ public class PlayerBullet : Projectile
     public override void ReturnPool()
     {        
         ObjectPoolManager.instance.ReturnObject("playerBullet", this.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            ReturnPool();
+        }
     }
 }
