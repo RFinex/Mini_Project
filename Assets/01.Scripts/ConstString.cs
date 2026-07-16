@@ -1,16 +1,10 @@
 using UnityEngine;
 
-public class ConstString : MonoBehaviour
+public class ConstString
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public const string BGMVolume = "BGMVolume";
+    public const string SFXVolume = "SFXVolume";
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public const string BGMMute = "BGMMute";
+    public const string SFXMute = "SFXMute";
 }
