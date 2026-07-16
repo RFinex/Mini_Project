@@ -25,8 +25,8 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
 
-        SetBGMVolume(PlayerPrefs.GetFloat(ConstString.BGMVolume, 1));
-        SetSFXVolume(PlayerPrefs.GetFloat(ConstString.SFXVolume, 1));
+        SetBGMVolume(PlayerPrefs.GetFloat(ConstString.BGMVolume, 0.5f));
+        SetSFXVolume(PlayerPrefs.GetFloat(ConstString.SFXVolume, 0.5f));
         MuteBGM(PlayerPrefs.GetInt(ConstString.BGMMute, 0));
         MuteSFX(PlayerPrefs.GetInt(ConstString.SFXMute, 0));
     }
