@@ -8,16 +8,7 @@ public abstract class Item : MonoBehaviour
     protected WaitForSeconds wait;
     protected Collider2D col;
     protected SpriteRenderer sr;
-
-    protected void Start()
-    {
-        transform.DOMoveY(0.1f, 2f)
-            .SetRelative()
-            .SetLoops(-1, LoopType.Yoyo)
-            .SetLink(gameObject)
-            .SetEase(Ease.InOutCubic);
-    }
-
+        
     protected abstract void OnTriggerEnter2D(Collider2D collision);
 
     protected virtual IEnumerator ItemRespawn()
