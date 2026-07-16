@@ -13,6 +13,7 @@ public class PlayerRangeWeapon : PlayerWeapon
     {
         if (Keyboard.current.zKey.wasPressedThisFrame)
         {
+            SoundManager.instance.PlaySFX(SFXType.Shoot);
             GameObject bullet = ObjectPoolManager.instance.GetObject("playerBullet");
             bullet.transform.position = attackPos.position;
             Projectile bCom = bullet.GetComponent<PlayerBullet>();
