@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -12,9 +13,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject dim;
     private GameObject dimObject;
 
-    private Canvas uiCanvas;
+    private  Canvas uiCanvas;
     private Canvas worldCanvas;
-    [SerializeField]
+    [SerializeField] private GameObject saveText;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class UIManager : MonoBehaviour
         centerText.text = "";
         uiCanvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
         worldCanvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
+        saveText = GameObject.Find("SaveCheckText");
 
         if (option != null)
             Destroy(option);
@@ -86,6 +88,8 @@ public class UIManager : MonoBehaviour
 
     public void SaveTextOn()
     {
+        Sequence sequence = DOTween.Sequence();
 
+        sequence.Append()
     }
 }
