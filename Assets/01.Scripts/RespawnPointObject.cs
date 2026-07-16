@@ -14,7 +14,7 @@ public class RespawnPointObject : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             respawnPoint.transform.position = transform.position;
-            
+            UIManager.instance.SaveTextOn(transform.position);
         }
     }
 }
