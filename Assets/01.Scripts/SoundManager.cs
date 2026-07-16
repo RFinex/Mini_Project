@@ -15,13 +15,13 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
 
-        SetBgmVolume(PlayerPrefs.GetFloat(ConstString.BGMVolume, 1));
+        SetBGMVolume(PlayerPrefs.GetFloat(ConstString.BGMVolume, 1));
         SetSFXVolume(PlayerPrefs.GetFloat(ConstString.SFXVolume, 1));
-        SetBGMMute(PlayerPrefs.GetInt(ConstString.BGMMute, 0));
-        SetSFXMute(PlayerPrefs.GetInt(ConstString.SFXMute, 0));
+        MuteBGM(PlayerPrefs.GetInt(ConstString.BGMMute, 0));
+        MuteSFX(PlayerPrefs.GetInt(ConstString.SFXMute, 0));
     }
 
-    public void SetBgmVolume(float vol)
+    public void SetBGMVolume(float vol)
     {
         bgmSource.volume = vol;
         PlayerPrefs.SetFloat(ConstString.BGMVolume, vol);
@@ -33,29 +33,37 @@ public class SoundManager : MonoBehaviour
         PlayerPrefs.SetFloat(ConstString.SFXVolume, vol);
     }
 
-    public void SetBGMMute(int mute)
+    public void MuteBGM(int mute)
     {
         if (mute == 1)
         {
-            MuteBGM(true);
+            SetMuteBGM(true);
+        }
+        else
+        {
+            SetMuteBGM(false);
         }
     }
 
-    public void SetSFXMute(int mute)
+    public void MuteSFX(int mute)
     {
         if (mute == 1)
         {
-            MuteSFX(true);
+            SetMuteSFX(true);
+        }
+        else
+        {
+            SetMuteSFX(false);
         }
     }
 
-    public void MuteBGM(bool isMute)
+    public void SetMuteBGM(bool isMute)
     {
         bgmSource.mute = isMute;
         PlayerPrefs.SetInt(ConstString.BGMMute, isMute ? 1 : 0);
     }
 
-    public void MuteSFX(bool isMute)
+    public void SetMuteSFX(bool isMute)
     {
         sfxSource.mute = isMute;
         PlayerPrefs.SetInt(ConstString.SFXMute, isMute ? 1 : 0);

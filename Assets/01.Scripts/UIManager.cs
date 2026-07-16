@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject optionPanel;
     private GameObject option;
+    [SerializeField] private GameObject dim;
+    private GameObject dimObject;
 
     private Canvas uiCanvas;
 
@@ -26,6 +28,13 @@ public class UIManager : MonoBehaviour
         centerText = GameObject.Find("CenterText").GetComponent<TextMeshProUGUI>();
         timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
         centerText.text = "";
+        uiCanvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
+
+        if (option != null)
+            Destroy(option);
+
+        if (dimObject != null)
+            Destroy(dimObject);
     }
 
     public void OnGameOverText()
@@ -46,7 +55,26 @@ public class UIManager : MonoBehaviour
     {
         if (option == null)
         {
-            option = Instantiate(optionPanel, )
+            option = Instantiate(optionPanel, uiCanvas.transform);
         }
+        else
+        {
+            option.SetActive(true);
+        }
+
+        if (dimObject == null)
+        {
+            dimObject = Instantiate(dim, uiCanvas.transform);
+        }
+        else
+        {
+            dimObject.SetActive(true);
+        }
+    }
+
+    public void CloseOptionPanel()
+    {
+        option.SetActive(false);
+        dimObject.SetActive(false);
     }
 }

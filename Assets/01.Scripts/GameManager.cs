@@ -21,9 +21,6 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-
-        player = GameObject.Find("Player");
-        pc = player.GetComponent<PlayerController>();
         
         SceneManager.sceneLoaded += OnSceneLoaded;
         sec = 0;
@@ -34,7 +31,12 @@ public class GameManager : MonoBehaviour
     {
         respawn = GameObject.Find("RespawnPoint").transform;
         player = GameObject.Find("Player");
-        //player.transform.position = respawn.position;
+
+        if (player != null)
+        {
+            pc = player.GetComponent<PlayerController>();
+            //player.transform.position = respawn.position;            
+        }
 
         EffectManager.instance.Init();
         UIManager.instance.Init();
