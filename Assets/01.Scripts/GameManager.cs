@@ -21,31 +21,25 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-        
-        SceneManager.sceneLoaded += OnSceneLoaded;
         sec = 0;
     }
 
     // ¾À ¹Ù²ð ¶§ ¸¶´Ù ÃÊ±âÈ­
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void Init()
     {
-        if (scene.name == "Stage1_Scene")
-        {            
-            player = GameObject.Find("Player");
+        player = GameObject.Find("Player");
 
-            if (player != null)
+        if (player != null)
+        {
+            pc = player.GetComponent<PlayerController>();
+            if (SaveLoadManager.instance.SavePath())
             {
-                pc = player.GetComponent<PlayerController>();
-                if (SaveLoadManager.instance.SavePath())
-                {
-                    player.transform.position = DataManager.instance.checkPos;
-                }
+                player.transform.position = DataManager.instance.checkPos;
             }
-
-            EffectManager.instance.Init();
-            UIManager.instance.Init();
         }
-        
+
+        EffectManager.instance.Init();
+        UIManager.instance.Init();
     }
 
     public void SaveGame()
