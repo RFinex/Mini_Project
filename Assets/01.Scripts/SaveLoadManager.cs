@@ -17,9 +17,9 @@ public class SaveLoadManager : MonoBehaviour
 
     public void Save()
     {
-        data.CheckPointX = DataManager.instance.playerPos.x;
-        data.CheckPointY = DataManager.instance.playerPos.y;
-        data.CheckPointZ = DataManager.instance.playerPos.z;
+        data.CheckPointX = DataManager.instance.checkPos.x;
+        data.CheckPointY = DataManager.instance.checkPos.y;
+        data.CheckPointZ = DataManager.instance.checkPos.z;
         data.elapsedTime = DataManager.instance.playTime;
 
 
@@ -40,6 +40,17 @@ public class SaveLoadManager : MonoBehaviour
 
     public void Load()
     {
+        if (File.Exists(savePath) == false)
+        {
+            Debug.Log("세이브 없음");
+            return;
+        }
 
+        string json = File.ReadAllText(savePath);
+
+        GameData loadData = JsonUtility.FromJson<GameData>(json);
+
+        DataManager.instance.checkPos = new Vector3(loadData.CheckPointX, loadData.CheckPointY, loadData.CheckPointZ);
+        DataManager.instance.playTime = loadData.elapsedTime;
     }
 }

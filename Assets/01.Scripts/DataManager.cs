@@ -9,7 +9,7 @@ public class DataManager : MonoBehaviour
 
     [SerializeField] private TrophyData trophyData;
 
-    public Vector3 playerPos;
+    public Vector3 checkPos;
     public float playTime;
 
     private void Awake()

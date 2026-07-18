@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
         respawn = GameObject.Find("RespawnPoint").transform;
         player = GameObject.Find("Player");
 
+        if(
         if (player != null)
         {
             pc = player.GetComponent<PlayerController>();
