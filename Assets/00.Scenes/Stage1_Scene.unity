@@ -4386,7 +4386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a3b4e465c40f649a91c86bc50148b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  respawn: {fileID: 464368723}
 --- !u!4 &611306484
 Transform:
   m_ObjectHideFlags: 0
@@ -5399,6 +5398,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  movingGroundLayer:
+    serializedVersion: 2
+    m_Bits: 0
   isDead: 0
   isHold: 0
   isLaunch: 0
@@ -6144,6 +6146,56 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0af6e0c71cb05ab4ea77de3b18191b65, type: 3}
+--- !u!1 &1274850255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1274850257}
+  - component: {fileID: 1274850256}
+  m_Layer: 0
+  m_Name: SaveLoadManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1274850256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274850255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d193ca1ff42fee842925b293f0f367f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveLoadManager
+  data:
+    CheckPointX: 0
+    CheckPointY: 0
+    CheckPointZ: 0
+    elapsedTime: 0
+    collectTrophy: 
+--- !u!4 &1274850257
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274850255}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 238.4102, y: 121.43201, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1300271884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36770,6 +36822,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3403058552910612251, guid: d59027dedff227b46900c407b536ca30, type: 3}
   m_PrefabInstance: {fileID: 335629973}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1657127594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1657127596}
+  - component: {fileID: 1657127595}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1657127595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657127594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ec53bce41103fa49858ac7ce04712de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DataManager
+  trophyData: {fileID: 11400000, guid: 691fe4c8c8d376b418de870c2ba7731a, type: 2}
+  checkPos: {x: 0, y: 0, z: 0}
+  playTime: 0
+--- !u!4 &1657127596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657127594}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 238.4102, y: 121.43201, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1666991104 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7280110464708884460, guid: 71fdd1e0874283044be030208aaf92c0, type: 3}
@@ -88091,3 +88190,5 @@ SceneRoots:
   - {fileID: 1493220103}
   - {fileID: 1354371046}
   - {fileID: 425435733}
+  - {fileID: 1274850257}
+  - {fileID: 1657127596}

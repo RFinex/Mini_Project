@@ -1,4 +1,3 @@
-using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -7,11 +6,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField] private Transform respawn;
     private GameObject player;
     private PlayerController pc;
 
     private float sec;
+
+    private bool isStart = false;
 
 
     private void Awake()
@@ -29,21 +29,38 @@ public class GameManager : MonoBehaviour
     // ¾À ¹Ù²ð ¶§ ¸¶´Ù ÃÊ±âÈ­
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        respawn = GameObject.Find("RespawnPoint").transform;
-        player = GameObject.Find("Player");
+        if (scene.name == "Stage1_Scene")
+        {            
+            player = GameObject.Find("Player");
 
-        if (player != null)
-        {
-            pc = player.GetComponent<PlayerController>();
-            //player.transform.position = respawn.position;            
+            if (player != null)
+            {
+                pc = player.GetComponent<PlayerController>();
+                if (SaveLoadManager.instance.SavePath())
+                {
+                    player.transform.position = DataManager.instance.checkPos;
+                }
+            }
+
+            EffectManager.instance.Init();
+            UIManager.instance.Init();
         }
-
-        EffectManager.instance.Init();
-        UIManager.instance.Init();
+        
     }
 
-    void Update()
+    public void SaveGame()
     {
+        SaveLoadManager.instance.Save();
+    }
+
+    public void LoadGame()
+    {
+
+    }
+
+    private void Update()
+    {
+        
         TimerOn();
 
         if (Keyboard.current.rKey.wasPressedThisFrame)

@@ -4,14 +4,14 @@ using UnityEngine;
 [Serializable]
 public class Trophy
 {
-    public int trophyID;
+    public int id;
     public string name;
     public TrophyType type;
     public bool isCollect;
 
-    public Trophy(int trophyID, string name, TrophyType type, bool isCollect)
+    public Trophy(int id, string name, TrophyType type, bool isCollect)
     {
-        this.trophyID = trophyID;
+        this.id = id;
         this.name = name;
         this.type = type;
         this.isCollect = isCollect;
@@ -19,6 +19,6 @@ public class Trophy
 
     public Trophy Clone()
     {
-        return new Trophy(trophyID, name, type, isCollect);
+        return new Trophy(id, name, type, isCollect);
     }
 }
