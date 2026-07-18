@@ -12,6 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9fdb73ce1bec774da127c1693f35450, type: 3}
   m_Name: TrophyData
   m_EditorClassIdentifier: Assembly-CSharp::TrophyData
-  trophyID: 
-  type: 0
-  isCollect: 0
+  trophy:
+  - trophyID: 1
+    name: first checkpoint
+    type: 0
+    isCollect: 0
+  - trophyID: 2
+    name: first boss room
+    type: 1
+    isCollect: 0
+  - trophyID: 3
+    name: game clear
+    type: 1
+    isCollect: 0
+  - trophyID: 4
+    name: 30m clear
+    type: 2
+    isCollect: 0
+  - trophyID: 5
+    name: no death
+    type: 2
+    isCollect: 0
