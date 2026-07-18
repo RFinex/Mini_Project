@@ -1,16 +1,8 @@
 using UnityEngine;
+using System;
 
-public class GameData : MonoBehaviour
+[Serializable]
+public class GameData
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public 
 }
