@@ -4386,7 +4386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a3b4e465c40f649a91c86bc50148b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  respawn: {fileID: 464368723}
 --- !u!4 &611306484
 Transform:
   m_ObjectHideFlags: 0
@@ -6176,6 +6175,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d193ca1ff42fee842925b293f0f367f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveLoadManager
+  data:
+    CheckPointX: 0
+    CheckPointY: 0
+    CheckPointZ: 0
+    elapsedTime: 0
+    collectTrophy: 
 --- !u!4 &1274850257
 Transform:
   m_ObjectHideFlags: 0
@@ -36846,6 +36851,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec53bce41103fa49858ac7ce04712de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DataManager
+  trophyData: {fileID: 11400000, guid: 691fe4c8c8d376b418de870c2ba7731a, type: 2}
+  checkPos: {x: 0, y: 0, z: 0}
+  playTime: 0
 --- !u!4 &1657127596
 Transform:
   m_ObjectHideFlags: 0
