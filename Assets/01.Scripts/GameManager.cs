@@ -47,11 +47,6 @@ public class GameManager : MonoBehaviour
         SaveLoadManager.instance.Save();
     }
 
-    public void LoadGame()
-    {
-
-    }
-
     private void Update()
     {
         

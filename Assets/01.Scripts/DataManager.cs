@@ -9,8 +9,33 @@ public class DataManager : MonoBehaviour
 
     [SerializeField] private TrophyData trophyData;
 
-    public Vector3 checkPos;
-    public float playTime;
+    private Vector3 checkPos;
+
+    public Vector3 CheckPos
+    {
+        get
+        {
+            return checkPos;
+        }
+        private set
+        {
+            checkPos = value;
+        }
+    }
+
+    private float playTime;
+
+    public float PlayTime
+    {
+        get
+        {
+            return playTime;
+        }
+        private set
+        {
+            playTime = value;
+        }
+    }
 
     private void Awake()
     {
@@ -41,5 +66,15 @@ public class DataManager : MonoBehaviour
     public List<Trophy> GetTrophyInfo()
     {
         return new List<Trophy>(trophys.Values);
+    }
+
+    public void SetCheckPos(Vector3 position)
+    {
+        checkPos = position;
+    }
+
+    public void SetPlayTime(float time)
+    {
+        playTime = time;
     }
 }

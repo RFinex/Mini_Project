@@ -27,10 +27,10 @@ public class SaveLoadManager : MonoBehaviour
 
     public void Save()
     {
-        data.CheckPointX = DataManager.instance.checkPos.x;
-        data.CheckPointY = DataManager.instance.checkPos.y;
-        data.CheckPointZ = DataManager.instance.checkPos.z;
-        data.elapsedTime = DataManager.instance.playTime;
+        data.CheckPointX = DataManager.instance.CheckPos.x;
+        data.CheckPointY = DataManager.instance.CheckPos.y;
+        data.CheckPointZ = DataManager.instance.CheckPos.z;
+        data.elapsedTime = DataManager.instance.PlayTime;
 
 
         foreach (Trophy trophy in DataManager.instance.GetTrophyInfo())
@@ -60,8 +60,8 @@ public class SaveLoadManager : MonoBehaviour
 
         GameData loadData = JsonUtility.FromJson<GameData>(json);
 
-        DataManager.instance.checkPos = new Vector3(loadData.CheckPointX, loadData.CheckPointY, loadData.CheckPointZ);
-        DataManager.instance.playTime = loadData.elapsedTime;
+        DataManager.instance.SetCheckPos(new Vector3(loadData.CheckPointX, loadData.CheckPointY, loadData.CheckPointZ));
+        DataManager.instance.SetPlayTime(loadData.elapsedTime);
     }
 
     public bool SavePath()
