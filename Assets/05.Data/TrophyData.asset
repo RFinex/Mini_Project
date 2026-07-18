@@ -13,23 +13,23 @@ MonoBehaviour:
   m_Name: TrophyData
   m_EditorClassIdentifier: Assembly-CSharp::TrophyData
   trophy:
-  - trophyID: 1
+  - trophyID: 1001
     name: first checkpoint
     type: 0
     isCollect: 0
-  - trophyID: 2
+  - trophyID: 1002
     name: first boss room
     type: 1
     isCollect: 0
-  - trophyID: 3
+  - trophyID: 1003
     name: game clear
     type: 1
     isCollect: 0
-  - trophyID: 4
+  - trophyID: 1004
     name: 30m clear
     type: 2
     isCollect: 0
-  - trophyID: 5
+  - trophyID: 1005
     name: no death
     type: 2
     isCollect: 0

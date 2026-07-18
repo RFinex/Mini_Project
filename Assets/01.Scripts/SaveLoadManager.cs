@@ -1,16 +1,45 @@
 using UnityEngine;
+using System.IO;
 
 public class SaveLoadManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private GameData data;
+
+    private string fileName;
+    private string savePath;
+
+    private void Start()
     {
-        
+        data = new GameData();
+        fileName = "gameData.json";
+        savePath = Path.Combine(Application.persistentDataPath, fileName);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Save()
     {
-        
+        data.CheckPointX = DataManager.instance.playerPos.x;
+        data.CheckPointY = DataManager.instance.playerPos.y;
+        data.CheckPointZ = DataManager.instance.playerPos.z;
+        data.elapsedTime = DataManager.instance.playTime;
+
+
+        foreach (Trophy trophy in DataManager.instance.GetTrophyInfo())
+        {
+            if (trophy.isCollect)
+            {
+                data.collectTrophy.Add(trophy.id);
+            }
+        }
+
+        string json = JsonUtility.ToJson(data);
+
+        File.WriteAllText(savePath, json);
+
+        Debug.Log(savePath);
+    }
+
+    public void Load()
+    {
+
     }
 }

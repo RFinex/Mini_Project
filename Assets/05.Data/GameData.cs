@@ -1,5 +1,5 @@
-using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class GameData
@@ -10,4 +10,5 @@ public class GameData
 
     public float elapsedTime;
 
+    public List<int> collectTrophy = new List<int>();
 }
