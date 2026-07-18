@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField] private Transform respawn;
     private GameObject player;
     private PlayerController pc;
 
@@ -29,21 +28,28 @@ public class GameManager : MonoBehaviour
     // ¾À ¹Ù²ð ¶§ ¸¶´Ù ÃÊ±âÈ­
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        respawn = GameObject.Find("RespawnPoint").transform;
         player = GameObject.Find("Player");
+                
+        if (SaveLoadManager.instance.SavePath())
+        {
+            player.transform.position = DataManager.instance.checkPos;
+        }
 
-        if(
         if (player != null)
         {
             pc = player.GetComponent<PlayerController>();
-            //player.transform.position = respawn.position;            
         }
 
         EffectManager.instance.Init();
         UIManager.instance.Init();
     }
 
-    void Update()
+    public void SaveGame()
+    {
+        SaveLoadManager.instance.Save();
+    }
+
+    private void Update()
     {
         TimerOn();
 

@@ -3,10 +3,20 @@ using System.IO;
 
 public class SaveLoadManager : MonoBehaviour
 {
+    public static SaveLoadManager instance;
     [SerializeField] private GameData data;
 
     private string fileName;
     private string savePath;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void Start()
     {
@@ -52,5 +62,10 @@ public class SaveLoadManager : MonoBehaviour
 
         DataManager.instance.checkPos = new Vector3(loadData.CheckPointX, loadData.CheckPointY, loadData.CheckPointZ);
         DataManager.instance.playTime = loadData.elapsedTime;
+    }
+
+    public bool SavePath()
+    {
+        return File.Exists(savePath);
     }
 }
