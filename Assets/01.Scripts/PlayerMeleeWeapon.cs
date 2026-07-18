@@ -7,7 +7,6 @@ public class PlayerMeleeWeapon : PlayerWeapon
 {
     private float motionDelay;
     private float coolTime;
-    [SerializeField] private float timer;
     private float angle = -120;
 
     bool canAttack;
@@ -22,7 +21,6 @@ public class PlayerMeleeWeapon : PlayerWeapon
         canAttack = true;
         motionDelay = 0.2f;
         coolTime = 0.5f;
-        timer = 0;
         waitCool = new WaitForSeconds(coolTime);
     }
 
