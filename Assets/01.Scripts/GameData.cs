@@ -4,5 +4,7 @@ using System;
 [Serializable]
 public class GameData
 {
-    public 
+    public float CheckPointX;
+    public float CheckPointY;
+    public float CheckPointZ;
 }
