@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private PlayerController pc;
 
-    private float sec;
-
     private bool isStart = false;
 
 
@@ -21,7 +19,6 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-        sec = 0;
     }
 
     // 씬 바뀔 때 마다 초기화
@@ -34,7 +31,7 @@ public class GameManager : MonoBehaviour
             pc = player.GetComponent<PlayerController>();
             if (SaveLoadManager.instance.SavePath())
             {
-                player.transform.position = DataManager.instance.checkPos;
+                player.transform.position = DataManager.instance.CheckPos;
             }
         }
 
@@ -42,6 +39,12 @@ public class GameManager : MonoBehaviour
         UIManager.instance.Init();
     }
 
+    // 게임 시작 체크
+    public void SetStartGame(bool start)
+    {
+        isStart = start;
+    }
+    
     public void SaveGame()
     {
         SaveLoadManager.instance.Save();
@@ -49,19 +52,22 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
-        TimerOn();
-
-        if (Keyboard.current.rKey.wasPressedThisFrame)
+        if (isStart)
         {
-            RestartScene();
-        }
+            TimerOn();
+
+            if (Keyboard.current.rKey.wasPressedThisFrame)
+            {
+                RestartScene();
+            }
+        }        
     }
 
+    // 타이머는 DataManager에 바로 저장
     private void TimerOn()
     {
-        sec += Time.deltaTime;
-        UIManager.instance.UpdateTimerText(sec);
+        DataManager.instance.UpdatePlayTime(Time.deltaTime);
+        UIManager.instance.UpdateTimerText(DataManager.instance.PlayTime);
     }
 
     private void RestartScene()

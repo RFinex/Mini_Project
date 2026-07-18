@@ -23,6 +23,7 @@ public class SceneLoadManager : MonoBehaviour
             if (GameManager.instance != null)
             {
                 GameManager.instance.Init();
+                GameManager.instance.SetStartGame(true);
             }
         }
     }
