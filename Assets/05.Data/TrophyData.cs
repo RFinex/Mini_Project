@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public enum TrophyType
 {
@@ -10,7 +11,5 @@ public enum TrophyType
 [CreateAssetMenu(fileName =  "TrophyData", menuName = "Data/Trophy")]
 public class TrophyData : ScriptableObject
 {
-    public string trophyID;
-    public TrophyType type;
-    public bool isCollect;
+    public List<Trophy> trophy = new List<Trophy>();
 }
