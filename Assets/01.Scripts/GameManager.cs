@@ -72,16 +72,8 @@ public class GameManager : MonoBehaviour
     // 타이머는 DataManager에 바로 저장
     private void TimerOn()
     {
-        if (UIManager.instance != null)
-        {
-            DataManager.instance.UpdatePlayTime(Time.deltaTime);
-            UIManager.instance.UpdateTimerText(DataManager.instance.PlayTime);
-
-        }
-        else
-        {
-            Debug.Log("UI 매니저 인식 못함");
-        }
+        DataManager.instance.UpdatePlayTime(Time.deltaTime);
+        UIManager.instance.UpdateTimerText(DataManager.instance.PlayTime);
     }
 
     private void RestartScene()
