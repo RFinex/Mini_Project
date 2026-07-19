@@ -9,7 +9,6 @@ public abstract class Projectile : MonoBehaviour, IPoolable
 
     protected int damage;
 
-    protected float dir;
 
     protected Rigidbody2D rb;
 
@@ -17,7 +16,6 @@ public abstract class Projectile : MonoBehaviour, IPoolable
 
     protected virtual void OnEnable()
     {
-        dir = 1f;
         StopAllCoroutines();
         StartCoroutine(LifeDelay());
         SceneManager.sceneLoaded += BulletReturn;
@@ -43,11 +41,6 @@ public abstract class Projectile : MonoBehaviour, IPoolable
     public virtual void SetDamage(int damage)
     {
         this.damage = damage;
-    }
-
-    public virtual void SetDirection(float dir)
-    {
-        this.dir = dir;
     }
 
     public abstract void ReturnPool();

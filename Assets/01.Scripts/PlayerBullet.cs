@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class PlayerBullet : Projectile
 {
+    protected float dir;
 
     protected void Awake()
     {
+        dir = 1f;
         rb = GetComponent<Rigidbody2D>();
         lifeTime = 3f;
         wait = new WaitForSeconds(lifeTime);
@@ -12,6 +14,7 @@ public class PlayerBullet : Projectile
 
     protected override void OnEnable()
     {
+        dir = 1f;
         base.OnEnable();
         lifeTime = 3f;
         speed = 15f;
@@ -37,6 +40,11 @@ public class PlayerBullet : Projectile
     //    Debug.Log($"{this.gameObject.name}/visible");
     //    ReturnPool();
     //}
+
+    public void SetDirection(float dir)
+    {
+        this.dir = dir;
+    }
 
     public override void ReturnPool()
     {        
