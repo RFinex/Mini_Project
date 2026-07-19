@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private PlayerWeapon rangeWeapon;
     private PlayerWeapon meleeWeapon;
+    private PlayerWeapon nowWeapon;
 
     private bool isRange;
     private bool isMelee;
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rangeWeapon = GetComponentInChildren<PlayerRangeWeapon>(true);
         meleeWeapon = GetComponentInChildren<PlayerMeleeWeapon>(true);
+        nowWeapon = rangeWeapon;
         speed = 5f;
         jumpPower = 12f;
         jumpCount = 0;
@@ -187,20 +189,32 @@ public class PlayerController : MonoBehaviour
 
     private void ChangeWeapon()
     {
-        if (isRange)
+        nowWeapon.gameObject.SetActive(false);
+
+        if (nowWeapon == rangeWeapon)
         {
-            rangeWeapon.gameObject.SetActive(false);
-            meleeWeapon.gameObject.SetActive(true);
-            isRange = false;
-            isMelee = true;
+            nowWeapon = meleeWeapon;
         }
-        else if (isMelee)
+        else
         {
-            rangeWeapon.gameObject.SetActive(true);
-            meleeWeapon.gameObject.SetActive(false);
-            isRange = true;
-            isMelee = false;
+            nowWeapon = rangeWeapon;
         }
+
+        nowWeapon.gameObject.SetActive(true);
+        //if (isRange)
+        //{
+        //    rangeWeapon.gameObject.SetActive(false);
+        //    meleeWeapon.gameObject.SetActive(true);
+        //    isRange = false;
+        //    isMelee = true;
+        //}
+        //else if (isMelee)
+        //{
+        //    rangeWeapon.gameObject.SetActive(true);
+        //    meleeWeapon.gameObject.SetActive(false);
+        //    isRange = true;
+        //    isMelee = false;
+        //}
     }
 
     private void FixedUpdate()
@@ -221,16 +235,9 @@ public class PlayerController : MonoBehaviour
                 GetDirection(dir);
             }
 
-            if (isRange && !isMelee)
-            {
-                rangeWeapon.AttackPosDirection(isFlip);
-                rangeWeapon.GetDirection(attackDir);
-            }
-            else if (!isRange && isMelee)
-            {
-                meleeWeapon.AttackPosDirection(isFlip);
-                meleeWeapon.GetDirection(attackDir);
-            }
+            nowWeapon.AttackPosDirection(isFlip);
+            nowWeapon.GetDirection(attackDir);
+            
         }
         else
         {

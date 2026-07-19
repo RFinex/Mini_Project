@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private GameObject player;
+    [SerializeField] private GameObject player;
     private PlayerController pc;
 
     private bool isStart = false;
@@ -52,15 +52,21 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (isStart)
-        {
-            TimerOn();
+        TimerOn();
 
-            if (Keyboard.current.rKey.wasPressedThisFrame)
-            {
-                RestartScene();
-            }
-        }        
+        if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            RestartScene();
+        }
+        //if (isStart)
+        //{
+        //    TimerOn();
+
+        //    if (Keyboard.current.rKey.wasPressedThisFrame)
+        //    {
+        //        RestartScene();
+        //    }
+        //}        
     }
 
     // 타이머는 DataManager에 바로 저장
