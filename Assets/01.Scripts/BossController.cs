@@ -26,11 +26,11 @@ public class BossController : MonoBehaviour
 
     private void Update()
     {
-        
+        CheckFlip();
     }
 
-    private bool CheckFlip()
+    private void CheckFlip()
     {
-        return transform.position.x > target.position.x ? true : false;
+        sr.flipX = transform.position.x > target.position.x ? true : false;
     }
 }
