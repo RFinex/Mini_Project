@@ -14,7 +14,6 @@ public class PlayerBullet : Projectile
 
     protected override void OnEnable()
     {
-        dir = 1f;
         base.OnEnable();
         lifeTime = 3f;
         speed = 15f;
@@ -24,11 +23,7 @@ public class PlayerBullet : Projectile
     {
         rb.linearVelocity = Vector3.right * speed * dir;
     }
-
-    public override void SetDamage(int damage)
-    {
-        base.SetDamage(damage);
-    }
+    
 
     //private void OnBecameInvisible()
     //{     

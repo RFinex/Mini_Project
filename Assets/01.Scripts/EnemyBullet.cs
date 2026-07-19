@@ -11,15 +11,19 @@ public class EnemyBullet : Projectile
         wait = new WaitForSeconds(lifeTime);
     }
 
-    void Start()
+    protected override void OnEnable()
     {
-        
+        base.OnEnable();
+        lifeTime = 5f;
+        speed = 5f;
     }
 
-    void Update()
+    public void SetDirection(Vector2 dir)
     {
-        
+        this.dir = dir;
     }
+
+
     public override void ReturnPool()
     {
         
