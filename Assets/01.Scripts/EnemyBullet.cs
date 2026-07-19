@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyBullet : Projectile
 {
-    
+    private Vector2 dir;
 
     private void Awake()
     {
@@ -10,6 +10,7 @@ public class EnemyBullet : Projectile
         lifeTime = 5f;
         wait = new WaitForSeconds(lifeTime);
     }
+
     void Start()
     {
         

@@ -16,7 +16,7 @@ public class PlayerRangeWeapon : PlayerWeapon
             SoundManager.instance.PlaySFX(SFXType.Shoot);
             GameObject bullet = ObjectPoolManager.instance.GetObject("playerBullet");
             bullet.transform.position = attackPos.position;
-            Projectile bCom = bullet.GetComponent<PlayerBullet>();
+            PlayerBullet bCom = bullet.GetComponent<PlayerBullet>();
             bCom.SetDirection(dir);
             bCom.SetDamage(damage);
         }

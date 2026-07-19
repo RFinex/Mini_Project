@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerBullet : Projectile
 {
-    protected float dir;
+    private float dir;
 
     protected void Awake()
     {
@@ -28,11 +28,6 @@ public class PlayerBullet : Projectile
     public override void SetDamage(int damage)
     {
         base.SetDamage(damage);
-    }
-
-    public override void SetDirection(float dir)
-    {
-        base.SetDirection(dir);
     }
 
     //private void OnBecameInvisible()
