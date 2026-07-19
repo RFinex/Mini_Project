@@ -354,6 +354,7 @@ public class PlayerController : MonoBehaviour
 
         EffectManager.instance.ShowDeathParticle();
         sr.enabled = false;
+        col.enabled = false;
         rangeWeapon.gameObject.SetActive(false);
         meleeWeapon.gameObject.SetActive(false);
         rb.linearVelocity = Vector2.zero;
