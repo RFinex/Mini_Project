@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private GameObject player;
+    [SerializeField] private GameObject player;
     private PlayerController pc;
 
     private bool isStart = false;
