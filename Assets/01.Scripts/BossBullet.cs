@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyBullet : Projectile
+public class BossBullet : Projectile
 {
     private Vector2 dir;
 
