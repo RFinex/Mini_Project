@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class BossBullet : Projectile
 {
-    private Vector2 dir;
 
     private void Awake()
     {
@@ -20,7 +19,8 @@ public class BossBullet : Projectile
 
     public void SetDirection(Vector2 dir)
     {
-        this.dir = dir;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
     private void FixedUpdate()
