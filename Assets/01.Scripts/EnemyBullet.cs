@@ -23,9 +23,13 @@ public class EnemyBullet : Projectile
         this.dir = dir;
     }
 
+    private void FixedUpdate()
+    {
+        rb.linearVelocity = transform.right * speed;
+    }
 
     public override void ReturnPool()
     {
-        
+        ObjectPoolManager.instance.ReturnObject("bossBullet", this.gameObject);
     }
 }
