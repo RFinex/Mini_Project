@@ -26,7 +26,7 @@ public abstract class Projectile : MonoBehaviour, IPoolable
         SceneManager.sceneLoaded -= BulletReturn;
     }
 
-    protected virtual void BulletReturn(Scene scene, LoadSceneMode mode)
+    protected void BulletReturn(Scene scene, LoadSceneMode mode)
     {
         ReturnPool();
     }
@@ -38,7 +38,7 @@ public abstract class Projectile : MonoBehaviour, IPoolable
         ReturnPool();
     }
 
-    public virtual void SetDamage(int damage)
+    public void SetDamage(int damage)
     {
         this.damage = damage;
     }
