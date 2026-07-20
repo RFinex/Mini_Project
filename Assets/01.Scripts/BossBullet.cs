@@ -13,7 +13,7 @@ public class BossBullet : Projectile
     {
         base.OnEnable();
         lifeTime = 5f;
-        speed = 5f;
+        speed = 8f;
     }
 
     public void SetDirection(Vector2 dir)
