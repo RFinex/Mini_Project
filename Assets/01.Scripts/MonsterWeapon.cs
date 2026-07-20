@@ -22,7 +22,7 @@ public abstract class MonsterWeapon : MonoBehaviour
     public void AttackPosFlip(bool isFlip)
     {
         Vector2 currentPos = attackPos.localPosition;
-        currentPos.x = isFlip ? -baseAttackPos.x : baseAttackPos.x;
+        currentPos.x = isFlip ? baseAttackPos.x : -baseAttackPos.x;
         attackPos.localPosition = currentPos;
     }
 

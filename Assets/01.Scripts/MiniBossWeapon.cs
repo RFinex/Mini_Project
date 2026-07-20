@@ -51,6 +51,8 @@ public class MiniBossWeapon : MonsterWeapon
                 }
                 yield return null;
             }
+            canAttack = false;
+            StartCoroutine(AttackCoolTime());
         }
     }
     private IEnumerator Pattern_1()
@@ -81,7 +83,7 @@ public class MiniBossWeapon : MonsterWeapon
             angle = Random.Range(-45f, 45f);
             if (bullet.TryGetComponent<MiniBossBullet>(out MiniBossBullet bul))
             {
-                Quaternion rotate = Quaternion.Euler(0f, 0f, i * angle);
+                Quaternion rotate = Quaternion.Euler(0f, 0f, angle);
                 bulDir = rotate * dir;
                 bul.SetDirection(bulDir);
             }
