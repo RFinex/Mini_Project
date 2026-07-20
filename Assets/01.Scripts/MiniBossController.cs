@@ -50,7 +50,7 @@ public class MiniBossController : EnemyController
     protected override void CheckFlip()
     {
         base.CheckFlip();
-
+        mbWeapon.AttackPosFlip(sr.flipX);
     }
 
     public void ResetIdleTimer()
@@ -90,5 +90,11 @@ public class MiniBossController : EnemyController
     public Vector2 GetDirection()
     {
         return (target.position - mbWeapon.attackPos.position).normalized;
+    }
+
+    public void NormalAttack(int pattern)
+    {
+        mbWeapon.SetDirection(GetDirection());
+        mbWeapon.Attack(pattern);
     }
 }

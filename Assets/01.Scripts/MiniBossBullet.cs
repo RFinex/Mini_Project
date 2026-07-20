@@ -18,6 +18,11 @@ public class MiniBossBullet : Projectile
         speed = 8f;
     }
 
+    private void FixedUpdate()
+    {
+        rb.linearVelocity = dir * speed;
+    }
+
     public void SetDirection(Vector2 dir)
     {
         this.dir = dir;
