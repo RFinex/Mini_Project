@@ -1,14 +1,11 @@
 using UnityEngine;
 
-public class BossController : EnemyController
-{   
+public class MiniBossController : EnemyController
+{
     [SerializeField] private Transform attackPos;
     private Vector2 baseAttackPos;
 
-    private StateMachine<BossController> stateMachine;
-    private BossPhase1State bossPhase1;
-    private BossPhase2State bossPhase2;
-
+    private StateMachine<MiniBossController> stateMachine;
     protected override void Awake()
     {
         base.Awake();
@@ -16,12 +13,6 @@ public class BossController : EnemyController
         maxHp = 100;
         nowHp = maxHp;
         baseAttackPos = attackPos.localPosition;
-
-        stateMachine = new StateMachine<BossController>();
-        bossPhase1 = new BossPhase1State();
-        bossPhase2 = new BossPhase2State();
-
-        target = GameObject.Find(ConstString.Player).transform;
     }
 
     private void OnEnable()
@@ -34,7 +25,7 @@ public class BossController : EnemyController
     {
         base.CheckFlip();
         Vector2 currentPos = attackPos.localPosition;
-        currentPos.x = sr.flipX? -baseAttackPos.x : baseAttackPos.x;
+        currentPos.x = sr.flipX ? -baseAttackPos.x : baseAttackPos.x;
         attackPos.localPosition = currentPos;
     }
 }

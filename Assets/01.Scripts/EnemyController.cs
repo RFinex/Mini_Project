@@ -14,6 +14,11 @@ public class EnemyController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
     }
 
+    protected void Update()
+    {
+        CheckFlip();
+    }
+
     protected virtual void CheckFlip()
     {
         sr.flipX = transform.position.x > target.position.x ? true : false;
