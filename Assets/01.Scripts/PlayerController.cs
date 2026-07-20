@@ -26,8 +26,6 @@ public class PlayerController : MonoBehaviour
     private PlayerWeapon meleeWeapon;
     private PlayerWeapon nowWeapon;
 
-    private bool isRange;
-    private bool isMelee;
     [SerializeField] private bool isDead;
     [SerializeField] private bool isHold;
     [SerializeField] private bool isLaunch;
