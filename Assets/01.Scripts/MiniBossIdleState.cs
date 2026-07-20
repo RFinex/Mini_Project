@@ -20,7 +20,9 @@ public class MiniBossIdleState : IState<MiniBossController>
         obj.UpdateIdleTimer();
         if (obj.IdleTimer > nowDelay)
         {
-            int nextState = Random.Range(0, 2);
+            //int nextState = Random.Range(0, 2);
+            // 테스트 용
+            int nextState = Random.Range(0, 1);
             obj.ChangeState(nextState);
         }
     }

@@ -37,11 +37,11 @@ public class MiniBossWeapon : MonsterWeapon
                 Quaternion rotate = Quaternion.Euler(0, 0, i * angle);
                 bulDir = rotate * dir;
                 bul.SetDirection(bulDir);
-                Debug.Log("패턴0 실행");
             }
             yield return null;
         }
-        
+
+        Debug.Log("패턴0 실행");
     }
     private IEnumerator Pattern_1()
     {
@@ -56,13 +56,26 @@ public class MiniBossWeapon : MonsterWeapon
                 Quaternion rotate = Quaternion.Euler(0f, 0f, i * angle);
                 bulDir = rotate * dir;
                 bul.SetDirection(bulDir);
-                Debug.Log("패턴1 실행");
             }
             yield return new WaitForSeconds(0.1f);
         }
+        Debug.Log("패턴1 실행");
     }
     private IEnumerator Pattern_2()
     {
-
+        for (int i = 0; i < 20; i++)
+        {
+            GameObject bullet = ObjectPoolManager.instance.GetObject(ConstString.minibossBullet);
+            bullet.transform.position = attackPos.position;
+            angle = Random.Range(-45f, 45f);
+            if (bullet.TryGetComponent<MiniBossBullet>(out MiniBossBullet bul))
+            {
+                Quaternion rotate = Quaternion.Euler(0f, 0f, i * angle);
+                bulDir = rotate * dir;
+                bul.SetDirection(bulDir);
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
+        Debug.Log("패턴2 실행");
     }
 }
