@@ -4429,6 +4429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7708bfe532bc5c4b87d40f9f2b70046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossController
+  attackPos: {fileID: 2099162864}
 --- !u!1001 &596579020
 PrefabInstance:
   m_ObjectHideFlags: 0
