@@ -1,8 +1,20 @@
+using System.Collections;
 using UnityEngine;
 
 public class MiniBossController : EnemyController
 {
     [SerializeField] private Transform attackPos;
+    public Transform AttackPos
+    {
+        get
+        {
+            return attackPos;
+        }
+        private set
+        {
+            attackPos = value;
+        }
+    }
     private Vector2 baseAttackPos;
 
     private StateMachine<MiniBossController> stateMachine;
@@ -23,7 +35,20 @@ public class MiniBossController : EnemyController
         }
     }
 
-    public bool isPattern;
+    public bool canAttack;
+
+    private Vector2 bulletDir;
+    public Vector2 BulletDir
+    {
+        get
+        {
+            return bulletDir;
+        }
+        private set
+        {
+            bulletDir = value;
+        }
+    }
 
     protected override void Awake()
     {
@@ -87,8 +112,15 @@ public class MiniBossController : EnemyController
         stateMachine.Update();
     }
 
-    private Vector2 GetDirection()
+    public Vector2 GetDirection()
     {
         return (target.position - attackPos.position).normalized;
+    }
+
+    private IEnumerator normalAttackCool()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        canAttack = true;
     }
 }

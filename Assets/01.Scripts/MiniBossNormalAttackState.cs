@@ -14,6 +14,10 @@ public class MiniBossNormalAttackState : IState<MiniBossController>
 
     public void Update(MiniBossController obj)
     {
-        
+        if (obj.canAttack)
+        {
+            GameObject bullet = ObjectPoolManager.instance.GetObject("minibossBullet");
+
+        }
     }
 }
