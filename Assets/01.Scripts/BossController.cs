@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    private int maxHp;
+    private int maxHp = 100;
     private int nowHp;
 
     private float moveSpeed;
@@ -14,6 +14,7 @@ public class BossController : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         moveSpeed = 3f;
+        nowHp = maxHp;
 
         target = GameObject.Find("Player").transform;
     }
@@ -21,7 +22,7 @@ public class BossController : MonoBehaviour
     private void OnEnable()
     {
         maxHp = 100;
-        nowHp = 100;
+        nowHp = maxHp;
     }
 
     private void Update()
