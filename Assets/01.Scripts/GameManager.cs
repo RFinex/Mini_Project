@@ -58,10 +58,6 @@ public class GameManager : MonoBehaviour
         {
             RestartScene();
         }
-        if (Keyboard.current.qKey.wasPressedThisFrame)
-        {
-            SaveLoadManager.instance.Load();
-        }
         //if (isStart)
         //{
         //    TimerOn();
