@@ -34,25 +34,28 @@ public class MiniBossWeapon : MonsterWeapon
 
     private IEnumerator Pattern_0()
     {
-        angle = 30f;
-
-        for (int i = -1; i <= 1; i++)
-        {
-            GameObject bullet = ObjectPoolManager.instance.GetObject(ConstString.minibossBullet);
-            bullet.transform.position = attackPos.position;
-            if (bullet.TryGetComponent<MiniBossBullet>(out MiniBossBullet bul))
-            {
-                Quaternion rotate = Quaternion.Euler(0, 0, i * angle);
-                bulDir = rotate * dir;
-                bul.SetDirection(bulDir);
-            }
-            yield return null;
-        }
-
         Debug.Log("패턴0 실행");
+        angle = 30f;
+        for (int i = 0; i < 10; i++)
+        {
+            yield return new WaitUntil(() => canAttack);
+            for (int j = -1; j <= 1; j++)
+            {
+                GameObject bullet = ObjectPoolManager.instance.GetObject(ConstString.minibossBullet);
+                bullet.transform.position = attackPos.position;
+                if (bullet.TryGetComponent<MiniBossBullet>(out MiniBossBullet bul))
+                {
+                    Quaternion rotate = Quaternion.Euler(0, 0, j * angle);
+                    bulDir = rotate * dir;
+                    bul.SetDirection(bulDir);
+                }
+                yield return null;
+            }
+        }
     }
     private IEnumerator Pattern_1()
     {
+        Debug.Log("패턴1 실행");
         angle = 15f;
 
         for (int i = 0; i < 360 / angle; i++)
@@ -67,10 +70,10 @@ public class MiniBossWeapon : MonsterWeapon
             }
             yield return new WaitForSeconds(0.1f);
         }
-        Debug.Log("패턴1 실행");
     }
     private IEnumerator Pattern_2()
     {
+        Debug.Log("패턴2 실행");
         for (int i = 0; i < 20; i++)
         {
             GameObject bullet = ObjectPoolManager.instance.GetObject(ConstString.minibossBullet);
@@ -84,6 +87,5 @@ public class MiniBossWeapon : MonsterWeapon
             }
             yield return new WaitForSeconds(0.2f);
         }
-        Debug.Log("패턴2 실행");
     }
 }

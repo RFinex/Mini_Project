@@ -15,7 +15,7 @@ public class MiniBossBullet : Projectile
     {
         base.OnEnable();
         lifeTime = 5f;
-        speed = 8f;
+        speed = 12f;
     }
 
     private void FixedUpdate()

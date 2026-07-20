@@ -19,7 +19,7 @@ public class MiniBossNormalAttackState : IState<MiniBossController>
     public void Update(MiniBossController obj)
     {
         timer += Time.deltaTime;
-        if (timer >= 8f)
+        if (timer >= 5f)
         {
             obj.ChangeIdleState();
         }
