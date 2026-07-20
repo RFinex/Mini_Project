@@ -56,8 +56,6 @@ public class PlayerController : MonoBehaviour
         jumpCount = 0;
         jumpCountMax = 2;
         isFlip = false;
-        isRange = true;
-        isMelee = false;
         isDead = false;
         isHold = false;
         isLaunch = false;
