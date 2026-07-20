@@ -13,6 +13,8 @@ public class MiniBossController : EnemyController
         maxHp = 100;
         nowHp = maxHp;
         baseAttackPos = attackPos.localPosition;
+
+        stateMachine = new StateMachine<MiniBossController>();
     }
 
     private void OnEnable()
