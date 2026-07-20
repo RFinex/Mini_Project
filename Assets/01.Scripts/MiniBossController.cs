@@ -3,24 +3,12 @@ using UnityEngine;
 
 public class MiniBossController : EnemyController
 {
-    [SerializeField] private Transform attackPos;
-    public Transform AttackPos
-    {
-        get
-        {
-            return attackPos;
-        }
-        private set
-        {
-            attackPos = value;
-        }
-    }
-    private Vector2 baseAttackPos;
-
     private StateMachine<MiniBossController> stateMachine;
     private MiniBossIdleState idleState;
     private MiniBossNormalAttackState normalAttackState;
     private MiniBossHeavyAttackState heavyAttackState;
+
+    private MonsterWeapon miniBossWeapon;
 
     private float idleTimer = 0f;
     public float IdleTimer
@@ -34,8 +22,6 @@ public class MiniBossController : EnemyController
             idleTimer = value;
         }
     }
-
-    public bool canAttack;
 
     private Vector2 bulletDir;
     public Vector2 BulletDir
@@ -56,12 +42,15 @@ public class MiniBossController : EnemyController
         speed = 3f;
         maxHp = 100;
         nowHp = maxHp;
-        baseAttackPos = attackPos.localPosition;
 
         stateMachine = new StateMachine<MiniBossController>();
         idleState = new MiniBossIdleState();
         normalAttackState = new MiniBossNormalAttackState();
         heavyAttackState = new MiniBossHeavyAttackState();
+
+        miniBossWeapon = GetComponent<MonsterWeapon>();
+
+        target = GameObject.Find(ConstString.Player).transform;
     }
 
     private void OnEnable()
@@ -73,9 +62,7 @@ public class MiniBossController : EnemyController
     protected override void CheckFlip()
     {
         base.CheckFlip();
-        Vector2 currentPos = attackPos.localPosition;
-        currentPos.x = sr.flipX ? -baseAttackPos.x : baseAttackPos.x;
-        attackPos.localPosition = currentPos;
+
     }
 
     public void ResetIdleTimer()
@@ -115,12 +102,5 @@ public class MiniBossController : EnemyController
     public Vector2 GetDirection()
     {
         return (target.position - attackPos.position).normalized;
-    }
-
-    private IEnumerator normalAttackCool()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        canAttack = true;
     }
 }

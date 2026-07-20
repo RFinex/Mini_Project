@@ -7,7 +7,7 @@ public class MiniBossIdleState : IState<MiniBossController>
     public void Enter(MiniBossController obj)
     {
         obj.ResetIdleTimer();
-        nowDelay = Random.Range(1, 5);
+        nowDelay = 5f;
     }
 
     public void Exit(MiniBossController obj)
