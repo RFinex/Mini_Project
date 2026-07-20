@@ -1,16 +1,32 @@
+using System.Collections;
 using UnityEngine;
 
-public class MiniBossBullet : MonoBehaviour
+public class MiniBossBullet : Projectile
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Vector2 dir;
+    private void Awake()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        lifeTime = 5f;
+        wait = new WaitForSeconds(lifeTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnEnable()
     {
-        
+        base.OnEnable();
+        lifeTime = 5f;
+        speed = 8f;
     }
+
+    public void SetDirection(Vector2 dir)
+    {
+        this.dir = dir;
+    }
+
+    public override void ReturnPool()
+    {
+        ObjectPoolManager.instance.ReturnObject("minibossBullet", this.gameObject);
+    }
+
+    
 }
