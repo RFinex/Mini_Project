@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class BossBullet : Projectile
 {
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
