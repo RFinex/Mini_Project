@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         CheckFlip();
     }
