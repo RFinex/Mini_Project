@@ -1,15 +1,18 @@
 using UnityEngine;
 
-public class MiniBossNormalAttackState : MonoBehaviour
+public class MiniBossNormalAttackState : IState<MiniBossController>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Enter(MiniBossController obj)
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Exit(MiniBossController obj)
+    {
+        
+    }
+
+    public void Update(MiniBossController obj)
     {
         
     }

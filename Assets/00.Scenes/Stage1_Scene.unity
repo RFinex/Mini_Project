@@ -1043,6 +1043,7 @@ MonoBehaviour:
   - {fileID: 6661432240401465546, guid: d60c654c4b60ee64daf5a4e33841191d, type: 3}
   - {fileID: 1010063019922510581, guid: 7c0a00a339c64a14184680a7e05a0364, type: 3}
   - {fileID: 7991362998760947297, guid: 825370bbf58bd88419713d892348cc87, type: 3}
+  - {fileID: 1108931475454073114, guid: 59557a5a46c59c14f825a0e18507f3a8, type: 3}
   - {fileID: 4610443298924261597, guid: 72b628968a79eb243a734cadf7047bc2, type: 3}
 --- !u!4 &122236321
 Transform:
@@ -5015,6 +5016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 844048569}
   - component: {fileID: 844048568}
+  - component: {fileID: 844048570}
   m_Layer: 0
   m_Name: MiniBoss
   m_TagString: Untagged
@@ -5069,7 +5071,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1607298524388022127, guid: f126beb325943464e84251e9959bce56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5096,6 +5098,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &844048570
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844048567}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8422b907a4469864cb72893c55df40b1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &860702876 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7280110464708884460, guid: 71fdd1e0874283044be030208aaf92c0, type: 3}

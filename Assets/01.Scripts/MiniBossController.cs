@@ -6,6 +6,9 @@ public class MiniBossController : EnemyController
     private Vector2 baseAttackPos;
 
     private StateMachine<MiniBossController> stateMachine;
+    private MiniBossNormalAttackState normalAttackState;
+    private MiniBossHeavyAttackState heavyAttackState;
+
     protected override void Awake()
     {
         base.Awake();
@@ -15,6 +18,8 @@ public class MiniBossController : EnemyController
         baseAttackPos = attackPos.localPosition;
 
         stateMachine = new StateMachine<MiniBossController>();
+        normalAttackState = new MiniBossNormalAttackState();
+        heavyAttackState = new MiniBossHeavyAttackState();
     }
 
     private void OnEnable()
