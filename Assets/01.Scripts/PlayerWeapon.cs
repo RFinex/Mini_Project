@@ -3,14 +3,14 @@ using UnityEngine;
 public abstract class PlayerWeapon : MonoBehaviour
 {
     protected int damage;
-    protected Vector2 basePos;
+    protected Vector2 baseAttackPos;
 
     protected float dir;
     [SerializeField] protected Transform attackPos;
     
     protected virtual void Awake()
     {
-        basePos = attackPos.localPosition;
+        baseAttackPos = attackPos.localPosition;
         dir = 1f;
     }
 
@@ -22,7 +22,7 @@ public abstract class PlayerWeapon : MonoBehaviour
     public void AttackPosDirection(bool isFlip)
     {
         Vector2 currentPos = attackPos.localPosition;
-        currentPos.x = isFlip ? -basePos.x : basePos.x;
+        currentPos.x = isFlip ? -baseAttackPos.x : baseAttackPos.x;
         attackPos.localPosition = currentPos;
     }
 
