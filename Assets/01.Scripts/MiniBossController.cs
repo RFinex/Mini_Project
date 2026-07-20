@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class MiniBossController : EnemyController
 {
@@ -38,6 +39,8 @@ public class MiniBossController : EnemyController
 
         mbWeapon = GetComponent<MonsterWeapon>();
         stateMachine.ChangeState(idleState);
+
+        mbWeapon.dirFunc = GetDirection;
 
         target = GameObject.Find(ConstString.Player).transform;
     }

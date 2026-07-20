@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class MiniBossWeapon : MonsterWeapon
 {
     private float angle;
     private Vector2 bulDir;
 
+    
     public override void Attack(int pattern)
     {
         switch (pattern)
@@ -46,6 +48,7 @@ public class MiniBossWeapon : MonsterWeapon
                 if (bullet.TryGetComponent<MiniBossBullet>(out MiniBossBullet bul))
                 {
                     Quaternion rotate = Quaternion.Euler(0, 0, j * angle);
+                    dir = dirFunc.Invoke();
                     bulDir = rotate * dir;
                     bul.SetDirection(bulDir);
                 }
@@ -76,18 +79,18 @@ public class MiniBossWeapon : MonsterWeapon
     private IEnumerator Pattern_2()
     {
         Debug.Log("패턴2 실행");
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 30; i++)
         {
             GameObject bullet = ObjectPoolManager.instance.GetObject(ConstString.minibossBullet);
             bullet.transform.position = attackPos.position;
-            angle = Random.Range(-45f, 45f);
+            angle = UnityEngine.Random.Range(-30f, 30f);
             if (bullet.TryGetComponent<MiniBossBullet>(out MiniBossBullet bul))
             {
                 Quaternion rotate = Quaternion.Euler(0f, 0f, angle);
                 bulDir = rotate * dir;
                 bul.SetDirection(bulDir);
             }
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

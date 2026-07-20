@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public abstract class MonsterWeapon : MonoBehaviour
     protected float coolTime;
     protected WaitForSeconds wait;
     protected bool canAttack;
+    public Func<Vector2> dirFunc;
 
     protected void Awake()
     {
