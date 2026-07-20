@@ -5,7 +5,7 @@ public class BossController : MonoBehaviour
     private int maxHp = 100;
     private int nowHp;
 
-    private float moveSpeed;
+    private float speed;
     private Transform target;
 
     private SpriteRenderer sr;
@@ -13,12 +13,20 @@ public class BossController : MonoBehaviour
     [SerializeField] private Transform attackPos;
     private Vector2 baseAttackPos;
 
+    private StateMachine<BossController> stateMachine;
+    private BossPhase1State bossPhase1;
+    private BossPhase2State bossPhase2;
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
-        moveSpeed = 3f;
+        speed = 3f;
         nowHp = maxHp;
         baseAttackPos = attackPos.localPosition;
+
+        stateMachine = new StateMachine<BossController>();
+        bossPhase1 = new BossPhase1State();
+        bossPhase2 = new BossPhase2State();
 
         target = GameObject.Find("Player").transform;
     }
