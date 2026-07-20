@@ -7,4 +7,7 @@ public class ConstString
 
     public const string BGMMute = "BGMMute";
     public const string SFXMute = "SFXMute";
+
+    public const string Player = "Player";
+    public const string minibossBullet = "minibossBullet";
 }

@@ -11,9 +11,14 @@ public interface IState<T>
 
 public class StateMachine<T>
 {
-    protected IState<T> currentState;
+    private IState<T> currentState;
 
     private T obj;
+
+    public StateMachine(T obj)
+    {
+        this.obj = obj;
+    }
 
     public void ChangeState(IState<T> state)
     {

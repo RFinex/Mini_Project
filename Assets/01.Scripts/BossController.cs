@@ -1,15 +1,7 @@
 using UnityEngine;
 
-public class BossController : MonoBehaviour
-{
-    private int maxHp = 100;
-    private int nowHp;
-
-    private float speed;
-    private Transform target;
-
-    private SpriteRenderer sr;
-
+public class BossController : EnemyController
+{   
     [SerializeField] private Transform attackPos;
     private Vector2 baseAttackPos;
 
@@ -17,18 +9,19 @@ public class BossController : MonoBehaviour
     private BossPhase1State bossPhase1;
     private BossPhase2State bossPhase2;
 
-    private void Awake()
+    protected override void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+        base.Awake();
         speed = 3f;
+        maxHp = 100;
         nowHp = maxHp;
         baseAttackPos = attackPos.localPosition;
 
-        stateMachine = new StateMachine<BossController>();
+        stateMachine = new StateMachine<BossController>(this);
         bossPhase1 = new BossPhase1State();
         bossPhase2 = new BossPhase2State();
 
-        target = GameObject.Find("Player").transform;
+        target = GameObject.Find(ConstString.Player).transform;
     }
 
     private void OnEnable()
@@ -37,14 +30,9 @@ public class BossController : MonoBehaviour
         nowHp = maxHp;
     }
 
-    private void Update()
+    protected override void CheckFlip()
     {
-        CheckFlip();
-    }
-
-    private void CheckFlip()
-    {
-        sr.flipX = transform.position.x > target.position.x ? true : false;
+        base.CheckFlip();
         Vector2 currentPos = attackPos.localPosition;
         currentPos.x = sr.flipX? -baseAttackPos.x : baseAttackPos.x;
         attackPos.localPosition = currentPos;
