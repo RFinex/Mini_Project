@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class MiniBossController : EnemyController
@@ -8,7 +7,7 @@ public class MiniBossController : EnemyController
     private MiniBossNormalAttackState normalAttackState;
     private MiniBossHeavyAttackState heavyAttackState;
 
-    private MonsterWeapon miniBossWeapon;
+    private MonsterWeapon mbWeapon;
 
     private float idleTimer = 0f;
     public float IdleTimer
@@ -24,17 +23,6 @@ public class MiniBossController : EnemyController
     }
 
     private Vector2 bulletDir;
-    public Vector2 BulletDir
-    {
-        get
-        {
-            return bulletDir;
-        }
-        private set
-        {
-            bulletDir = value;
-        }
-    }
 
     protected override void Awake()
     {
@@ -48,7 +36,7 @@ public class MiniBossController : EnemyController
         normalAttackState = new MiniBossNormalAttackState();
         heavyAttackState = new MiniBossHeavyAttackState();
 
-        miniBossWeapon = GetComponent<MonsterWeapon>();
+        mbWeapon = GetComponent<MonsterWeapon>();
 
         target = GameObject.Find(ConstString.Player).transform;
     }
@@ -101,6 +89,6 @@ public class MiniBossController : EnemyController
 
     public Vector2 GetDirection()
     {
-        return (target.position - attackPos.position).normalized;
+        return (target.position - mbWeapon.attackPos.position).normalized;
     }
 }

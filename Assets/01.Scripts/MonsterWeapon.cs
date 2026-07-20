@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class MonsterWeapon : MonoBehaviour
 {
-    [SerializeField] protected Transform attackPos;
+    [SerializeField] public Transform attackPos;
     protected Vector2 baseAttackPos;
     protected Vector2 dir;
 
