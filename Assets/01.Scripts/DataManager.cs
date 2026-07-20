@@ -77,6 +77,7 @@ public class DataManager : MonoBehaviour
     {
         playTime = time;
     }
+
     public void UpdatePlayTime(float time)
     {
         playTime += time;
