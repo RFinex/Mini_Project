@@ -31,15 +31,18 @@ public class MiniBossController : EnemyController
         maxHp = 100;
         nowHp = maxHp;
 
-        stateMachine = new StateMachine<MiniBossController>();
+        stateMachine = new StateMachine<MiniBossController>(this);
         idleState = new MiniBossIdleState();
         normalAttackState = new MiniBossNormalAttackState();
         heavyAttackState = new MiniBossHeavyAttackState();
 
         mbWeapon = GetComponent<MonsterWeapon>();
+        stateMachine.ChangeState(idleState);
 
         target = GameObject.Find(ConstString.Player).transform;
     }
+
+    
 
     private void OnEnable()
     {
@@ -98,5 +101,10 @@ public class MiniBossController : EnemyController
     {
         mbWeapon.SetDirection(GetDirection());
         mbWeapon.Attack(pattern);
+    }
+
+    public void StopNormalAttack()
+    {
+        mbWeapon.StopAttack();
     }
 }

@@ -5016,6 +5016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 844048569}
   - component: {fileID: 844048571}
+  - component: {fileID: 844048572}
   - component: {fileID: 844048568}
   - component: {fileID: 844048570}
   m_Layer: 0
@@ -5134,6 +5135,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910f7548bf3796d43999f776c98ce10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniBossController
+--- !u!114 &844048572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844048567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6084c90d1969f6478e100f28d838941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniBossWeapon
+  attackPos: {fileID: 1171221866}
 --- !u!4 &860702876 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7280110464708884460, guid: 71fdd1e0874283044be030208aaf92c0, type: 3}

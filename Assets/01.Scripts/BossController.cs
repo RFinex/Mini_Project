@@ -17,7 +17,7 @@ public class BossController : EnemyController
         nowHp = maxHp;
         baseAttackPos = attackPos.localPosition;
 
-        stateMachine = new StateMachine<BossController>();
+        stateMachine = new StateMachine<BossController>(this);
         bossPhase1 = new BossPhase1State();
         bossPhase2 = new BossPhase2State();
 

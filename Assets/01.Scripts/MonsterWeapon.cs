@@ -32,6 +32,7 @@ public abstract class MonsterWeapon : MonoBehaviour
     }
 
     public abstract void Attack(int pattern);
+    public abstract void StopAttack();
 
     protected IEnumerator AttackCoolTime()
     {

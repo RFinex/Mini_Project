@@ -11,12 +11,15 @@ public class MiniBossWeapon : MonsterWeapon
         switch (pattern)
         {
             case 0:
+                StopAllCoroutines();
                 StartCoroutine(Pattern_0());
                 break;
             case 1:
+                StopAllCoroutines();
                 StartCoroutine(Pattern_1());
                 break;
             case 2:
+                StopAllCoroutines();
                 StartCoroutine(Pattern_2());
                 break;
             default:
@@ -24,11 +27,16 @@ public class MiniBossWeapon : MonsterWeapon
         }
     }
 
+    public override void StopAttack()
+    {
+        StopAllCoroutines();
+    }
+
     private IEnumerator Pattern_0()
     {
         angle = 30f;
 
-        for (int i = -1; i < 1; i++)
+        for (int i = -1; i <= 1; i++)
         {
             GameObject bullet = ObjectPoolManager.instance.GetObject(ConstString.minibossBullet);
             bullet.transform.position = attackPos.position;

@@ -7,7 +7,8 @@ public class MiniBossNormalAttackState : IState<MiniBossController>
     public void Enter(MiniBossController obj)
     {
         timer = 0f;
-        int nextPattern = Random.Range(0, 2);
+        int nextPattern = Random.Range(0, 3);
+        obj.NormalAttack(nextPattern);
     }
 
     public void Exit(MiniBossController obj)
