@@ -17,6 +17,7 @@ public class MiniBossMoveState : IState<MiniBossController>
     public void Exit(MiniBossController obj)
     {
         moveTween?.Kill();
+        obj.FlipBoss();
         obj.MBAnimator.SetBool(obj.isMove, false);
     }
 
@@ -27,9 +28,9 @@ public class MiniBossMoveState : IState<MiniBossController>
 
     private void Move(MiniBossController obj)
     {
-        moveTween = obj.transform.DOMove(movePos, 1f)
+        moveTween = obj.transform.DOMove(movePos, 3f)
             .SetLink(obj.gameObject)
             .SetEase(Ease.InOutQuart)
-            .OnComplete(() => obj.FlipBoss());
+            .OnComplete(() => obj.ChangeIdleState());
     }
 }

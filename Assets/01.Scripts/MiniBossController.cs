@@ -18,7 +18,12 @@ public class MiniBossController : EnemyController
     private Animator animator;
 
     public Animator MBAnimator
-    { get { return animator; } }
+    {
+        get
+        {
+            return animator;
+        }
+    }
 
 
     private float idleTimer = 0f;
@@ -69,6 +74,7 @@ public class MiniBossController : EnemyController
         heavyAttackState = new MiniBossHeavyAttackState();
         moveState = new MiniBossMoveState();
 
+        animator = GetComponent<Animator>();
         mbWeapon = GetComponent<MonsterWeapon>();
         stateMachine.ChangeState(idleState);
 
