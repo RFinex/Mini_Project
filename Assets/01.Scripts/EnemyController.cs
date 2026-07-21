@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public abstract class EnemyController : MonoBehaviour
 {
     protected int maxHp;
     public int MaxHp
@@ -49,13 +49,13 @@ public class EnemyController : MonoBehaviour
         sr.flipX = transform.position.x > target.position.x ? true : false;
     }
 
-    public void TakeDamage()
+    public virtual void TakeDamage()
     {
+        nowHp--;
 
+        if (nowHp <= 0)
+            Die();
     }
 
-    protected void Die()
-    {
-
-    }
+    protected abstract void Die();
 }

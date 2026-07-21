@@ -42,4 +42,9 @@ public class BossController : EnemyController
         currentPos.x = sr.flipX? -baseAttackPos.x : baseAttackPos.x;
         attackPos.localPosition = currentPos;
     }
+
+    protected override void Die()
+    {
+        
+    }
 }

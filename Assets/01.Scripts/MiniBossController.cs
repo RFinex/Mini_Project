@@ -52,9 +52,17 @@ public class MiniBossController : EnemyController
         {
             idleTimer = value;
         }
-    }    
+    }
 
-    
+    private bool isPhase2;
+
+    public bool IsPhase2
+    {
+        get
+        {
+            return isPhase2;
+        }
+    }
 
     private Vector2 bulletDir;
 
@@ -64,6 +72,7 @@ public class MiniBossController : EnemyController
         speed = 3f;
         maxHp = 100;
         nowHp = maxHp;
+        isPhase2 = false;
 
         stateMachine = new StateMachine<MiniBossController>(this);
         idleState = new MiniBossIdleState();
@@ -168,5 +177,16 @@ public class MiniBossController : EnemyController
         Vector3 size = new Vector3(moveArea.width, moveArea.height);
 
         Gizmos.DrawCube(center, size);
+    }
+
+    public override void TakeDamage()
+    {
+        base.TakeDamage();
+        if(nowHp <= maxHp / 2)
+    }
+
+    protected override void Die()
+    {
+        
     }
 }
