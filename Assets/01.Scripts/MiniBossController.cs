@@ -92,6 +92,7 @@ public class MiniBossController : EnemyController
     private void Start()
     {
         isMove = Animator.StringToHash("isMove");
+        isHeavy = Animator.StringToHash("isHeavy");
     }
 
 
