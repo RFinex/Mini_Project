@@ -77,6 +77,11 @@ public class MiniBossController : EnemyController
         nowHp = maxHp;
     }
 
+    public void FlipBoss()
+    {
+        CheckFlip();
+    }
+
     protected override void CheckFlip()
     {
         base.CheckFlip();
