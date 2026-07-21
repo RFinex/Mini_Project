@@ -1,6 +1,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class UIManager : MonoBehaviour
     private GameObject option;
     [SerializeField] private GameObject dim;
     private GameObject dimObject;
+
+    private Slider bossHpSlider;
 
     private  Canvas uiCanvas;
     private Canvas worldCanvas;
@@ -32,6 +35,8 @@ public class UIManager : MonoBehaviour
         centerText.text = "";
         uiCanvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
         worldCanvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
+        bossHpSlider = GameObject.Find("BossHPSlider").GetComponent<Slider>();
+        bossHpSlider.gameObject.SetActive(false);
 
         if (option != null)
             Destroy(option);
