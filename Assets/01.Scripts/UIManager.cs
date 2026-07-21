@@ -14,9 +14,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject dim;
     private GameObject dimObject;
 
-    private Slider bossHpSlider;
+    [SerializeField] private Slider bossHpSlider;
 
-    private  Canvas uiCanvas;
+    private Canvas uiCanvas;
     private Canvas worldCanvas;
 
     private void Awake()
@@ -105,5 +105,22 @@ public class UIManager : MonoBehaviour
             .Join(saveText.DOFade(0f, 1.5f))
             .OnComplete(() => ObjectPoolManager.instance.ReturnObject("SaveCheckText", saveText.gameObject))
             .SetLink(saveText.gameObject, LinkBehaviour.KillOnDisable);
+    }
+
+    public void SetBossHPSlider(int maxHp)
+    {
+        bossHpSlider.gameObject.SetActive(true);
+        bossHpSlider.maxValue = maxHp;
+        bossHpSlider.value = maxHp;
+    }
+
+    public void BossHpSlider(int hp)
+    {
+        bossHpSlider.value = hp;
+    }
+
+    public void OffBossHPSlider()
+    {
+        bossHpSlider.gameObject.SetActive(false);
     }
 }

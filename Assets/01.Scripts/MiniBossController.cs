@@ -128,6 +128,11 @@ public class MiniBossController : EnemyController
         animator.SetBool(isStart, true);
     }
 
+    public void SetMiniBossHpBar()
+    {
+        UIManager.instance.SetBossHPSlider(maxHp);
+    }
+
     public void FlipBoss()
     {
         CheckFlip();
@@ -204,7 +209,17 @@ public class MiniBossController : EnemyController
 
     public override void TakeDamage()
     {
-        base.TakeDamage();
+        nowHp--;
+
+        UIManager.instance.BossHpSlider(nowHp);
+
+        if (nowHp <= 0)
+        {
+            nowHp = 0;
+            Die();
+        }
+            
+
         if (nowHp <= maxHp / 2)
         {
             isPhase2 = true;
@@ -215,6 +230,6 @@ public class MiniBossController : EnemyController
 
     protected override void Die()
     {
-        
+        UIManager.instance.OffBossHPSlider();
     }
 }

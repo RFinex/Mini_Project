@@ -45,6 +45,7 @@ public class MiniBossReviveState : IState<MiniBossController>
 
         yield return wait;
 
+        obj.SetMiniBossHpBar();
         obj.ChangeIdleState();
     }
 }

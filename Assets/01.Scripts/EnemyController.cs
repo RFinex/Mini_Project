@@ -65,13 +65,7 @@ public abstract class EnemyController : MonoBehaviour
         sr.flipX = transform.position.x > target.position.x ? true : false;
     }
 
-    public virtual void TakeDamage()
-    {
-        nowHp--;
-
-        if (nowHp <= 0)
-            Die();
-    }
+    public abstract void TakeDamage();
 
     protected abstract void Die();
 }
