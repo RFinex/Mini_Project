@@ -153,29 +153,21 @@ public class MiniBossWeapon : MonsterWeapon
     private IEnumerator Heavy_Pattern_2()
     {
         Debug.Log("강력 패턴2 실행");
-        GameObject laser = ObjectPoolManager.instance.GetObject(ConstString.laser);
-        laser.transform.position = attackPos.position;
 
-        yield return new WaitForSeconds(1f + (20f / 60f));
-
-        laserTween = laser.transform.DORotate(new Vector3(0f, 0f, 30f), (50f/60f))
-            .SetLink(laser)
+        Tween moveTween = transform.DOMove(StageManager.instance.minibossMoveArea.center, 2f)
+            .SetLink(gameObject)
             .SetEase(Ease.Linear);
-    }
 
-    protected void OnDrawGizmos()
-    {
-        if (StageManager.instance.minibossLaserArea == null)
-            return;
+        yield return moveTween.WaitForCompletion();
 
-        Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
-
-        foreach (var area in StageManager.instance.minibossLaserArea)
+        for (int i = 0; i < 20; i++)
         {
-            Vector3 center = new Vector3(area.x + area.width / 2, area.y + area.height / 2);
-            Vector3 size = new Vector3(area.width, area.height);
+            SetAngle(dirFunc.Invoke());
+            GameObject laser = ObjectPoolManager.instance.GetObject(ConstString.laser);
+            laser.transform.position = attackPos.position;
+            laser.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-            Gizmos.DrawCube(center, size);
-        }
-    }
+            yield return new WaitForSeconds(0.2f);
+        }        
+    }    
 }
