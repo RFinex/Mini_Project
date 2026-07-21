@@ -25,6 +25,7 @@ public class Laser : MonoBehaviour, IPoolable
         yield return new WaitForSeconds((50f / 60f));
 
         col.enabled = false;
+        ReturnPool();
     }
 
     public void ReturnPool()
