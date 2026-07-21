@@ -5138,12 +5138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910f7548bf3796d43999f776c98ce10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniBossController
-  moveArea:
-    serializedVersion: 2
-    x: 234
-    y: 93
-    width: 30
-    height: 14
 --- !u!114 &844048572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5157,27 +5151,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniBossWeapon
   attackPos: {fileID: 1171221866}
-  laserArea:
-  - serializedVersion: 2
-    x: 265
-    y: 92.5
-    width: 0.5
-    height: 0.5
-  - serializedVersion: 2
-    x: 265
-    y: 96.5
-    width: 0.5
-    height: 0.5
-  - serializedVersion: 2
-    x: 265
-    y: 100.5
-    width: 0.5
-    height: 0.5
-  - serializedVersion: 2
-    x: 265
-    y: 104.5
-    width: 0.5
-    height: 0.5
 --- !u!50 &844048573
 Rigidbody2D:
   serializedVersion: 5
@@ -8210,6 +8183,77 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 247.95485, y: 121.41391, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1551802275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1551802277}
+  - component: {fileID: 1551802276}
+  m_Layer: 0
+  m_Name: StageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1551802276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551802275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6721ad536e6a4428047b6cda1a948c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageManager
+  minibossMoveArea:
+    serializedVersion: 2
+    x: 234
+    y: 93
+    width: 30
+    height: 14
+  minibossLaserArea:
+  - serializedVersion: 2
+    x: 265
+    y: 92.5
+    width: 0.5
+    height: 0.5
+  - serializedVersion: 2
+    x: 265
+    y: 96.5
+    width: 0.5
+    height: 0.5
+  - serializedVersion: 2
+    x: 265
+    y: 100.5
+    width: 0.5
+    height: 0.5
+  - serializedVersion: 2
+    x: 265
+    y: 104.5
+    width: 0.5
+    height: 0.5
+--- !u!4 &1551802277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551802275}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 258.44873, y: 101.39496, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -90178,3 +90222,4 @@ SceneRoots:
   - {fileID: 570002013}
   - {fileID: 1515277201}
   - {fileID: 844048569}
+  - {fileID: 1551802277}
