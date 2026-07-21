@@ -10,7 +10,7 @@ public class MiniBossReviveState : IState<MiniBossController>
     private bool isRevive;
     public void Enter(MiniBossController obj)
     {
-        range = 5f;
+        range = 7f;
         reviveDelay = (1f + 40f / 60f);
         isRevive = false;
         wait = new WaitForSeconds(reviveDelay);
@@ -19,7 +19,7 @@ public class MiniBossReviveState : IState<MiniBossController>
 
     public void Exit(MiniBossController obj)
     {
-        
+        obj.Col.enabled = true;
     }
 
     public void Update(MiniBossController obj)

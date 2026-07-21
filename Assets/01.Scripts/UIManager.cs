@@ -35,8 +35,12 @@ public class UIManager : MonoBehaviour
         centerText.text = "";
         uiCanvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
         worldCanvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
-        bossHpSlider = GameObject.Find("BossHPSlider").GetComponent<Slider>();
-        bossHpSlider.gameObject.SetActive(false);
+        if (bossHpSlider == null)
+        {
+            bossHpSlider = GameObject.Find("BossHPSlider").GetComponent<Slider>();
+            bossHpSlider.gameObject.SetActive(false);
+        }
+        
 
         if (option != null)
             Destroy(option);
