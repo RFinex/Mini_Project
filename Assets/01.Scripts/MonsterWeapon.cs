@@ -11,6 +11,8 @@ public abstract class MonsterWeapon : MonoBehaviour
     protected float coolTime;
     protected WaitForSeconds wait;
     protected bool canAttack;
+
+    // 플레이어 위치 감지용
     public Func<Vector2> dirFunc;
 
     protected void Awake()
