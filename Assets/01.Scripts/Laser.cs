@@ -36,6 +36,8 @@ public class Laser : MonoBehaviour, IPoolable
     {
         yield return new WaitForSeconds(1f + (20f / 60f));
 
+        SoundManager.instance.PlaySFX(SFXType.Laser);
+
         if (col != null)
         {
             col.enabled = true;
@@ -43,7 +45,6 @@ public class Laser : MonoBehaviour, IPoolable
 
         yield return new WaitForSeconds((50f / 60f));
 
-        SoundManager.instance.PlaySFX(SFXType.Laser);
         if (col != null)
         {
             col.enabled = false;
