@@ -1,10 +1,13 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class MiniBossWeapon : MonsterWeapon
 {
     private Vector2 bulDir;
-    
+
+    [SerializeField] protected List<Rect> laserArea;
+
     public override void Attack(int pattern)
     {
         switch (pattern)
@@ -20,6 +23,27 @@ public class MiniBossWeapon : MonsterWeapon
             case 2:
                 StopAllCoroutines();
                 StartCoroutine(Pattern_2());
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void HeavyAttack(int pattern)
+    {
+        switch (pattern)
+        {
+            case 0:
+                StopAllCoroutines();
+                StartCoroutine(Heavy_Pattern_0());
+                break;
+            case 1:
+                StopAllCoroutines();
+                StartCoroutine(Heavy_Pattern_1());
+                break;
+            case 2:
+                StopAllCoroutines();
+                StartCoroutine(Heavy_Pattern_2());
                 break;
             default:
                 break;
@@ -95,6 +119,48 @@ public class MiniBossWeapon : MonsterWeapon
                 bul.SetDirection(bulDir);
             }
             yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    private IEnumerator Heavy_Pattern_0()
+    {
+        Debug.Log("강력 패턴0 실행");
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject laser = ObjectPoolManager.instance.GetObject("laser");
+            laser.transform.position = attackPos.position;
+            laser.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+            yield return new WaitForSeconds(2f + (10f / 60f));
+        }
+        
+    }
+    private IEnumerator Heavy_Pattern_1()
+    {
+        Debug.Log("강력 패턴1 실행");
+        for (int i = 0; i < laserArea.Count; i++)
+        {
+
+        }
+    }
+    private IEnumerator Heavy_Pattern_2()
+    {
+
+    }
+
+    protected void OnDrawGizmos()
+    {
+        if (laserArea == null)
+            return;
+
+        Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
+
+        foreach (var area in laserArea)
+        {
+            Vector3 center = new Vector3(area.x + area.width / 2, area.y + area.height / 2);
+            Vector3 size = new Vector3(area.width, area.height);
+
+            Gizmos.DrawCube(center, size);
         }
     }
 }

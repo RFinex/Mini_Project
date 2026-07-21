@@ -5160,12 +5160,7 @@ MonoBehaviour:
   laserArea:
   - serializedVersion: 2
     x: 265
-    y: 104
-    width: 1
-    height: 1
-  - serializedVersion: 2
-    x: 265
-    y: 100
+    y: 92
     width: 1
     height: 1
   - serializedVersion: 2
@@ -5175,7 +5170,12 @@ MonoBehaviour:
     height: 1
   - serializedVersion: 2
     x: 265
-    y: 92
+    y: 100
+    width: 1
+    height: 1
+  - serializedVersion: 2
+    x: 265
+    y: 104
     width: 1
     height: 1
 --- !u!50 &844048573

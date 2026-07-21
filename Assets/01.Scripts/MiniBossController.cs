@@ -166,6 +166,13 @@ public class MiniBossController : EnemyController
         mbWeapon.StopAttack();
     }
 
+    public void HeavyAttack(int pattern)
+    {
+        mbWeapon.SetAngle(GetDirection());
+        if(mbWeapon is MiniBossWeapon mWeapon)
+            mWeapon.HeavyAttack(pattern);
+    }
+
     private void OnDrawGizmos()
     {
         if (moveArea == null)
@@ -182,7 +189,11 @@ public class MiniBossController : EnemyController
     public override void TakeDamage()
     {
         base.TakeDamage();
-        if(nowHp <= maxHp / 2)
+        if (nowHp <= maxHp / 2)
+        {
+            isPhase2 = true;
+            speed = 2f;
+        }
     }
 
     protected override void Die()

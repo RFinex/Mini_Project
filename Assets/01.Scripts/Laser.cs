@@ -22,7 +22,7 @@ public class Laser : MonoBehaviour, IPoolable
 
         col.enabled = true;
 
-        yield return new WaitForSeconds(1f + (40f / 60f));
+        yield return new WaitForSeconds((50f / 60f));
 
         col.enabled = false;
     }

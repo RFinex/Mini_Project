@@ -30,6 +30,7 @@ public class MiniBossMoveState : IState<MiniBossController>
 
     private void Move(MiniBossController obj)
     {
+        Debug.Log("이동 실행");
         moveTween = obj.transform.DOMove(movePos, moveDelay)
             .SetLink(obj.gameObject)
             .SetEase(Ease.InOutQuart)

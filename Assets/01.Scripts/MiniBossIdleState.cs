@@ -1,9 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MiniBossIdleState : IState<MiniBossController>
 {
     private float nowDelay = 5f;
     private int randPattern = 2;
+    private int currentPattern = -1;
 
     public void Enter(MiniBossController obj)
     {
@@ -23,7 +25,15 @@ public class MiniBossIdleState : IState<MiniBossController>
         if (obj.IdleTimer > nowDelay)
         {
             int nextState = Random.Range(0, randPattern);
-            obj.ChangeState(nextState);
+            if (randPattern > 2)
+            {
+                while (nextState == currentPattern)
+                {
+                    nextState = Random.Range(0, randPattern);
+                }                
+            }
+            currentPattern = nextState;
+            obj.ChangeState(currentPattern);
         }
     }
 }
