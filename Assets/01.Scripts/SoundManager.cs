@@ -95,7 +95,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySFX(SFXType type)
     {
-        if ((int)type > sfxClip.Length)
+        if ((int)type > sfxClip.Length || (int)type < 0)
             return;
 
         sfxSource.PlayOneShot(sfxClip[(int)type]);

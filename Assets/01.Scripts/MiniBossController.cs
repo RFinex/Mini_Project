@@ -86,12 +86,7 @@ public class MiniBossController : EnemyController
     protected override void Awake()
     {
         base.Awake();
-        speed = 3f;
-        maxHp = 200;
-        nowHp = maxHp;
-        isPhase2 = false;
-        isStartBoss = false;
-
+        
         stateMachine = new StateMachine<MiniBossController>(this);
         idleState = new MiniBossIdleState();
         normalAttackState = new MiniBossNormalAttackState();
@@ -113,6 +108,11 @@ public class MiniBossController : EnemyController
         isMove = Animator.StringToHash("isMove");
         isHeavy = Animator.StringToHash("isHeavy");
         isStart = Animator.StringToHash("isStart");
+        speed = 3f;
+        maxHp = 200;
+        nowHp = maxHp;
+        isPhase2 = false;
+        isStartBoss = false;
     }
 
 
