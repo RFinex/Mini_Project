@@ -47,5 +47,12 @@ public class PlayerBullet : Projectile
         {
             ReturnPool();
         }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            SoundManager.instance.PlaySFX(SFXType.EnemyHit);
+            collision.GetComponent<EnemyController>().TakeDamage();
+            ReturnPool();
+        }
     }
 }
