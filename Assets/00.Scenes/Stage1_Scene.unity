@@ -3946,6 +3946,7 @@ MonoBehaviour:
   timerText: {fileID: 2117507607}
   optionPanel: {fileID: 3457846557510343279, guid: 80c172542ccc5114dba172999155810e, type: 3}
   dim: {fileID: 3936904330790666862, guid: ab2ac563779825346af36671bb012c4e, type: 3}
+  bossHpSlider: {fileID: 0}
 --- !u!4 &430404972
 Transform:
   m_ObjectHideFlags: 0
@@ -7621,7 +7622,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 90
+  m_SurfaceArc: 120
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1

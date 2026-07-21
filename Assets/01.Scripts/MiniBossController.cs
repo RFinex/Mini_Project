@@ -87,7 +87,7 @@ public class MiniBossController : EnemyController
     {
         base.Awake();
         speed = 3f;
-        maxHp = 100;
+        maxHp = 200;
         nowHp = maxHp;
         isPhase2 = false;
         isStartBoss = false;
