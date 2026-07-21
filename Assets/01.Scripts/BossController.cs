@@ -43,6 +43,19 @@ public class BossController : EnemyController
         attackPos.localPosition = currentPos;
     }
 
+    public override void TakeDamage()
+    {
+        nowHp--;
+
+        UIManager.instance.BossHpSlider(nowHp);
+
+        if (nowHp <= 0)
+        {
+            nowHp = 0;
+            Die();
+        }
+    }
+
     protected override void Die()
     {
         
