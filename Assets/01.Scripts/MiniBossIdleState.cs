@@ -3,6 +3,7 @@ using UnityEngine;
 public class MiniBossIdleState : IState<MiniBossController>
 {
     private float nowDelay;
+    private int randPattern = 2;
 
     public void Enter(MiniBossController obj)
     {
@@ -20,7 +21,7 @@ public class MiniBossIdleState : IState<MiniBossController>
         obj.UpdateIdleTimer();
         if (obj.IdleTimer > nowDelay)
         {
-            int nextState = Random.Range(0, 2);
+            int nextState = Random.Range(0, randPattern);
             obj.ChangeState(nextState);
         }
     }

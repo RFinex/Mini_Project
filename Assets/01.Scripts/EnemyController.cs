@@ -3,8 +3,38 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     protected int maxHp;
+    public int MaxHp
+    {
+        get
+        {
+            return maxHp;
+        }
+    }
     protected int nowHp;
+
+    public int NowHp
+    {
+        get
+        {
+            return nowHp;
+        }
+        private set
+        {
+            nowHp = value;
+        }
+    }
     protected float speed;
+    public float Speed
+    {
+        get
+        {
+            return speed;
+        }
+        private set
+        {
+            speed = value;
+        }
+    }
 
     protected SpriteRenderer sr;
     protected Transform target;
@@ -17,5 +47,15 @@ public class EnemyController : MonoBehaviour
     protected virtual void CheckFlip()
     {
         sr.flipX = transform.position.x > target.position.x ? true : false;
+    }
+
+    public void TakeDamage()
+    {
+
+    }
+
+    protected void Die()
+    {
+
     }
 }

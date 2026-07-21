@@ -52,39 +52,9 @@ public class MiniBossController : EnemyController
         {
             idleTimer = value;
         }
-    }
+    }    
 
-    public int MaxHp
-    {
-        get
-        {
-            return maxHp;
-        }
-    }
-
-    public int NowHp
-    {
-        get
-        {
-            return nowHp;
-        }
-        private set
-        {
-            nowHp = value;
-        }
-    }
-
-    public float Speed
-    {
-        get
-        {
-            return speed;
-        }
-        private set
-        {
-            speed = value;
-        }
-    }
+    
 
     private Vector2 bulletDir;
 
@@ -192,7 +162,7 @@ public class MiniBossController : EnemyController
         if (moveArea == null)
             return;
 
-        Gizmos.color = Color.yellow;
+        Gizmos.color = new Color(1f, 1f, 0f, 0.5f);
 
         Vector3 center = new Vector3(moveArea.x + moveArea.width / 2, moveArea.y + moveArea.height / 2);
         Vector3 size = new Vector3(moveArea.width, moveArea.height);

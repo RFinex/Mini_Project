@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class MonsterWeapon : MonoBehaviour
@@ -13,6 +14,8 @@ public abstract class MonsterWeapon : MonoBehaviour
     protected float coolTime;
     protected WaitForSeconds wait;
     protected bool canAttack;
+
+    [SerializeField] protected List<Rect> laserArea;
 
     // 발사 방향 가져오기
     public Func<Vector2> dirFunc;
@@ -52,4 +55,19 @@ public abstract class MonsterWeapon : MonoBehaviour
         angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
     }
 
+    protected void OnDrawGizmos()
+    {
+        if (laserArea == null)
+            return;
+
+        Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
+        
+        foreach (var area in laserArea)
+        {
+            Vector3 center = new Vector3(area.x + area.width / 2, area.y + area.height / 2);
+            Vector3 size = new Vector3(area.width, area.height);
+
+            Gizmos.DrawCube(center, size);
+        }
+    }
 }
