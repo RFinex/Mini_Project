@@ -8,6 +8,8 @@ public abstract class MonsterWeapon : MonoBehaviour
     protected Vector2 baseAttackPos;
     protected Vector2 dir;
 
+    protected float angle;
+
     protected float coolTime;
     protected WaitForSeconds wait;
     protected bool canAttack;
@@ -43,6 +45,11 @@ public abstract class MonsterWeapon : MonoBehaviour
         yield return wait;
 
         canAttack = true;
+    }
+
+    public void SetAngle(Vector2 dir)
+    {
+        angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
     }
 
 }

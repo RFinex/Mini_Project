@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class MiniBossWeapon : MonsterWeapon
 {
-    private float angle;
     private Vector2 bulDir;
     
     public override void Attack(int pattern)

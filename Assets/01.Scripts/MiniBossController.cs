@@ -13,7 +13,22 @@ public class MiniBossController : EnemyController
 
     public Rect moveArea;
 
-    public int isMove;
+    private int isMove;
+    public int IsMove
+    {
+        get
+        {
+            return isMove;
+        }
+    }
+    private int isHeavy;
+    public int IsHeavy
+    {
+        get
+        {
+            return isHeavy;
+        }
+    }
 
     private Animator animator;
 
