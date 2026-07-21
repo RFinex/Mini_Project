@@ -79,6 +79,8 @@ public class MiniBossController : EnemyController
             case 1:
                 stateMachine.ChangeState(heavyAttackState);
                 break;
+            case 2:
+                stateMachine.ChangeState()
             default:
                 break;
         }
