@@ -6,8 +6,10 @@ public class MiniBossMoveState : IState<MiniBossController>
     private Rect moveRect;
     private Vector2 movePos;
     private Tween moveTween;
+    private float moveDelay;
     public void Enter(MiniBossController obj)
     {
+        moveDelay = obj.Speed;
         moveRect = obj.moveArea;
         movePos = new Vector2(Random.Range(moveRect.xMin, moveRect.xMax), Random.Range(moveRect.yMin, moveRect.yMax));
         obj.MBAnimator.SetBool(obj.isMove, true);
@@ -28,7 +30,7 @@ public class MiniBossMoveState : IState<MiniBossController>
 
     private void Move(MiniBossController obj)
     {
-        moveTween = obj.transform.DOMove(movePos, 3f)
+        moveTween = obj.transform.DOMove(movePos, moveDelay)
             .SetLink(obj.gameObject)
             .SetEase(Ease.InOutQuart)
             .OnComplete(() => obj.ChangeIdleState());

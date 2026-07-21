@@ -59,6 +59,18 @@ public class MiniBossController : EnemyController
         }
     }
 
+    public float Speed
+    {
+        get
+        {
+            return speed;
+        }
+        private set
+        {
+            speed = value;
+        }
+    }
+
     private Vector2 bulletDir;
 
     protected override void Awake()

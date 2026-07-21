@@ -1,12 +1,11 @@
 using UnityEngine;
 using System.Collections;
-using System;
+using System.Collections.Generic;
 
 public class MiniBossWeapon : MonsterWeapon
 {
     private float angle;
     private Vector2 bulDir;
-
     
     public override void Attack(int pattern)
     {
@@ -64,34 +63,40 @@ public class MiniBossWeapon : MonsterWeapon
         Debug.Log("패턴1 실행");
         angle = 15f;
 
-        for (int i = 0; i < 360 / angle; i++)
+        for (int i = 0; i < 2; i++)
         {
-            GameObject bullet = ObjectPoolManager.instance.GetObject(ConstString.minibossBullet);
-            bullet.transform.position = attackPos.position;
-            if (bullet.TryGetComponent<MiniBossBullet>(out MiniBossBullet bul))
+            for (int j = 0; j < 360 / angle; j++)
             {
-                Quaternion rotate = Quaternion.Euler(0f, 0f, i * angle);
-                bulDir = rotate * dir;
-                bul.SetDirection(bulDir);
+                GameObject bullet = ObjectPoolManager.instance.GetObject(ConstString.minibossBullet);
+                bullet.transform.position = attackPos.position;
+                if (bullet.TryGetComponent<MiniBossBullet>(out MiniBossBullet bul))
+                {
+                    Quaternion rotate = Quaternion.Euler(0f, 0f, j * angle);
+                    bulDir = rotate * dir;
+                    bul.SetDirection(bulDir);
+                }
+                yield return new WaitForSeconds(0.1f);
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return null;
         }
+        
     }
     private IEnumerator Pattern_2()
     {
         Debug.Log("패턴2 실행");
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 20; i++)
         {
             GameObject bullet = ObjectPoolManager.instance.GetObject(ConstString.minibossBullet);
             bullet.transform.position = attackPos.position;
-            angle = UnityEngine.Random.Range(-30f, 30f);
+            angle = UnityEngine.Random.Range(-45f, 45f);
             if (bullet.TryGetComponent<MiniBossBullet>(out MiniBossBullet bul))
             {
                 Quaternion rotate = Quaternion.Euler(0f, 0f, angle);
+                dir = dirFunc.Invoke();
                 bulDir = rotate * dir;
                 bul.SetDirection(bulDir);
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 }
