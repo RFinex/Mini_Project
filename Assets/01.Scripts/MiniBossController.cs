@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections;
 
 public class MiniBossController : EnemyController
 {
@@ -8,6 +8,7 @@ public class MiniBossController : EnemyController
     private MiniBossNormalAttackState normalAttackState;
     private MiniBossHeavyAttackState heavyAttackState;
     private MiniBossMoveState moveState;
+    private MiniBossReviveState reviveState;
 
     private MonsterWeapon mbWeapon;
 
@@ -26,6 +27,14 @@ public class MiniBossController : EnemyController
         get
         {
             return isHeavy;
+        }
+    }
+    private int isStart;
+    public int IsStart
+    {
+        get
+        {
+            return isStart;
         }
     }
 
@@ -63,6 +72,15 @@ public class MiniBossController : EnemyController
         }
     }
 
+    private bool isStartBoss;
+    public bool IsStartBoss
+    {
+        get
+        {
+            return isStartBoss;
+        }
+    }
+
     private Vector2 bulletDir;
 
     protected override void Awake()
@@ -72,16 +90,18 @@ public class MiniBossController : EnemyController
         maxHp = 100;
         nowHp = maxHp;
         isPhase2 = false;
+        isStartBoss = false;
 
         stateMachine = new StateMachine<MiniBossController>(this);
         idleState = new MiniBossIdleState();
         normalAttackState = new MiniBossNormalAttackState();
         heavyAttackState = new MiniBossHeavyAttackState();
         moveState = new MiniBossMoveState();
+        reviveState = new MiniBossReviveState();
 
         animator = GetComponent<Animator>();
         mbWeapon = GetComponent<MonsterWeapon>();
-        stateMachine.ChangeState(idleState);
+        stateMachine.ChangeState(reviveState);
 
         mbWeapon.dirFunc = GetDirection;
 
@@ -92,6 +112,7 @@ public class MiniBossController : EnemyController
     {
         isMove = Animator.StringToHash("isMove");
         isHeavy = Animator.StringToHash("isHeavy");
+        isStart = Animator.StringToHash("isStart");
     }
 
 
@@ -99,6 +120,12 @@ public class MiniBossController : EnemyController
     {
         maxHp = 100;
         nowHp = maxHp;
+    }
+
+    public void MiniBossStart()
+    {
+        isStartBoss = true;
+        animator.SetBool(isStart, true);
     }
 
     public void FlipBoss()

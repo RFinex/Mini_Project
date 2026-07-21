@@ -37,11 +37,27 @@ public abstract class EnemyController : MonoBehaviour
     }
 
     protected SpriteRenderer sr;
+    protected Collider2D col;
+    public Collider2D Col
+    {
+        get
+        {
+            return col;
+        }
+    }
     protected Transform target;
+    public Transform Target
+    {
+        get
+        {
+            return target;
+        }
+    }
 
     protected virtual void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        col = GetComponent<Collider2D>();
     }
 
     protected virtual void CheckFlip()
