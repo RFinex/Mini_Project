@@ -5160,24 +5160,24 @@ MonoBehaviour:
   laserArea:
   - serializedVersion: 2
     x: 265
-    y: 92
-    width: 1
-    height: 1
+    y: 92.5
+    width: 0.5
+    height: 0.5
   - serializedVersion: 2
     x: 265
-    y: 96
-    width: 1
-    height: 1
+    y: 96.5
+    width: 0.5
+    height: 0.5
   - serializedVersion: 2
     x: 265
-    y: 100
-    width: 1
-    height: 1
+    y: 100.5
+    width: 0.5
+    height: 0.5
   - serializedVersion: 2
     x: 265
-    y: 104
-    width: 1
-    height: 1
+    y: 104.5
+    width: 0.5
+    height: 0.5
 --- !u!50 &844048573
 Rigidbody2D:
   serializedVersion: 5

@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class MiniBossWeapon : MonsterWeapon
 {
     private Vector2 bulDir;
 
     [SerializeField] protected List<Rect> laserArea;
+
+    private Tween laserTween;
 
     public override void Attack(int pattern)
     {
@@ -127,7 +130,7 @@ public class MiniBossWeapon : MonsterWeapon
         Debug.Log("강력 패턴0 실행");
         for (int i = 0; i < 2; i++)
         {
-            GameObject laser = ObjectPoolManager.instance.GetObject("laser");
+            GameObject laser = ObjectPoolManager.instance.GetObject(ConstString.laser);
             laser.transform.position = attackPos.position;
             laser.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
@@ -138,14 +141,27 @@ public class MiniBossWeapon : MonsterWeapon
     private IEnumerator Heavy_Pattern_1()
     {
         Debug.Log("강력 패턴1 실행");
+        angle = 180f;
         for (int i = 0; i < laserArea.Count; i++)
         {
+            GameObject laser = ObjectPoolManager.instance.GetObject(ConstString.laser);
+            laser.transform.position = laserArea[i].position;
+            laser.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
+            yield return new WaitForSeconds(2f + (20f / 60f));
         }
     }
     private IEnumerator Heavy_Pattern_2()
     {
+        Debug.Log("강력 패턴2 실행");
+        GameObject laser = ObjectPoolManager.instance.GetObject(ConstString.laser);
+        laser.transform.position = attackPos.position;
 
+        yield return new WaitForSeconds(1f + (20f / 60f));
+
+        laserTween = laser.transform.DORotate(new Vector3(0f, 0f, 30f), (50f/60f))
+            .SetLink(laser)
+            .SetEase(Ease.Linear);
     }
 
     protected void OnDrawGizmos()
