@@ -10,4 +10,5 @@ public class ConstString
 
     public const string Player = "Player";
     public const string minibossBullet = "minibossBullet";
+    public const string laser = "laser";
 }

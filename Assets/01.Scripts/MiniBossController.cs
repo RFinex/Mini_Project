@@ -1,5 +1,5 @@
 using UnityEngine;
-using System;
+using System.Collections.Generic;
 
 public class MiniBossController : EnemyController
 {
@@ -7,8 +7,39 @@ public class MiniBossController : EnemyController
     private MiniBossIdleState idleState;
     private MiniBossNormalAttackState normalAttackState;
     private MiniBossHeavyAttackState heavyAttackState;
+    private MiniBossMoveState moveState;
 
     private MonsterWeapon mbWeapon;
+
+    public Rect moveArea;
+
+    private int isMove;
+    public int IsMove
+    {
+        get
+        {
+            return isMove;
+        }
+    }
+    private int isHeavy;
+    public int IsHeavy
+    {
+        get
+        {
+            return isHeavy;
+        }
+    }
+
+    private Animator animator;
+
+    public Animator MBAnimator
+    {
+        get
+        {
+            return animator;
+        }
+    }
+
 
     private float idleTimer = 0f;
     public float IdleTimer
@@ -23,6 +54,16 @@ public class MiniBossController : EnemyController
         }
     }
 
+    private bool isPhase2;
+
+    public bool IsPhase2
+    {
+        get
+        {
+            return isPhase2;
+        }
+    }
+
     private Vector2 bulletDir;
 
     protected override void Awake()
@@ -31,12 +72,15 @@ public class MiniBossController : EnemyController
         speed = 3f;
         maxHp = 100;
         nowHp = maxHp;
+        isPhase2 = false;
 
         stateMachine = new StateMachine<MiniBossController>(this);
         idleState = new MiniBossIdleState();
         normalAttackState = new MiniBossNormalAttackState();
         heavyAttackState = new MiniBossHeavyAttackState();
+        moveState = new MiniBossMoveState();
 
+        animator = GetComponent<Animator>();
         mbWeapon = GetComponent<MonsterWeapon>();
         stateMachine.ChangeState(idleState);
 
@@ -45,12 +89,21 @@ public class MiniBossController : EnemyController
         target = GameObject.Find(ConstString.Player).transform;
     }
 
-    
+    private void Start()
+    {
+        isMove = Animator.StringToHash("isMove");
+    }
+
 
     private void OnEnable()
     {
         maxHp = 100;
         nowHp = maxHp;
+    }
+
+    public void FlipBoss()
+    {
+        CheckFlip();
     }
 
     protected override void CheckFlip()
@@ -77,10 +130,11 @@ public class MiniBossController : EnemyController
                 stateMachine.ChangeState(normalAttackState);
                 break;
             case 1:
-                stateMachine.ChangeState(heavyAttackState);
+                stateMachine.ChangeState(moveState);
                 break;
             case 2:
-                stateMachine.ChangeState()
+                stateMachine.ChangeState(heavyAttackState);
+                break;
             default:
                 break;
         }
@@ -91,9 +145,8 @@ public class MiniBossController : EnemyController
         stateMachine.ChangeState(idleState);
     }
 
-    protected override void Update()
+    private void Update()
     {
-        base.Update();
         stateMachine.Update();
     }
 
@@ -111,5 +164,40 @@ public class MiniBossController : EnemyController
     public void StopNormalAttack()
     {
         mbWeapon.StopAttack();
+    }
+
+    public void HeavyAttack(int pattern)
+    {
+        mbWeapon.SetAngle(GetDirection());
+        if(mbWeapon is MiniBossWeapon mWeapon)
+            mWeapon.HeavyAttack(pattern);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (moveArea == null)
+            return;
+
+        Gizmos.color = new Color(1f, 1f, 0f, 0.5f);
+
+        Vector3 center = new Vector3(moveArea.x + moveArea.width / 2, moveArea.y + moveArea.height / 2);
+        Vector3 size = new Vector3(moveArea.width, moveArea.height);
+
+        Gizmos.DrawCube(center, size);
+    }
+
+    public override void TakeDamage()
+    {
+        base.TakeDamage();
+        if (nowHp <= maxHp / 2)
+        {
+            isPhase2 = true;
+            speed = 2f;
+        }
+    }
+
+    protected override void Die()
+    {
+        
     }
 }

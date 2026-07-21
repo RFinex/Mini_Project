@@ -30,11 +30,21 @@ public class BossController : EnemyController
         nowHp = maxHp;
     }
 
+    private void Update()
+    {
+        CheckFlip();
+    }
+
     protected override void CheckFlip()
     {
         base.CheckFlip();
         Vector2 currentPos = attackPos.localPosition;
         currentPos.x = sr.flipX? -baseAttackPos.x : baseAttackPos.x;
         attackPos.localPosition = currentPos;
+    }
+
+    protected override void Die()
+    {
+        
     }
 }

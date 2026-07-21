@@ -2,18 +2,26 @@ using UnityEngine;
 
 public class MiniBossHeavyAttackState : IState<MiniBossController>
 {
+    private float timer;
+
     public void Enter(MiniBossController obj)
     {
-        
+        timer = 0f;
+        int nextPattern = Random.Range(0, 3);
+        obj.HeavyAttack(nextPattern);
     }
 
     public void Exit(MiniBossController obj)
     {
-        
+        timer = 0f;
     }
 
     public void Update(MiniBossController obj)
     {
-        
+        timer += Time.deltaTime;
+        if (timer >= 5f)
+        {
+            obj.ChangeIdleState();
+        }
     }
 }

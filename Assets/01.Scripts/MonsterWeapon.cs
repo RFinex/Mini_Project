@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class MonsterWeapon : MonoBehaviour
@@ -8,9 +9,12 @@ public abstract class MonsterWeapon : MonoBehaviour
     protected Vector2 baseAttackPos;
     protected Vector2 dir;
 
+    protected float angle;
+
     protected float coolTime;
     protected WaitForSeconds wait;
     protected bool canAttack;
+
 
     // 발사 방향 가져오기
     public Func<Vector2> dirFunc;
@@ -45,4 +49,8 @@ public abstract class MonsterWeapon : MonoBehaviour
         canAttack = true;
     }
 
+    public void SetAngle(Vector2 dir)
+    {
+        angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+    }    
 }

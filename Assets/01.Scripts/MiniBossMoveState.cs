@@ -1,16 +1,39 @@
 using UnityEngine;
+using DG.Tweening;
 
-public class MiniBossMoveState : MonoBehaviour
+public class MiniBossMoveState : IState<MiniBossController>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Rect moveRect;
+    private Vector2 movePos;
+    private Tween moveTween;
+    private float moveDelay;
+    public void Enter(MiniBossController obj)
+    {
+        moveDelay = obj.Speed;
+        moveRect = obj.moveArea;
+        movePos = new Vector2(Random.Range(moveRect.xMin, moveRect.xMax), Random.Range(moveRect.yMin, moveRect.yMax));
+        obj.MBAnimator.SetBool(obj.IsMove, true);
+        Move(obj);
+    }
+
+    public void Exit(MiniBossController obj)
+    {
+        moveTween?.Kill();
+        obj.FlipBoss();
+        obj.MBAnimator.SetBool(obj.IsMove, false);
+    }
+
+    public void Update(MiniBossController obj)
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Move(MiniBossController obj)
     {
-        
+        Debug.Log("이동 실행");
+        moveTween = obj.transform.DOMove(movePos, moveDelay)
+            .SetLink(obj.gameObject)
+            .SetEase(Ease.InOutQuart)
+            .OnComplete(() => obj.ChangeIdleState());
     }
 }
