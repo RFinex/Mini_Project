@@ -130,6 +130,7 @@ public class MiniBossWeapon : MonsterWeapon
         Debug.Log("강력 패턴0 실행");
         for (int i = 0; i < 2; i++)
         {
+            SetAngle(dirFunc.Invoke());
             GameObject laser = ObjectPoolManager.instance.GetObject(ConstString.laser);
             laser.transform.position = attackPos.position;
             laser.transform.rotation = Quaternion.Euler(0f, 0f, angle);

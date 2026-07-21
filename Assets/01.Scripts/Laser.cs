@@ -13,6 +13,10 @@ public class Laser : MonoBehaviour, IPoolable
     private void OnEnable()
     {
         StopAllCoroutines();
+        if (col != null)
+        {
+            col.enabled = false;
+        }
         StartCoroutine(LaserDelay());
     }
 
@@ -20,17 +24,24 @@ public class Laser : MonoBehaviour, IPoolable
     {
         yield return new WaitForSeconds(1f + (20f / 60f));
 
-        col.enabled = true;
+        if (col != null)
+        {
+            col.enabled = true;
+        }       
 
         yield return new WaitForSeconds((50f / 60f));
 
-        col.enabled = false;
+        if (col != null)
+        {
+            col.enabled = false;
+        }
+
         ReturnPool();
     }
 
     public void ReturnPool()
     {
-        ObjectPoolManager.instance.ReturnObject("laser", this.gameObject);
+        ObjectPoolManager.instance.ReturnObject(ConstString.laser, this.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
