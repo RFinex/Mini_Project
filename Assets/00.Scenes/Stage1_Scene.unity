@@ -5139,10 +5139,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MiniBossController
   moveArea:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
+    x: 234
+    y: 93
+    width: 30
+    height: 5
+  isMove: 0
 --- !u!114 &844048572
 MonoBehaviour:
   m_ObjectHideFlags: 0
