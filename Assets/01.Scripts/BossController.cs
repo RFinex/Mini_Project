@@ -30,6 +30,11 @@ public class BossController : EnemyController
         nowHp = maxHp;
     }
 
+    private void Update()
+    {
+        CheckFlip();
+    }
+
     protected override void CheckFlip()
     {
         base.CheckFlip();

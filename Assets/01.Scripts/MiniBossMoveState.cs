@@ -1,15 +1,21 @@
 using UnityEngine;
 
-public class MiniBossMoveState : MonoBehaviour
+public class MiniBossMoveState : IState<MiniBossController>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Rect moveRect;
+    private Vector2 movePos;
+    public void Enter(MiniBossController obj)
+    {
+        moveRect = obj.moveArea;
+        movePos = new Vector2(Random.Range(moveRect.xMin, moveRect.xMax), Random.Range(moveRect.yMin, moveRect.yMax));
+    }
+
+    public void Exit(MiniBossController obj)
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update(MiniBossController obj)
     {
         
     }

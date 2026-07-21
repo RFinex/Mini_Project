@@ -1,5 +1,5 @@
 using UnityEngine;
-using System;
+using System.Collections.Generic;
 
 public class MiniBossController : EnemyController
 {
@@ -7,8 +7,11 @@ public class MiniBossController : EnemyController
     private MiniBossIdleState idleState;
     private MiniBossNormalAttackState normalAttackState;
     private MiniBossHeavyAttackState heavyAttackState;
+    private MiniBossMoveState moveState;
 
     private MonsterWeapon mbWeapon;
+
+    public Rect moveArea;
 
     private float idleTimer = 0f;
     public float IdleTimer
@@ -20,6 +23,26 @@ public class MiniBossController : EnemyController
         private set
         {
             idleTimer = value;
+        }
+    }
+
+    public int MaxHp
+    {
+        get
+        {
+            return maxHp;
+        }
+    }
+
+    public int NowHp
+    {
+        get
+        {
+            return nowHp;
+        }
+        private set
+        {
+            nowHp = value;
         }
     }
 
@@ -36,6 +59,7 @@ public class MiniBossController : EnemyController
         idleState = new MiniBossIdleState();
         normalAttackState = new MiniBossNormalAttackState();
         heavyAttackState = new MiniBossHeavyAttackState();
+        moveState = new MiniBossMoveState();
 
         mbWeapon = GetComponent<MonsterWeapon>();
         stateMachine.ChangeState(idleState);
@@ -80,7 +104,8 @@ public class MiniBossController : EnemyController
                 stateMachine.ChangeState(heavyAttackState);
                 break;
             case 2:
-                stateMachine.ChangeState()
+                stateMachine.ChangeState(moveState);
+                break;
             default:
                 break;
         }
@@ -91,9 +116,8 @@ public class MiniBossController : EnemyController
         stateMachine.ChangeState(idleState);
     }
 
-    protected override void Update()
+    private void Update()
     {
-        base.Update();
         stateMachine.Update();
     }
 
@@ -111,5 +135,18 @@ public class MiniBossController : EnemyController
     public void StopNormalAttack()
     {
         mbWeapon.StopAttack();
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (moveArea == null)
+            return;
+
+        Gizmos.color = Color.yellow;
+
+        Vector3 center = new Vector3(moveArea.x + moveArea.width / 2, moveArea.y + moveArea.height / 2);
+        Vector3 size = new Vector3(moveArea.width, moveArea.height);
+
+        Gizmos.DrawCube(center, size);
     }
 }
