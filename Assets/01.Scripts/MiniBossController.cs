@@ -11,7 +11,6 @@ public class MiniBossController : EnemyController
 
     private MonsterWeapon mbWeapon;
 
-    public Rect moveArea;
 
     private int isMove;
     public int IsMove
@@ -174,18 +173,7 @@ public class MiniBossController : EnemyController
             mWeapon.HeavyAttack(pattern);
     }
 
-    private void OnDrawGizmos()
-    {
-        if (moveArea == null)
-            return;
-
-        Gizmos.color = new Color(1f, 1f, 0f, 0.5f);
-
-        Vector3 center = new Vector3(moveArea.x + moveArea.width / 2, moveArea.y + moveArea.height / 2);
-        Vector3 size = new Vector3(moveArea.width, moveArea.height);
-
-        Gizmos.DrawCube(center, size);
-    }
+    
 
     public override void TakeDamage()
     {

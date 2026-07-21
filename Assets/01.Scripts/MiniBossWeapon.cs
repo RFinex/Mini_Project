@@ -7,8 +7,6 @@ public class MiniBossWeapon : MonsterWeapon
 {
     private Vector2 bulDir;
 
-    [SerializeField] protected List<Rect> laserArea;
-
     private Tween laserTween;
 
     public override void Attack(int pattern)
@@ -143,10 +141,10 @@ public class MiniBossWeapon : MonsterWeapon
     {
         Debug.Log("강력 패턴1 실행");
         angle = 180f;
-        for (int i = 0; i < laserArea.Count; i++)
+        for (int i = 0; i < StageManager.instance.minibossLaserArea.Count; i++)
         {
             GameObject laser = ObjectPoolManager.instance.GetObject(ConstString.laser);
-            laser.transform.position = laserArea[i].position;
+            laser.transform.position = StageManager.instance.minibossLaserArea[i].position;
             laser.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
             yield return new WaitForSeconds(2f + (20f / 60f));
@@ -167,12 +165,12 @@ public class MiniBossWeapon : MonsterWeapon
 
     protected void OnDrawGizmos()
     {
-        if (laserArea == null)
+        if (StageManager.instance.minibossLaserArea == null)
             return;
 
         Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
 
-        foreach (var area in laserArea)
+        foreach (var area in StageManager.instance.minibossLaserArea)
         {
             Vector3 center = new Vector3(area.x + area.width / 2, area.y + area.height / 2);
             Vector3 size = new Vector3(area.width, area.height);
