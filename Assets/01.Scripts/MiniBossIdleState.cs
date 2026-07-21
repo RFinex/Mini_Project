@@ -24,16 +24,14 @@ public class MiniBossIdleState : IState<MiniBossController>
         obj.UpdateIdleTimer();
         if (obj.IdleTimer > nowDelay)
         {
-            //int nextState = Random.Range(0, randPattern);
-            // Å×½ºÆ®
-            int nextState = Random.Range(2, 3);
-            //if (randPattern > 2)
-            //{
-            //    while (nextState == currentPattern)
-            //    {
-            //        nextState = Random.Range(0, randPattern);
-            //    }                
-            //}
+            int nextState = Random.Range(0, randPattern);
+            if (randPattern > 2)
+            {
+                while (nextState == currentPattern)
+                {
+                    nextState = Random.Range(0, randPattern);
+                }
+            }
             currentPattern = nextState;
             obj.ChangeState(currentPattern);
         }

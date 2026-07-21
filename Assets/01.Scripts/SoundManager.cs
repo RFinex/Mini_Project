@@ -5,7 +5,8 @@ public enum SFXType
     Jump,
     DoubleJump,
     Shoot,
-    EnemyHit
+    EnemyHit,
+    Laser
 }
 
 public class SoundManager : MonoBehaviour
