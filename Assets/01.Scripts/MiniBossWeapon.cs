@@ -34,6 +34,7 @@ public class MiniBossWeapon : MonsterWeapon
         StopAllCoroutines();
     }
 
+    // 나중에 리스트로 정리 해볼 예정
     private IEnumerator Pattern_0()
     {
         Debug.Log("패턴0 실행");

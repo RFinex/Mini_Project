@@ -10,12 +10,14 @@ public class MiniBossMoveState : IState<MiniBossController>
     {
         moveRect = obj.moveArea;
         movePos = new Vector2(Random.Range(moveRect.xMin, moveRect.xMax), Random.Range(moveRect.yMin, moveRect.yMax));
+        obj.MBAnimator.SetBool(obj.isMove, true);
         Move(obj);
     }
 
     public void Exit(MiniBossController obj)
     {
         moveTween?.Kill();
+        obj.MBAnimator.SetBool(obj.isMove, false);
     }
 
     public void Update(MiniBossController obj)

@@ -804,7 +804,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MiniBoss_sheet_21
+      name: MiniBoss_Move_00
       rect:
         serializedVersion: 2
         x: 24
@@ -826,7 +826,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MiniBoss_sheet_22
+      name: MiniBoss_Move_01
       rect:
         serializedVersion: 2
         x: 126
@@ -848,7 +848,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MiniBoss_sheet_23
+      name: MiniBoss_Move_02
       rect:
         serializedVersion: 2
         x: 228
@@ -870,7 +870,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MiniBoss_sheet_24
+      name: MiniBoss_Move_03
       rect:
         serializedVersion: 2
         x: 330
@@ -892,7 +892,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MiniBoss_sheet_25
+      name: MiniBoss_Move_04
       rect:
         serializedVersion: 2
         x: 431
@@ -914,7 +914,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MiniBoss_sheet_26
+      name: MiniBoss_Move_05
       rect:
         serializedVersion: 2
         x: 531
@@ -936,7 +936,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MiniBoss_sheet_27
+      name: MiniBoss_Move_06
       rect:
         serializedVersion: 2
         x: 631
@@ -958,7 +958,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MiniBoss_sheet_28
+      name: MiniBoss_Move_07
       rect:
         serializedVersion: 2
         x: 731
@@ -1829,6 +1829,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      MiniBoss_Move_00: -4949372076938224952
+      MiniBoss_Move_01: 5252797523471961197
+      MiniBoss_Move_02: 153615618816368898
+      MiniBoss_Move_03: 4325931112239503118
+      MiniBoss_Move_04: -8152104766365075551
+      MiniBoss_Move_05: 1234506622650491461
+      MiniBoss_Move_06: -4012647998542568421
+      MiniBoss_Move_07: -7200844167173806157
       MiniBoss_die_00: -1923904309969667336
       MiniBoss_die_01: 7730899189067325910
       MiniBoss_die_02: 8177654008629759872
@@ -1865,14 +1873,6 @@ TextureImporter:
       MiniBoss_sheet_18: 4912978468338480340
       MiniBoss_sheet_19: -7893887817365922977
       MiniBoss_sheet_20: 745286712010382914
-      MiniBoss_sheet_21: -4949372076938224952
-      MiniBoss_sheet_22: 5252797523471961197
-      MiniBoss_sheet_23: 153615618816368898
-      MiniBoss_sheet_24: 4325931112239503118
-      MiniBoss_sheet_25: -8152104766365075551
-      MiniBoss_sheet_26: 1234506622650491461
-      MiniBoss_sheet_27: -4012647998542568421
-      MiniBoss_sheet_28: -7200844167173806157
       MiniBoss_sheet_29: 1767885559297475318
       MiniBoss_sheet_30: 1176627563335563309
       MiniBoss_sheet_31: -1970422146215986563

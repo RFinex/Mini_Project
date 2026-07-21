@@ -13,6 +13,14 @@ public class MiniBossController : EnemyController
 
     public Rect moveArea;
 
+    public int isMove;
+
+    private Animator animator;
+
+    public Animator MBAnimator
+    { get { return animator; } }
+
+
     private float idleTimer = 0f;
     public float IdleTimer
     {
@@ -69,7 +77,11 @@ public class MiniBossController : EnemyController
         target = GameObject.Find(ConstString.Player).transform;
     }
 
-    
+    private void Start()
+    {
+        isMove = Animator.StringToHash("isMove");
+    }
+
 
     private void OnEnable()
     {
@@ -106,10 +118,10 @@ public class MiniBossController : EnemyController
                 stateMachine.ChangeState(normalAttackState);
                 break;
             case 1:
-                stateMachine.ChangeState(heavyAttackState);
+                stateMachine.ChangeState(moveState);
                 break;
             case 2:
-                stateMachine.ChangeState(moveState);
+                stateMachine.ChangeState(heavyAttackState);
                 break;
             default:
                 break;
