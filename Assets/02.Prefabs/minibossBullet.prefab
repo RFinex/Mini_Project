@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2833195849858292178}
   - component: {fileID: 7883309803147681819}
   - component: {fileID: 4451393963754208730}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: minibossBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
