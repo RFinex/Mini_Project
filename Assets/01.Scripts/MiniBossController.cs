@@ -249,7 +249,6 @@ public class MiniBossController : EnemyController
         col.enabled = false;
         UIManager.instance.OffBossHPSlider();
         animator.SetBool(isDie, true);
-        transform.DOFade
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
