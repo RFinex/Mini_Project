@@ -28,7 +28,7 @@ public class MiniBossDieState : IState<MiniBossController>
 
             obj.Sr.DOFade(0f, 5f)
                 .SetLink(obj.gameObject, LinkBehaviour.KillOnDisable)
-                .OnComplete(() => )
+                .OnComplete(() => StageManager.instance.ExitBoss(obj.gameObject));
         }
     }    
 }
