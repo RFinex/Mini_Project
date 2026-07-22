@@ -300,7 +300,7 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
 
-        rb.gravityScale = baseGravity;
+        rb.gravityScale = isAntiGravity ? -baseGravity : baseGravity;
         rb.linearVelocity = Vector2.zero;
         isDash = false;
     }
