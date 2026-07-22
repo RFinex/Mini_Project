@@ -6,8 +6,6 @@ public class BossController : EnemyController
     private Vector2 baseAttackPos;
 
     private StateMachine<BossController> stateMachine;
-    private BossPhase1State bossPhase1;
-    private BossPhase2State bossPhase2;
 
     protected override void Awake()
     {
@@ -18,8 +16,6 @@ public class BossController : EnemyController
         baseAttackPos = attackPos.localPosition;
 
         stateMachine = new StateMachine<BossController>(this);
-        bossPhase1 = new BossPhase1State();
-        bossPhase2 = new BossPhase2State();
 
         target = GameObject.Find(ConstString.Player).transform;
     }
