@@ -7,7 +7,7 @@ public class MiniBossNormalAttackState : IState<MiniBossController>
     public void Enter(MiniBossController obj)
     {
         timer = 0f;
-        int nextPattern = Random.Range(0, 1);
+        int nextPattern = Random.Range(0, 3);
         obj.NormalAttack(nextPattern);
     }
 
@@ -20,7 +20,7 @@ public class MiniBossNormalAttackState : IState<MiniBossController>
     public void Update(MiniBossController obj)
     {
         timer += Time.deltaTime;
-        if (timer >= 4f)
+        if (timer >= 6f)
         {
             obj.ChangeIdleState();
         }
