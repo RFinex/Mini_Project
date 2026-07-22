@@ -6,7 +6,7 @@ public class Spike : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            collision.GetComponent<PlayerController>().CollisionObject();
+            collision.GetComponent<PlayerController>().TakeDamage();
         }
     }
 }

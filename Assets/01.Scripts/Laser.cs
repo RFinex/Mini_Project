@@ -62,7 +62,7 @@ public class Laser : MonoBehaviour, IPoolable
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer(ConstString.Player))
         {
-            collision.GetComponent<PlayerController>().CollisionObject();
+            collision.GetComponent<PlayerController>().TakeDamage();
         }
     }
 }

@@ -347,7 +347,7 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawCube(gizmos, new Vector2(0.85f, 0.1f));
     }
 
-    public void CollisionObject()
+    public void TakeDamage()
     {
         Die();
     }
