@@ -231,7 +231,6 @@ public class MiniBossController : EnemyController
         {
             isPhase2 = true;
             speed = 2f;
-            SetBulSpeed();
             sr.color = Color.red;
         }
     }

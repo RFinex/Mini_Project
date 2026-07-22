@@ -12,7 +12,10 @@ public class MiniBossIdleState : IState<MiniBossController>
         obj.ResetIdleTimer();
         nowDelay = obj.IsPhase2 ? 2.5f : 5f;
         randPattern = obj.IsPhase2 ? 3 : 2;
-        if(obj.IsPhase2)
+        if (obj.IsPhase2)
+        {
+            obj.SetBulSpeed();
+        }
     }
 
     public void Exit(MiniBossController obj)
