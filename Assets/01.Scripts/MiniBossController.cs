@@ -36,6 +36,14 @@ public class MiniBossController : EnemyController
             return isStart;
         }
     }
+    private int isDie;
+    public int IsDie
+    {
+        get
+        {
+            return isDie;
+        }
+    }
 
     private Animator animator;
 
@@ -107,6 +115,7 @@ public class MiniBossController : EnemyController
         isMove = Animator.StringToHash("isMove");
         isHeavy = Animator.StringToHash("isHeavy");
         isStart = Animator.StringToHash("isStart");
+        isDie = Animator.StringToHash("isDie");
         speed = 3f;
         maxHp = 200;
         nowHp = maxHp;
@@ -237,7 +246,10 @@ public class MiniBossController : EnemyController
 
     protected override void Die()
     {
+        col.enabled = false;
         UIManager.instance.OffBossHPSlider();
+        animator.SetBool(isDie, true);
+        transform.DOFade
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
