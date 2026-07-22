@@ -8,6 +8,7 @@ public class MiniBossController : EnemyController
     private MiniBossHeavyAttackState heavyAttackState;
     private MiniBossMoveState moveState;
     private MiniBossReviveState reviveState;
+    private MiniBossDieState dieState;
 
     private MonsterWeapon mbWeapon;
 
@@ -100,6 +101,7 @@ public class MiniBossController : EnemyController
         heavyAttackState = new MiniBossHeavyAttackState();
         moveState = new MiniBossMoveState();
         reviveState = new MiniBossReviveState();
+        dieState = new MiniBossDieState();
 
         animator = GetComponent<Animator>();
         mbWeapon = GetComponent<MonsterWeapon>();
@@ -170,7 +172,7 @@ public class MiniBossController : EnemyController
         idleTimer += Time.deltaTime;
     }
 
-    public void ChangeState(int nextState)
+    public void RandomChangeState(int nextState)
     {
         switch(nextState)
         {
@@ -186,6 +188,11 @@ public class MiniBossController : EnemyController
             default:
                 break;
         }
+    }
+
+    private void ChangeState(IState<MiniBossController> state)
+    {
+        stateMachine.ChangeState(state);
     }
 
     public void ChangeIdleState()
@@ -248,7 +255,9 @@ public class MiniBossController : EnemyController
     {
         col.enabled = false;
         UIManager.instance.OffBossHPSlider();
+        StopAttack();
         animator.SetBool(isDie, true);
+        ChangeState(dieState);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

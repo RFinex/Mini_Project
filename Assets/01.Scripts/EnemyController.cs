@@ -37,6 +37,13 @@ public abstract class EnemyController : MonoBehaviour
     }
 
     protected SpriteRenderer sr;
+    public SpriteRenderer Sr
+    {
+        get
+        {
+            return sr;
+        }
+    }
     protected Collider2D col;
     public Collider2D Col
     {

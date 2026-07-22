@@ -5,8 +5,13 @@ public class StageManager : MonoBehaviour
 {
     public static StageManager instance;
 
+    // 나중에 자동으로 그리게 리팩토링 해볼 예정
     public Rect minibossMoveArea;
     public List<Rect> minibossLaserArea;
+
+    [SerializeField] private Transform exitBoss;
+
+    private GameObject player;
 
     private void Awake()
     {
@@ -15,6 +20,18 @@ public class StageManager : MonoBehaviour
         else
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
+
+        player = GameObject.Find(ConstString.Player);
+    }
+
+    public void EnterBoss(Transform enter)
+    {
+        player.transform.position = enter.position;
+    }
+
+    public void ExitBoss()
+    {
+        player.transform.position = exitBoss.position;
     }
 
     private void OnDrawGizmos()
