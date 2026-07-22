@@ -8,7 +8,7 @@ public class MiniBossEnterTrigger : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer(ConstString.Player))
         {
-            StageManager.instance.EnterBoss(miniBossEnter, collision.gameObject);
+            StageManager.instance.EnterBoss(miniBossEnter);
         }
     }
 }
