@@ -43,5 +43,10 @@ public abstract class Projectile : MonoBehaviour, IPoolable
         this.damage = damage;
     }
 
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
+    }
+
     public abstract void ReturnPool();
 }

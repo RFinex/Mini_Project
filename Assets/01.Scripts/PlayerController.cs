@@ -79,8 +79,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         PlayerControll();
-        GroundCheck();
-        FallCheck();
     }
 
     private void PlayerControll()
@@ -244,6 +242,9 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(dir * speed, rb.linearVelocity.y);
         }
+
+        GroundCheck();
+        FallCheck();
     }
 
     private void Jump()

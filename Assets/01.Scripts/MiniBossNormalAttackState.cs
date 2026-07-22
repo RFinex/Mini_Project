@@ -14,6 +14,7 @@ public class MiniBossNormalAttackState : IState<MiniBossController>
     public void Exit(MiniBossController obj)
     {
         timer = 0f;
+        obj.StopAttack();
     }
 
     public void Update(MiniBossController obj)

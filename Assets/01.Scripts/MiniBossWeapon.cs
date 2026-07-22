@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -7,7 +6,16 @@ public class MiniBossWeapon : MonsterWeapon
 {
     private Vector2 bulDir;
 
-    private Tween laserTween;
+    private float phase1BulSpeed = 12f;
+    private float phase2BulSpeed = 16f;
+
+    private float currentBulSpeed;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        currentBulSpeed = phase1BulSpeed;
+    }
 
     public override void Attack(int pattern)
     {
@@ -51,6 +59,11 @@ public class MiniBossWeapon : MonsterWeapon
         }
     }
 
+    public void SetBulletSpeed()
+    {
+        currentBulSpeed = phase2BulSpeed;
+    }
+
     public override void StopAttack()
     {
         StopAllCoroutines();
@@ -75,6 +88,7 @@ public class MiniBossWeapon : MonsterWeapon
                     dir = dirFunc.Invoke();
                     bulDir = rotate * dir;
                     bul.SetDirection(bulDir);
+                    bul.SetSpeed(currentBulSpeed);
                 }
                 yield return null;
             }
@@ -99,6 +113,7 @@ public class MiniBossWeapon : MonsterWeapon
                     Quaternion rotate = Quaternion.Euler(0f, 0f, j * angle);
                     bulDir = rotate * dir;
                     bul.SetDirection(bulDir);
+                    bul.SetSpeed(currentBulSpeed);
                 }
                 yield return new WaitForSeconds(0.1f);
             }
@@ -121,6 +136,7 @@ public class MiniBossWeapon : MonsterWeapon
                 dir = dirFunc.Invoke();
                 bulDir = rotate * dir;
                 bul.SetDirection(bulDir);
+                bul.SetSpeed(currentBulSpeed);
             }
             yield return new WaitForSeconds(0.2f);
         }
@@ -129,7 +145,7 @@ public class MiniBossWeapon : MonsterWeapon
     private IEnumerator Heavy_Pattern_0()
     {
         Debug.Log("강력 패턴0 실행");
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
             SetAngle(dirFunc.Invoke());
             GameObject laser = ObjectPoolManager.instance.GetObject(ConstString.laser);

@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using Unity.VisualScripting;
 
 public class MiniBossController : EnemyController
 {
@@ -123,6 +121,14 @@ public class MiniBossController : EnemyController
         nowHp = maxHp;
     }
 
+    public void SetBulSpeed()
+    {
+        if (mbWeapon is MiniBossWeapon mWeapon)
+        {
+            mWeapon.SetBulletSpeed();
+        }
+    }
+
     public void MiniBossStart()
     {
         isStartBoss = true;
@@ -194,7 +200,7 @@ public class MiniBossController : EnemyController
         mbWeapon.Attack(pattern);
     }
 
-    public void StopNormalAttack()
+    public void StopAttack()
     {
         mbWeapon.StopAttack();
     }
@@ -221,10 +227,11 @@ public class MiniBossController : EnemyController
         }
             
 
-        if (nowHp <= maxHp / 2)
+        if (nowHp <= maxHp / 2 && !isPhase2)
         {
             isPhase2 = true;
             speed = 2f;
+            SetBulSpeed();
             sr.color = Color.red;
         }
     }

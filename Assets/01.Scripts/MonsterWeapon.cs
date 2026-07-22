@@ -19,7 +19,7 @@ public abstract class MonsterWeapon : MonoBehaviour
     // 발사 방향 가져오기
     public Func<Vector2> dirFunc;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         coolTime = 0.5f;
         wait = new WaitForSeconds(coolTime);

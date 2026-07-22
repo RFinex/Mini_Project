@@ -16,12 +16,13 @@ public class MiniBossHeavyAttackState : IState<MiniBossController>
     {
         timer = 0f;
         obj.MBAnimator.SetBool(obj.IsHeavy, false);
+        obj.StopAttack();
     }
 
     public void Update(MiniBossController obj)
     {
         timer += Time.deltaTime;
-        if (timer >= 7f)
+        if (timer >= 9f)
         {
             obj.ChangeIdleState();
         }
