@@ -17,6 +17,11 @@ public class StageManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void EnterBoss(Transform enter, GameObject player)
+    {
+        player.transform.position = enter.position;
+    }
+
     private void OnDrawGizmos()
     {
         MoveAreaGizmos();

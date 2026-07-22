@@ -37,7 +37,7 @@ public class MiniBossIdleState : IState<MiniBossController>
                 }
             }
             currentPattern = nextState;
-            obj.ChangeState(currentPattern);
+            obj.RandomChangeState(currentPattern);
         }
     }
 }
