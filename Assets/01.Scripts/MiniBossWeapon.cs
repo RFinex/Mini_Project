@@ -66,6 +66,7 @@ public class MiniBossWeapon : MonsterWeapon
             yield return new WaitUntil(() => canAttack);
             for (int j = -1; j <= 1; j++)
             {
+                SoundManager.instance.PlaySFX(SFXType.Shoot);
                 GameObject bullet = ObjectPoolManager.instance.GetObject(ConstString.minibossBullet);
                 bullet.transform.position = attackPos.position;
                 if (bullet.TryGetComponent<MiniBossBullet>(out MiniBossBullet bul))
@@ -90,6 +91,7 @@ public class MiniBossWeapon : MonsterWeapon
         {
             for (int j = 0; j < 360 / angle; j++)
             {
+                SoundManager.instance.PlaySFX(SFXType.Shoot);
                 GameObject bullet = ObjectPoolManager.instance.GetObject(ConstString.minibossBullet);
                 bullet.transform.position = attackPos.position;
                 if (bullet.TryGetComponent<MiniBossBullet>(out MiniBossBullet bul))
@@ -109,6 +111,7 @@ public class MiniBossWeapon : MonsterWeapon
         Debug.Log("패턴2 실행");
         for (int i = 0; i < 20; i++)
         {
+            SoundManager.instance.PlaySFX(SFXType.Shoot);
             GameObject bullet = ObjectPoolManager.instance.GetObject(ConstString.minibossBullet);
             bullet.transform.position = attackPos.position;
             angle = UnityEngine.Random.Range(-45f, 45f);

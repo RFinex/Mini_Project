@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class MiniBossController : EnemyController
 {
@@ -231,5 +232,13 @@ public class MiniBossController : EnemyController
     protected override void Die()
     {
         UIManager.instance.OffBossHPSlider();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer(ConstString.Player))
+        {
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage();
+        }
     }
 }
