@@ -11,7 +11,7 @@ public class BossPhase1Pattern : BossPatternBase
             yield return wait;
             GameObject fire = ObjectPoolManager.instance.GetObject("bossBullet");
             fire.transform.position = boss.AttackPos.position;
-            SetAngle(boss.GetDirection());
+            SetAngle(boss.GetAttackPosDirection());
             fire.transform.rotation = Quaternion.Euler(0f, 0f, baseAngle);
 
             yield return wait2;
@@ -45,7 +45,7 @@ public class BossPhase1Pattern : BossPatternBase
             yield return wait;
             for (int j = 0; j < 5; j++)
             {
-                SetAngle(boss.GetDirection());
+                SetAngle(boss.GetAttackPosDirection());
                 angle = Random.Range(-30f, 30f);
                 GameObject fire = ObjectPoolManager.instance.GetObject("bossBullet");
                 fire.transform.position = boss.AttackPos.position;
@@ -63,7 +63,7 @@ public class BossPhase1Pattern : BossPatternBase
         angle = 10f;
         for (int i = 0; i < 40; i++)
         {
-            SetAngle(boss.GetDirection());
+            SetAngle(boss.GetAttackPosDirection());
             GameObject fire = ObjectPoolManager.instance.GetObject("bossBullet");
             fire.transform.position = boss.AttackPos.position;
             fire.transform.rotation = Quaternion.Euler(0f, 0f, baseAngle + i * angle);

@@ -3,12 +3,10 @@ using UnityEngine;
 public class BossIdleState : IState<BossController>
 {
     private float attackTimer;
-    private float maxTimer;
 
     public void Enter(BossController obj)
     {
         attackTimer = 0f;
-        maxTimer = 3f;
     }
 
     public void Exit(BossController obj)
@@ -19,9 +17,9 @@ public class BossIdleState : IState<BossController>
     public void Update(BossController obj)
     {
         attackTimer += Time.deltaTime;
-        if (attackTimer >= maxTimer)
+        if (attackTimer >= obj.IdleTimer)
         {
-            obj.ChangeState(obj.attackState);
+            obj.ChangeState(BossState.Attack);
         }
     }
 }

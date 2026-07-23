@@ -27,7 +27,7 @@ public class BossSleepState : IState<BossController>
         {
             if (area.Contains(targetPos.position))
             {
-                obj.ChangeState(obj.enterState);
+                obj.ChangeState(BossState.Enter);
             }
         }
     }

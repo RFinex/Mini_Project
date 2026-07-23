@@ -10,7 +10,7 @@ public class BossEnterState : IState<BossController>
     {
         moveDis = 17f;
         enterSpeed = 2f;
-        enterTarget = obj.transform.position + Vector3.down * moveDis;        
+        enterTarget = obj.transform.position + Vector3.down * moveDis;
     }
 
     public void Exit(BossController obj)
@@ -24,7 +24,7 @@ public class BossEnterState : IState<BossController>
         obj.transform.position = Vector3.MoveTowards(obj.transform.position, enterTarget, enterSpeed * Time.deltaTime);
         if (obj.transform.position == enterTarget)
         {
-            obj.ChangeState(obj.idleState);
+            obj.ChangeState(BossState.Idle);
         }
     }
 }

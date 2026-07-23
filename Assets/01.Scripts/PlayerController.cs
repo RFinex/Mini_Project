@@ -153,34 +153,6 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
-
-        //if (!isLaunch)
-        //{
-        //    dir = 0;
-
-        //    if (Keyboard.current.leftArrowKey.isPressed)
-        //    {
-        //        dir += -1;
-        //    }
-        //    if (Keyboard.current.rightArrowKey.isPressed)
-        //    {
-        //        dir += 1;
-        //    }
-        //    if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        //    {
-        //        Jump();
-        //    }
-        //    if (Keyboard.current.tabKey.wasPressedThisFrame)
-        //    {
-        //        ChangeWeapon();
-        //    }
-        //    if (Keyboard.current.shiftKey.wasPressedThisFrame && canDash)
-        //    {
-        //        StartCoroutine(Dash());
-        //    }
-        //}
-        
-
     }    
 
     private void ChangeWeapon()
