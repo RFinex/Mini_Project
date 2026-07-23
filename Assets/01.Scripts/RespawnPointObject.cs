@@ -7,9 +7,12 @@ public class RespawnPointObject : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            DataManager.instance.SetCheckPos(transform.position);
-            GameManager.instance.SaveGame();
-            UIManager.instance.SaveTextOn(transform.position);
+            if (DataManager.instance.CheckPos != transform.position)
+            {
+                DataManager.instance.SetCheckPos(transform.position);
+                GameManager.instance.SaveGame();
+                UIManager.instance.SaveTextOn(transform.position);
+            }
         }
     }
 }

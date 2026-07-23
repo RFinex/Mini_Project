@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
                 launchDir.y = -1;
             }
             
+            // 발사 성공 시 해당 방향으로 직선 발사
             if (launchDir != Vector2.zero)
             {
                 isHold = false;
@@ -121,6 +122,7 @@ public class PlayerController : MonoBehaviour
         // 발사 도중 아무 조작 입력 시 원상태로 복구
         if (isLaunch)
         {
+            // 현재 내 속도의 크기 계산
             float nowSpeed = rb.linearVelocity.sqrMagnitude;
             if (Keyboard.current.anyKey.wasPressedThisFrame || nowSpeed <= 0.1f)
             {

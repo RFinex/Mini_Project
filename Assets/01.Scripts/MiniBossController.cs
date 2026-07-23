@@ -105,7 +105,6 @@ public class MiniBossController : EnemyController
 
         animator = GetComponent<Animator>();
         mbWeapon = GetComponent<MonsterWeapon>();
-        stateMachine.ChangeState(reviveState);
 
         mbWeapon.dirFunc = GetDirection;
 
@@ -114,6 +113,7 @@ public class MiniBossController : EnemyController
 
     private void Start()
     {
+        ChangeState(reviveState);
         isMove = Animator.StringToHash("isMove");
         isHeavy = Animator.StringToHash("isHeavy");
         isStart = Animator.StringToHash("isStart");
