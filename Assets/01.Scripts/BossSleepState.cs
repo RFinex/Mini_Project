@@ -29,6 +29,5 @@ public class BossSleepState : IState<BossController>
                 obj.ChangeState(obj.enterState);
             }
         }
-
     }
 }
