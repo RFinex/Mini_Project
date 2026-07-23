@@ -1,16 +1,29 @@
 using UnityEngine;
 
-public class BossStunState : MonoBehaviour
+public class BossStunState : IState<BossController>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private float timer;
+    private float maxTimer;
+    public void Enter(BossController obj)
     {
-        
+        timer = 0f;
+        maxTimer = 1f;
+        obj.BAnimator.SetBool(obj.IsStun, true);
+        obj.Col.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Exit(BossController obj)
     {
-        
+        obj.BAnimator.SetBool(obj.IsStun, false);
+        obj.Col.enabled = true;
+    }
+
+    public void Update(BossController obj)
+    {
+        timer += Time.deltaTime;
+        if (timer >= maxTimer)
+        {
+            obj.ChangeState(obj.idleState);
+        }
     }
 }

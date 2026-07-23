@@ -17,6 +17,7 @@ public class BossController : EnemyController
     public BossEnterState enterState;
     public BossIdleState idleState;
     public BossAttackState attackState;
+    public BossStunState stunState;
 
     [SerializeField] private BossPatternBase[] patterns;
 
@@ -35,6 +36,15 @@ public class BossController : EnemyController
         get
         {
             return isAttack;
+        }
+    }
+
+    private int isStun;
+    public int IsStun
+    {
+        get
+        {
+            return isStun;
         }
     }
 
@@ -73,7 +83,8 @@ public class BossController : EnemyController
         sleepState = new BossSleepState();
         enterState = new BossEnterState();
         idleState = new BossIdleState();
-        attackState = new BossAttackState();  
+        attackState = new BossAttackState();
+        stunState = new BossStunState();
         
         target = GameObject.Find(ConstString.Player).transform;
     }
@@ -81,6 +92,7 @@ public class BossController : EnemyController
     private void Start()
     {
         isAttack = Animator.StringToHash("isAttack");
+        isStun = Animator.StringToHash("isStun");
         ChangeState(sleepState);
     }
 
@@ -108,6 +120,7 @@ public class BossController : EnemyController
     public void NextPhase()
     {
         currentPhase++;
+        ChangeState(stunState);
     }
 
     
@@ -131,6 +144,12 @@ public class BossController : EnemyController
         {
             nowHp = 0;
             Die();
+            return;
+        }
+
+        if (nowHp <= 200 && currentPhase == 1)
+        {
+            NextPhase();
         }
     }
 
