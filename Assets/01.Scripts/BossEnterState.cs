@@ -15,6 +15,7 @@ public class BossEnterState : IState<BossController>
 
     public void Exit(BossController obj)
     {
+        obj.SetBossHpBar();
         obj.Col.enabled = true;
     }
 

@@ -32,4 +32,10 @@ public class EffectManager : MonoBehaviour
             ps.Play();
         }
     }
+
+    public void ShowExplodeEffect(Vector3 pos)
+    {
+        GameObject explode = ObjectPoolManager.instance.GetObject("explode");
+        explode.transform.position = pos;
+    }
 }

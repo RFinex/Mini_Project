@@ -48,8 +48,7 @@ public class WarningSign : MonoBehaviour, IPoolable
 
         yield return new WaitForSeconds(0.1f);
 
-        GameObject explode = ObjectPoolManager.instance.GetObject("explode");
-        explode.transform.position = transform.position;
+        EffectManager.instance.ShowExplodeEffect(transform.position);        
 
         yield return null;
 
