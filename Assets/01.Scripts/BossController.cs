@@ -56,7 +56,7 @@ public class BossController : EnemyController
         }
     }
 
-    private int currentPhase;
+    private int currentPhase = 1;
     public int CurrentPhase
     {
         get
@@ -72,11 +72,8 @@ public class BossController : EnemyController
     protected override void Awake()
     {
         base.Awake();
-        speed = 3f;
-        maxHp = 100;
         nowHp = maxHp;
         baseAttackPos = attackPos.localPosition;
-        currentPhase = 1;
 
         animator = GetComponent<Animator>();
         stateMachine = new StateMachine<BossController>(this);
@@ -98,7 +95,6 @@ public class BossController : EnemyController
 
     private void OnEnable()
     {
-        maxHp = 300;
         nowHp = maxHp;
     }
 

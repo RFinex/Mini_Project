@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class EnemyController : MonoBehaviour
 {
-    protected int maxHp;
+    [SerializeField] protected int maxHp;
     public int MaxHp
     {
         get
@@ -10,7 +10,8 @@ public abstract class EnemyController : MonoBehaviour
             return maxHp;
         }
     }
-    protected int nowHp;
+
+    [SerializeField] protected int nowHp;
 
     public int NowHp
     {
@@ -23,7 +24,8 @@ public abstract class EnemyController : MonoBehaviour
             nowHp = value;
         }
     }
-    protected float speed;
+
+    [SerializeField] protected float speed;
     public float Speed
     {
         get
@@ -61,6 +63,18 @@ public abstract class EnemyController : MonoBehaviour
         }
     }
 
+    [SerializeField] protected float idleTimer = 3f;
+    public float IdleTimer
+    {
+        get
+        {
+            return idleTimer;
+        }
+        private set
+        {
+            idleTimer = value;
+        }
+    }
     protected virtual void Awake()
     {
         sr = GetComponent<SpriteRenderer>();

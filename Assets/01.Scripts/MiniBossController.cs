@@ -55,20 +55,7 @@ public class MiniBossController : EnemyController
             return animator;
         }
     }
-
-
-    private float idleTimer = 0f;
-    public float IdleTimer
-    {
-        get
-        {
-            return idleTimer;
-        }
-        private set
-        {
-            idleTimer = value;
-        }
-    }
+    
 
     private bool isPhase2;
 
@@ -118,8 +105,6 @@ public class MiniBossController : EnemyController
         isHeavy = Animator.StringToHash("isHeavy");
         isStart = Animator.StringToHash("isStart");
         isDie = Animator.StringToHash("isDie");
-        speed = 3f;
-        maxHp = 200;
         nowHp = maxHp;
         isPhase2 = false;
         isStartBoss = false;
@@ -128,7 +113,6 @@ public class MiniBossController : EnemyController
 
     private void OnEnable()
     {
-        maxHp = 100;
         nowHp = maxHp;
     }
 
@@ -160,16 +144,6 @@ public class MiniBossController : EnemyController
     {
         base.CheckFlip();
         mbWeapon.AttackPosFlip(sr.flipX);
-    }
-
-    public void ResetIdleTimer()
-    {
-        idleTimer = 0f;
-    }
-
-    public void UpdateIdleTimer()
-    {
-        idleTimer += Time.deltaTime;
     }
 
     public void RandomChangeState(int nextState)
