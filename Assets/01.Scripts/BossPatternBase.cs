@@ -31,7 +31,7 @@ public abstract class BossPatternBase : MonoBehaviour
         isFinish = false;
         //randPattern = Random.Range(1, 5);
         // 테스트 코드
-        randPattern = UnityEngine.Random.Range(1, 3);
+        randPattern = UnityEngine.Random.Range(1, 4);
 
         switch (randPattern)
         {
