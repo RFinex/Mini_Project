@@ -4,10 +4,10 @@ using UnityEngine;
 public abstract class BossPatternBase : MonoBehaviour
 {
     protected int randPattern;
-    protected int currentPattern;
+    protected int currentPattern = 0;
     public bool isFinish;
-    protected float delay;
-    protected float delay2;
+    [SerializeField] protected float delay;
+    [SerializeField] protected float delay2;
     protected WaitForSeconds wait;
     protected WaitForSeconds wait2;
     protected BossController boss;
@@ -24,7 +24,6 @@ public abstract class BossPatternBase : MonoBehaviour
         delay2 = (20f / 60f);
         wait = new WaitForSeconds(delay);
         wait2 = new WaitForSeconds(delay2);
-        currentPattern = 0;
     }
 
     public void StartRandomPattern(BossController obj)
