@@ -3,7 +3,6 @@ using System.Collections;
 
 public class BossPhase1Pattern : BossPatternBase
 {
-    private float angle;
 
     protected override IEnumerator Pattern_1()
     {
@@ -12,10 +11,12 @@ public class BossPhase1Pattern : BossPatternBase
             yield return wait;
             GameObject fire = ObjectPoolManager.instance.GetObject("bossBullet");
             fire.transform.position = boss.AttackPos.position;
-            fire.GetComponent<BossBullet>().SetDirection(boss.GetAttackPosDirection());
+            SetAngle(boss.GetDirection());
+            fire.transform.rotation = Quaternion.Euler(0f, 0f, baseAngle);
 
             yield return wait2;
         }
+
         isFinish = true;
     }
 
@@ -28,8 +29,7 @@ public class BossPhase1Pattern : BossPatternBase
             for (int j = 0; j < 12; j++)
             {                
                 GameObject fire = ObjectPoolManager.instance.GetObject("bossBullet");
-                fire.transform.position = boss.AttackPos.position;
-                fire.GetComponent<BossBullet>().SetDirection(boss.GetAttackPosDirection());
+                fire.transform.position = boss.AttackPos.position;                
                 fire.transform.rotation = Quaternion.Euler(0f, 0f, j * angle);
             }
             yield return wait2;
@@ -40,7 +40,20 @@ public class BossPhase1Pattern : BossPatternBase
 
     protected override IEnumerator Pattern_3()
     {
-        yield return null;
+        for (int i = 0; i < 5; i++)
+        {
+            yield return wait;
+            for (int j = 0; j < 5; j++)
+            {
+                SetAngle(boss.GetDirection());
+                angle = Random.Range(-45f, 45f);
+                GameObject fire = ObjectPoolManager.instance.GetObject("bossBullet");
+                fire.transform.position = boss.AttackPos.position;
+                fire.transform.rotation = Quaternion.Euler(0f, 0f, baseAngle + angle);
+            }
+            yield return wait2;
+        }
+
         isFinish = true;
     }
 

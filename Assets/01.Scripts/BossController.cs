@@ -73,8 +73,8 @@ public class BossController : EnemyController
         sleepState = new BossSleepState();
         enterState = new BossEnterState();
         idleState = new BossIdleState();
-        attackState = new BossAttackState();
-
+        attackState = new BossAttackState();  
+        
         target = GameObject.Find(ConstString.Player).transform;
     }
 
@@ -104,11 +104,13 @@ public class BossController : EnemyController
         attackPos.localPosition = currentPos;
     }
 
+    // 페이즈 전환
     public void NextPhase()
     {
         currentPhase++;
     }
 
+    
     public void SetBossHpBar()
     {
         UIManager.instance.SetBossHPSlider(maxHp);

@@ -16,11 +16,10 @@ public class BossBullet : Projectile
         speed = 8f;
     }
 
-    public void SetDirection(Vector2 dir)
-    {
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, angle);
-    }
+    //public void SetDirection(Quaternion rotate)
+    //{
+    //    transform.rotation = rotate;
+    //}
 
     private void FixedUpdate()
     {

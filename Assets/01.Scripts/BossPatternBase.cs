@@ -5,11 +5,17 @@ public abstract class BossPatternBase : MonoBehaviour
 {
     protected int randPattern;
     public bool isFinish;
-    protected BossController boss;
     protected float delay;
     protected float delay2;
     protected WaitForSeconds wait;
     protected WaitForSeconds wait2;
+    protected BossController boss;
+    protected float baseAngle;
+    protected float angle;
+    
+    protected Vector2 bulDir;
+
+    protected Quaternion rotate;
 
     private void Awake()
     {
@@ -25,7 +31,7 @@ public abstract class BossPatternBase : MonoBehaviour
         isFinish = false;
         //randPattern = Random.Range(1, 5);
         // 테스트 코드
-        randPattern = Random.Range(1, 3);
+        randPattern = UnityEngine.Random.Range(1, 3);
 
         switch (randPattern)
         {
@@ -50,4 +56,9 @@ public abstract class BossPatternBase : MonoBehaviour
     protected abstract IEnumerator Pattern_2();
     protected abstract IEnumerator Pattern_3();
     protected abstract IEnumerator Pattern_4();
+
+    public void SetAngle(Vector2 dir)
+    {
+        baseAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+    }
 }
