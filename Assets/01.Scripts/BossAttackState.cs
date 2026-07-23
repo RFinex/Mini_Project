@@ -12,6 +12,7 @@ public class BossAttackState : IState<BossController>
 
     public void Exit(BossController obj)
     {
+        obj.Patterns[randomPattern].StopAttack();
         obj.BAnimator.SetBool(obj.IsAttack, false);
     }
 

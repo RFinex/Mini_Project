@@ -68,4 +68,9 @@ public abstract class BossPatternBase : MonoBehaviour
     {
         baseAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
     }
+
+    public void StopAttack()
+    {
+        StopAllCoroutines();
+    }
 }

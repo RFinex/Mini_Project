@@ -60,13 +60,14 @@ public class BossPhase1Pattern : BossPatternBase
     protected override IEnumerator Pattern_4()
     {
         yield return wait;
-        angle = 20f;
-        for (int i = 0; i < 20; i++)
+        angle = 10f;
+        for (int i = 0; i < 40; i++)
         {
+            SetAngle(boss.GetDirection());
             GameObject fire = ObjectPoolManager.instance.GetObject("bossBullet");
             fire.transform.position = boss.AttackPos.position;
-            fire.transform.rotation = Quaternion.Euler(0f, 0f, i * angle);
-            yield return null;
+            fire.transform.rotation = Quaternion.Euler(0f, 0f, baseAngle + i * angle);
+            yield return new WaitForSeconds(0.01f);
         }
 
         yield return wait2;
