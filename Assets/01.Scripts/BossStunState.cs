@@ -23,7 +23,7 @@ public class BossStunState : IState<BossController>
         timer += Time.deltaTime;
         if (timer >= maxTimer)
         {
-            obj.ChangeState(obj.idleState);
+            obj.ChangeState(BossState.Idle);
         }
     }
 }

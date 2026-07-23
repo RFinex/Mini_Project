@@ -19,7 +19,7 @@ public class BossIdleState : IState<BossController>
         attackTimer += Time.deltaTime;
         if (attackTimer >= obj.IdleTimer)
         {
-            obj.ChangeState(obj.attackState);
+            obj.ChangeState(BossState.Attack);
         }
     }
 }

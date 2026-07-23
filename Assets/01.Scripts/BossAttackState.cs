@@ -20,7 +20,7 @@ public class BossAttackState : IState<BossController>
     {
         if (obj.Patterns[randomPattern].isFinish)
         {
-            obj.ChangeState(obj.idleState);
+            obj.ChangeState(BossState.Idle);
         }
     }
 }

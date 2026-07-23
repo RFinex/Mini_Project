@@ -1,4 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
+
+public enum BossState
+{
+    Sleep,
+    Enter,
+    Idle,
+    Attack,
+    Stun
+}
 
 public class BossController : EnemyController
 {   
@@ -12,12 +22,16 @@ public class BossController : EnemyController
     }
     private Vector2 baseAttackPos;
 
+    Dictionary<BossState, IState<BossController>> states = new Dictionary<BossState, IState<BossController>>()
+    {
+        { BossState.Sleep, new BossSleepState() },
+        { BossState.Enter, new BossEnterState() },
+        { BossState.Idle, new BossIdleState() },
+        { BossState.Attack, new BossAttackState() },
+        { BossState.Stun, new BossStunState() }
+    };
+
     private StateMachine<BossController> stateMachine;
-    public BossSleepState sleepState;
-    public BossEnterState enterState;
-    public BossIdleState idleState;
-    public BossAttackState attackState;
-    public BossStunState stunState;
 
     [SerializeField] private BossPatternBase[] patterns;
 
@@ -77,12 +91,8 @@ public class BossController : EnemyController
 
         animator = GetComponent<Animator>();
         stateMachine = new StateMachine<BossController>(this);
-        sleepState = new BossSleepState();
-        enterState = new BossEnterState();
-        idleState = new BossIdleState();
-        attackState = new BossAttackState();
-        stunState = new BossStunState();
-        
+
+
         target = GameObject.Find(ConstString.Player).transform;
     }
 
@@ -90,7 +100,7 @@ public class BossController : EnemyController
     {
         isAttack = Animator.StringToHash("isAttack");
         isStun = Animator.StringToHash("isStun");
-        ChangeState(sleepState);
+        ChangeState(states[BossState.Sleep]);
     }
 
     private void OnEnable()
@@ -112,11 +122,12 @@ public class BossController : EnemyController
         attackPos.localPosition = currentPos;
     }
 
+
     // 페이즈 전환
     public void NextPhase()
     {
         currentPhase++;
-        ChangeState(stunState);
+        ChangeState(states[BossState.Stun]);
     }
 
     
@@ -125,9 +136,14 @@ public class BossController : EnemyController
         UIManager.instance.SetBossHPSlider(maxHp);
     }
 
-    public void ChangeState(IState<BossController> state)
+    private void ChangeState(IState<BossController> state)
     {
         stateMachine.ChangeState(state);
+    }
+
+    public void ChangeState(BossState state)
+    {
+        ChangeState(states[state]);
     }
 
     public override void TakeDamage()
@@ -161,6 +177,9 @@ public class BossController : EnemyController
 
     protected override void Die()
     {
-        
+        foreach (var state in states.Values)
+        {
+            state.Exit(this);
+        }
     }
 }
