@@ -6,6 +6,10 @@ public class BossController : EnemyController
     private Vector2 baseAttackPos;
 
     private StateMachine<BossController> stateMachine;
+    public BossSleepState sleepState;
+    public BossEnterState enterState;
+    public BossIdleState idleState;
+    public BossAttackState attackState;
 
     protected override void Awake()
     {
@@ -37,6 +41,11 @@ public class BossController : EnemyController
         Vector2 currentPos = attackPos.localPosition;
         currentPos.x = sr.flipX? -baseAttackPos.x : baseAttackPos.x;
         attackPos.localPosition = currentPos;
+    }
+
+    public void ChangeState(IState<BossController> state)
+    {
+        stateMachine.ChangeState(state);
     }
 
     public override void TakeDamage()

@@ -13,7 +13,6 @@ public class RespawnPointObject : MonoBehaviour
                 GameManager.instance.SaveGame();
                 UIManager.instance.SaveTextOn(transform.position);
             }
-            
         }
     }
 }

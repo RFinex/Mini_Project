@@ -7,11 +7,19 @@ public class StageManager : MonoBehaviour
 
     // 나중에 자동으로 그리게 리팩토링 해볼 예정
     public Rect minibossMoveArea;
+    public List<Rect> bossMoveArea;
     public List<Rect> minibossLaserArea;
 
     [SerializeField] private Transform exitMiniBoss;
 
-    [SerializeField] private GameObject player;
+    private GameObject player;
+    public Transform PlayerPos
+    {
+        get
+        {
+            return player != null ? player.transform : null;
+        }
+    }
 
     private void Awake()
     {
@@ -41,11 +49,12 @@ public class StageManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        MoveAreaGizmos();
+        MiniBossMoveAreaGizmos();
+        BossMoveAreaGizmos();
         LaserAreaGizmos();
     }
 
-    private void MoveAreaGizmos()
+    private void MiniBossMoveAreaGizmos()
     {
         if (minibossMoveArea == null)
             return;
@@ -56,6 +65,21 @@ public class StageManager : MonoBehaviour
         Vector3 size = new Vector3(minibossMoveArea.width, minibossMoveArea.height);
 
         Gizmos.DrawCube(center, size);
+    }
+
+    private void BossMoveAreaGizmos()
+    {
+        if (bossMoveArea == null)
+            return;
+
+        Gizmos.color = new Color(1f, 1f, 0f, 0.5f);
+
+        foreach (var area in bossMoveArea)
+        {
+            Vector3 center = new Vector3(area.x + area.width / 2, area.y + area.height / 2);
+            Vector3 size = new Vector3(area.width, area.height);
+            Gizmos.DrawCube(center, size);
+        }       
     }
 
     private void LaserAreaGizmos()
