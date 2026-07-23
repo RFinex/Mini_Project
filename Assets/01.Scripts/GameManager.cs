@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // 씬 바뀔 때 마다 초기화
+    // 씬 로드 마다 초기화
     public void Init()
     {
         player = GameObject.Find("Player");
@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 
         EffectManager.instance.Init();
         UIManager.instance.Init();
+        StageManager.instance.Init();
     }
 
     // 게임 시작 체크

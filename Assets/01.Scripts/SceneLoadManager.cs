@@ -17,6 +17,7 @@ public class SceneLoadManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    // 모든 매니저 설정값 초기화
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "Stage1_Scene")

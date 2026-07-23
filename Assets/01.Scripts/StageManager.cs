@@ -9,7 +9,7 @@ public class StageManager : MonoBehaviour
     public Rect minibossMoveArea;
     public List<Rect> minibossLaserArea;
 
-    [SerializeField] private Transform exitBoss;
+    [SerializeField] private Transform exitMiniBoss;
 
     [SerializeField] private GameObject player;
 
@@ -21,7 +21,12 @@ public class StageManager : MonoBehaviour
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
 
+    }
+
+    public void Init()
+    {
         player = GameObject.Find(ConstString.Player);
+        exitMiniBoss = GameObject.Find("MiniBossExitTarget").transform;
     }
 
     public void EnterBoss(Transform enter)
@@ -31,7 +36,7 @@ public class StageManager : MonoBehaviour
 
     public void ExitBoss()
     {
-        player.transform.position = exitBoss.position;
+        player.transform.position = exitMiniBoss.position;
     }
 
     private void OnDrawGizmos()
