@@ -1,23 +1,24 @@
 using UnityEngine;
+using System.Collections;
 
 public class BossPhase3Pattern : BossPatternBase
 {
-    public override void Pattern_1()
+    protected override IEnumerator Pattern_1()
     {
         isFinish = true;
     }
 
-    public override void Pattern_2()
+    protected override IEnumerator Pattern_2()
     {
         isFinish = true;
     }
 
-    public override void Pattern_3()
+    protected override IEnumerator Pattern_3()
     {
         isFinish = true;
     }
 
-    public override void Pattern_4()
+    protected override IEnumerator Pattern_4()
     {
         isFinish = true;
     }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public abstract class BossPatternBase : MonoBehaviour
@@ -13,22 +14,22 @@ public abstract class BossPatternBase : MonoBehaviour
         switch (randPattern)
         {
             case 1:
-                Pattern_1();
+                StartCoroutine(Pattern_1());
                 break;
             case 2:
-                Pattern_2();
+                StartCoroutine(Pattern_2());
                 break;
             case 3:
-                Pattern_3();
+                StartCoroutine(Pattern_3());
                 break;
             case 4:
-                Pattern_4();
+                StartCoroutine(Pattern_4());
                 break;
         }
     }
 
-    public abstract void Pattern_1();
-    public abstract void Pattern_2();
-    public abstract void Pattern_3();
-    public abstract void Pattern_4();
+    protected abstract IEnumerator Pattern_1();
+    protected abstract IEnumerator Pattern_2();
+    protected abstract IEnumerator Pattern_3();
+    protected abstract IEnumerator Pattern_4();
 }
