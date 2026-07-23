@@ -12,7 +12,7 @@ public class BossAttackState : IState<BossController>
 
     public void Exit(BossController obj)
     {
-        
+        obj.BAnimator.SetBool(obj.IsAttack, false);
     }
 
     public void Update(BossController obj)

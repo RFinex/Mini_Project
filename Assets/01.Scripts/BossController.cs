@@ -19,6 +19,25 @@ public class BossController : EnemyController
     public BossAttackState attackState;
 
     [SerializeField] private BossPatternBase[] patterns;
+
+    private Animator animator;
+    public Animator BAnimator
+    {
+        get
+        {
+            return animator;
+        }
+    }
+
+    private int isAttack;
+    public int IsAttack
+    {
+        get
+        {
+            return isAttack;
+        }
+    }
+
     public BossPatternBase[] Patterns
     {
         get
@@ -49,6 +68,7 @@ public class BossController : EnemyController
         baseAttackPos = attackPos.localPosition;
         currentPhase = 1;
 
+        animator = GetComponent<Animator>();
         stateMachine = new StateMachine<BossController>(this);
         sleepState = new BossSleepState();
         enterState = new BossEnterState();
@@ -60,6 +80,7 @@ public class BossController : EnemyController
 
     private void Start()
     {
+        isAttack = Animator.StringToHash("isAttack");
         ChangeState(sleepState);
     }
 
@@ -114,6 +135,11 @@ public class BossController : EnemyController
     public Vector2 GetDirection()
     {
         return (target.position - transform.position).normalized;
+    }
+
+    public Vector2 GetAttackPosDirection()
+    {
+        return (target.position - attackPos.position).normalized;
     }
 
     protected override void Die()

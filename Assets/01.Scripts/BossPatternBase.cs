@@ -37,6 +37,8 @@ public abstract class BossPatternBase : MonoBehaviour
                 StartCoroutine(Pattern_4());
                 break;
         }
+
+        obj.BAnimator.SetBool(obj.IsAttack, true);
     }
 
     protected abstract IEnumerator Pattern_1();
