@@ -7,7 +7,7 @@ public class BossAttackState : IState<BossController>
     public void Enter(BossController obj)
     {
         randomPattern = Random.Range(0, obj.CurrentPhase);
-        obj.Patterns[randomPattern].StartRandomPattern();
+        obj.Patterns[randomPattern].StartRandomPattern(obj);
     }
 
     public void Exit(BossController obj)

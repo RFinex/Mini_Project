@@ -111,7 +111,7 @@ public class BossController : EnemyController
         }
     }
 
-    public Vector2 GetDirectiron()
+    public Vector2 GetDirection()
     {
         return (target.position - transform.position).normalized;
     }

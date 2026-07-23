@@ -5,11 +5,22 @@ public abstract class BossPatternBase : MonoBehaviour
 {
     protected int randPattern;
     public bool isFinish;
+    protected BossController boss;
+    protected float delay;
+    protected WaitForSeconds wait;
 
-    public void StartRandomPattern()
+    private void Awake()
     {
+        delay = (45f / 60f);
+        wait = new WaitForSeconds(delay);
+    }
+
+    public void StartRandomPattern(BossController obj)
+    {
+        boss = obj;
         isFinish = false;
-        randPattern = Random.Range(1, 5);
+        //randPattern = Random.Range(1, 5);
+        randPattern = Random.Range(1, 2);
 
         switch (randPattern)
         {
