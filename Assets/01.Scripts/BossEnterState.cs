@@ -9,7 +9,7 @@ public class BossEnterState : IState<BossController>
     public void Enter(BossController obj)
     {
         moveDis = 17f;
-        enterSpeed = 1f;
+        enterSpeed = 2f;
         enterTarget = obj.transform.position + Vector3.down * moveDis;        
     }
 

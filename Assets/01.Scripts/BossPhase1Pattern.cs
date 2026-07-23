@@ -1,24 +1,25 @@
 using UnityEngine;
 
 public class BossPhase1Pattern : BossPatternBase
-{
+{   
+
     public override void Pattern_1()
     {
-        throw new System.NotImplementedException();
+        isFinish = true;
     }
 
     public override void Pattern_2()
     {
-        throw new System.NotImplementedException();
+        isFinish = true;
     }
 
     public override void Pattern_3()
     {
-        throw new System.NotImplementedException();
+        isFinish = true;
     }
 
     public override void Pattern_4()
     {
-        throw new System.NotImplementedException();
+        isFinish = true;
     }
 }
