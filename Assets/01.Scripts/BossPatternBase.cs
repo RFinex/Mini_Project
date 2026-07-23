@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class BossPatternBase : MonoBehaviour
 {
     protected int randPattern;
+    protected int currentPattern;
     public bool isFinish;
     protected float delay;
     protected float delay2;
@@ -23,15 +24,21 @@ public abstract class BossPatternBase : MonoBehaviour
         delay2 = (20f / 60f);
         wait = new WaitForSeconds(delay);
         wait2 = new WaitForSeconds(delay2);
+        currentPattern = 0;
     }
 
     public void StartRandomPattern(BossController obj)
     {
         boss = obj;
         isFinish = false;
-        //randPattern = Random.Range(1, 5);
-        // 테스트 코드
-        randPattern = UnityEngine.Random.Range(1, 4);
+
+        // 패턴 중복 실행 방지
+        do
+        {
+            randPattern = Random.Range(1, 5);
+        } while (randPattern == currentPattern);
+
+        currentPattern = randPattern;        
 
         switch (randPattern)
         {
