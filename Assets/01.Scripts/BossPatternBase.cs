@@ -7,12 +7,16 @@ public abstract class BossPatternBase : MonoBehaviour
     public bool isFinish;
     protected BossController boss;
     protected float delay;
+    protected float delay2;
     protected WaitForSeconds wait;
+    protected WaitForSeconds wait2;
 
     private void Awake()
     {
         delay = (45f / 60f);
+        delay2 = (20f / 60f);
         wait = new WaitForSeconds(delay);
+        wait2 = new WaitForSeconds(delay2);
     }
 
     public void StartRandomPattern(BossController obj)
@@ -20,7 +24,8 @@ public abstract class BossPatternBase : MonoBehaviour
         boss = obj;
         isFinish = false;
         //randPattern = Random.Range(1, 5);
-        randPattern = Random.Range(1, 2);
+        // 테스트 코드
+        randPattern = Random.Range(1, 3);
 
         switch (randPattern)
         {
