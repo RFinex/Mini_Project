@@ -3,6 +3,13 @@ using UnityEngine;
 public class BossController : EnemyController
 {   
     [SerializeField] private Transform attackPos;
+    public Transform AttackPos
+    {
+        get
+        {
+            return attackPos;
+        }
+    }
     private Vector2 baseAttackPos;
 
     private StateMachine<BossController> stateMachine;
@@ -78,6 +85,11 @@ public class BossController : EnemyController
             nowHp = 0;
             Die();
         }
+    }
+
+    public Vector2 GetDirectiron()
+    {
+        return (target.position - transform.position).normalized;
     }
 
     protected override void Die()
