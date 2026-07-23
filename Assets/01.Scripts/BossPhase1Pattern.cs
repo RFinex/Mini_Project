@@ -16,18 +16,21 @@ public class BossPhase1Pattern : BossPatternBase
         isFinish = true;
     }
 
-    //protected override IEnumerator Pattern_2()
-    //{
-    //    isFinish = true;
-    //}
+    protected override IEnumerator Pattern_2()
+    {
+        yield return null;
+        isFinish = true;
+    }
 
-    //protected override IEnumerator Pattern_3()
-    //{
-    //    isFinish = true;
-    //}
+    protected override IEnumerator Pattern_3()
+    {
+        yield return null;
+        isFinish = true;
+    }
 
-    //protected override IEnumerator Pattern_4()
-    //{
-    //    isFinish = true;
-    //}
+    protected override IEnumerator Pattern_4()
+    {
+        yield return null;
+        isFinish = true;
+    }
 }
