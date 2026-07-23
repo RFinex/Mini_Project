@@ -11,7 +11,7 @@ public class StageManager : MonoBehaviour
 
     [SerializeField] private Transform exitBoss;
 
-    private GameObject player;
+    [SerializeField] private GameObject player;
 
     private void Awake()
     {
