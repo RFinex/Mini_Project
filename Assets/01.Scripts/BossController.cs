@@ -11,6 +11,10 @@ public class BossController : EnemyController
     public BossIdleState idleState;
     public BossAttackState attackState;
 
+    [SerializeField] private BossPatternBase[] patterns;
+
+    
+
     protected override void Awake()
     {
         base.Awake();
@@ -20,19 +24,30 @@ public class BossController : EnemyController
         baseAttackPos = attackPos.localPosition;
 
         stateMachine = new StateMachine<BossController>(this);
+        sleepState = new BossSleepState();
+        enterState = new BossEnterState();
+        idleState = new BossIdleState();
+        attackState = new BossAttackState();
 
         target = GameObject.Find(ConstString.Player).transform;
+
+    }
+
+    private void Start()
+    {
+        ChangeState(sleepState);
     }
 
     private void OnEnable()
     {
-        maxHp = 100;
+        maxHp = 300;
         nowHp = maxHp;
     }
 
     private void Update()
     {
         CheckFlip();
+        stateMachine.Update();
     }
 
     protected override void CheckFlip()
@@ -41,6 +56,10 @@ public class BossController : EnemyController
         Vector2 currentPos = attackPos.localPosition;
         currentPos.x = sr.flipX? -baseAttackPos.x : baseAttackPos.x;
         attackPos.localPosition = currentPos;
+    }
+    public void SetBossHpBar()
+    {
+        UIManager.instance.SetBossHPSlider(maxHp);
     }
 
     public void ChangeState(IState<BossController> state)

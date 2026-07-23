@@ -10,6 +10,7 @@ public class BossSleepState : IState<BossController>
     {
         targetPos = StageManager.instance.PlayerPos;
         moveArea = StageManager.instance.bossMoveArea;
+        obj.Col.enabled = false;
     }
 
     public void Exit(BossController obj)
