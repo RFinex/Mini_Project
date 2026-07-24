@@ -13,4 +13,5 @@ public class ConstString
     public const string minibossBullet = "minibossBullet";
     public const string laser = "laser";
     public const string warningSign = "warningSign";
+    public const string bossBullet = "bossBullet";
 }
