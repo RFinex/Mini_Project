@@ -36,9 +36,9 @@ public class BossPhase2Pattern : BossPatternBase
             // 총알 간격 계산 후 시작 각도 지정
             float startAngle = baseAngle - (angle * (pattern_2_BulCount - 1) / 2f);
 
+            SoundManager.instance.PlaySFX(SFXType.Fireball);
             for (int j = 0; j < pattern_2_BulCount; j++)
             {
-                SoundManager.instance.PlaySFX(SFXType.Fireball);
                 GameObject fire = ObjectPoolManager.instance.GetObject(ConstString.bossBullet);
                 fire.transform.position = boss.AttackPos.position;
                 fire.transform.rotation = Quaternion.Euler(0f, 0f, startAngle + (angle * j));
@@ -78,10 +78,10 @@ public class BossPhase2Pattern : BossPatternBase
         float currentAngle = 0f;
         for (int i = 0; i < attackCount4; i++)
         {
+            SoundManager.instance.PlaySFX(SFXType.Fireball);
             for (int j = 0; j < 4; j++)
             {
                 angle = currentAngle + (j * 90f);
-                SoundManager.instance.PlaySFX(SFXType.Fireball);
                 GameObject fire = ObjectPoolManager.instance.GetObject(ConstString.bossBullet);
                 fire.transform.position = boss.AttackPos.position;
                 fire.transform.rotation = Quaternion.Euler(0f, 0f, angle);

@@ -31,4 +31,12 @@ public class BossBullet : Projectile
     {
         ObjectPoolManager.instance.ReturnObject("bossBullet", this.gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer(ConstString.Player))
+        {
+            collision.GetComponent<PlayerController>().TakeDamage();
+        }
+    }
 }

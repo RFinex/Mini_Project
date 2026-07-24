@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     // 씬 로드 마다 초기화
     public void Init()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find(ConstString.Player);
 
         if (player != null)
         {
@@ -81,5 +81,10 @@ public class GameManager : MonoBehaviour
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+    }
+
+    public void GameClear()
+    {
+
     }
 }

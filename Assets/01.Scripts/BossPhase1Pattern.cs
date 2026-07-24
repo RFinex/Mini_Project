@@ -27,9 +27,9 @@ public class BossPhase1Pattern : BossPatternBase
         for (int i = 0; i < attackCount2; i++)
         {
             yield return wait;
+            SoundManager.instance.PlaySFX(SFXType.Fireball);
             for (int j = 0; j < 12; j++)
             {
-                SoundManager.instance.PlaySFX(SFXType.Fireball);
                 GameObject fire = ObjectPoolManager.instance.GetObject(ConstString.bossBullet);
                 fire.transform.position = boss.AttackPos.position;                
                 fire.transform.rotation = Quaternion.Euler(0f, 0f, j * angle);
@@ -45,11 +45,11 @@ public class BossPhase1Pattern : BossPatternBase
         for (int i = 0; i < attackCount3; i++)
         {
             yield return wait;
+            SoundManager.instance.PlaySFX(SFXType.Fireball);
             for (int j = 0; j < 5; j++)
             {
                 SetAngle(boss.GetAttackPosDirection());
                 angle = Random.Range(-30f, 30f);
-                SoundManager.instance.PlaySFX(SFXType.Fireball);
                 GameObject fire = ObjectPoolManager.instance.GetObject(ConstString.bossBullet);
                 fire.transform.position = boss.AttackPos.position;
                 fire.transform.rotation = Quaternion.Euler(0f, 0f, baseAngle + angle);
