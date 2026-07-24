@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     }
 
     // 씬 로드 마다 초기화
+    // Init은 가능하면 리팩토링 할 예정
     public void Init()
     {
         player = GameObject.Find(ConstString.Player);
