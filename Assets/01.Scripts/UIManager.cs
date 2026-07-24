@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour
         else
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-    }
+    }    
 
     public void Init()
     {
@@ -47,6 +47,10 @@ public class UIManager : MonoBehaviour
 
         if (dimObject != null)
             Destroy(dimObject);
+    }
+    public void Init_Menu()
+    {
+        if ()
     }
 
     public void OnGameOverText()

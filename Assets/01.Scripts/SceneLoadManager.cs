@@ -20,7 +20,14 @@ public class SceneLoadManager : MonoBehaviour
     // 모든 매니저 설정값 초기화
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "Stage1_Scene")
+        if (scene.name == "Menu_Scene")
+        {
+            if (GameManager.instance != null)
+            {
+                GameManager.instance.Init_Menu();
+            }
+        }
+        else if (scene.name == "Stage1_Scene")
         {
             if (GameManager.instance != null)
             {

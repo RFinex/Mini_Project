@@ -41,6 +41,11 @@ public class GameManager : MonoBehaviour
         StageManager.instance.Init();
     }
 
+    public void Init_Menu()
+    {
+        UIManager.instance.Init_Menu();
+    }
+
     // 게임 시작 체크
     public void SetStartGame(bool start)
     {
