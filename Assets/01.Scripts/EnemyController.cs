@@ -63,7 +63,9 @@ public abstract class EnemyController : MonoBehaviour
         }
     }
 
-    [SerializeField] protected float idleTimer = 3f;
+    [SerializeField] protected float baseIdleTimer = 3f;
+
+    [SerializeField] protected float idleTimer;
     public float IdleTimer
     {
         get

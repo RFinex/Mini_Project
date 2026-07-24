@@ -92,7 +92,7 @@ public class BossController : EnemyController
         animator = GetComponent<Animator>();
         stateMachine = new StateMachine<BossController>(this);
 
-
+        idleTimer = baseIdleTimer;
         target = GameObject.Find(ConstString.Player).transform;
     }
 
@@ -128,6 +128,8 @@ public class BossController : EnemyController
     {
         currentPhase++;
         ChangeState(states[BossState.Stun]);
+        if (currentPhase > 2)
+            idleTimer = baseIdleTimer * 0.5f;
     }
 
     

@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class WarningSign : MonoBehaviour, IPoolable
 {
-    private float delay;
+    [SerializeField] private float delay = 3f;
     private Collider2D col;
     private GameObject warning;
 
     private void Awake()
     {
-        delay = 5f;
         col = GetComponent<Collider2D>();
         warning = transform.GetChild(0).gameObject;
     }
@@ -46,9 +45,9 @@ public class WarningSign : MonoBehaviour, IPoolable
     {
         col.enabled = true;
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
 
-        EffectManager.instance.ShowExplodeEffect(transform.position);        
+        EffectManager.instance.ShowExplodeEffect(transform.position);
 
         yield return null;
 
