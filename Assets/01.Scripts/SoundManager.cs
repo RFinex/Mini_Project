@@ -6,7 +6,8 @@ public enum SFXType
     DoubleJump,
     Shoot,
     EnemyHit,
-    Laser
+    Laser,
+    Fireball
 }
 
 public class SoundManager : MonoBehaviour
@@ -27,8 +28,8 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
 
-        SetBGMVolume(PlayerPrefs.GetFloat(ConstString.BGMVolume, 0.5f));
-        SetSFXVolume(PlayerPrefs.GetFloat(ConstString.SFXVolume, 0.5f));
+        SetBGMVolume(PlayerPrefs.GetFloat(ConstString.BGMVolume, 0.05f));
+        SetSFXVolume(PlayerPrefs.GetFloat(ConstString.SFXVolume, 0.05f));
         MuteBGM(PlayerPrefs.GetInt(ConstString.BGMMute, 0));
         MuteSFX(PlayerPrefs.GetInt(ConstString.SFXMute, 0));
     }

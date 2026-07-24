@@ -5,6 +5,7 @@ using DG.Tweening;
 public class BossPhase3Pattern : BossPatternBase
 {
     [SerializeField] private float pattern_2_Angle = 15f;
+    [SerializeField] private float pattern_3_bulSpeed = 16f;
 
     protected override IEnumerator Pattern_1()
     {
@@ -37,7 +38,7 @@ public class BossPhase3Pattern : BossPatternBase
             for (int j = 0; j < 4; j++)
             {
                 angle = j * 90f;
-
+                SoundManager.instance.PlaySFX(SFXType.Fireball);
                 GameObject fire = ObjectPoolManager.instance.GetObject(ConstString.bossBullet);
                 fire.transform.position = boss.AttackPos.position;
                 fire.transform.rotation = Quaternion.Euler(0f, 0f, currentAngle + angle);
@@ -77,8 +78,13 @@ public class BossPhase3Pattern : BossPatternBase
                 Vector3 attackPos = boss.AttackPos.position;
                 attackPos.y = Random.Range(moveRect.yMin, moveRect.yMax);
 
+                SoundManager.instance.PlaySFX(SFXType.Fireball);
                 GameObject fire = ObjectPoolManager.instance.GetObject(ConstString.bossBullet);
                 fire.transform.position = attackPos;
+                if (fire.TryGetComponent<BossBullet>(out BossBullet bul))
+                {
+                    bul.SetSpeed(pattern_3_bulSpeed);
+                }
 
                 yield return new WaitForSeconds(0.05f);
             }

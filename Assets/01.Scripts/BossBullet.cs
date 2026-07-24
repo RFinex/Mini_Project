@@ -14,6 +14,7 @@ public class BossBullet : Projectile
         base.OnEnable();
         lifeTime = 5f;
         speed = 8f;
+        transform.rotation = Quaternion.identity;
     }
 
     //public void SetDirection(Quaternion rotate)
