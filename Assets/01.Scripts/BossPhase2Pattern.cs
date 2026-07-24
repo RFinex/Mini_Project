@@ -35,7 +35,7 @@ public class BossPhase2Pattern : BossPatternBase
             // 총알 간격 계산 후 시작 각도 지정
             float startAngle = baseAngle - (angle * (pattern_2_BulCount - 1) / 2f);
 
-            for (int j = 0; j < pattern_2_BulCount)
+            for (int j = 0; j < pattern_2_BulCount; j++)
             {
                 GameObject fire = ObjectPoolManager.instance.GetObject(ConstString.bossBullet);
                 fire.transform.position = boss.AttackPos.position;
