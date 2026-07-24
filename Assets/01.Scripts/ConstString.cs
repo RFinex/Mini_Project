@@ -16,4 +16,6 @@ public class ConstString
     public const string bossBullet = "bossBullet";
 
     public const string SaveCheckText = "SaveCheckText";
+
+    public const string Stage1_Scene = "Stage1_Scene";
 }

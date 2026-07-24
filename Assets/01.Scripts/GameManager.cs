@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         if (player != null)
         {
             pc = player.GetComponent<PlayerController>();
-            if (SaveLoadManager.instance.SavePath())
+            if (SaveLoadManager.instance.SaveFileCheck())
             {
                 player.transform.position = DataManager.instance.CheckPos;
             }
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneLoadManager.instance.ChangeScene("Stage1_Scene");
+        SceneLoadManager.instance.ChangeScene(ConstString.Stage1_Scene);
     }
 
     // 게임 시작 체크
@@ -64,6 +64,12 @@ public class GameManager : MonoBehaviour
         SaveLoadManager.instance.Save();
     }
 
+    public void LoadGame()
+    {
+        SaveLoadManager.instance.Load();
+        SceneLoadManager.instance.ChangeScene(ConstString.Stage1_Scene);
+    }
+
     private void Update()
     {
         if (isStart)
@@ -76,6 +82,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
 
     // 타이머는 DataManager에 바로 저장
     private void TimerOn()

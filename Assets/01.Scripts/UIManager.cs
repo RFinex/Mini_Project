@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider bossHpSlider;
 
     [SerializeField] private Button startBtn;
+    [SerializeField] private Button loadBtn;
 
     private Canvas uiCanvas;
     private Canvas worldCanvas;
@@ -55,7 +56,9 @@ public class UIManager : MonoBehaviour
     {
         menuCanvas = GameObject.Find("MenuCanvas").GetComponent<Canvas>();
         startBtn = GameObject.Find("StartBtn").GetComponent<Button>();
+        loadBtn = GameObject.Find("LoadBtn").GetComponent<Button>();
         startBtn.onClick.AddListener(FadeScene);
+        loadBtn.onClick.AddListener(FadeScene_Load);
     }
 
     private void FadeScene()
@@ -72,8 +75,28 @@ public class UIManager : MonoBehaviour
                 .SetLink(gameObject)
                 .OnComplete(() => GameManager.instance.StartGame());
         }
+    }
 
+    private void FadeScene_Load()
+    {        
+        if (!SaveLoadManager.instance.SaveFileCheck())
+        {
+            Debug.Log("세이브 파일이 존재하지 않습니다.");
+            return;
+        }
 
+        if (dimObject == null)
+        {
+            dimObject = Instantiate(dim, menuCanvas.transform);
+            Image dimImg = dimObject.GetComponent<Image>();
+            Color color = dimImg.color;
+            color.a = 0f;
+            dimImg.color = color;
+
+            dimImg.DOFade(1f, 5f)
+                .SetLink(gameObject)
+                .OnComplete(() => GameManager.instance.LoadGame());
+        }
     }
 
     public void OnGameOverText()

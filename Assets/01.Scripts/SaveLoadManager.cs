@@ -64,7 +64,7 @@ public class SaveLoadManager : MonoBehaviour
         DataManager.instance.SetPlayTime(loadData.elapsedTime);
     }
 
-    public bool SavePath()
+    public bool SaveFileCheck()
     {
         return File.Exists(savePath);
     }

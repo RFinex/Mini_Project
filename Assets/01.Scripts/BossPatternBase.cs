@@ -42,6 +42,7 @@ public abstract class BossPatternBase : MonoBehaviour
         currentPattern = randPattern;
         obj.BAnimator.SetBool(obj.IsAttack, true);
 
+        // 나중에 패턴마다 클래스 분리할 것
         switch (randPattern)
         {
             case 1:
