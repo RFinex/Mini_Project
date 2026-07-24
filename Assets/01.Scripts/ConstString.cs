@@ -14,4 +14,6 @@ public class ConstString
     public const string laser = "laser";
     public const string warningSign = "warningSign";
     public const string bossBullet = "bossBullet";
+
+    public const string SaveCheckText = "SaveCheckText";
 }

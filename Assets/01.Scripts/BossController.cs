@@ -204,11 +204,11 @@ public class BossController : EnemyController
             return;
         }
 
-        if (nowHp <= 200 && currentPhase == 1)
+        if (currentPhase == 1 && nowHp <= maxHp * (2f / 3f))
         {
             NextPhase();
         }
-        else if (nowHp <= 100 && currentPhase == 2)
+        else if (currentPhase == 2 && nowHp <= maxHp * (1f / 3f)) 
         {
             NextPhase();
         }
@@ -232,5 +232,12 @@ public class BossController : EnemyController
         }
         animator.SetBool(isDie, true);
         ChangeState(BossState.Die);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer(ConstString.Player))
+        {
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage();
+        }
     }
 }

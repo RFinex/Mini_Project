@@ -122,16 +122,17 @@ public class UIManager : MonoBehaviour
 
     public void SaveTextOn(Vector3 save)
     {
-        Sequence sequence = DOTween.Sequence();
-        TextMeshProUGUI saveText = ObjectPoolManager.instance.GetObject("SaveCheckText").GetComponent<TextMeshProUGUI>();
-        saveText.alpha = 1f;
-        saveText.transform.SetParent(worldCanvas.transform);
-        saveText.transform.position = save;
+        GameObject text = ObjectPoolManager.instance.GetObject("SaveCheckText");
+        if (text == null)
+            return;
 
-        sequence.Append(saveText.transform.DOMoveY(saveText.transform.position.y + 1f, 1.5f))
-            .Join(saveText.DOFade(0f, 1.5f))
-            .OnComplete(() => ObjectPoolManager.instance.ReturnObject("SaveCheckText", saveText.gameObject))
-            .SetLink(saveText.gameObject, LinkBehaviour.KillOnDisable);
+        SaveText saveText = text.GetComponent<SaveText>();
+        if (saveText != null)
+        {
+            saveText.FadeText(save, worldCanvas.transform);
+        }
+
+        
     }
 
     public void SetBossHPSlider(int maxHp)

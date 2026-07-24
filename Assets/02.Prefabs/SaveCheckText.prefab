@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2255787676701557158}
+  - component: {fileID: -3776025877873425681}
   - component: {fileID: 6918571701982836121}
   - component: {fileID: 7437158204960515978}
   m_Layer: 5
@@ -37,6 +38,18 @@ RectTransform:
   m_AnchoredPosition: {x: 10.06, y: -3.85}
   m_SizeDelta: {x: 5, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &-3776025877873425681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7991362998760947297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b2d08247f7abd449fdc59b16c77310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveText
 --- !u!222 &6918571701982836121
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -236,7 +236,7 @@ public class MiniBossController : EnemyController
         }
             
 
-        if (nowHp <= maxHp / 2 && !isPhase2)
+        if (nowHp <= maxHp / 2f && !isPhase2)
         {
             isPhase2 = true;
             speed = 2f;
