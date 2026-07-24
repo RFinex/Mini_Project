@@ -71,7 +71,7 @@ public class BossPhase1Pattern : BossPatternBase
             GameObject fire = ObjectPoolManager.instance.GetObject(ConstString.bossBullet);
             fire.transform.position = boss.AttackPos.position;
             fire.transform.rotation = Quaternion.Euler(0f, 0f, baseAngle + i * angle);
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.05f);
         }
 
         yield return wait2;

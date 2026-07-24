@@ -20,7 +20,7 @@ public class BossPhase2Pattern : BossPatternBase
 
     protected override IEnumerator Pattern_2()
     {
-        Rect moveRect = StageManager.instance.bossMoveArea[Random.Range(0, StageManager.instance.bossMoveArea.Count)];
+        Rect moveRect = RectArea.instance.bossMoveArea[Random.Range(0, RectArea.instance.bossMoveArea.Count)];
         Vector2 randMove = new Vector2(Random.Range(moveRect.xMin, moveRect.xMax), Random.Range(moveRect.yMin, moveRect.yMax));
         
         transform.DOMove(randMove, boss.Speed)
@@ -61,7 +61,7 @@ public class BossPhase2Pattern : BossPatternBase
     {
         for (int i = 0; i < attackCount3; i++)
         {
-            Rect moveRect = StageManager.instance.bossMoveArea[Random.Range(0, StageManager.instance.bossMoveArea.Count)];
+            Rect moveRect = RectArea.instance.bossMoveArea[Random.Range(0, RectArea.instance.bossMoveArea.Count)];
             Vector2 randMove = new Vector2(Random.Range(moveRect.xMin, moveRect.xMax), Random.Range(moveRect.yMin, moveRect.yMax));
 
             GameObject warning = ObjectPoolManager.instance.GetObject(ConstString.warningSign);
