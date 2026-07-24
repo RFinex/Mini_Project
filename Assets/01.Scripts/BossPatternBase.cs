@@ -35,12 +35,13 @@ public abstract class BossPatternBase : MonoBehaviour
         isFinish = false;
 
         // 패턴 중복 실행 방지
-        do
-        {
-            randPattern = Random.Range(1, 5);
-        } while (randPattern == currentPattern);
+        //do
+        //{
+        //    randPattern = Random.Range(1, 5);
+        //} while (randPattern == currentPattern);
 
-        currentPattern = randPattern;        
+        randPattern = Random.Range(3, 4);
+        currentPattern = randPattern;
 
         switch (randPattern)
         {
