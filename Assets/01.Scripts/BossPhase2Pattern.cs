@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossPhase2Pattern : BossPatternBase
 {
     [SerializeField] private int pattern_2_BulCount = 5;
+    [SerializeField] private float pattern_4_Angle = 10f;
     protected override IEnumerator Pattern_1()
     {
         for (int i = 0; i < attackCount; i++)
@@ -67,12 +68,26 @@ public class BossPhase2Pattern : BossPatternBase
 
             yield return wait;
         }
-        
+
+        isFinish = true;
     }
 
     protected override IEnumerator Pattern_4()
     {
-        yield return null;
+        float currentAngle = 0f;
+        for (int i = 0; i < attackCount4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                angle = currentAngle + (j * 90f);
+                GameObject fire = ObjectPoolManager.instance.GetObject(ConstString.bossBullet);
+                fire.transform.position = boss.AttackPos.position;
+                fire.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            }
+            currentAngle += pattern_4_Angle;
+            yield return wait2;
+        }
+
         isFinish = true;
     }
 }

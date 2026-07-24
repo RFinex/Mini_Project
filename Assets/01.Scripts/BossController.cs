@@ -165,6 +165,10 @@ public class BossController : EnemyController
         {
             NextPhase();
         }
+        else if (nowHp <= 100 && currentPhase == 2)
+        {
+            NextPhase();
+        }
     }
 
     public Vector2 GetDirection()
