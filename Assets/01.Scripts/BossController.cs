@@ -7,7 +7,8 @@ public enum BossState
     Enter,
     Idle,
     Attack,
-    Stun
+    Stun,
+    Die
 }
 
 public class BossController : EnemyController
@@ -22,18 +23,55 @@ public class BossController : EnemyController
     }
     private Vector2 baseAttackPos;
 
+    protected SpriteRenderer sr;
+    public SpriteRenderer Sr
+    {
+        get
+        {
+            return sr;
+        }
+    }
+
+    protected Collider2D col;
+    public Collider2D Col
+    {
+        get
+        {
+            return col;
+        }
+    }
+
     Dictionary<BossState, IState<BossController>> states = new Dictionary<BossState, IState<BossController>>()
     {
         { BossState.Sleep, new BossSleepState() },
         { BossState.Enter, new BossEnterState() },
         { BossState.Idle, new BossIdleState() },
         { BossState.Attack, new BossAttackState() },
-        { BossState.Stun, new BossStunState() }
+        { BossState.Stun, new BossStunState() },
+        { BossState.Die, new BossDieState() }
     };
 
     private StateMachine<BossController> stateMachine;
 
     [SerializeField] private BossPatternBase[] patterns;
+
+    [SerializeField] private float dieDelay = (2f + 50f / 60f);
+    public float DieDelay
+    {
+        get
+        {
+            return dieDelay;
+        }
+    }
+
+    [SerializeField] private float fadeDelay = 5f;
+    public float FadeDelay
+    {
+        get
+        {
+            return fadeDelay;
+        }
+    }
 
     private Animator animator;
     public Animator BAnimator
@@ -62,6 +100,8 @@ public class BossController : EnemyController
         }
     }
 
+    private int isDie;
+
     public BossPatternBase[] Patterns
     {
         get
@@ -83,9 +123,11 @@ public class BossController : EnemyController
         }
     }
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
+        sr = GetComponent<SpriteRenderer>();
+        col = GetComponent<Collider2D>();
+
         nowHp = maxHp;
         baseAttackPos = attackPos.localPosition;
 
@@ -100,6 +142,7 @@ public class BossController : EnemyController
     {
         isAttack = Animator.StringToHash("isAttack");
         isStun = Animator.StringToHash("isStun");
+        isDie = Animator.StringToHash("isDie");
         ChangeState(states[BossState.Sleep]);
     }
 
@@ -116,7 +159,7 @@ public class BossController : EnemyController
 
     protected override void CheckFlip()
     {
-        base.CheckFlip();
+        sr.flipX = transform.position.x > target.position.x ? true : false;
         Vector2 currentPos = attackPos.localPosition;
         currentPos.x = sr.flipX? -baseAttackPos.x : baseAttackPos.x;
         attackPos.localPosition = currentPos;
@@ -165,6 +208,10 @@ public class BossController : EnemyController
         {
             NextPhase();
         }
+        else if (nowHp <= 100 && currentPhase == 2)
+        {
+            NextPhase();
+        }
     }
 
     public Vector2 GetDirection()
@@ -183,5 +230,7 @@ public class BossController : EnemyController
         {
             state.Exit(this);
         }
+        animator.SetBool(isDie, true);
+        ChangeState(BossState.Die);
     }
 }

@@ -6,13 +6,18 @@ public abstract class BossPatternBase : MonoBehaviour
     protected int randPattern;
     protected int currentPattern = 0;
     public bool isFinish;
-    [SerializeField] protected float delay;
-    [SerializeField] protected float delay2;
+    [SerializeField] protected float delayFrame = 45f;
+    [SerializeField] protected float delay2Frame = 20f;
     protected WaitForSeconds wait;
     protected WaitForSeconds wait2;
     protected BossController boss;
     protected float baseAngle;
     protected float angle;
+
+    [SerializeField] protected int attackCount = 1;
+    [SerializeField] protected int attackCount2 = 2;
+    [SerializeField] protected int attackCount3 = 3;
+    [SerializeField] protected int attackCount4 = 4;
     
     protected Vector2 bulDir;
 
@@ -20,10 +25,8 @@ public abstract class BossPatternBase : MonoBehaviour
 
     private void Awake()
     {
-        delay = (45f / 60f);
-        delay2 = (20f / 60f);
-        wait = new WaitForSeconds(delay);
-        wait2 = new WaitForSeconds(delay2);
+        wait = new WaitForSeconds(delayFrame / 60f);
+        wait2 = new WaitForSeconds(delay2Frame / 60f);
     }
 
     public void StartRandomPattern(BossController obj)
@@ -36,8 +39,8 @@ public abstract class BossPatternBase : MonoBehaviour
         {
             randPattern = Random.Range(1, 5);
         } while (randPattern == currentPattern);
-
-        currentPattern = randPattern;        
+        currentPattern = randPattern;
+        obj.BAnimator.SetBool(obj.IsAttack, true);
 
         switch (randPattern)
         {
@@ -54,8 +57,7 @@ public abstract class BossPatternBase : MonoBehaviour
                 StartCoroutine(Pattern_4());
                 break;
         }
-
-        obj.BAnimator.SetBool(obj.IsAttack, true);
+        
     }
 
     protected abstract IEnumerator Pattern_1();

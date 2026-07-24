@@ -12,6 +12,24 @@ public class MiniBossController : EnemyController
 
     private MonsterWeapon mbWeapon;
 
+    protected SpriteRenderer sr;
+    public SpriteRenderer Sr
+    {
+        get
+        {
+            return sr;
+        }
+    }
+
+    protected Collider2D col;
+    public Collider2D Col
+    {
+        get
+        {
+            return col;
+        }
+    }
+
 
     private int isMove;
     public int IsMove
@@ -78,10 +96,11 @@ public class MiniBossController : EnemyController
 
     private Vector2 bulletDir;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-        
+        sr = GetComponent<SpriteRenderer>();
+        col = GetComponent<Collider2D>();
+
         stateMachine = new StateMachine<MiniBossController>(this);
         idleState = new MiniBossIdleState();
         normalAttackState = new MiniBossNormalAttackState();
@@ -142,7 +161,7 @@ public class MiniBossController : EnemyController
 
     protected override void CheckFlip()
     {
-        base.CheckFlip();
+        sr.flipX = transform.position.x > target.position.x ? true : false;
         mbWeapon.AttackPosFlip(sr.flipX);
     }
 

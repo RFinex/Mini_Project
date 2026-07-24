@@ -37,23 +37,7 @@ public abstract class EnemyController : MonoBehaviour
             speed = value;
         }
     }
-
-    protected SpriteRenderer sr;
-    public SpriteRenderer Sr
-    {
-        get
-        {
-            return sr;
-        }
-    }
-    protected Collider2D col;
-    public Collider2D Col
-    {
-        get
-        {
-            return col;
-        }
-    }
+    
     protected Transform target;
     public Transform Target
     {
@@ -77,16 +61,8 @@ public abstract class EnemyController : MonoBehaviour
             idleTimer = value;
         }
     }
-    protected virtual void Awake()
-    {
-        sr = GetComponent<SpriteRenderer>();
-        col = GetComponent<Collider2D>();
-    }
 
-    protected virtual void CheckFlip()
-    {
-        sr.flipX = transform.position.x > target.position.x ? true : false;
-    }
+    protected abstract void CheckFlip();
 
     public abstract void TakeDamage();
 

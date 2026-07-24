@@ -10,7 +10,7 @@ public class MiniBossMoveState : IState<MiniBossController>
     public void Enter(MiniBossController obj)
     {
         moveDelay = obj.Speed;
-        moveRect = StageManager.instance.minibossMoveArea;
+        moveRect = RectArea.instance.minibossMoveArea;
         movePos = new Vector2(Random.Range(moveRect.xMin, moveRect.xMax), Random.Range(moveRect.yMin, moveRect.yMax));
         obj.MBAnimator.SetBool(obj.IsMove, true);
         Move(obj);

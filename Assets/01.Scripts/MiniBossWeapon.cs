@@ -11,10 +11,13 @@ public class MiniBossWeapon : MonsterWeapon
 
     private float currentBulSpeed;
 
+    [SerializeField] private RectArea area;
+
     protected override void Awake()
     {
         base.Awake();
         currentBulSpeed = phase1BulSpeed;
+        area = FindAnyObjectByType<RectArea>();
     }
 
     public override void Attack(int pattern)
@@ -160,10 +163,10 @@ public class MiniBossWeapon : MonsterWeapon
     {
         Debug.Log("강력 패턴1 실행");
         angle = 180f;
-        for (int i = 0; i < StageManager.instance.minibossLaserArea.Count; i++)
+        for (int i = 0; i < RectArea.instance.minibossLaserArea.Count; i++)
         {
             GameObject laser = ObjectPoolManager.instance.GetObject(ConstString.laser);
-            laser.transform.position = StageManager.instance.minibossLaserArea[i].position;
+            laser.transform.position = RectArea.instance.minibossLaserArea[i].position;
             laser.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
             yield return new WaitForSeconds(2f + (20f / 60f));
@@ -173,7 +176,7 @@ public class MiniBossWeapon : MonsterWeapon
     {
         Debug.Log("강력 패턴2 실행");
 
-        Tween moveTween = transform.DOMove(StageManager.instance.minibossMoveArea.center, 2f)
+        Tween moveTween = transform.DOMove(RectArea.instance.minibossMoveArea.center, 2f)
             .SetLink(gameObject)
             .SetEase(Ease.Linear);
 

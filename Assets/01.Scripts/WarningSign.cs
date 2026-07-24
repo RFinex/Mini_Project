@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WarningSign : MonoBehaviour, IPoolable
 {
-    [SerializeField] private float delay = 3f;
+    [SerializeField] private float delay = 4f;
     private Collider2D col;
     private GameObject warning;
 

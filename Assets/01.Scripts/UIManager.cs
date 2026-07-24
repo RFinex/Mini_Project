@@ -123,4 +123,9 @@ public class UIManager : MonoBehaviour
     {
         bossHpSlider.gameObject.SetActive(false);
     }
+
+    public void OnClearUI()
+    {
+        centerText.text = "Game Clear!";
+    }
 }

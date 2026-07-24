@@ -14,6 +14,7 @@ public class BossBullet : Projectile
         base.OnEnable();
         lifeTime = 5f;
         speed = 8f;
+        transform.rotation = Quaternion.identity;
     }
 
     //public void SetDirection(Quaternion rotate)
@@ -29,5 +30,13 @@ public class BossBullet : Projectile
     public override void ReturnPool()
     {
         ObjectPoolManager.instance.ReturnObject("bossBullet", this.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer(ConstString.Player))
+        {
+            collision.GetComponent<PlayerController>().TakeDamage();
+        }
     }
 }
