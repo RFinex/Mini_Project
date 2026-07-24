@@ -57,8 +57,17 @@ public class BossPhase2Pattern : BossPatternBase
 
     protected override IEnumerator Pattern_3()
     {
-        yield return null;
-        isFinish = true;
+        for (int i = 0; i < attackCount3; i++)
+        {
+            Rect moveRect = StageManager.instance.bossMoveArea[Random.Range(0, StageManager.instance.bossMoveArea.Count)];
+            Vector2 randMove = new Vector2(Random.Range(moveRect.xMin, moveRect.xMax), Random.Range(moveRect.yMin, moveRect.yMax));
+
+            GameObject warning = ObjectPoolManager.instance.GetObject(ConstString.warningSign);
+            warning.transform.position = randMove;
+
+            yield return wait;
+        }
+        
     }
 
     protected override IEnumerator Pattern_4()
