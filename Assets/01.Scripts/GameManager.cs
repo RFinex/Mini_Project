@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -44,6 +45,11 @@ public class GameManager : MonoBehaviour
     public void Init_Menu()
     {
         UIManager.instance.Init_Menu();
+    }
+
+    public void StartGame()
+    {
+        SceneLoadManager.instance.ChangeScene("Stage1_Scene");
     }
 
     // 게임 시작 체크

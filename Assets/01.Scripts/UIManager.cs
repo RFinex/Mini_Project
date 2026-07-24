@@ -16,8 +16,11 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Slider bossHpSlider;
 
+    [SerializeField] private Button startBtn;
+
     private Canvas uiCanvas;
     private Canvas worldCanvas;
+    private Canvas menuCanvas;
 
     private void Awake()
     {
@@ -50,7 +53,27 @@ public class UIManager : MonoBehaviour
     }
     public void Init_Menu()
     {
-        if ()
+        menuCanvas = GameObject.Find("MenuCanvas").GetComponent<Canvas>();
+        startBtn = GameObject.Find("StartBtn").GetComponent<Button>();
+        startBtn.onClick.AddListener(FadeScene);
+    }
+
+    private void FadeScene()
+    {
+        if (dimObject == null)
+        {
+            dimObject = Instantiate(dim, menuCanvas.transform);
+            Image dimImg = dimObject.GetComponent<Image>();
+            Color color = dimImg.color;
+            color.a = 0f;
+            dimImg.color = color;
+
+            dimImg.DOFade(1f, 5f)
+                .SetLink(gameObject)
+                .OnComplete(() => GameManager.instance.StartGame());
+        }
+
+
     }
 
     public void OnGameOverText()
