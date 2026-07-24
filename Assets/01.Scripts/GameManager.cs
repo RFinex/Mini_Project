@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -41,6 +42,16 @@ public class GameManager : MonoBehaviour
         StageManager.instance.Init();
     }
 
+    public void Init_Menu()
+    {
+        UIManager.instance.Init_Menu();
+    }
+
+    public void StartGame()
+    {
+        SceneLoadManager.instance.ChangeScene("Stage1_Scene");
+    }
+
     // 게임 시작 체크
     public void SetStartGame(bool start)
     {
@@ -54,21 +65,15 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        TimerOn();
-
-        if (Keyboard.current.rKey.wasPressedThisFrame)
+        if (isStart)
         {
-            RestartScene();
-        }
-        //if (isStart)
-        //{
-        //    TimerOn();
+            TimerOn();
 
-        //    if (Keyboard.current.rKey.wasPressedThisFrame)
-        //    {
-        //        RestartScene();
-        //    }
-        //}        
+            if (Keyboard.current.rKey.wasPressedThisFrame)
+            {
+                RestartScene();
+            }
+        }
     }
 
     // 타이머는 DataManager에 바로 저장
