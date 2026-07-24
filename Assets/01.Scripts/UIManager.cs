@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Button startBtn;
     [SerializeField] private Button loadBtn;
+    [SerializeField] private Button restartBtn;
 
     private Canvas uiCanvas;
     private Canvas worldCanvas;
@@ -44,7 +45,10 @@ public class UIManager : MonoBehaviour
             bossHpSlider = GameObject.Find("BossHPSlider").GetComponent<Slider>();
             bossHpSlider.gameObject.SetActive(false);
         }
-        
+
+        restartBtn = GameObject.Find("RestartBtn").GetComponent<Button>();
+        restartBtn.onClick.AddListener(ClickRestartBtn);
+        restartBtn.gameObject.SetActive(false);
 
         if (option != null)
             Destroy(option);
@@ -153,9 +157,7 @@ public class UIManager : MonoBehaviour
         if (saveText != null)
         {
             saveText.FadeText(save, worldCanvas.transform);
-        }
-
-        
+        }        
     }
 
     public void SetBossHPSlider(int maxHp)
@@ -178,5 +180,11 @@ public class UIManager : MonoBehaviour
     public void OnClearUI()
     {
         centerText.text = "Game Clear!";
+        restartBtn.gameObject.SetActive(true);
+    }
+
+    private void ClickRestartBtn()
+    {
+        GameManager.instance.RestartAfterClear();
     }
 }

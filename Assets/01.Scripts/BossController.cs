@@ -55,21 +55,12 @@ public class BossController : EnemyController
 
     [SerializeField] private BossPatternBase[] patterns;
 
-    [SerializeField] private float dieDelay = (2f + 50f / 60f);
+    [SerializeField] private float dieDelay = 7f;
     public float DieDelay
     {
         get
         {
             return dieDelay;
-        }
-    }
-
-    [SerializeField] private float fadeDelay = 5f;
-    public float FadeDelay
-    {
-        get
-        {
-            return fadeDelay;
         }
     }
 
@@ -230,6 +221,8 @@ public class BossController : EnemyController
         {
             state.Exit(this);
         }
+        col.enabled = false;
+        UIManager.instance.OffBossHPSlider();
         animator.SetBool(isDie, true);
         ChangeState(BossState.Die);
     }

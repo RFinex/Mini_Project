@@ -24,9 +24,7 @@ public class BossDieState : IState<BossController>
         {
             isDying = true;
 
-            obj.Sr.DOFade(0f, obj.FadeDelay)
-                .SetLink(obj.gameObject, LinkBehaviour.KillOnDisable)
-                .OnComplete(() => StageManager.instance.ExitBoss());
+            GameManager.instance.GameClear();
         }
     }
 }

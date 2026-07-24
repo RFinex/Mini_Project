@@ -94,11 +94,19 @@ public class GameManager : MonoBehaviour
     private void RestartScene()
     {
         Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        SceneLoadManager.instance.ChangeScene(scene.name);
     }
 
     public void GameClear()
     {
+        Time.timeScale = 0f;
+        UIManager.instance.OnClearUI();
+    }
 
+    public void RestartAfterClear()
+    {
+        Time.timeScale = 1f;
+        SaveLoadManager.instance.ResetSave();
+        RestartScene();
     }
 }

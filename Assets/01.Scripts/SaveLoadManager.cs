@@ -62,10 +62,18 @@ public class SaveLoadManager : MonoBehaviour
 
         DataManager.instance.SetCheckPos(new Vector3(loadData.CheckPointX, loadData.CheckPointY, loadData.CheckPointZ));
         DataManager.instance.SetPlayTime(loadData.elapsedTime);
+        DataManager.instance.SetCollectTrophy(loadData.collectTrophy);
     }
 
     public bool SaveFileCheck()
     {
         return File.Exists(savePath);
+    }
+
+    public void ResetSave()
+    {
+        DataManager.instance.ResetDataKeepTrophy();
+
+        Save();
     }
 }

@@ -68,6 +68,20 @@ public class DataManager : MonoBehaviour
         return new List<Trophy>(trophys.Values);
     }
 
+    public void SetCollectTrophy(List<int> trophyID)
+    {
+        if (trophyID == null)
+            return;
+
+        foreach (int id in trophyID)
+        {
+            if (trophys.ContainsKey(id))
+            {
+                trophys[id].isCollect = true;
+            }
+        }
+    }
+
     public void SetCheckPos(Vector3 position)
     {
         checkPos = position;
@@ -81,5 +95,11 @@ public class DataManager : MonoBehaviour
     public void UpdatePlayTime(float time)
     {
         playTime += time;
+    }
+
+    public void ResetDataKeepTrophy()
+    {
+        CheckPos = Vector3.zero;
+        PlayTime = 0f;
     }
 }
