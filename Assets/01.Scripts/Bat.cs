@@ -15,7 +15,8 @@ public class Bat : EnemyController
     Dictionary<MonsterState, IState<EnemyController>> states = new Dictionary<MonsterState, IState<EnemyController>>()
     {
         { MonsterState.Idle, new MonsterIdleState() },
-        { MonsterState.Trace, new MonsterTraceState() }
+        { MonsterState.Trace, new MonsterTraceState() },
+        { MonsterState.Die, new MonsterDieState() }
     };
 
     private int isDie;
@@ -89,6 +90,7 @@ public class Bat : EnemyController
         }
         col.enabled = false;
         animator.SetBool(isDie, true);
+        ChangeState(MonsterState.Die);
     }
 
     public override Vector2 GetDirection()
