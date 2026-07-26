@@ -145,6 +145,8 @@ MonoBehaviour:
   maxHp: 300
   nowHp: 300
   speed: 3
+  range: 0
+  dieDelay: 7
   baseIdleTimer: 3
   idleTimer: 0
   attackPos: {fileID: 7598991832475013659}
@@ -152,8 +154,6 @@ MonoBehaviour:
   - {fileID: 4430894844636151157}
   - {fileID: 5038549670896423033}
   - {fileID: 2614070367262033102}
-  dieDelay: 2.8333333
-  fadeDelay: 5
 --- !u!212 &1976890779553776625
 SpriteRenderer:
   serializedVersion: 2

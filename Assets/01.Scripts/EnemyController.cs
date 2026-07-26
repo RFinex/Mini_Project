@@ -8,7 +8,7 @@ public enum MonsterState
     Die
 }
 
-public abstract class EnemyController : MonoBehaviour
+public abstract class EnemyController : MonoBehaviour, IPoolable
 {
     [SerializeField] protected int maxHp;
     public int MaxHp
@@ -64,6 +64,15 @@ public abstract class EnemyController : MonoBehaviour
         }
     }
 
+    [SerializeField] protected float dieDelay;
+    public float DieDelay
+    {
+        get
+        {
+            return dieDelay;
+        }
+    }
+
     protected virtual void ChangeState(IState<EnemyController> state)
     {
 
@@ -86,4 +95,6 @@ public abstract class EnemyController : MonoBehaviour
     protected abstract void Die();
 
     public abstract Vector2 GetDirection();
+
+    public abstract void ReturnPool();
 }

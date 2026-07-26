@@ -55,15 +55,6 @@ public class BossController : BossEnemyController
 
     [SerializeField] private BossPatternBase[] patterns;
 
-    [SerializeField] private float dieDelay = 7f;
-    public float DieDelay
-    {
-        get
-        {
-            return dieDelay;
-        }
-    }
-
     private Animator animator;
     public Animator BAnimator
     {
@@ -232,5 +223,10 @@ public class BossController : BossEnemyController
         {
             collision.gameObject.GetComponent<PlayerController>().TakeDamage();
         }
+    }
+
+    public override void ReturnPool()
+    {
+        ObjectPoolManager.instance.ReturnObject("Boss", this.gameObject);
     }
 }
