@@ -198,7 +198,7 @@ public class MiniBossController : BossEnemyController
         stateMachine.Update();
     }
 
-    public Vector2 GetDirection()
+    public override Vector2 GetDirection()
     {
         return (target.position - mbWeapon.attackPos.position).normalized;
     }

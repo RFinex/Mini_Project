@@ -126,15 +126,15 @@ public class BossController : BossEnemyController
         stateMachine = new StateMachine<BossController>(this);
 
         idleTimer = baseIdleTimer;
-        target = StageManager.instance.PlayerPos;
     }
 
     private void Start()
     {
+        target = StageManager.instance.PlayerPos;
         isAttack = Animator.StringToHash("isAttack");
         isStun = Animator.StringToHash("isStun");
         isDie = Animator.StringToHash("isDie");
-        ChangeState(states[BossState.Sleep]);
+        ChangeState(BossState.Sleep);
     }
 
     private void OnEnable()
@@ -205,7 +205,7 @@ public class BossController : BossEnemyController
         }
     }
 
-    public Vector2 GetDirection()
+    public override Vector2 GetDirection()
     {
         return (target.position - transform.position).normalized;
     }
