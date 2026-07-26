@@ -113,8 +113,6 @@ public class MiniBossController : BossEnemyController
         mbWeapon = GetComponent<MonsterWeapon>();
 
         mbWeapon.dirFunc = GetDirection;
-
-        target = GameObject.Find(ConstString.Player).transform;
     }
 
     private void Start()
@@ -127,6 +125,7 @@ public class MiniBossController : BossEnemyController
         nowHp = maxHp;
         isPhase2 = false;
         isStartBoss = false;
+        target = StageManager.instance.PlayerPos;
     }
 
 
@@ -198,7 +197,7 @@ public class MiniBossController : BossEnemyController
         stateMachine.Update();
     }
 
-    public Vector2 GetDirection()
+    public override Vector2 GetDirection()
     {
         return (target.position - mbWeapon.attackPos.position).normalized;
     }
@@ -259,5 +258,10 @@ public class MiniBossController : BossEnemyController
         {
             collision.gameObject.GetComponent<PlayerController>().TakeDamage();
         }
+    }
+
+    public override void ReturnPool()
+    {
+        ObjectPoolManager.instance.ReturnObject("MiniBoss", this.gameObject);
     }
 }

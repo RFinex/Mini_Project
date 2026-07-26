@@ -55,15 +55,6 @@ public class BossController : BossEnemyController
 
     [SerializeField] private BossPatternBase[] patterns;
 
-    [SerializeField] private float dieDelay = 7f;
-    public float DieDelay
-    {
-        get
-        {
-            return dieDelay;
-        }
-    }
-
     private Animator animator;
     public Animator BAnimator
     {
@@ -126,15 +117,15 @@ public class BossController : BossEnemyController
         stateMachine = new StateMachine<BossController>(this);
 
         idleTimer = baseIdleTimer;
-        target = GameObject.Find(ConstString.Player).transform;
     }
 
     private void Start()
     {
+        target = StageManager.instance.PlayerPos;
         isAttack = Animator.StringToHash("isAttack");
         isStun = Animator.StringToHash("isStun");
         isDie = Animator.StringToHash("isDie");
-        ChangeState(states[BossState.Sleep]);
+        ChangeState(BossState.Sleep);
     }
 
     private void OnEnable()
@@ -205,7 +196,7 @@ public class BossController : BossEnemyController
         }
     }
 
-    public Vector2 GetDirection()
+    public override Vector2 GetDirection()
     {
         return (target.position - transform.position).normalized;
     }
@@ -232,5 +223,10 @@ public class BossController : BossEnemyController
         {
             collision.gameObject.GetComponent<PlayerController>().TakeDamage();
         }
+    }
+
+    public override void ReturnPool()
+    {
+        ObjectPoolManager.instance.ReturnObject("Boss", this.gameObject);
     }
 }

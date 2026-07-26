@@ -50,6 +50,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910f7548bf3796d43999f776c98ce10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniBossController
+  maxHp: 200
+  nowHp: 0
+  speed: 3
+  range: 0
+  dieDelay: 0
+  baseIdleTimer: 4
+  idleTimer: 4
 --- !u!114 &2167127592773168369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniBossWeapon
   attackPos: {fileID: 2382151587558791279}
+  area: {fileID: 0}
 --- !u!212 &9043539050216255909
 SpriteRenderer:
   serializedVersion: 2

@@ -1790,6 +1790,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2136484545325121413, guid: f770a76c9ab63184d8cbec99d2cec3c7, type: 3}
+      propertyPath: objList.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136484545325121413, guid: f770a76c9ab63184d8cbec99d2cec3c7, type: 3}
+      propertyPath: 'objList.Array.data[8]'
+      value: 
+      objectReference: {fileID: 2471746291304459493, guid: b52fd019715bc87409e49806624fcb8e, type: 3}
+    - target: {fileID: 2136484545325121413, guid: f770a76c9ab63184d8cbec99d2cec3c7, type: 3}
+      propertyPath: 'objList.Array.data[9]'
+      value: 
+      objectReference: {fileID: 4729789049103307465, guid: db58c4d9059fa634f95a4e0fd3dfdc02, type: 3}
+    - target: {fileID: 2136484545325121413, guid: f770a76c9ab63184d8cbec99d2cec3c7, type: 3}
+      propertyPath: 'objList.Array.data[10]'
+      value: 
+      objectReference: {fileID: 2896008703404359263, guid: 36f7d587ef512344886b2f7de9161164, type: 3}
     - target: {fileID: 4269511150218936663, guid: f770a76c9ab63184d8cbec99d2cec3c7, type: 3}
       propertyPath: m_Name
       value: ObjectPoolManager

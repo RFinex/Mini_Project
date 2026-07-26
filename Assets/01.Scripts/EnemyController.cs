@@ -1,6 +1,14 @@
 using UnityEngine;
 
-public abstract class EnemyController : MonoBehaviour
+public enum MonsterState
+{
+    Idle,
+    Trace,
+    Attack,
+    Die
+}
+
+public abstract class EnemyController : MonoBehaviour, IPoolable
 {
     [SerializeField] protected int maxHp;
     public int MaxHp
@@ -47,9 +55,46 @@ public abstract class EnemyController : MonoBehaviour
         }
     }
 
+    [SerializeField] protected float range;
+    public float Range
+    {
+        get
+        {
+            return range;
+        }
+    }
+
+    [SerializeField] protected float dieDelay;
+    public float DieDelay
+    {
+        get
+        {
+            return dieDelay;
+        }
+    }
+
+    protected virtual void ChangeState(IState<EnemyController> state)
+    {
+
+    }
+
+    public virtual void ChangeState(MonsterState state)
+    {
+
+    }
+
+    public void FlipSprite()
+    {
+        CheckFlip();
+    }
+
     protected abstract void CheckFlip();
 
     public abstract void TakeDamage();
 
     protected abstract void Die();
+
+    public abstract Vector2 GetDirection();
+
+    public abstract void ReturnPool();
 }
