@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class EnemyController : MonoBehaviour
+public abstract class BossEnemyController : MonoBehaviour
 {
     [SerializeField] protected int maxHp;
     public int MaxHp

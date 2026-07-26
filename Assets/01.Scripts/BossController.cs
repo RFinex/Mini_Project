@@ -11,7 +11,7 @@ public enum BossState
     Die
 }
 
-public class BossController : EnemyController
+public class BossController : BossEnemyController
 {   
     [SerializeField] private Transform attackPos;
     public Transform AttackPos

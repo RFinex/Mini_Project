@@ -51,7 +51,7 @@ public class PlayerBullet : Projectile
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             SoundManager.instance.PlaySFX(SFXType.EnemyHit);
-            collision.GetComponent<EnemyController>().TakeDamage();
+            collision.GetComponent<BossEnemyController>().TakeDamage();
             ReturnPool();
         }
     }

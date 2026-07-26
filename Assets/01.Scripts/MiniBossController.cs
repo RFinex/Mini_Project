@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MiniBossController : EnemyController
+public class MiniBossController : BossEnemyController
 {
     private StateMachine<MiniBossController> stateMachine;
     private MiniBossIdleState idleState;
