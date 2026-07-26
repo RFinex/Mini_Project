@@ -126,7 +126,7 @@ public class BossController : BossEnemyController
         stateMachine = new StateMachine<BossController>(this);
 
         idleTimer = baseIdleTimer;
-        target = GameObject.Find(ConstString.Player).transform;
+        target = StageManager.instance.PlayerPos;
     }
 
     private void Start()
