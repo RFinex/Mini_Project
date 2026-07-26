@@ -1,5 +1,13 @@
 using UnityEngine;
 
+public enum MonsterState
+{
+    Idle,
+    Trace,
+    Attack,
+    Die
+}
+
 public abstract class EnemyController : MonoBehaviour
 {
     [SerializeField] protected int maxHp;
