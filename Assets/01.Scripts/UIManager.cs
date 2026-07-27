@@ -219,4 +219,25 @@ public class UIManager : MonoBehaviour
     {
         GameManager.instance.RestartAfterClear();
     }
+
+    public void OpenTrophyPanel(int trophyId)
+    {
+        GameObject trophyGetUI = ObjectPoolManager.instance.GetObject(ConstString.TrophyGetPanel);
+        
+        if (trophyGetUI != null)
+            return;
+
+        trophyGetUI.transform.SetParent(uiCanvas.transform);
+        trophyGetUI.transform.SetAsLastSibling();
+
+        TrophyUIPanel panel = trophyGetUI.GetComponent<TrophyUIPanel>();
+        if (panel != null)
+        {
+            Trophy trophy = DataManager.instance.GetTrophyData(trophyId);
+            string name = trophy != null ? trophy.name : "Null Trophy";
+
+            panel.SetUIText($"Get Trophy : {name}");
+        }
+        
+    }
 }
