@@ -9,7 +9,6 @@ public class TrophyTrigger : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer(ConstString.Player))
         {
             DataManager.instance.GetTrophy(trophyId);
-            UIManager.instance.OpenTrophyPanel(trophyId);
             enabled = false;
         }
     }

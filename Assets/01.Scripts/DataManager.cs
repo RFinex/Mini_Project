@@ -112,6 +112,7 @@ public class DataManager : MonoBehaviour
             if (!trophys[id].isCollect)
             {
                 trophys[id].isCollect = true;
+                UIManager.instance.OpenTrophyPanel(id);
             }
         }
     }

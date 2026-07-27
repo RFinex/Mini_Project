@@ -106,10 +106,8 @@ public class GameManager : MonoBehaviour
         if (DataManager.instance.PlayTime >= speedrunTimeLimit)
         {
             DataManager.instance.GetTrophy(speedRunTrophyId);
-            UIManager.instance.OpenTrophyPanel(speedRunTrophyId);
         }
         DataManager.instance.GetTrophy(clearTrophyId);
-        UIManager.instance.OpenTrophyPanel(clearTrophyId);
         Time.timeScale = 0f;
         UIManager.instance.OnClearUI();
     }

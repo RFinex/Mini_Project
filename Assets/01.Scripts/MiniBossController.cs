@@ -247,7 +247,6 @@ public class MiniBossController : BossEnemyController
     protected override void Die()
     {
         DataManager.instance.GetTrophy(minibossTrophyId);
-        UIManager.instance.OpenTrophyPanel(minibossTrophyId);
         col.enabled = false;
         UIManager.instance.OffBossHPSlider();
         StopAttack();
