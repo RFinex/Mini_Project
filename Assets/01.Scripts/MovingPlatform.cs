@@ -23,17 +23,45 @@ public class MovingPlatform : MonoBehaviour
     private Tween moveTween;
     private Tween moveTween2;
 
+    private Rigidbody2D rb;
+
+    private Transform playerPos;
+    private Vector2 lastPos;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     void Start()
     {
         startPos = transform.position;
         endPos = transform.position + dir;
+
+        lastPos = rb.position;
+
         if (!isPassive)
         {
-            transform.DOMove(dir, delay).SetRelative()
+            rb.DOMove(dir, delay).SetRelative()
                 .SetLoops(-1, loopType)
                 .SetLink(gameObject)
                 .SetEase(ease);
         }
+    }
+
+    private void FixedUpdate()
+    {        
+        Vector2 currentPos = rb.position;
+                
+        Vector2 aPos = currentPos - lastPos;
+
+        // 플랫폼 위치 변화량 만큼 플레이어도 이동
+        if (playerPos != null && aPos != Vector2.zero)
+        {
+            playerPos.position += (Vector3)aPos;
+        }
+
+        lastPos = currentPos;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -43,13 +71,15 @@ public class MovingPlatform : MonoBehaviour
             Vector2 contact = collision.GetContact(0).normal;
             if (contact.y < -0.9f)
             {
-                collision.transform.SetParent(transform);
+                //collision.transform.SetParent(transform);
+                playerPos = collision.transform;
+
                 if (isPassive)
                 {
                     moveTween?.Kill();
                     moveTween2?.Kill();
 
-                    moveTween = transform.DOMove(endPos, passiveSpeed)
+                    moveTween = rb.DOMove(endPos, passiveSpeed)
                         .SetSpeedBased()
                         .SetLink(gameObject)
                         .SetEase(ease);
@@ -67,7 +97,8 @@ public class MovingPlatform : MonoBehaviour
         {
             if (gameObject.activeInHierarchy)
             {
-                collision.transform.SetParent(null);
+                if(playerPos == collision.transform)
+                    playerPos = null;
             }
 
             if (isPassive)
@@ -75,7 +106,7 @@ public class MovingPlatform : MonoBehaviour
                 moveTween?.Kill();
                 moveTween2?.Kill();
 
-                moveTween2 = transform.DOMove(startPos, passiveSpeed2)
+                moveTween2 = rb.DOMove(startPos, passiveSpeed2)
                     .SetSpeedBased()
                     .SetLink(gameObject)
                     .SetEase(ease);

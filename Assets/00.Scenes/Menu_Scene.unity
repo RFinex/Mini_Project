@@ -2190,6 +2190,10 @@ PrefabInstance:
       value: UIManager
       objectReference: {fileID: 0}
     - target: {fileID: 6161823888110431066, guid: 7d28d54bd64b17e44962d79c3ceaf3a6, type: 3}
+      propertyPath: fadeDelay
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6161823888110431066, guid: 7d28d54bd64b17e44962d79c3ceaf3a6, type: 3}
       propertyPath: trophyGetPanelPos.y
       value: -100
       objectReference: {fileID: 0}
