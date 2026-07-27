@@ -26,6 +26,8 @@ public class UIManager : MonoBehaviour
     private Canvas worldCanvas;
     private Canvas menuCanvas;
 
+    [SerializeField] private Vector2 trophyGetPanelPos;
+
     private void Awake()
     {
         if (instance == null)
@@ -229,6 +231,12 @@ public class UIManager : MonoBehaviour
 
         trophyGetUI.transform.SetParent(uiCanvas.transform);
         trophyGetUI.transform.SetAsLastSibling();
+
+        RectTransform rect = trophyGetUI.GetComponent<RectTransform>();
+        if (rect != null)
+        {
+            rect.anchoredPosition = trophyGetPanelPos;
+        }
 
         TrophyUIPanel panel = trophyGetUI.GetComponent<TrophyUIPanel>();
         if (panel != null)
