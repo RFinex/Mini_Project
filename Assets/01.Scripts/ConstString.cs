@@ -10,6 +10,7 @@ public class ConstString
 
     public const string Player = "Player";
 
+    public const string monsterBullet = "monsterBullet";
     public const string minibossBullet = "minibossBullet";
     public const string laser = "laser";
     public const string warningSign = "warningSign";

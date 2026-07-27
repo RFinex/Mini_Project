@@ -28,6 +28,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Vector2 trophyGetPanelPos;
 
+    [SerializeField] private float fadeDelay;
+
     private void Awake()
     {
         if (instance == null)
@@ -79,7 +81,7 @@ public class UIManager : MonoBehaviour
             color.a = 0f;
             dimImg.color = color;
 
-            dimImg.DOFade(1f, 5f)
+            dimImg.DOFade(1f, fadeDelay)
                 .SetLink(gameObject)
                 .OnComplete(() => GameManager.instance.StartGame());
         }
@@ -101,7 +103,7 @@ public class UIManager : MonoBehaviour
             color.a = 0f;
             dimImg.color = color;
 
-            dimImg.DOFade(1f, 5f)
+            dimImg.DOFade(1f, fadeDelay)
                 .SetLink(gameObject)
                 .OnComplete(() => GameManager.instance.LoadGame());
         }

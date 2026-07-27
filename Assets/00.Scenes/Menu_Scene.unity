@@ -745,6 +745,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2136484545325121413, guid: f770a76c9ab63184d8cbec99d2cec3c7, type: 3}
+      propertyPath: objList.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136484545325121413, guid: f770a76c9ab63184d8cbec99d2cec3c7, type: 3}
+      propertyPath: 'objList.Array.data[13]'
+      value: 
+      objectReference: {fileID: 5819942308133493739, guid: bf8a35522bbf74b4d98ba1705443324a, type: 3}
     - target: {fileID: 4269511150218936663, guid: f770a76c9ab63184d8cbec99d2cec3c7, type: 3}
       propertyPath: m_Name
       value: ObjectPoolManager

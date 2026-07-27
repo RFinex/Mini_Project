@@ -1,31 +1,115 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Slime : EnemyController
 {
     private StateMachine<EnemyController> stateMachine;
 
+    private SpriteRenderer sr;
+    private Collider2D col;
+    private Animator animator;
+
+    Dictionary<MonsterState, IState<EnemyController>> states = new Dictionary<MonsterState, IState<EnemyController>>()
+    {
+        { MonsterState.Idle, new MonsterIdleState() },
+        { MonsterState.Attack, new MonsterAttackState() },
+        { MonsterState.Die, new MonsterDieState() }
+    };
+
+    private int isAttack;
+    private int isDie;
+
+    private void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+        col = GetComponent<Collider2D>();
+        animator = GetComponent<Animator>();
+        stateMachine = new StateMachine<EnemyController>(this);
+
+        isAttack = Animator.StringToHash("isAttack");
+        isDie = Animator.StringToHash("isDie");
+
+        nowHp = maxHp;
+    }
+
+    private void Start()
+    {
+        target = StageManager.instance.PlayerPos;
+        ChangeState(MonsterState.Idle);
+    }
+
+    private void OnEnable()
+    {
+        col.enabled = true;
+        nowHp = maxHp;
+        ChangeState(MonsterState.Idle);
+        if (animator != null)
+        {
+            animator.SetBool(isDie, false);
+        }
+    }
+
+    private void Update()
+    {
+        stateMachine.Update();
+    }
+
+    protected override void ChangeState(IState<EnemyController> state)
+    {
+        stateMachine.ChangeState(state);
+    }
+
+    public override void ChangeState(MonsterState state)
+    {
+        ChangeState(states[state]);
+    }
     public override Vector2 GetDirection()
     {
-        throw new System.NotImplementedException();
+        return (target.position - transform.position).normalized;
     }
 
     public override void ReturnPool()
     {
-        throw new System.NotImplementedException();
+        ObjectPoolManager.instance.ReturnObject("Monster_slime", this.gameObject);
     }
 
     public override void TakeDamage()
     {
-        throw new System.NotImplementedException();
+        nowHp--;
+
+        if (nowHp <= 0)
+        {
+            nowHp = 0;
+            Die();
+            return;
+        }
     }
 
     protected override void CheckFlip()
     {
-        throw new System.NotImplementedException();
+        sr.flipX = transform.position.x > target.position.x ? true : false;
     }
 
     protected override void Die()
     {
-        throw new System.NotImplementedException();
+        foreach (var state in states.Values)
+        {
+            state.Exit(this);
+        }
+        col.enabled = false;
+        animator.SetBool(isDie, true);
+        ChangeState(MonsterState.Die);
     }
+
+    public override void Attack()
+    {
+        GameObject bul = ObjectPoolManager.instance.GetObject(ConstString.monsterBullet);
+        bul.transform.position = transform.position;
+        bul.GetComponent<MonsterBullet>().SetDirection(GetDirection());
+    }
+
+    public override void SetAttackAnim(bool isAttacking)
+    {
+        animator.SetBool(isAttack, isAttacking);
+    }    
 }

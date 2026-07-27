@@ -254,14 +254,6 @@ public class MiniBossController : BossEnemyController
         ChangeState(dieState);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer(ConstString.Player))
-        {
-            collision.gameObject.GetComponent<PlayerController>().TakeDamage();
-        }
-    }
-
     public override void ReturnPool()
     {
         ObjectPoolManager.instance.ReturnObject("MiniBoss", this.gameObject);

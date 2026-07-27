@@ -4,7 +4,7 @@ public class MonsterIdleState : IState<EnemyController>
 {
     public void Enter(EnemyController obj)
     {
-        Debug.Log("대기 상태");
+        
     }
 
     public void Exit(EnemyController obj)
@@ -18,7 +18,14 @@ public class MonsterIdleState : IState<EnemyController>
 
         if (distance <= obj.Range)
         {
-            obj.ChangeState(MonsterState.Trace);
+            if (obj.CanMove)
+            {
+                obj.ChangeState(MonsterState.Trace);
+            }
+            else
+            {
+                obj.ChangeState(MonsterState.Attack);
+            }
         }
     }
 }

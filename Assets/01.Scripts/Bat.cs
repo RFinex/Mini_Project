@@ -101,12 +101,4 @@ public class Bat : EnemyController
     {
         ObjectPoolManager.instance.ReturnObject("Monster_bat", this.gameObject);
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer(ConstString.Player))
-        {
-            collision.transform.GetComponent<PlayerController>().TakeDamage();
-        }
-    }
 }
