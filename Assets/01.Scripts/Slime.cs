@@ -111,5 +111,5 @@ public class Slime : EnemyController
     public override void SetAttackAnim(bool isAttacking)
     {
         animator.SetBool(isAttack, isAttacking);
-    }
+    }    
 }

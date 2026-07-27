@@ -4,7 +4,7 @@ public class MonsterTraceState : IState<EnemyController>
 {
     public void Enter(EnemyController obj)
     {
-        Debug.Log("추적 상태");
+        
     }
 
     public void Exit(EnemyController obj)

@@ -4,7 +4,7 @@ public class MonsterIdleState : IState<EnemyController>
 {
     public void Enter(EnemyController obj)
     {
-        Debug.Log("대기 상태");
+        
     }
 
     public void Exit(EnemyController obj)
