@@ -100,4 +100,11 @@ public class Slime : EnemyController
         animator.SetBool(isDie, true);
         ChangeState(MonsterState.Die);
     }
+
+    public override void Attack()
+    {
+        GameObject bul = ObjectPoolManager.instance.GetObject(ConstString.monsterBullet);
+        bul.transform.position = transform.position;
+        bul.GetComponent<MonsterBullet>().SetDirection(GetDirection());
+    }
 }

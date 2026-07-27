@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 
 public abstract class Projectile : MonoBehaviour, IPoolable
 {
-    protected float speed;
+    [SerializeField] protected float speed;
     [SerializeField] protected float lifeTime;
 
-    protected int damage;
+    [SerializeField] protected int damage;
 
 
     protected Rigidbody2D rb;

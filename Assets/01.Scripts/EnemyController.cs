@@ -73,6 +73,24 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
         }
     }
 
+    [SerializeField] protected float attackDelay;
+    public float AttackDelay
+    {
+        get
+        {
+            return attackDelay;
+        }
+    }
+
+    [SerializeField] protected bool canMove;
+    public bool CanMove
+    {
+        get
+        {
+            return canMove;
+        }
+    }
+
     protected virtual void ChangeState(IState<EnemyController> state)
     {
 
@@ -88,6 +106,11 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
         CheckFlip();
     }
 
+    public virtual void Attack()
+    {
+
+    }
+
     protected abstract void CheckFlip();
 
     public abstract void TakeDamage();
@@ -97,4 +120,5 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
     public abstract Vector2 GetDirection();
 
     public abstract void ReturnPool();
+
 }

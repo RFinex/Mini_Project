@@ -18,7 +18,14 @@ public class MonsterIdleState : IState<EnemyController>
 
         if (distance <= obj.Range)
         {
-            obj.ChangeState(MonsterState.Trace);
+            if (obj.CanMove)
+            {
+                obj.ChangeState(MonsterState.Trace);
+            }
+            else
+            {
+                obj.ChangeState(MonsterState.Attack);
+            }
         }
     }
 }

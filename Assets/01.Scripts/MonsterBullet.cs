@@ -1,21 +1,17 @@
-using System.Collections;
 using UnityEngine;
 
-public class MiniBossBullet : Projectile
+public class MonsterBullet : Projectile
 {
     private Vector2 dir;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        lifeTime = 5f;
         wait = new WaitForSeconds(lifeTime);
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        lifeTime = 5f;
-        speed = 12f;
     }
 
     private void FixedUpdate()
@@ -30,7 +26,7 @@ public class MiniBossBullet : Projectile
 
     public override void ReturnPool()
     {
-        ObjectPoolManager.instance.ReturnObject(ConstString.minibossBullet, this.gameObject);
+        ObjectPoolManager.instance.ReturnObject(ConstString.monsterBullet, this.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,5 +37,4 @@ public class MiniBossBullet : Projectile
             ReturnPool();
         }
     }
-
 }

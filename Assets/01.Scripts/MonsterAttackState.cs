@@ -2,18 +2,34 @@ using UnityEngine;
 
 public class MonsterAttackState : IState<EnemyController>
 {
+    private float timer;
+
     public void Enter(EnemyController obj)
     {
-        throw new System.NotImplementedException();
+        timer = 0f;
     }
 
     public void Exit(EnemyController obj)
     {
-        throw new System.NotImplementedException();
+        timer = 0f;
     }
 
     public void Update(EnemyController obj)
     {
-        throw new System.NotImplementedException();
+        obj.FlipSprite();
+
+        float distance = Vector3.Distance(obj.transform.position, obj.Target.position);
+
+        if (distance > obj.Range)
+        {
+            obj.ChangeState(MonsterState.Idle);
+        }
+
+        timer += Time.deltaTime;
+        if (timer >= obj.AttackDelay)
+        {
+            timer = 0f;
+            obj.Attack();
+        }
     }
 }
