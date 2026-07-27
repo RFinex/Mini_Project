@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpPower;
     private float baseSpeed;
 
+    [SerializeField] private float dashSpeed;
+    [SerializeField] private float launchSpeed;
+
     private bool isFlip;
     [SerializeField] private bool isGround;
     [SerializeField] private int jumpCount;
@@ -113,7 +116,7 @@ public class PlayerController : MonoBehaviour
                 isHold = false;
                 isLaunch = true;
                 rb.gravityScale = 0;
-                rb.linearVelocity = launchDir.normalized * speed * 3;
+                rb.linearVelocity = launchDir.normalized * speed * launchSpeed;
                 dir = 0;
             }
             return;
@@ -270,7 +273,7 @@ public class PlayerController : MonoBehaviour
         canDash = false;
         isDash = true;
         rb.gravityScale = 0;
-        rb.linearVelocity = new Vector2(isFlip ? -speed * 5 : speed * 5, 0);
+        rb.linearVelocity = new Vector2(isFlip ? -speed * dashSpeed : speed * dashSpeed, 0);
 
         yield return new WaitForSeconds(0.2f);
 

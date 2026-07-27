@@ -12440,6 +12440,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   speed: 0
   jumpPower: 0
+  dashSpeed: 5
+  launchSpeed: 3
   isGround: 0
   jumpCount: 0
   groundLayer:
