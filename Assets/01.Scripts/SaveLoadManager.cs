@@ -32,6 +32,7 @@ public class SaveLoadManager : MonoBehaviour
         data.CheckPointZ = DataManager.instance.CheckPos.z;
         data.elapsedTime = DataManager.instance.PlayTime;
 
+        data.collectTrophy.Clear();
 
         foreach (Trophy trophy in DataManager.instance.GetTrophyInfo())
         {
