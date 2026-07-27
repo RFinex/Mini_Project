@@ -17,19 +17,19 @@ MonoBehaviour:
     name: first checkpoint
     type: 0
     isCollect: 0
+    trophyImg: {fileID: -2138534889620764463, guid: 44358d61a0f5d4540b05073517fe900c, type: 3}
   - id: 1001
     name: first boss clear
     type: 1
     isCollect: 0
+    trophyImg: {fileID: -2138534889620764463, guid: 44358d61a0f5d4540b05073517fe900c, type: 3}
   - id: 1002
     name: game clear
     type: 1
     isCollect: 0
+    trophyImg: {fileID: -2138534889620764463, guid: 44358d61a0f5d4540b05073517fe900c, type: 3}
   - id: 1003
     name: 30m clear
     type: 2
     isCollect: 0
-  - id: 1004
-    name: no death
-    type: 2
-    isCollect: 0
+    trophyImg: {fileID: -2138534889620764463, guid: 44358d61a0f5d4540b05073517fe900c, type: 3}

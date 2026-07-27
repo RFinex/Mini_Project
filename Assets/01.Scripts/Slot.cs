@@ -1,14 +1,36 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private Image slotImg;
+
+    private Trophy trophy;
+    public Trophy _trophy
+    {
+        get
+        {
+            return trophy;
+        }
+        set
+        {
+            trophy = value;
+            if (trophy != null)
+            {
+                slotImg.sprite = trophy.trophyImg;
+                slotImg.color = new Color(1f, 1f, 1f, 1f);
+            }
+            else
+            {
+                slotImg.color = new Color(1f, 1f, 1f, 0f);
+            }
+        }
+    }
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
