@@ -31,8 +31,6 @@ public class TrophyUIPanel : MonoBehaviour, IPoolable
 
     public IEnumerator PopupOpenNClose()
     {
-        transform.SetParent()
-
         transform.DOScale(1f, popupDelay)
             .SetLink(gameObject, LinkBehaviour.KillOnDisable);
 

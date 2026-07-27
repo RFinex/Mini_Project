@@ -224,7 +224,7 @@ public class UIManager : MonoBehaviour
     {
         GameObject trophyGetUI = ObjectPoolManager.instance.GetObject(ConstString.TrophyGetPanel);
         
-        if (trophyGetUI != null)
+        if (trophyGetUI == null)
             return;
 
         trophyGetUI.transform.SetParent(uiCanvas.transform);
@@ -236,8 +236,7 @@ public class UIManager : MonoBehaviour
             Trophy trophy = DataManager.instance.GetTrophyData(trophyId);
             string name = trophy != null ? trophy.name : "Null Trophy";
 
-            panel.SetUIText($"Get Trophy : {name}");
-        }
-        
+            panel.OpenPanel($"Get Trophy : {name}");
+        }        
     }
 }
