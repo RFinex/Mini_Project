@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject optionPanel;
     private GameObject option;
+    [SerializeField] private GameObject trophyInv;
+    private GameObject trophy;
     [SerializeField] private GameObject dim;
     private GameObject dimObject;
 
@@ -144,6 +146,36 @@ public class UIManager : MonoBehaviour
     public void CloseOptionPanel()
     {
         option.SetActive(false);
+        dimObject.SetActive(false);
+    }
+
+    public void OpenTrophyInv()
+    {
+        if (trophy == null)
+        {
+            trophy = Instantiate(trophyInv, uiCanvas.transform);
+        }
+        else
+        {
+            trophy.SetActive(true);
+        }
+
+        if (dimObject == null)
+        {
+            dimObject = Instantiate(dim, uiCanvas.transform);
+        }
+        else
+        {
+            dimObject.SetActive(true);
+        }
+
+        dimObject.transform.SetAsLastSibling();
+        trophy.transform.SetAsLastSibling();
+    }
+
+    public void CloseTrophyInv()
+    {
+        trophy.SetActive(false);
         dimObject.SetActive(false);
     }
 

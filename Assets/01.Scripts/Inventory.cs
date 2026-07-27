@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -7,6 +8,13 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private Transform inventory;
     [SerializeField] private Slot[] slots;
+
+    [SerializeField] private Button closeBtn;
+
+    private void Awake()
+    {
+        closeBtn.onClick.AddListener(UIManager.instance.CloseTrophyInv);
+    }
 
     private void OnValidate()
     {
