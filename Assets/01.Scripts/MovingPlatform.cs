@@ -68,6 +68,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            // 충돌체 -> 자신에게 뻗는 벡터 정보 가져오기
             Vector2 contact = collision.GetContact(0).normal;
             if (contact.y < -0.9f)
             {
