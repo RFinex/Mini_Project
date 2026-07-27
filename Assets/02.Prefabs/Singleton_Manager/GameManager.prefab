@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   player: {fileID: 0}
+  speedrunTimeLimit: 600
+  clearTrophyId: 1002
+  speedRunTrophyId: 1003

@@ -16,6 +16,7 @@ public class Inventory : MonoBehaviour
         closeBtn.onClick.AddListener(UIManager.instance.CloseTrophyInv);
     }
 
+    // 인스펙터 값 변경 시 호출
     private void OnValidate()
     {
         slots = inventory.GetComponentsInChildren<Slot>();
@@ -42,6 +43,7 @@ public class Inventory : MonoBehaviour
         SlotClear();
     }
 
+    // 얻은 트로피 만큼 슬롯에 트로피 배치
     private void SlotClear()
     {
         for (int i = 0; i < slots.Length; i++)
@@ -57,16 +59,16 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddTrophy(Trophy trophy)
-    {
-        if (trophys.Count < slots.Length)
-        {
-            trophys.Add(trophy);
-            SlotClear();
-        }
-        else
-        {
-            Debug.Log("Error");
-        }
-    }
+    //public void AddTrophy(Trophy trophy)
+    //{
+    //    if (trophys.Count < slots.Length)
+    //    {
+    //        trophys.Add(trophy);
+    //        SlotClear();
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Error");
+    //    }
+    //}
 }

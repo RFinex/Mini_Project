@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
 
     private bool isStart = false;
 
+    [SerializeField] private float speedrunTimeLimit;
+    [SerializeField] private int clearTrophyId;
+    [SerializeField] private int speedRunTrophyId;
+
 
     private void Awake()
     {
@@ -99,6 +103,11 @@ public class GameManager : MonoBehaviour
 
     public void GameClear()
     {
+        if (DataManager.instance.PlayTime >= speedrunTimeLimit)
+        {
+            DataManager.instance.GetTrophy(speedRunTrophyId);
+        }
+        DataManager.instance.GetTrophy(clearTrophyId);
         Time.timeScale = 0f;
         UIManager.instance.OnClearUI();
     }

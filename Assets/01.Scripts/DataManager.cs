@@ -103,6 +103,7 @@ public class DataManager : MonoBehaviour
         PlayTime = 0f;
     }
 
+    // Æ®·ÎÇÇ È¹µæ ½Ã ºÒ·¯¿È
     public void GetTrophy(int id)
     {
         if (trophys.ContainsKey(id))

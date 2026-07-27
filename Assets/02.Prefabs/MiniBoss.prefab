@@ -57,6 +57,7 @@ MonoBehaviour:
   dieDelay: 0
   baseIdleTimer: 4
   idleTimer: 4
+  minibossTrophyId: 1001
 --- !u!114 &2167127592773168369
 MonoBehaviour:
   m_ObjectHideFlags: 0
