@@ -154,6 +154,7 @@ MonoBehaviour:
   - {fileID: 4430894844636151157}
   - {fileID: 5038549670896423033}
   - {fileID: 2614070367262033102}
+  clearTrophyId: 1002
 --- !u!212 &1976890779553776625
 SpriteRenderer:
   serializedVersion: 2

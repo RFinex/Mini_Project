@@ -132,14 +132,7 @@ public class UIManager : MonoBehaviour
             option.SetActive(true);
         }
 
-        if (dimObject == null)
-        {
-            dimObject = Instantiate(dim, uiCanvas.transform);
-        }
-        else
-        {
-            dimObject.SetActive(true);
-        }
+        SetDimUI();
 
         dimObject.transform.SetAsLastSibling();
         option.transform.SetAsLastSibling();
@@ -162,14 +155,7 @@ public class UIManager : MonoBehaviour
             trophy.SetActive(true);
         }
 
-        if (dimObject == null)
-        {
-            dimObject = Instantiate(dim, uiCanvas.transform);
-        }
-        else
-        {
-            dimObject.SetActive(true);
-        }
+        SetDimUI();
 
         dimObject.transform.SetAsLastSibling();
         trophy.transform.SetAsLastSibling();
@@ -213,8 +199,25 @@ public class UIManager : MonoBehaviour
 
     public void OnClearUI()
     {
+        SetDimUI();
         centerText.text = "Game Clear!";
         restartBtn.gameObject.SetActive(true);
+
+        dimObject.transform.SetAsLastSibling();
+        centerText.transform.SetAsLastSibling();
+        restartBtn.transform.SetAsLastSibling();
+    }
+
+    private void SetDimUI()
+    {
+        if (dimObject == null)
+        {
+            dimObject = Instantiate(dim, uiCanvas.transform);
+        }
+        else
+        {
+            dimObject.SetActive(true);
+        }
     }
 
     private void ClickRestartBtn()

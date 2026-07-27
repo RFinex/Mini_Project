@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     private bool isStart = false;
 
     [SerializeField] private float speedrunTimeLimit;
-    [SerializeField] private int clearTrophyId;
     [SerializeField] private int speedRunTrophyId;
 
 
@@ -103,11 +102,10 @@ public class GameManager : MonoBehaviour
 
     public void GameClear()
     {
-        if (DataManager.instance.PlayTime >= speedrunTimeLimit)
+        if (DataManager.instance.PlayTime <= speedrunTimeLimit)
         {
             DataManager.instance.GetTrophy(speedRunTrophyId);
         }
-        DataManager.instance.GetTrophy(clearTrophyId);
         UIManager.instance.OnClearUI();
     }
 

@@ -105,6 +105,7 @@ public class BossController : BossEnemyController
         }
     }
 
+    [SerializeField] private int clearTrophyId;
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -212,6 +213,7 @@ public class BossController : BossEnemyController
         {
             state.Exit(this);
         }
+        DataManager.instance.GetTrophy(clearTrophyId);
         col.enabled = false;
         UIManager.instance.OffBossHPSlider();
         animator.SetBool(isDie, true);

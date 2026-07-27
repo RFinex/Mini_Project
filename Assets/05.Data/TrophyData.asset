@@ -17,17 +17,17 @@ MonoBehaviour:
     name: First Checkpoint
     type: 0
     isCollect: 0
-    trophyImg: {fileID: -2138534889620764463, guid: 44358d61a0f5d4540b05073517fe900c, type: 3}
+    trophyImg: {fileID: -6832167994216414940, guid: d2605a86df3af8f4a986c4c9dc6ea76d, type: 3}
   - id: 1001
     name: First Boss
     type: 1
     isCollect: 0
-    trophyImg: {fileID: -2138534889620764463, guid: 44358d61a0f5d4540b05073517fe900c, type: 3}
+    trophyImg: {fileID: 6973501225259694552, guid: a41f838cb9bb87743a8639c17b78b761, type: 3}
   - id: 1002
     name: Game Clear
     type: 1
     isCollect: 0
-    trophyImg: {fileID: -2138534889620764463, guid: 44358d61a0f5d4540b05073517fe900c, type: 3}
+    trophyImg: {fileID: 6973501225259694552, guid: a41f838cb9bb87743a8639c17b78b761, type: 3}
   - id: 1003
     name: Speed Run
     type: 2
