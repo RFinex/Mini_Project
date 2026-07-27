@@ -94,6 +94,8 @@ public class MiniBossController : BossEnemyController
         }
     }
 
+    [SerializeField] private int minibossTrophyId;
+
     private Vector2 bulletDir;
 
     private void Awake()
@@ -232,8 +234,7 @@ public class MiniBossController : BossEnemyController
         {
             nowHp = 0;
             Die();
-        }
-            
+        }            
 
         if (nowHp <= maxHp / 2f && !isPhase2)
         {
@@ -245,6 +246,7 @@ public class MiniBossController : BossEnemyController
 
     protected override void Die()
     {
+        DataManager.instance.GetTrophy(minibossTrophyId);
         col.enabled = false;
         UIManager.instance.OffBossHPSlider();
         StopAttack();

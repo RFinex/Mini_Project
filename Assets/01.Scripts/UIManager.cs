@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject optionPanel;
     private GameObject option;
+    [SerializeField] private GameObject trophyInv;
+    private GameObject trophy;
     [SerializeField] private GameObject dim;
     private GameObject dimObject;
 
@@ -23,6 +25,8 @@ public class UIManager : MonoBehaviour
     private Canvas uiCanvas;
     private Canvas worldCanvas;
     private Canvas menuCanvas;
+
+    [SerializeField] private Vector2 trophyGetPanelPos;
 
     private void Awake()
     {
@@ -128,14 +132,7 @@ public class UIManager : MonoBehaviour
             option.SetActive(true);
         }
 
-        if (dimObject == null)
-        {
-            dimObject = Instantiate(dim, uiCanvas.transform);
-        }
-        else
-        {
-            dimObject.SetActive(true);
-        }
+        SetDimUI();
 
         dimObject.transform.SetAsLastSibling();
         option.transform.SetAsLastSibling();
@@ -144,6 +141,29 @@ public class UIManager : MonoBehaviour
     public void CloseOptionPanel()
     {
         option.SetActive(false);
+        dimObject.SetActive(false);
+    }
+
+    public void OpenTrophyInv()
+    {
+        if (trophy == null)
+        {
+            trophy = Instantiate(trophyInv, uiCanvas.transform);
+        }
+        else
+        {
+            trophy.SetActive(true);
+        }
+
+        SetDimUI();
+
+        dimObject.transform.SetAsLastSibling();
+        trophy.transform.SetAsLastSibling();
+    }
+
+    public void CloseTrophyInv()
+    {
+        trophy.SetActive(false);
         dimObject.SetActive(false);
     }
 
@@ -179,12 +199,55 @@ public class UIManager : MonoBehaviour
 
     public void OnClearUI()
     {
+        SetDimUI();
         centerText.text = "Game Clear!";
         restartBtn.gameObject.SetActive(true);
+
+        dimObject.transform.SetAsLastSibling();
+        centerText.transform.SetAsLastSibling();
+        restartBtn.transform.SetAsLastSibling();
+    }
+
+    private void SetDimUI()
+    {
+        if (dimObject == null)
+        {
+            dimObject = Instantiate(dim, uiCanvas.transform);
+        }
+        else
+        {
+            dimObject.SetActive(true);
+        }
     }
 
     private void ClickRestartBtn()
     {
         GameManager.instance.RestartAfterClear();
+    }
+
+    public void OpenTrophyPanel(int trophyId)
+    {
+        GameObject trophyGetUI = ObjectPoolManager.instance.GetObject(ConstString.TrophyGetPanel);
+        
+        if (trophyGetUI == null)
+            return;
+
+        trophyGetUI.transform.SetParent(uiCanvas.transform);
+        trophyGetUI.transform.SetAsLastSibling();
+
+        RectTransform rect = trophyGetUI.GetComponent<RectTransform>();
+        if (rect != null)
+        {
+            rect.anchoredPosition = trophyGetPanelPos;
+        }
+
+        TrophyUIPanel panel = trophyGetUI.GetComponent<TrophyUIPanel>();
+        if (panel != null)
+        {
+            Trophy trophy = DataManager.instance.GetTrophyData(trophyId);
+            string name = trophy != null ? trophy.name : "Null Trophy";
+
+            panel.OpenPanel($"Get Trophy : {name}");
+        }        
     }
 }

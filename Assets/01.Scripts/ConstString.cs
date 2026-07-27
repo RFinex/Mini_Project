@@ -18,4 +18,6 @@ public class ConstString
     public const string SaveCheckText = "SaveCheckText";
 
     public const string Stage1_Scene = "Stage1_Scene";
+
+    public const string TrophyGetPanel = "TrophyGetPanel";
 }

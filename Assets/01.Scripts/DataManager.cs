@@ -96,10 +96,24 @@ public class DataManager : MonoBehaviour
     {
         playTime += time;
     }
-
+    
+    // 트로피 데이터를 제외한 모든 데이터를 기본값으로 초기화
     public void ResetDataKeepTrophy()
     {
         CheckPos = Vector3.zero;
         PlayTime = 0f;
+    }
+
+    // 트로피 획득 시 불러옴
+    public void GetTrophy(int id)
+    {
+        if (trophys.ContainsKey(id))
+        {
+            if (!trophys[id].isCollect)
+            {
+                trophys[id].isCollect = true;
+                UIManager.instance.OpenTrophyPanel(id);
+            }
+        }
     }
 }
