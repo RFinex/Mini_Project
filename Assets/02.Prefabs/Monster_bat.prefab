@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1162808e2f29621498b19b7ce7438fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bat
-  maxHp: 2
+  maxHp: 1
   nowHp: 0
   speed: 3
   range: 10
