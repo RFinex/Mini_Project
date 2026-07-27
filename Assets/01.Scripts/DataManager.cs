@@ -96,10 +96,21 @@ public class DataManager : MonoBehaviour
     {
         playTime += time;
     }
-
+        
     public void ResetDataKeepTrophy()
     {
         CheckPos = Vector3.zero;
         PlayTime = 0f;
+    }
+
+    public void GetTrophy(int id)
+    {
+        if (trophys.ContainsKey(id))
+        {
+            if (!trophys[id].isCollect)
+            {
+                trophys[id].isCollect = true;
+            }
+        }
     }
 }

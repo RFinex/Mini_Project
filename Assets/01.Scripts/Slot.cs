@@ -26,13 +26,4 @@ public class Slot : MonoBehaviour
             }
         }
     }
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 }

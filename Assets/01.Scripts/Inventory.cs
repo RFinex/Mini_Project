@@ -13,8 +13,24 @@ public class Inventory : MonoBehaviour
         slots = inventory.GetComponentsInChildren<Slot>();
     }
 
-    private void Awake()
+    private void OnEnable()
     {
+        GetTrophyData();
+    }
+
+    private void GetTrophyData()
+    {
+        trophys.Clear();
+
+        List<Trophy> trophyData = DataManager.instance.GetTrophyInfo();
+        foreach (Trophy trophy in trophyData)
+        {
+            if (trophy.isCollect)
+            {
+                trophys.Add(trophy);
+            }
+        }
+
         SlotClear();
     }
 
