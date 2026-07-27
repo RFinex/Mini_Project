@@ -145,45 +145,45 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
-        if (Keyboard.current.tabKey.wasPressedThisFrame)
-        {
-            ChangeWeapon();
-        }
         if (Keyboard.current.shiftKey.wasPressedThisFrame && canDash)
         {
             StartCoroutine(Dash());
         }
+        //if (Keyboard.current.tabKey.wasPressedThisFrame)
+        //{
+        //    ChangeWeapon();
+        //}
     }    
 
-    private void ChangeWeapon()
-    {
-        nowWeapon.gameObject.SetActive(false);
+    //private void ChangeWeapon()
+    //{
+    //    nowWeapon.gameObject.SetActive(false);
 
-        if (nowWeapon == rangeWeapon)
-        {
-            nowWeapon = meleeWeapon;
-        }
-        else
-        {
-            nowWeapon = rangeWeapon;
-        }
+    //    if (nowWeapon == rangeWeapon)
+    //    {
+    //        nowWeapon = meleeWeapon;
+    //    }
+    //    else
+    //    {
+    //        nowWeapon = rangeWeapon;
+    //    }
 
-        nowWeapon.gameObject.SetActive(true);
-        //if (isRange)
-        //{
-        //    rangeWeapon.gameObject.SetActive(false);
-        //    meleeWeapon.gameObject.SetActive(true);
-        //    isRange = false;
-        //    isMelee = true;
-        //}
-        //else if (isMelee)
-        //{
-        //    rangeWeapon.gameObject.SetActive(true);
-        //    meleeWeapon.gameObject.SetActive(false);
-        //    isRange = true;
-        //    isMelee = false;
-        //}
-    }
+    //    nowWeapon.gameObject.SetActive(true);
+    //    //if (isRange)
+    //    //{
+    //    //    rangeWeapon.gameObject.SetActive(false);
+    //    //    meleeWeapon.gameObject.SetActive(true);
+    //    //    isRange = false;
+    //    //    isMelee = true;
+    //    //}
+    //    //else if (isMelee)
+    //    //{
+    //    //    rangeWeapon.gameObject.SetActive(true);
+    //    //    meleeWeapon.gameObject.SetActive(false);
+    //    //    isRange = true;
+    //    //    isMelee = false;
+    //    //}
+    //}
 
     private void FixedUpdate()
     {
