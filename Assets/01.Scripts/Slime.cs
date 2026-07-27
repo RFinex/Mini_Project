@@ -107,4 +107,9 @@ public class Slime : EnemyController
         bul.transform.position = transform.position;
         bul.GetComponent<MonsterBullet>().SetDirection(GetDirection());
     }
+
+    public override void SetAttackAnim(bool isAttacking)
+    {
+        animator.SetBool(isAttack, isAttacking);
+    }
 }

@@ -106,6 +106,11 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
         CheckFlip();
     }
 
+    public virtual void SetAttackAnim(bool isAttacking)
+    {
+
+    }
+
     public virtual void Attack()
     {
 

@@ -7,11 +7,13 @@ public class MonsterAttackState : IState<EnemyController>
     public void Enter(EnemyController obj)
     {
         timer = 0f;
+        obj.SetAttackAnim(true);
     }
 
     public void Exit(EnemyController obj)
     {
         timer = 0f;
+        obj.SetAttackAnim(false);
     }
 
     public void Update(EnemyController obj)
