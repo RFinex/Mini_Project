@@ -15140,7 +15140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1253002905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157232,7 +157232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2510407859085086636, guid: db58c4d9059fa634f95a4e0fd3dfdc02, type: 3}
       propertyPath: maxHp
-      value: 60
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 2510407859085086636, guid: db58c4d9059fa634f95a4e0fd3dfdc02, type: 3}
       propertyPath: dieDelay
