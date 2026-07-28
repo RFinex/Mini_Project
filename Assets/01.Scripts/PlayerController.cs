@@ -72,10 +72,7 @@ public class PlayerController : MonoBehaviour
         isWalk = Animator.StringToHash("isWalk");
         isJump = Animator.StringToHash("isJump");
         isFall = Animator.StringToHash("isFall");
-
-        GameManager.instance.PlayerInit(gameObject);
     }
-
 
     private void Update()
     {

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuUI : MonoBehaviour
+public class MenuInit : MonoBehaviour
 {
     [SerializeField] private Canvas menuCanvas;
 

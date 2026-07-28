@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour
         }
 
         EffectManager.instance.Init();
-        StageManager.instance.Init();
     }
 
     public void PlayerInit(GameObject player)

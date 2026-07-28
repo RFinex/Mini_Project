@@ -1369,7 +1369,7 @@ GameObject:
   - component: {fileID: 75215098}
   - component: {fileID: 75215097}
   m_Layer: 0
-  m_Name: StageUI
+  m_Name: StageInit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1393,6 +1393,8 @@ MonoBehaviour:
   timerText: {fileID: 2117507607}
   restartBtn: {fileID: 1906034864}
   bossHpSlider: {fileID: 534195896}
+  player: {fileID: 1033592703}
+  miniBossExit: {fileID: 46937478}
 --- !u!4 &75215098
 Transform:
   m_ObjectHideFlags: 0
