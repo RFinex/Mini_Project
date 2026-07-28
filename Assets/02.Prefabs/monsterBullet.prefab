@@ -47,9 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 423c12b33aad32e468925b114fe97ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterBullet
+  baseSpeed: 8
   speed: 8
   lifeTime: 5
-  damage: 0
+  damage: 1
 --- !u!212 &1590525841868953409
 SpriteRenderer:
   serializedVersion: 2

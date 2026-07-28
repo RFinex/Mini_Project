@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e44f40b06d739f43b7c967faea99772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeathParticle
+  lifeDelay: 3
 --- !u!198 &3044237647102876490
 ParticleSystem:
   m_ObjectHideFlags: 0

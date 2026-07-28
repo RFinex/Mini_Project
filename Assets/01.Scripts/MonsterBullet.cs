@@ -3,6 +3,7 @@ using UnityEngine;
 public class MonsterBullet : Projectile
 {
     private Vector2 dir;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -34,6 +35,11 @@ public class MonsterBullet : Projectile
         if (collision.gameObject.layer == LayerMask.NameToLayer(ConstString.Player))
         {
             collision.GetComponent<PlayerController>().TakeDamage();
+            ReturnPool();
+        }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer(ConstString.Ground))
+        {
             ReturnPool();
         }
     }

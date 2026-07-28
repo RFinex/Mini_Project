@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class WarningSign : MonoBehaviour, IPoolable
 {
-    [SerializeField] private float delay = 4f;
+    [SerializeField] private float delay;
+    [SerializeField] private float goalSize;
+    [SerializeField] private float attackDelay;
+
     private Collider2D col;
     private GameObject warning;
+
+    private Tween scaleTween;
 
     private void Awake()
     {
@@ -18,7 +23,7 @@ public class WarningSign : MonoBehaviour, IPoolable
         col.enabled = false;
         StopAllCoroutines();
 
-        warning.transform.DOKill();
+        scaleTween?.Kill();
 
         warning.transform.localScale = Vector3.zero;
 
@@ -27,15 +32,15 @@ public class WarningSign : MonoBehaviour, IPoolable
 
     private void OnDisable()
     {
-        warning.transform.DOKill();
+        scaleTween?.Kill();
         StopAllCoroutines();
     }
 
     private void WarningDelay()
     {
-        warning.transform.DOKill();
+        scaleTween?.Kill();
 
-        warning.transform.DOScale(1f, delay)
+        scaleTween = warning.transform.DOScale(goalSize, delay)
             .SetLink(gameObject)
             .SetEase(Ease.Linear)
             .OnComplete(() => StartCoroutine(Attack()));
@@ -56,7 +61,7 @@ public class WarningSign : MonoBehaviour, IPoolable
 
     public void ReturnPool()
     {
-        ObjectPoolManager.instance.ReturnObject("warningSign", this.gameObject);
+        ObjectPoolManager.instance.ReturnObject(ConstString.warningSign, this.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

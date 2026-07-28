@@ -1,7 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
-using System.Collections;
 
 public class TrophyUIPanel : MonoBehaviour, IPoolable
 {

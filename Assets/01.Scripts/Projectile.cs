@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public abstract class Projectile : MonoBehaviour, IPoolable
 {
+    [SerializeField] protected float baseSpeed;
     [SerializeField] protected float speed;
     [SerializeField] protected float lifeTime;
 

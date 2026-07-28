@@ -7,15 +7,13 @@ public class MiniBossBullet : Projectile
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        lifeTime = 5f;
         wait = new WaitForSeconds(lifeTime);
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        lifeTime = 5f;
-        speed = 12f;
+        speed = baseSpeed;
     }
 
     private void FixedUpdate()

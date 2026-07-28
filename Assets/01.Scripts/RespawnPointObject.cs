@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class RespawnPointObject : MonoBehaviour
 {
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer(ConstString.Player))
         {
             DataManager.instance.SetCheckPos(transform.position);
             GameManager.instance.SaveGame();

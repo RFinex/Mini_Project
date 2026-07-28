@@ -5,15 +5,13 @@ public class BossBullet : Projectile
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        lifeTime = 5f;
         wait = new WaitForSeconds(lifeTime);
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        lifeTime = 5f;
-        speed = 8f;
+        speed = baseSpeed;
         transform.rotation = Quaternion.identity;
     }
 
