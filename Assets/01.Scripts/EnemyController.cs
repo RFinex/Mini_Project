@@ -46,12 +46,11 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
         }
     }
 
-    protected Transform target;
     public Transform Target
     {
         get
         {
-            return target;
+            return StageManager.instance != null ? StageManager.instance.PlayerPos : null;
         }
     }
 

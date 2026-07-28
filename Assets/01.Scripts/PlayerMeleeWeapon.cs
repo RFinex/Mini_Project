@@ -14,15 +14,15 @@ public class PlayerMeleeWeapon : PlayerWeapon
 
     WaitForSeconds waitCool;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        damage = 5;
-        canAttack = true;
-        motionDelay = 0.2f;
-        coolTime = 0.5f;
-        waitCool = new WaitForSeconds(coolTime);
-    }
+    //protected override void Awake()
+    //{
+    //    base.Awake();
+    //    damage = 5;
+    //    canAttack = true;
+    //    motionDelay = 0.2f;
+    //    coolTime = 0.5f;
+    //    waitCool = new WaitForSeconds(coolTime);
+    //}
 
     protected void OnEnable()
     {

@@ -1687,6 +1687,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae05cdb0d09bdb4a953dbb3fa9a2bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerRangeWeapon
+  damage: 1
+  dir: 1
   attackPos: {fileID: 1330113345}
 --- !u!1 &125972079
 GameObject:
@@ -11312,6 +11314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052365e97278ef34f8059488f3283133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMeleeWeapon
+  damage: 0
+  dir: 0
   attackPos: {fileID: 1330113345}
 --- !u!1001 &841362860
 PrefabInstance:

@@ -27,6 +27,8 @@ public class StageInit : MonoBehaviour
         GameManager.instance.PlayerInit(player);
 
         StageManager.instance.Init(miniBossExit);
+
+        EffectManager.instance.Init(player);
     }
 
 }

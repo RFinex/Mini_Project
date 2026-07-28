@@ -2,16 +2,15 @@ using UnityEngine;
 
 public abstract class PlayerWeapon : MonoBehaviour
 {
-    protected int damage;
+    [SerializeField] protected int damage;
     protected Vector2 baseAttackPos;
 
-    protected float dir;
+    [SerializeField] protected float dir;
     [SerializeField] protected Transform attackPos;
     
-    protected virtual void Awake()
+    protected void Awake()
     {
         baseAttackPos = attackPos.localPosition;
-        dir = 1f;
     }
 
     protected void Update()

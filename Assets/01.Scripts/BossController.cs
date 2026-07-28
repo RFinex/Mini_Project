@@ -122,7 +122,6 @@ public class BossController : BossEnemyController
 
     private void Start()
     {
-        target = StageManager.instance.PlayerPos;
         isAttack = Animator.StringToHash("isAttack");
         isStun = Animator.StringToHash("isStun");
         isDie = Animator.StringToHash("isDie");
@@ -142,7 +141,7 @@ public class BossController : BossEnemyController
 
     protected override void CheckFlip()
     {
-        sr.flipX = transform.position.x > target.position.x ? true : false;
+        sr.flipX = transform.position.x > Target.position.x ? true : false;
         Vector2 currentPos = attackPos.localPosition;
         currentPos.x = sr.flipX? -baseAttackPos.x : baseAttackPos.x;
         attackPos.localPosition = currentPos;
@@ -199,12 +198,12 @@ public class BossController : BossEnemyController
 
     public override Vector2 GetDirection()
     {
-        return (target.position - transform.position).normalized;
+        return (Target.position - transform.position).normalized;
     }
 
     public Vector2 GetAttackPosDirection()
     {
-        return (target.position - attackPos.position).normalized;
+        return (Target.position - attackPos.position).normalized;
     }
 
     protected override void Die()
