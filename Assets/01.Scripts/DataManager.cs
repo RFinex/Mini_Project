@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class DataManager : MonoBehaviour
     [SerializeField] private TrophyData trophyData;
 
     private Vector3 checkPos;
+
+    public event Action trophyUpdate;
 
     public Vector3 CheckPos
     {
@@ -113,6 +116,7 @@ public class DataManager : MonoBehaviour
             {
                 trophys[id].isCollect = true;
                 UIManager.instance.OpenTrophyPanel(id);
+                trophyUpdate?.Invoke();
             }
         }
     }

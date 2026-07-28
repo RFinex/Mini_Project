@@ -13,6 +13,24 @@ public class TrophyInfoTrigger : MonoBehaviour
         InitTrophyInfo();
     }
 
+    private void OnEnable()
+    {
+        if (DataManager.instance != null)
+        {
+            DataManager.instance.trophyUpdate -= InitTrophyInfo;
+            DataManager.instance.trophyUpdate += InitTrophyInfo;
+        }
+        
+    }
+
+    private void OnDisable()
+    {
+        if (DataManager.instance != null)
+        {
+            DataManager.instance.trophyUpdate -= InitTrophyInfo;
+        }        
+    }
+
     public void InitTrophyInfo()
     {
         Trophy trophy = DataManager.instance.GetTrophyData(trophyId);

@@ -19,10 +19,11 @@ public class StageInit : MonoBehaviour
     [Header("Object")]
     [SerializeField] private GameObject player;
     [SerializeField] private Transform miniBossExit;
+    [SerializeField] private GameObject trophyInfoPanel;
 
     private void Awake()
     {
-        UIManager.instance.Init_InGame(uiCanvas, worldCanvas, centerText, timerText, restartBtn, bossHpSlider);
+        UIManager.instance.Init_InGame(uiCanvas, worldCanvas, centerText, timerText, restartBtn, bossHpSlider, trophyInfoPanel);
 
         GameManager.instance.PlayerInit(player);
 

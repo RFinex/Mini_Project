@@ -55,7 +55,7 @@ public class UIManager : MonoBehaviour
         loadBtn.onClick.AddListener(FadeScene_Load);
     }
 
-    public void Init_InGame(Canvas ui, Canvas world, TextMeshProUGUI center, TextMeshProUGUI timer, Button restart, Slider boss)
+    public void Init_InGame(Canvas ui, Canvas world, TextMeshProUGUI center, TextMeshProUGUI timer, Button restart, Slider boss, GameObject infoPanel)
     {
         uiCanvas = ui;
         worldCanvas = world;
@@ -63,6 +63,7 @@ public class UIManager : MonoBehaviour
         timerText = timer;
         restartBtn = restart;
         bossHpSlider = boss;
+        trophyInfo = infoPanel;
 
         if (centerText != null)
         {

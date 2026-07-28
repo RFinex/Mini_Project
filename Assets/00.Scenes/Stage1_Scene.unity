@@ -994,6 +994,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 31222264}
+  - component: {fileID: 31222267}
   - component: {fileID: 31222266}
   - component: {fileID: 31222265}
   m_Layer: 5
@@ -1002,7 +1003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &31222264
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1062,6 +1063,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31222263}
   m_CullTransparentMesh: 1
+--- !u!114 &31222267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31222263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23900f6c920ec14c86afd5caf206333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrophyInfoPanel
+  trophyImage: {fileID: 333517305}
+  trophyName: {fileID: 1298963488}
+  collectColor: {r: 1, g: 1, b: 1, a: 1}
+  notCollectColor: {r: 1, g: 1, b: 1, a: 0.19607843}
+  popupSize: 1.1
+  openSize: 1
+  closeSize: 0.1
+  popupDelay: 0.2
 --- !u!1001 &35748741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1187,6 +1208,7 @@ GameObject:
   - component: {fileID: 40014957}
   - component: {fileID: 40014956}
   - component: {fileID: 40014958}
+  - component: {fileID: 40014959}
   m_Layer: 0
   m_Name: Pillar_1003
   m_TagString: Untagged
@@ -1241,7 +1263,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 9
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: -4847815774729367584, guid: 1c245944393c3fe468d112c4e44c385b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1315,6 +1337,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.72, y: 7.11}
   m_EdgeRadius: 0
+--- !u!114 &40014959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40014955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ba67784fbc2ec43a343e7e4c45b6df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrophyInfoTrigger
+  trophyId: 1003
+  trophyObj: {fileID: 841746938}
 --- !u!1 &46937477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,6 +1647,7 @@ MonoBehaviour:
   bossHpSlider: {fileID: 534195896}
   player: {fileID: 1033592703}
   miniBossExit: {fileID: 46937478}
+  trophyInfoPanel: {fileID: 31222263}
 --- !u!4 &75215098
 Transform:
   m_ObjectHideFlags: 0
@@ -11682,7 +11719,7 @@ GameObject:
   - component: {fileID: 841746939}
   - component: {fileID: 841746940}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Trophy_1003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11750,7 +11787,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2138534889620764463, guid: 44358d61a0f5d4540b05073517fe900c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -13627,6 +13664,7 @@ GameObject:
   - component: {fileID: 1074240309}
   - component: {fileID: 1074240308}
   - component: {fileID: 1074240310}
+  - component: {fileID: 1074240311}
   m_Layer: 0
   m_Name: Pillar_1001
   m_TagString: Untagged
@@ -13755,6 +13793,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.72, y: 7.11}
   m_EdgeRadius: 0
+--- !u!114 &1074240311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074240307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ba67784fbc2ec43a343e7e4c45b6df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrophyInfoTrigger
+  trophyId: 1001
+  trophyObj: {fileID: 1042204127}
 --- !u!4 &1079962941 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3403058552910612251, guid: d59027dedff227b46900c407b536ca30, type: 3}
@@ -16248,7 +16300,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6973501225259694552, guid: a41f838cb9bb87743a8639c17b78b761, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -147688,6 +147740,7 @@ GameObject:
   - component: {fileID: 1742389503}
   - component: {fileID: 1742389502}
   - component: {fileID: 1742389504}
+  - component: {fileID: 1742389505}
   m_Layer: 0
   m_Name: Pillar_1000
   m_TagString: Untagged
@@ -147742,7 +147795,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 9
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: -4847815774729367584, guid: 1c245944393c3fe468d112c4e44c385b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -147816,6 +147869,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.72, y: 7.11}
   m_EdgeRadius: 0
+--- !u!114 &1742389505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742389501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ba67784fbc2ec43a343e7e4c45b6df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrophyInfoTrigger
+  trophyId: 1000
+  trophyObj: {fileID: 2098486167}
 --- !u!1 &1763956213
 GameObject:
   m_ObjectHideFlags: 0
@@ -148797,6 +148864,7 @@ GameObject:
   - component: {fileID: 1974207346}
   - component: {fileID: 1974207345}
   - component: {fileID: 1974207347}
+  - component: {fileID: 1974207348}
   m_Layer: 0
   m_Name: Pillar_1002
   m_TagString: Untagged
@@ -148851,7 +148919,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 9
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: -4847815774729367584, guid: 1c245944393c3fe468d112c4e44c385b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -148925,6 +148993,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.72, y: 7.11}
   m_EdgeRadius: 0
+--- !u!114 &1974207348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974207344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ba67784fbc2ec43a343e7e4c45b6df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrophyInfoTrigger
+  trophyId: 1002
+  trophyObj: {fileID: 1426603058}
 --- !u!1001 &1979910727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -149701,7 +149783,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 9
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: -6832167994216414940, guid: d2605a86df3af8f4a986c4c9dc6ea76d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

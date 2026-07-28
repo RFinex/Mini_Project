@@ -22,6 +22,11 @@ public class TrophyInfoPanel : MonoBehaviour
 
     private Trophy trophy;
 
+    private void OnEnable()
+    {
+        transform.localScale = Vector3.one * closeSize;
+    }
+
     public void OpenPanel(int id)
     {
         PopupOpen();
