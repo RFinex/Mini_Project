@@ -2,21 +2,18 @@ using UnityEngine;
 
 public class PlayerBullet : Projectile
 {
-    private float dir;
+    [SerializeField] private float dir;
 
     protected void Awake()
     {
-        dir = 1f;
         rb = GetComponent<Rigidbody2D>();
-        lifeTime = 3f;
         wait = new WaitForSeconds(lifeTime);
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        lifeTime = 3f;
-        speed = 15f;
+        speed = baseSpeed;
     }
 
     protected void FixedUpdate()
@@ -43,7 +40,7 @@ public class PlayerBullet : Projectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer(ConstString.Ground))
         {
             ReturnPool();
         }

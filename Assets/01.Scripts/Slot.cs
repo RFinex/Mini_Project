@@ -3,7 +3,12 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
+    [Header("Item Image")]
     [SerializeField] private Image slotImg;
+
+    [Header("Slot Color")]
+    [SerializeField] private Color itemColor;
+    [SerializeField] private Color emptyColor;
 
     private Trophy trophy;
     /*
@@ -22,11 +27,11 @@ public class Slot : MonoBehaviour
             if (trophy != null)
             {
                 slotImg.sprite = trophy.trophyImg;
-                slotImg.color = new Color(1f, 1f, 1f, 1f);
+                slotImg.color = itemColor;
             }
             else
             {
-                slotImg.color = new Color(1f, 1f, 1f, 0f);
+                slotImg.color = emptyColor;
             }
         }
     }

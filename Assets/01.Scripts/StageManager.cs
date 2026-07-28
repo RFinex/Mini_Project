@@ -27,9 +27,9 @@ public class StageManager : MonoBehaviour
 
     }
 
-    public void Init()
+    public void Init(Transform miniExit)
     {
-        exitMiniBoss = GameObject.Find("MiniBossExitTarget").transform;
+        exitMiniBoss = miniExit;
     }
 
     public void EnterBoss(Transform enter)

@@ -44,8 +44,6 @@ public class GameManager : MonoBehaviour
     // Init은 가능하면 리팩토링 할 예정
     public void Init()
     {
-        player = GameObject.Find(ConstString.Player);
-
         if (player != null)
         {
             pc = player.GetComponent<PlayerController>();
@@ -54,9 +52,6 @@ public class GameManager : MonoBehaviour
                 player.transform.position = DataManager.instance.CheckPos;
             }
         }
-
-        EffectManager.instance.Init();
-        StageManager.instance.Init();
     }
 
     public void PlayerInit(GameObject player)

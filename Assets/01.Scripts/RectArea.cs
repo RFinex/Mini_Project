@@ -5,10 +5,15 @@ public class RectArea : MonoBehaviour
 {
     public static RectArea instance;
 
+    [Header("Rect Area")]
     public Rect minibossMoveArea;
     public List<Rect> bossMoveArea;
     public List<Rect> minibossLaserArea;
     public List<Rect> bossLaserArea;
+
+    [Header("Gizmos Color")]
+    [SerializeField] private Color moveAreaColor = new Color(1f, 1f, 0f, 0.5f);
+    [SerializeField] private Color laserAreaColor = new Color(1f, 0f, 0f, 0.5f);
 
     private void Awake()
     {
@@ -19,68 +24,27 @@ public class RectArea : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        MiniBossMoveAreaGizmos();
-        BossMoveAreaGizmos();
-        MiniBossLaserAreaGizmos();
-        BossLaserAreaGizmos();
+        Gizmos.color = moveAreaColor;
+        DrawRectGizmos(minibossMoveArea);
+        DrawRectListGizmos(bossMoveArea);
+
+        Gizmos.color = laserAreaColor;
+        DrawRectListGizmos(minibossLaserArea);
+        DrawRectListGizmos(bossLaserArea);
     }
 
-    private void MiniBossMoveAreaGizmos()
+    private void DrawRectGizmos(Rect rect)
     {
-        if (minibossMoveArea == null)
-            return;
-
-        Gizmos.color = new Color(1f, 1f, 0f, 0.5f);
-
-        Vector3 center = new Vector3(minibossMoveArea.x + minibossMoveArea.width / 2, minibossMoveArea.y + minibossMoveArea.height / 2);
-        Vector3 size = new Vector3(minibossMoveArea.width, minibossMoveArea.height);
-
+        Vector3 center = new Vector3(rect.center.x, rect.center.y);
+        Vector3 size = new Vector3(rect.width, rect.height);
         Gizmos.DrawCube(center, size);
     }
 
-    private void BossMoveAreaGizmos()
+    private void DrawRectListGizmos(List<Rect> rects)
     {
-        if (bossMoveArea == null)
-            return;
-
-        Gizmos.color = new Color(1f, 1f, 0f, 0.5f);
-
-        foreach (var area in bossMoveArea)
+        foreach (var area in rects)
         {
-            Vector3 center = new Vector3(area.x + area.width / 2, area.y + area.height / 2);
-            Vector3 size = new Vector3(area.width, area.height);
-            Gizmos.DrawCube(center, size);
-        }
-    }
-
-    private void MiniBossLaserAreaGizmos()
-    {
-        if (minibossLaserArea == null)
-            return;
-
-        Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
-
-        foreach (var area in minibossLaserArea)
-        {
-            Vector3 center = new Vector3(area.x + area.width / 2, area.y + area.height / 2);
-            Vector3 size = new Vector3(area.width, area.height);
-
-            Gizmos.DrawCube(center, size);
-        }
-    }
-    private void BossLaserAreaGizmos()
-    {
-        if (bossLaserArea == null)
-            return;
-
-        Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
-
-        foreach (var area in bossLaserArea)
-        {
-            Vector3 center = new Vector3(area.x + area.width / 2, area.y + area.height / 2);
-            Vector3 size = new Vector3(area.width, area.height);
-
-            Gizmos.DrawCube(center, size);
+            DrawRectGizmos(area);
         }
     }
 }

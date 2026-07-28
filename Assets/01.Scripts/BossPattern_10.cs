@@ -1,0 +1,61 @@
+using DG.Tweening;
+using UnityEngine;
+using System.Collections;
+
+public class BossPattern_10 : BossPatternBase
+{
+    [SerializeField] private float addAngle;
+    [SerializeField] private float attackDelay;
+    [SerializeField] private float divideSpeed;
+    [SerializeField] private int bulCount;
+
+    private WaitForSeconds waitDelay;
+
+    private void Awake()
+    {
+        waitDelay = new WaitForSeconds(attackDelay);
+    }
+
+    protected override IEnumerator Pattern()
+    {
+        if (bulCount <= 0)
+        {
+            Debug.Log("10번 패턴 실행 실패. bulCount가 0 이하");
+            isFinish = true;
+            yield break;
+        }
+
+        float currentAngle = 0f;
+        float nextAngle = 360f / bulCount;
+
+        Rect moveRect = RectArea.instance.bossMoveArea[Random.Range(0, RectArea.instance.bossMoveArea.Count)];
+        Vector2 centerPos = moveRect.center;
+        boss.transform.DOMove(centerPos, boss.Speed / divideSpeed)
+            .SetLink(gameObject)
+            .SetEase(Ease.InOutCubic);
+
+        yield return wait;
+        
+        for (int i = 0; i < attackCount; i++)
+        {
+            SoundManager.instance.PlaySFX(SFXType.Fireball);
+            for (int j = 0; j < bulCount; j++)
+            {
+                angle = j * nextAngle;
+                GameObject fire = ObjectPoolManager.instance.GetObject(ConstString.bossBullet);
+                fire.transform.position = boss.AttackPos.position;
+                fire.transform.rotation = Quaternion.Euler(0f, 0f, currentAngle + angle);
+
+                GameObject fire2 = ObjectPoolManager.instance.GetObject(ConstString.bossBullet);
+                fire2.transform.position = boss.AttackPos.position;
+                fire2.transform.rotation = Quaternion.Euler(0f, 0f, -currentAngle + angle);
+            }
+
+            currentAngle += addAngle;
+
+            yield return waitDelay;
+        }
+
+        isFinish = true;
+    }
+}

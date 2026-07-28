@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297055967f174cc4ea1c122a1328a2c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniBossBullet
+  baseSpeed: 12
   speed: 12
   lifeTime: 5
   damage: 0

@@ -127,7 +127,6 @@ public class MiniBossController : BossEnemyController
         nowHp = maxHp;
         isPhase2 = false;
         isStartBoss = false;
-        target = StageManager.instance.PlayerPos;
     }
 
 
@@ -162,7 +161,7 @@ public class MiniBossController : BossEnemyController
 
     protected override void CheckFlip()
     {
-        sr.flipX = transform.position.x > target.position.x ? true : false;
+        sr.flipX = transform.position.x > Target.position.x ? true : false;
         mbWeapon.AttackPosFlip(sr.flipX);
     }
 
@@ -201,7 +200,7 @@ public class MiniBossController : BossEnemyController
 
     public override Vector2 GetDirection()
     {
-        return (target.position - mbWeapon.attackPos.position).normalized;
+        return (Target.position - mbWeapon.attackPos.position).normalized;
     }
 
     public void NormalAttack(int pattern)

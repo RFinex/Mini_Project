@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class DeathParticle : MonoBehaviour, IPoolable
 {
-    float delay;
-    WaitForSeconds wait;
+    [SerializeField] private float lifeDelay;
+    private WaitForSeconds wait;
 
     private void Awake()
     {
-        delay = 3f;
-        wait = new WaitForSeconds(delay);
+        wait = new WaitForSeconds(lifeDelay);
     }
 
     private void OnEnable()

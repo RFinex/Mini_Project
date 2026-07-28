@@ -3,9 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class EffectManager : MonoBehaviour
 {
-    [SerializeField] GameObject deathParticle;
-    [SerializeField] Transform target;
     public static EffectManager instance;
+
+    [Header("Prefabs")]
+    [SerializeField] GameObject deathParticle;
+
+    [Header("Target")]
+    [SerializeField] Transform target;
 
     private void Awake()
     {
@@ -17,9 +21,9 @@ public class EffectManager : MonoBehaviour
         
     }
 
-    public void Init()
+    public void Init(GameObject player)
     {
-        target = GameObject.Find("Player").transform;
+        target = player.transform;
     }
 
     public void ShowDeathParticle()

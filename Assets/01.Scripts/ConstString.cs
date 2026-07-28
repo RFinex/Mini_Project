@@ -9,6 +9,7 @@ public class ConstString
     public const string SFXMute = "SFXMute";
 
     public const string Player = "Player";
+    public const string Ground = "Ground";
 
     public const string monsterBullet = "monsterBullet";
     public const string minibossBullet = "minibossBullet";

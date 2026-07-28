@@ -4,11 +4,19 @@ using UnityEngine.SceneManagement;
 
 public class Laser : MonoBehaviour, IPoolable
 {
-    Collider2D col;
+    private Collider2D col;
+
+    [SerializeField] private float firstDelay = (1f + (20f / 60f));
+    [SerializeField] private float finishDelay = ((50f / 60f));
+
+    private WaitForSeconds wait;
+    private WaitForSeconds wait2;
 
     private void Awake()
     {
         col = GetComponent<Collider2D>();
+        wait = new WaitForSeconds(firstDelay);
+        wait2 = new WaitForSeconds(finishDelay);
     }
 
     private void OnEnable()
@@ -34,7 +42,7 @@ public class Laser : MonoBehaviour, IPoolable
 
     private IEnumerator LaserDelay()
     {
-        yield return new WaitForSeconds(1f + (20f / 60f));
+        yield return wait;
 
         SoundManager.instance.PlaySFX(SFXType.Laser);
 
@@ -43,7 +51,7 @@ public class Laser : MonoBehaviour, IPoolable
             col.enabled = true;
         }       
 
-        yield return new WaitForSeconds((50f / 60f));
+        yield return wait2;
 
         if (col != null)
         {

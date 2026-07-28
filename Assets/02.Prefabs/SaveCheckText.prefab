@@ -50,6 +50,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b2d08247f7abd449fdc59b16c77310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveText
+  baseAlpha: 1
+  resultAlpha: 0
+  moveDistance: 1
+  fadeDelay: 1.5
 --- !u!222 &6918571701982836121
 CanvasRenderer:
   m_ObjectHideFlags: 0

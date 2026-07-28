@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 
 public class BossDieState : IState<BossController>
@@ -14,7 +13,7 @@ public class BossDieState : IState<BossController>
 
     public void Exit(BossController obj)
     {
-        
+        timer = 0f;
     }
 
     public void Update(BossController obj)

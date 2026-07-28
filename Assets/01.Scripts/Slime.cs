@@ -34,7 +34,6 @@ public class Slime : EnemyController
 
     private void Start()
     {
-        target = StageManager.instance.PlayerPos;
         ChangeState(MonsterState.Idle);
     }
 
@@ -65,7 +64,7 @@ public class Slime : EnemyController
     }
     public override Vector2 GetDirection()
     {
-        return (target.position - transform.position).normalized;
+        return (Target.position - transform.position).normalized;
     }
 
     public override void ReturnPool()
@@ -87,7 +86,7 @@ public class Slime : EnemyController
 
     protected override void CheckFlip()
     {
-        sr.flipX = transform.position.x > target.position.x ? true : false;
+        sr.flipX = transform.position.x > Target.position.x ? true : false;
     }
 
     protected override void Die()
