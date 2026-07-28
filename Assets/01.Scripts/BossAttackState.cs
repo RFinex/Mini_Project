@@ -15,12 +15,15 @@ public class BossAttackState : IState<BossController>
             return;
         }
 
+        int patterns = obj.Patterns.Count;
+
         // 중복 실행 방지
         do
         {
-            randomPattern = Random.Range(0, obj.CurrentPhase * 4);
+            randomPattern = Random.Range(0, patterns);
 
         } while (randomPattern == currentPattern);
+
         currentPattern = randomPattern;
         obj.Patterns[currentPattern].StartPattern(obj);
     }

@@ -13089,6 +13089,8 @@ MonoBehaviour:
     y: 128
     width: 0.5
     height: 0.5
+  moveAreaColor: {r: 1, g: 1, b: 0, a: 0.5}
+  laserAreaColor: {r: 1, g: 0, b: 0, a: 0.5}
 --- !u!4 &1066090791
 Transform:
   m_ObjectHideFlags: 0
@@ -148599,6 +148601,10 @@ PrefabInstance:
     - target: {fileID: 2510407859085086636, guid: db58c4d9059fa634f95a4e0fd3dfdc02, type: 3}
       propertyPath: dieDelay
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2510407859085086636, guid: db58c4d9059fa634f95a4e0fd3dfdc02, type: 3}
+      propertyPath: patterns.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4729789049103307465, guid: db58c4d9059fa634f95a4e0fd3dfdc02, type: 3}
       propertyPath: m_Name

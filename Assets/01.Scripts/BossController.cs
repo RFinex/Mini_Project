@@ -1,4 +1,6 @@
+using NUnit.Framework.Constraints;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum BossState
@@ -53,7 +55,16 @@ public class BossController : BossEnemyController
 
     private StateMachine<BossController> stateMachine;
 
-    [SerializeField] private BossPatternBase[] patterns;
+    [SerializeField] private List<BossPhaseHandler> phases;
+
+    private List<BossPatternBase> patterns = new List<BossPatternBase>();
+    public List<BossPatternBase> Patterns
+    {
+        get
+        {
+            return patterns;
+        }
+    }
 
     private Animator animator;
     public Animator BAnimator
@@ -83,16 +94,9 @@ public class BossController : BossEnemyController
     }
 
     private int isDie;
+        
 
-    public BossPatternBase[] Patterns
-    {
-        get
-        {
-            return patterns;
-        }
-    }
-
-    private int currentPhase = 1;
+    [SerializeField] private int currentPhase = 1;
     public int CurrentPhase
     {
         get
@@ -118,6 +122,8 @@ public class BossController : BossEnemyController
         stateMachine = new StateMachine<BossController>(this);
 
         idleTimer = baseIdleTimer;
+
+        UpdatePatternList();
     }
 
     private void Start()
@@ -126,6 +132,11 @@ public class BossController : BossEnemyController
         isStun = Animator.StringToHash("isStun");
         isDie = Animator.StringToHash("isDie");
         ChangeState(BossState.Sleep);
+    }
+
+    private void OnValidate()
+    {
+        phases = new List<BossPhaseHandler>(GetComponentsInChildren<BossPhaseHandler>());
     }
 
     private void OnEnable()
@@ -147,11 +158,29 @@ public class BossController : BossEnemyController
         attackPos.localPosition = currentPos;
     }
 
+    private void UpdatePatternList()
+    {
+        patterns.Clear();
+
+        for (int i = 0; i < CurrentPhase; i++)
+        {
+            if (i >= phases.Count)
+                return;
+
+            BossPhaseHandler handle = phases[i];
+            if (handle != null && handle.Patterns != null)
+            {
+                patterns.AddRange(handle.Patterns);
+            }
+        }
+    }
 
     // 페이즈 전환
     public void NextPhase()
     {
         currentPhase++;
+        UpdatePatternList();
+
         ChangeState(states[BossState.Stun]);
         if (currentPhase > 2)
             idleTimer = baseIdleTimer * 0.5f;
