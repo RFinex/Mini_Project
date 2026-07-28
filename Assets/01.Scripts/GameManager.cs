@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private GameObject player;
+    [SerializeField] private GameObject player;
     public GameObject Player
     {
         get
@@ -15,13 +15,20 @@ public class GameManager : MonoBehaviour
             return player;
         }
     }
+    public Transform PlayerPos
+    {
+        get
+        {
+            return player != null ? player.transform : null;
+        }
+    }
 
     private PlayerController pc;
 
     private bool isStart = false;
 
-    [Header("Trophy Timer")]
-    [SerializeField] private float speedrunTimeLimit;
+    [Header("Speed run Trophy Info")]
+    [SerializeField] private float speedRunTimeLimit;
     [SerializeField] private int speedRunTrophyId;
 
     private void Awake()
@@ -109,7 +116,7 @@ public class GameManager : MonoBehaviour
 
     public void GameClear()
     {
-        if (DataManager.instance.PlayTime <= speedrunTimeLimit)
+        if (DataManager.instance.PlayTime <= speedRunTimeLimit)
         {
             DataManager.instance.GetTrophy(speedRunTrophyId);
         }

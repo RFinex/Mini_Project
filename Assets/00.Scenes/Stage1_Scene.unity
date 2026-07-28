@@ -12810,21 +12810,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36243ed67d1b994b888a46acdf7a11c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  speed: 0
-  jumpPower: 0
+  baseSpeed: 5
+  speed: 5
+  baseGravity: 0
+  jumpPower: 12
+  jumpCount: 0
+  jumpCountMax: 2
   dashSpeed: 5
   launchSpeed: 3
-  isGround: 0
-  jumpCount: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  movingGroundLayer:
-    serializedVersion: 2
-    m_Bits: 0
   isDead: 0
   isHold: 0
   isLaunch: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!95 &1033592709
 Animator:
   serializedVersion: 7

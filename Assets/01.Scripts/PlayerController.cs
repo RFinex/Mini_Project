@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Layer")]
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private LayerMask movingGroundLayer;
 
     private PlayerWeapon rangeWeapon;
     private PlayerWeapon meleeWeapon;
