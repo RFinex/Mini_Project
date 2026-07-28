@@ -14,9 +14,11 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
 
+    [Header("Audio Source")]
     [SerializeField] private AudioSource bgmSource;
     [SerializeField] private AudioSource sfxSource;
 
+    [Header("Audio Clip")]
     [SerializeField] private AudioClip bgmClip;
     [SerializeField] private AudioClip[] sfxClip;
 

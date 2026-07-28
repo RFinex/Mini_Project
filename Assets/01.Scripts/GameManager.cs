@@ -7,14 +7,22 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField] private GameObject player;
+    private GameObject player;
+    public GameObject Player
+    {
+        get
+        {
+            return player;
+        }
+    }
+
     private PlayerController pc;
 
     private bool isStart = false;
 
+    [Header("Trophy Timer")]
     [SerializeField] private float speedrunTimeLimit;
     [SerializeField] private int speedRunTrophyId;
-
 
     private void Awake()
     {
@@ -41,8 +49,12 @@ public class GameManager : MonoBehaviour
         }
 
         EffectManager.instance.Init();
-        //UIManager.instance.Init();
         StageManager.instance.Init();
+    }
+
+    public void PlayerInit(GameObject player)
+    {
+        this.player = player;
     }
 
     public void StartGame()

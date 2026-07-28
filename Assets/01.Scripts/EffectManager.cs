@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class EffectManager : MonoBehaviour
 {
-    public static EffectManager instance;
     [SerializeField] GameObject deathParticle;
     [SerializeField] Transform target;
+    public static EffectManager instance;
 
     private void Awake()
     {

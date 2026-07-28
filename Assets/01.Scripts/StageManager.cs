@@ -5,7 +5,9 @@ public class StageManager : MonoBehaviour
 {
     public static StageManager instance;
 
+    [Header("Trigger")]
     [SerializeField] private Transform exitMiniBoss;
+
 
     private GameObject player;
     public Transform PlayerPos

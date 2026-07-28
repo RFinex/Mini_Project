@@ -10,8 +10,11 @@ public class ObjectPoolManager : MonoBehaviour
 {
     public static ObjectPoolManager instance;
 
-    private int poolSize;
+    [Header("Pool List")]
     [SerializeField] private List<GameObject> objList = new List<GameObject>();
+
+    [Header("Pool Size")]
+    [SerializeField] private int poolSize;
 
     private Dictionary<string, Queue<GameObject>> pools = new Dictionary<string, Queue<GameObject>>();
 
@@ -22,8 +25,6 @@ public class ObjectPoolManager : MonoBehaviour
         else
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-
-        poolSize = 5;
 
         foreach(GameObject obj in objList)
         {

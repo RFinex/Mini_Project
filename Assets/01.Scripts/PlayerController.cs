@@ -7,43 +7,45 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D col;
     private SpriteRenderer sr;
+    private Animator animator;
 
     private float dir;
     private float attackDir;
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpPower;
-    private float baseSpeed;
 
+    [Header("Player Stats")]
+    [SerializeField] private float baseSpeed;
+    [SerializeField] private float speed;
+    [SerializeField] private float baseGravity;
+    [SerializeField] private float jumpPower;
+    [SerializeField] private int jumpCount;
+    [SerializeField] private int jumpCountMax;
+
+    [Header("Tempory Stats")]
     [SerializeField] private float dashSpeed;
     [SerializeField] private float launchSpeed;
 
+    // 상태 체크용
     private bool isFlip;
-    [SerializeField] private bool isGround;
-    [SerializeField] private int jumpCount;
-    private int jumpCountMax;
+    private bool isGround;
+    private bool canDash;
+    private bool isDash;
+    private bool isAntiGravity;
+    [SerializeField] private bool isDead;
+    [SerializeField] private bool isHold;
+    [SerializeField] private bool isLaunch;
 
+    [Header("Layer")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask movingGroundLayer;
 
     private PlayerWeapon rangeWeapon;
     private PlayerWeapon meleeWeapon;
-    private PlayerWeapon nowWeapon;
+    private PlayerWeapon nowWeapon;    
 
-    [SerializeField] private bool isDead;
-    [SerializeField] private bool isHold;
-    [SerializeField] private bool isLaunch;
-    private bool canDash;
-    private bool isDash;
-    private bool isAntiGravity;
-
-    private float baseGravity;
-
-    // 애니메이션
-    private Animator animator;
+    // 애니메이션 bool
     private int isWalk;
     private int isJump;
     private int isFall;
-
 
     private void Awake()
     {
@@ -54,10 +56,7 @@ public class PlayerController : MonoBehaviour
         rangeWeapon = GetComponentInChildren<PlayerRangeWeapon>(true);
         meleeWeapon = GetComponentInChildren<PlayerMeleeWeapon>(true);
         nowWeapon = rangeWeapon;
-        speed = 5f;
-        jumpPower = 12f;
-        jumpCount = 0;
-        jumpCountMax = 2;
+        speed = baseSpeed;
         isFlip = false;
         isDead = false;
         isHold = false;
@@ -65,9 +64,7 @@ public class PlayerController : MonoBehaviour
         canDash = false;
         isDash = false;
         isAntiGravity = false;
-        rb.gravityScale = 3f;
         baseGravity = rb.gravityScale;
-        baseSpeed = speed;
     }
 
     private void Start()
@@ -76,6 +73,8 @@ public class PlayerController : MonoBehaviour
         isWalk = Animator.StringToHash("isWalk");
         isJump = Animator.StringToHash("isJump");
         isFall = Animator.StringToHash("isFall");
+
+        GameManager.instance.PlayerInit(gameObject);
     }
 
 
