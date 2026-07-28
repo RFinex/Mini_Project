@@ -8,13 +8,28 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [SerializeField] private GameObject player;
+    public GameObject Player
+    {
+        get
+        {
+            return player;
+        }
+    }
+    public Transform PlayerPos
+    {
+        get
+        {
+            return player != null ? player.transform : null;
+        }
+    }
+
     private PlayerController pc;
 
     private bool isStart = false;
 
-    [SerializeField] private float speedrunTimeLimit;
+    [Header("Speed run Trophy Info")]
+    [SerializeField] private float speedRunTimeLimit;
     [SerializeField] private int speedRunTrophyId;
-
 
     private void Awake()
     {
@@ -41,13 +56,12 @@ public class GameManager : MonoBehaviour
         }
 
         EffectManager.instance.Init();
-        UIManager.instance.Init();
         StageManager.instance.Init();
     }
 
-    public void Init_Menu()
+    public void PlayerInit(GameObject player)
     {
-        UIManager.instance.Init_Menu();
+        this.player = player;
     }
 
     public void StartGame()
@@ -102,7 +116,7 @@ public class GameManager : MonoBehaviour
 
     public void GameClear()
     {
-        if (DataManager.instance.PlayTime <= speedrunTimeLimit)
+        if (DataManager.instance.PlayTime <= speedRunTimeLimit)
         {
             DataManager.instance.GetTrophy(speedRunTrophyId);
         }
