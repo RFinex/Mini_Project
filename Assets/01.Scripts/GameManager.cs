@@ -41,13 +41,8 @@ public class GameManager : MonoBehaviour
         }
 
         EffectManager.instance.Init();
-        UIManager.instance.Init();
+        //UIManager.instance.Init();
         StageManager.instance.Init();
-    }
-
-    public void Init_Menu()
-    {
-        UIManager.instance.Init_Menu();
     }
 
     public void StartGame()

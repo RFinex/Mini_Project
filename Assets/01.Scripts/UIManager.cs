@@ -6,28 +6,33 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
+
+    [Header("Text")]
     [SerializeField] private TextMeshProUGUI centerText;
     [SerializeField] private TextMeshProUGUI timerText;
 
+    [Header("Object")]
     [SerializeField] private GameObject optionPanel;
-    private GameObject option;
     [SerializeField] private GameObject trophyInv;
-    private GameObject trophy;
     [SerializeField] private GameObject dim;
+
+    private GameObject option;
+    private GameObject trophy;
     private GameObject dimObject;
 
+    [Header("UI")]
     [SerializeField] private Slider bossHpSlider;
-
     [SerializeField] private Button startBtn;
     [SerializeField] private Button loadBtn;
     [SerializeField] private Button restartBtn;
 
-    private Canvas uiCanvas;
-    private Canvas worldCanvas;
-    private Canvas menuCanvas;
+    [Header("Canvas")]
+    [SerializeField] private Canvas uiCanvas;
+    [SerializeField] private Canvas worldCanvas;
+    [SerializeField] private Canvas menuCanvas;
 
+    [Header("Setting")]
     [SerializeField] private Vector2 trophyGetPanelPos;
-
     [SerializeField] private float fadeDelay;
 
     private void Awake()
@@ -37,40 +42,73 @@ public class UIManager : MonoBehaviour
         else
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-    }    
-
-    public void Init()
-    {
-        centerText = GameObject.Find("CenterText").GetComponent<TextMeshProUGUI>();
-        timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
-        centerText.text = "";
-        uiCanvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
-        worldCanvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
-        if (bossHpSlider == null)
-        {
-            bossHpSlider = GameObject.Find("BossHPSlider").GetComponent<Slider>();
-            bossHpSlider.gameObject.SetActive(false);
-        }
-
-        restartBtn = GameObject.Find("RestartBtn").GetComponent<Button>();
-        restartBtn.onClick.AddListener(ClickRestartBtn);
-        restartBtn.gameObject.SetActive(false);
-
-        if (option != null)
-            Destroy(option);
-
-        if (dimObject != null)
-            Destroy(dimObject);
     }
-    public void Init_Menu()
+
+    public void Init_Menu(Canvas menu, Button start, Button load)
     {
-        menuCanvas = GameObject.Find("MenuCanvas").GetComponent<Canvas>();
-        startBtn = GameObject.Find("StartBtn").GetComponent<Button>();
-        loadBtn = GameObject.Find("LoadBtn").GetComponent<Button>();
+        menuCanvas = menu;
+        startBtn = start;
+        loadBtn = load;
         startBtn.onClick.AddListener(FadeScene);
         loadBtn.onClick.AddListener(FadeScene_Load);
     }
 
+    public void Init_InGame(Canvas ui, Canvas world, TextMeshProUGUI center, TextMeshProUGUI timer, Button restart, Slider boss)
+    {
+        uiCanvas = ui;
+        worldCanvas = world;
+        centerText = center;
+        timerText = timer;
+        restartBtn = restart;
+        bossHpSlider = boss;
+
+        if (centerText != null)
+        {
+            centerText.text = "";
+        }
+
+        if (restartBtn != null)
+        {
+            restartBtn.onClick.RemoveAllListeners();
+            restartBtn.onClick.AddListener(ClickRestartBtn);
+            restartBtn.gameObject.SetActive(false);
+        }
+
+        if (bossHpSlider != null)
+        {
+            bossHpSlider.gameObject.SetActive(false);
+        }
+
+        if (option != null)
+            Destroy(option);
+        if(dimObject != null)
+            Destroy(dimObject);
+    }
+
+    //public void Init()
+    //{
+    //    centerText = GameObject.Find("CenterText").GetComponent<TextMeshProUGUI>();
+    //    timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
+    //    centerText.text = "";
+    //    uiCanvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
+    //    worldCanvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
+    //    if (bossHpSlider == null)
+    //    {
+    //        bossHpSlider = GameObject.Find("BossHPSlider").GetComponent<Slider>();
+    //        bossHpSlider.gameObject.SetActive(false);
+    //    }
+
+    //    restartBtn = GameObject.Find("RestartBtn").GetComponent<Button>();
+    //    restartBtn.onClick.AddListener(ClickRestartBtn);
+    //    restartBtn.gameObject.SetActive(false);
+
+    //    if (option != null)
+    //        Destroy(option);
+
+    //    if (dimObject != null)
+    //        Destroy(dimObject);
+    //}
+    
     private void FadeScene()
     {
         if (dimObject == null)
