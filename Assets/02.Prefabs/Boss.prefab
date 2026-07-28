@@ -557,12 +557,13 @@ MonoBehaviour:
   baseAngle: 0
   angle: 30
   attackCount: 20
-  laserAngle: 90
+  laserAngle: -90
   bulCount: 12
   bulCount2: 6
   addAngle: 15
   patternDelay: 0.05
   patternDelay2: 0.2
+  patternDelay3: 0.8
 --- !u!1 &4373881924067667663
 GameObject:
   m_ObjectHideFlags: 0

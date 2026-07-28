@@ -11,14 +11,17 @@ public class BossPattern_12 : BossPatternBase
     [SerializeField] private float addAngle;
     [SerializeField] private float patternDelay;
     [SerializeField] private float patternDelay2;
+    [SerializeField] private float patternDelay3;
 
     private WaitForSeconds waitDelay;
     private WaitForSeconds waitDelay2;
+    private WaitForSeconds waitDelay3;
 
     private void Awake()
     {
         waitDelay = new WaitForSeconds(patternDelay);
         waitDelay2 = new WaitForSeconds(patternDelay2);
+        waitDelay3 = new WaitForSeconds(patternDelay3);
     }
 
     protected override IEnumerator Pattern()
@@ -47,7 +50,7 @@ public class BossPattern_12 : BossPatternBase
                 fire.transform.position = boss.AttackPos.position;
                 fire.transform.rotation = Quaternion.Euler(0f, 0f, j * angle);
             }
-            yield return wait2;
+            yield return waitDelay3;
         }
 
         // 높은곳에 위치한 영역 찾아오기
@@ -58,7 +61,7 @@ public class BossPattern_12 : BossPatternBase
         Vector2 topPos = top.center;
 
         boss.BAnimator.SetBool(boss.IsAttack, false);
-        Tween moveTween = transform.DOMove(topPos, boss.Speed)
+        Tween moveTween = boss.transform.DOMove(topPos, boss.Speed)
             .SetLink(gameObject)
             .SetEase(Ease.OutQuart);
 

@@ -35,7 +35,7 @@ public class RectArea : MonoBehaviour
 
     private void DrawRectGizmos(Rect rect)
     {
-        Vector3 center = new Vector3(rect.x + rect.width / 2, rect.y + rect.height / 2);
+        Vector3 center = new Vector3(rect.center.x, rect.center.y);
         Vector3 size = new Vector3(rect.width, rect.height);
         Gizmos.DrawCube(center, size);
     }
