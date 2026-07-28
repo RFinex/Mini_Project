@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WarningSign : MonoBehaviour, IPoolable
 {
@@ -27,11 +28,19 @@ public class WarningSign : MonoBehaviour, IPoolable
 
         warning.transform.localScale = Vector3.zero;
 
+        SceneManager.sceneLoaded += ReturnPool;
+
         WarningDelay();
+    }
+
+    protected void ReturnPool(Scene scene, LoadSceneMode mode)
+    {
+        ReturnPool();
     }
 
     private void OnDisable()
     {
+        SceneManager.sceneLoaded -= ReturnPool;
         scaleTween?.Kill();
         StopAllCoroutines();
     }

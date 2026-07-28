@@ -6,8 +6,8 @@ public abstract class BossPatternBase : MonoBehaviour
     protected int randPattern;
     protected int currentPattern = 0;
     public bool isFinish;
-    [SerializeField] protected float delayFrame = 45f;
-    [SerializeField] protected float delay2Frame = 20f;
+    [SerializeField] protected float delayFrame = (45f / 60f);
+    [SerializeField] protected float delay2Frame = (20f / 60f);
     protected WaitForSeconds wait;
     protected WaitForSeconds wait2;
     protected BossController boss;
@@ -25,21 +25,15 @@ public abstract class BossPatternBase : MonoBehaviour
 
     private void Awake()
     {
-        wait = new WaitForSeconds(delayFrame / 60f);
-        wait2 = new WaitForSeconds(delay2Frame / 60f);
+        wait = new WaitForSeconds(delayFrame);
+        wait2 = new WaitForSeconds(delay2Frame);
     }
 
-    public void StartRandomPattern(BossController obj)
+    public void StartPattern(BossController obj)
     {
         boss = obj;
         isFinish = false;
-
-        // 패턴 중복 실행 방지
-        do
-        {
-            randPattern = Random.Range(1, 5);
-        } while (randPattern == currentPattern);
-        currentPattern = randPattern;
+                
         obj.BAnimator.SetBool(obj.IsAttack, true);
 
         // 나중에 패턴마다 클래스 분리할 것
