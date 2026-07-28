@@ -15,7 +15,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject optionPanel;
     [SerializeField] private GameObject trophyInv;
     [SerializeField] private GameObject dim;
+    [SerializeField] private GameObject trophyInfo;
 
+    private TrophyInfoPanel trophyInfoPanel;
     private GameObject option;
     private GameObject trophy;
     private GameObject dimObject;
@@ -289,5 +291,26 @@ public class UIManager : MonoBehaviour
 
             panel.OpenPanel($"Get Trophy : {name}");
         }        
+    }
+
+    public void OpenTrophyInfo(int id)
+    {
+        if (trophyInfoPanel == null)
+        {
+            trophyInfoPanel = trophyInfo.GetComponent<TrophyInfoPanel>();
+        }
+        
+        trophyInfoPanel.gameObject.SetActive(true);
+        trophyInfoPanel.OpenPanel(id);
+    }
+
+    public void CloseTrophyInfo()
+    {
+        if (trophyInfoPanel == null)
+        {
+            trophyInfoPanel = trophyInfo.GetComponent<TrophyInfoPanel>();
+        }
+
+        trophyInfoPanel.ClosePanel();
     }
 }
