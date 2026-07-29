@@ -4,18 +4,24 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
     private bool isQuitting = false;
+
+    [Header("Setting")]
+    [SerializeField] private float topContactCollisionValue = -0.9f;
     
-    // 이동 거리, 이동 시간, 이동 방식
+    [Header("Tween Setting")]
     [SerializeField] private Vector3 dir;
     [SerializeField] private float delay;
     [SerializeField] private Ease ease;
     [SerializeField] private LoopType loopType;
 
-    [SerializeField] private bool isPassive = false;
 
     private Vector3 startPos;
     private Vector3 endPos;
 
+    [Header("Passive Platform Check")]
+    [SerializeField] private bool isPassive = false;
+
+    [Header("Only Passive Platform Setting")]
     // 올라탈 때 속도, 돌아갈 때 속도
     [SerializeField] private float passiveSpeed;
     [SerializeField] private float passiveSpeed2;
@@ -66,11 +72,11 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer(ConstString.Player))
         {
             // 충돌체 -> 자신에게 뻗는 벡터 정보 가져오기
             Vector2 contact = collision.GetContact(0).normal;
-            if (contact.y < -0.9f)
+            if (contact.y < topContactCollisionValue)
             {
                 //collision.transform.SetParent(transform);
                 playerPos = collision.transform;
