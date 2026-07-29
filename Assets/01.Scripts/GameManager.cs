@@ -109,17 +109,24 @@ public class GameManager : MonoBehaviour
         SceneLoadManager.instance.ChangeScene(scene.name);
     }
 
-    public void GameClear()
+    public void BossClear()
     {
         if (DataManager.instance.PlayTime <= speedRunTimeLimit)
         {
             DataManager.instance.GetTrophy(speedRunTrophyId);
         }
+        StageManager.instance.EnterTrophyRoom();
+    }
+
+    public void GameClear()
+    {
+        Time.timeScale = 0;
         UIManager.instance.OnClearUI();
     }
 
     public void RestartAfterClear()
     {
+        Time.timeScale = 1;
         SaveLoadManager.instance.ResetSave();
         RestartScene();
     }

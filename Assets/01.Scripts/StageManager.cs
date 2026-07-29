@@ -7,7 +7,7 @@ public class StageManager : MonoBehaviour
 
     [Header("Trigger")]
     [SerializeField] private Transform exitMiniBoss;
-
+    [SerializeField] private Transform trophyRoomPos;
 
     public Transform PlayerPos
     {
@@ -27,9 +27,10 @@ public class StageManager : MonoBehaviour
 
     }
 
-    public void Init(Transform miniExit)
+    public void Init(Transform miniExit, Transform trophyRoom)
     {
         exitMiniBoss = miniExit;
+        trophyRoomPos = trophyRoom;
     }
 
     public void EnterBoss(Transform enter)
@@ -40,5 +41,15 @@ public class StageManager : MonoBehaviour
     public void ExitBoss()
     {
         PlayerPos.position = exitMiniBoss.position;
+    }
+
+    public void EnterTrophyRoom()
+    {
+        PlayerPos.position = trophyRoomPos.position;
+    }
+
+    public void ExitTrophyRoom()
+    {
+        UIManager.instance.OnClearUI();
     }
 }
