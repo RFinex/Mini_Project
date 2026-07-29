@@ -15,6 +15,7 @@ public class BossEnterState : IState<BossController>
 
     public void Exit(BossController obj)
     {
+        SoundManager.instance.PlayBGM(BGMType.Boss);
         obj.SetBossHpBar();
         obj.Col.enabled = true;
     }

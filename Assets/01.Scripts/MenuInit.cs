@@ -12,5 +12,7 @@ public class MenuInit : MonoBehaviour
     private void Awake()
     {
         UIManager.instance.Init_Menu(menuCanvas, startBtn, loadBtn, eventArrow);
+
+        SoundManager.instance.PlayBGM(BGMType.Menu);
     }
 }

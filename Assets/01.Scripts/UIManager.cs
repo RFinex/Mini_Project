@@ -172,6 +172,7 @@ public class UIManager : MonoBehaviour
     {
         centerText.text = "Game Over Press 'R' Key";
     }
+
     public void OffCenterText()
     {
         centerText.text = "";

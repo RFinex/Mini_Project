@@ -336,7 +336,7 @@ public class PlayerController : MonoBehaviour
         meleeWeapon.gameObject.SetActive(false);
         rb.linearVelocity = Vector2.zero;
         rb.gravityScale = 0f;
-        UIManager.instance.OnGameOverText();
+        GameManager.instance.GameOver();
     }
 
     private void GetDirection(float dir)

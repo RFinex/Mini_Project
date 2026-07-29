@@ -35,11 +35,13 @@ public class StageManager : MonoBehaviour
 
     public void EnterBoss(Transform enter)
     {
+        SoundManager.instance.StopBGM();
         PlayerPos.position = enter.position;
     }
 
-    public void ExitBoss()
+    public void ExitMiniBoss()
     {
+        SoundManager.instance.PlayBGM(BGMType.Game);
         PlayerPos.position = exitMiniBoss.position;
     }
 

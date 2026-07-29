@@ -107,9 +107,26 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySFX(SFXType type)
     {
-        if ((int)type > sfxClip.Length || (int)type < 0)
+        if ((int)type >= sfxClip.Length || (int)type < 0)
             return;
 
         sfxSource.PlayOneShot(sfxClip[(int)type]);
+    }
+
+    public void PlayBGM(BGMType type)
+    {
+        if ((int)type >= bgmClip.Length || (int)type < 0)
+            return;
+
+        if (bgmSource.clip == bgmClip[(int)type] && bgmSource.isPlaying)
+            return;
+
+        bgmSource.clip = bgmClip[(int)type];
+        bgmSource.Play();
+    }
+
+    public void StopBGM()
+    {
+        bgmSource.Stop();
     }
 }

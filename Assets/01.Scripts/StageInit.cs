@@ -32,6 +32,8 @@ public class StageInit : MonoBehaviour
         StageManager.instance.Init(miniBossExit, trophyRoomPos);
 
         EffectManager.instance.Init(player);
+
+        SoundManager.instance.PlayBGM(BGMType.Game);
     }
 
 }

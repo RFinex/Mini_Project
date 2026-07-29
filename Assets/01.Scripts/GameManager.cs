@@ -109,6 +109,8 @@ public class GameManager : MonoBehaviour
 
     public void BossClear()
     {
+        SoundManager.instance.PlayBGM(BGMType.Game);
+
         if (DataManager.instance.PlayTime <= speedRunTimeLimit)
         {
             DataManager.instance.GetTrophy(speedRunTrophyId);
@@ -116,9 +118,16 @@ public class GameManager : MonoBehaviour
         StageManager.instance.EnterTrophyRoom();
     }
 
+    public void GameOver()
+    {
+        SoundManager.instance.PlayBGM(BGMType.Die);
+        UIManager.instance.OnGameOverText();
+    }
+
     public void GameClear()
     {
         Time.timeScale = 0;
+        SoundManager.instance.PlayBGM(BGMType.Clear);
         UIManager.instance.OnClearUI();
     }
 

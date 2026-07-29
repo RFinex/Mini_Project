@@ -19,6 +19,7 @@ public class MiniBossReviveState : IState<MiniBossController>
 
     public void Exit(MiniBossController obj)
     {
+        SoundManager.instance.PlayBGM(BGMType.Boss);
         obj.Col.enabled = true;
     }
 
