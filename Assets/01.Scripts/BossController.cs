@@ -97,6 +97,18 @@ public class BossController : BossEnemyController
         
 
     [SerializeField] private int currentPhase = 1;
+    [SerializeField] private int currentPattern = -1;
+    public int CurrentPattern
+    {
+        get
+        {
+            return currentPattern;
+        }
+        set
+        {
+            currentPattern = value;
+        }
+    }
     public int CurrentPhase
     {
         get

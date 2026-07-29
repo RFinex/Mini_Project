@@ -6,7 +6,6 @@ public class BossPattern_10 : BossPatternBase
 {
     [SerializeField] private float addAngle;
     [SerializeField] private float attackDelay;
-    [SerializeField] private float divideSpeed;
     [SerializeField] private int bulCount;
 
     private WaitForSeconds waitDelay;
@@ -25,15 +24,18 @@ public class BossPattern_10 : BossPatternBase
             yield break;
         }
 
+        boss.BAnimator.SetBool(boss.IsAttack, false);
         float currentAngle = 0f;
         float nextAngle = 360f / bulCount;
 
         Rect moveRect = RectArea.instance.bossMoveArea[Random.Range(0, RectArea.instance.bossMoveArea.Count)];
         Vector2 centerPos = moveRect.center;
-        boss.transform.DOMove(centerPos, boss.Speed / divideSpeed)
+        boss.transform.DOMove(centerPos, boss.Speed)
             .SetLink(gameObject)
-            .SetEase(Ease.InOutCubic);
+            .SetEase(Ease.InOutCubic)
+            .WaitForCompletion();
 
+        boss.BAnimator.SetBool(boss.IsAttack, true);
         yield return wait;
         
         for (int i = 0; i < attackCount; i++)

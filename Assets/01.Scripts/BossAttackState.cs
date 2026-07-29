@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class BossAttackState : IState<BossController>
 {
-    private int randomPattern;
-    private int currentPattern = -1;
+    private int randomPattern;    
 
     public void Enter(BossController obj)
     {
@@ -19,7 +18,7 @@ public class BossAttackState : IState<BossController>
         // 중복 실행 방지
         if (patterns == 1)
         {
-            currentPattern = 0;
+            obj.CurrentPattern = 0;
         }
         else
         {
@@ -27,19 +26,19 @@ public class BossAttackState : IState<BossController>
             {
                 randomPattern = Random.Range(0, patterns);
 
-            } while (randomPattern == currentPattern);
+            } while (randomPattern == obj.CurrentPattern);
 
-            currentPattern = randomPattern;
+            obj.CurrentPattern = randomPattern;
         }
         
-        obj.Patterns[currentPattern].StartPattern(obj);
+        obj.Patterns[obj.CurrentPattern].StartPattern(obj);
     }
 
     public void Exit(BossController obj)
     {
-        if (obj.Patterns != null && currentPattern >= 0)
+        if (obj.Patterns != null && obj.CurrentPattern >= 0)
         {
-            obj.Patterns[currentPattern].StopAttack();
+            obj.Patterns[obj.CurrentPattern].StopAttack();
         }
         
         obj.BAnimator.SetBool(obj.IsAttack, false);
@@ -47,7 +46,7 @@ public class BossAttackState : IState<BossController>
 
     public void Update(BossController obj)
     {
-        if (obj.Patterns[currentPattern].isFinish)
+        if (obj.Patterns[obj.CurrentPattern].isFinish)
         {
             obj.ChangeState(BossState.Idle);
         }
