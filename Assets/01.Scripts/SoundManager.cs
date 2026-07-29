@@ -31,6 +31,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip[] bgmClip;
     [SerializeField] private AudioClip[] sfxClip;
 
+    [Header("Default Volume")]
+    [SerializeField] private float defaultVolume = 0.2f;
+
     private void Awake()
     {
         if (instance == null)
@@ -39,8 +42,8 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
 
-        SetBGMVolume(PlayerPrefs.GetFloat(ConstString.BGMVolume, 0.2f));
-        SetSFXVolume(PlayerPrefs.GetFloat(ConstString.SFXVolume, 0.2f));
+        SetBGMVolume(PlayerPrefs.GetFloat(ConstString.BGMVolume, defaultVolume));
+        SetSFXVolume(PlayerPrefs.GetFloat(ConstString.SFXVolume, defaultVolume));
         MuteBGM(PlayerPrefs.GetInt(ConstString.BGMMute, 0));
         MuteSFX(PlayerPrefs.GetInt(ConstString.SFXMute, 0));
     }
