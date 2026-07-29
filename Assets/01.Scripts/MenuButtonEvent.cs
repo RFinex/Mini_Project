@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -5,6 +6,12 @@ public class MenuButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExit
 {
     private RectTransform arrow;
     private RectTransform rect;
+
+    [SerializeField] private float popupSize;
+    [SerializeField] private float normalSize;
+    [SerializeField] private float popupDelay;
+
+    private Tween tween;
 
     [SerializeField] private float arrowXPos;
 
@@ -26,6 +33,22 @@ public class MenuButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
+    private void ButtonEnter()
+    {
+        tween?.Kill();
+
+        tween = transform.DOScale(popupSize, popupDelay)
+            .SetLink(gameObject);
+    }
+
+    private void ButtonExit()
+    {
+        tween?.Kill();
+
+        tween = transform.DOScale(normalSize, popupDelay)
+            .SetLink(gameObject);
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (arrow == null)
@@ -34,6 +57,7 @@ public class MenuButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExit
             GetArrow();
         }
 
+        ButtonEnter();
         arrow.gameObject.SetActive(true);
 
         Vector2 arrowPos = rect.anchoredPosition;
@@ -46,6 +70,7 @@ public class MenuButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (arrow == null)
             return;
 
+        ButtonExit();
         arrow.gameObject.SetActive(false);
     }
 }

@@ -118,8 +118,23 @@ public class SoundManager : MonoBehaviour
         if ((int)type >= bgmClip.Length || (int)type < 0)
             return;
 
+        switch(type)
+        {
+            case BGMType.Menu:
+            case BGMType.Game:
+            case BGMType.Boss:
+                bgmSource.loop = true;
+                break;
+
+            case BGMType.Die:
+            case BGMType.Clear:
+                bgmSource.loop = false;
+                break;
+        }
+
         if (bgmSource.clip == bgmClip[(int)type] && bgmSource.isPlaying)
             return;
+
 
         bgmSource.clip = bgmClip[(int)type];
         bgmSource.Play();
