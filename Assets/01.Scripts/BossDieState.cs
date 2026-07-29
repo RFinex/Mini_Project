@@ -23,7 +23,7 @@ public class BossDieState : IState<BossController>
         {
             isDying = true;
 
-            GameManager.instance.GameClear();
+            GameManager.instance.BossClear();
         }
     }
 }
