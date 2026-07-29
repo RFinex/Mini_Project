@@ -66,7 +66,6 @@ public class GameManager : MonoBehaviour
     // 게임 시작 체크
     public void SetStartGame(bool start)
     {
-        Debug.Log("Start활성화");
         isStart = start;
     }
     

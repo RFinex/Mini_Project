@@ -650,7 +650,7 @@ MonoBehaviour:
   popupSize: 1.1
   normalSize: 1
   popupDelay: 0.1
-  arrowXPos: -200
+  arrowXPos: -220
 --- !u!1001 &697412231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1074,7 +1074,7 @@ MonoBehaviour:
   popupSize: 1.1
   normalSize: 1
   popupDelay: 0.1
-  arrowXPos: -200
+  arrowXPos: -220
 --- !u!1 &947737306
 GameObject:
   m_ObjectHideFlags: 0
