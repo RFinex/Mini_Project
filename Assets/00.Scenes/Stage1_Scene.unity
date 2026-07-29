@@ -1646,8 +1646,9 @@ MonoBehaviour:
   restartBtn: {fileID: 1906034864}
   bossHpSlider: {fileID: 534195896}
   player: {fileID: 1033592703}
-  miniBossExit: {fileID: 46937478}
   trophyInfoPanel: {fileID: 31222263}
+  miniBossExit: {fileID: 46937478}
+  trophyRoomPos: {fileID: 1364030672}
 --- !u!4 &75215098
 Transform:
   m_ObjectHideFlags: 0
@@ -12619,6 +12620,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 963839586}
+  - component: {fileID: 963839589}
   - component: {fileID: 963839588}
   - component: {fileID: 963839587}
   m_Layer: 0
@@ -12739,7 +12741,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -12748,6 +12750,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &963839589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963839585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb5fc7ec9f0e3424fa7255e654fd050a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RestartTrigger
 --- !u!4 &970563155 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7280110464708884460, guid: 71fdd1e0874283044be030208aaf92c0, type: 3}
@@ -16840,7 +16854,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
