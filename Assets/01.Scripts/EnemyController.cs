@@ -8,8 +8,11 @@ public enum MonsterState
     Die
 }
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
 public abstract class EnemyController : MonoBehaviour, IPoolable
 {
+    [Header("Enemy Stats")]
     [SerializeField] protected int maxHp;
     public int MaxHp
     {
@@ -18,9 +21,7 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
             return maxHp;
         }
     }
-
     [SerializeField] protected int nowHp;
-
     public int NowHp
     {
         get
@@ -32,7 +33,6 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
             nowHp = value;
         }
     }
-
     [SerializeField] protected float speed;
     public float Speed
     {
@@ -45,15 +45,6 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
             speed = value;
         }
     }
-
-    public Transform Target
-    {
-        get
-        {
-            return StageManager.instance != null ? StageManager.instance.PlayerPos : null;
-        }
-    }
-
     [SerializeField] protected float range;
     public float Range
     {
@@ -62,7 +53,6 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
             return range;
         }
     }
-
     [SerializeField] protected float dieDelay;
     public float DieDelay
     {
@@ -71,7 +61,6 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
             return dieDelay;
         }
     }
-
     [SerializeField] protected float attackDelay;
     public float AttackDelay
     {
@@ -81,6 +70,15 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
         }
     }
 
+    public Transform Target
+    {
+        get
+        {
+            return StageManager.instance != null ? StageManager.instance.PlayerPos : null;
+        }
+    }
+
+    [Header("Check Can Move Monster")]
     [SerializeField] protected bool canMove;
     public bool CanMove
     {

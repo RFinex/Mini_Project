@@ -48,7 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   bgmSource: {fileID: 2209851833625390276}
   sfxSource: {fileID: 1104155998234981305}
-  bgmClip: {fileID: 0}
+  bgmClip:
+  - {fileID: 8300000, guid: cdb9579d85b4d4baaa28805e4a02b9a4, type: 3}
+  - {fileID: 8300000, guid: f042bd451f48441e19db367bc0063f53, type: 3}
+  - {fileID: 8300000, guid: 761503047d6a84e6a8801a25d1adf02c, type: 3}
+  - {fileID: 8300000, guid: 03fc1782d3b8b41edb7206193da9ac38, type: 3}
+  - {fileID: 8300000, guid: 5ac6fc4003415436bb278aafd51b6878, type: 3}
   sfxClip:
   - {fileID: 8300000, guid: 74c685feddd405c4188002fd3e849ddf, type: 3}
   - {fileID: 8300000, guid: 14f9f749fbd2d0b4685d15b84cb725a7, type: 3}

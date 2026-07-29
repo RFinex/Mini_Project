@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
     }
 
     // 씬 로드 마다 초기화
-    // Init은 가능하면 리팩토링 할 예정
     public void Init()
     {
         if (player != null)
@@ -94,7 +93,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
 
     // 타이머는 DataManager에 바로 저장
     private void TimerOn()

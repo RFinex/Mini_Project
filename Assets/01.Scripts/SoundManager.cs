@@ -10,6 +10,15 @@ public enum SFXType
     Fireball
 }
 
+public enum BGMType
+{
+    Menu,
+    Game,
+    Boss,
+    Die,
+    Clear
+}
+
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
@@ -19,7 +28,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource sfxSource;
 
     [Header("Audio Clip")]
-    [SerializeField] private AudioClip bgmClip;
+    [SerializeField] private AudioClip[] bgmClip;
     [SerializeField] private AudioClip[] sfxClip;
 
     private void Awake()

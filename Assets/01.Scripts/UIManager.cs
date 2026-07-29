@@ -12,11 +12,19 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
 
     [Header("Object")]
+    [SerializeField] private RectTransform eventArrow;
     [SerializeField] private GameObject optionPanel;
     [SerializeField] private GameObject trophyInv;
     [SerializeField] private GameObject dim;
     [SerializeField] private GameObject trophyInfo;
 
+    public RectTransform EventArrow
+    {
+        get
+        {
+            return eventArrow;
+        }
+    }
     private TrophyInfoPanel trophyInfoPanel;
     private GameObject option;
     private GameObject trophy;
@@ -46,13 +54,23 @@ public class UIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void Init_Menu(Canvas menu, Button start, Button load)
+    public void Init_Menu(Canvas menu, Button start, Button load, RectTransform arrow)
     {
+        eventArrow = arrow;
         menuCanvas = menu;
         startBtn = start;
         loadBtn = load;
-        startBtn.onClick.AddListener(FadeScene);
-        loadBtn.onClick.AddListener(FadeScene_Load);
+        if (startBtn != null)
+        {
+            startBtn.onClick.RemoveAllListeners();
+            startBtn.onClick.AddListener(FadeScene);
+        }
+
+        if (loadBtn != null)
+        {
+            loadBtn.onClick.RemoveAllListeners();
+            loadBtn.onClick.AddListener(FadeScene_Load);
+        }
     }
 
     public void Init_InGame(Canvas ui, Canvas world, TextMeshProUGUI center, TextMeshProUGUI timer, Button restart, Slider boss, GameObject infoPanel)
