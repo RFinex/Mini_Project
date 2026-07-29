@@ -30,7 +30,7 @@ public class BossPattern_10 : BossPatternBase
 
         Rect moveRect = RectArea.instance.bossMoveArea[Random.Range(0, RectArea.instance.bossMoveArea.Count)];
         Vector2 centerPos = moveRect.center;
-        boss.transform.DOMove(centerPos, boss.Speed)
+        yield return boss.transform.DOMove(centerPos, boss.Speed)
             .SetLink(gameObject)
             .SetEase(Ease.InOutCubic)
             .WaitForCompletion();
