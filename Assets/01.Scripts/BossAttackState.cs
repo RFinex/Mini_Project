@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 
 public class BossAttackState : IState<BossController>
@@ -8,7 +7,7 @@ public class BossAttackState : IState<BossController>
 
     public void Enter(BossController obj)
     {
-        if (obj.Patterns == null)
+        if (obj.Patterns == null || obj.Patterns.Count == 0)
         {
             Debug.Log("리스트 없음");
             obj.ChangeState(BossState.Idle);
@@ -18,19 +17,31 @@ public class BossAttackState : IState<BossController>
         int patterns = obj.Patterns.Count;
 
         // 중복 실행 방지
-        do
+        if (patterns == 1)
         {
-            randomPattern = Random.Range(0, patterns);
+            currentPattern = 0;
+        }
+        else
+        {
+            do
+            {
+                randomPattern = Random.Range(0, patterns);
 
-        } while (randomPattern == currentPattern);
+            } while (randomPattern == currentPattern);
 
-        currentPattern = randomPattern;
+            currentPattern = randomPattern;
+        }
+        
         obj.Patterns[currentPattern].StartPattern(obj);
     }
 
     public void Exit(BossController obj)
     {
-        obj.Patterns[currentPattern].StopAttack();
+        if (obj.Patterns != null && currentPattern >= 0)
+        {
+            obj.Patterns[currentPattern].StopAttack();
+        }
+        
         obj.BAnimator.SetBool(obj.IsAttack, false);
     }
 
