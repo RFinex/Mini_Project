@@ -46,10 +46,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   centerText: {fileID: 0}
   timerText: {fileID: 0}
+  eventArrow: {fileID: 0}
   optionPanel: {fileID: 3457846557510343279, guid: 80c172542ccc5114dba172999155810e, type: 3}
   trophyInv: {fileID: 5286385156062767210, guid: 3c8dadf495eb2874a964624c5935beae, type: 3}
   dim: {fileID: 3936904330790666862, guid: ab2ac563779825346af36671bb012c4e, type: 3}
+  trophyInfo: {fileID: 0}
+  rankPopup: {fileID: 6407255660118773827, guid: c011740a73d2a3a4aa1867d7d44b78b2, type: 3}
   bossHpSlider: {fileID: 0}
   startBtn: {fileID: 0}
   loadBtn: {fileID: 0}
   restartBtn: {fileID: 0}
+  uiCanvas: {fileID: 0}
+  worldCanvas: {fileID: 0}
+  menuCanvas: {fileID: 0}
+  trophyGetPanelPos: {x: 0, y: 0}
+  fadeDelay: 0

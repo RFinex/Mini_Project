@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject trophyInv;
     [SerializeField] private GameObject dim;
     [SerializeField] private GameObject trophyInfo;
+    [SerializeField] private GameObject rankPopup;
 
     public RectTransform EventArrow
     {
@@ -29,6 +30,7 @@ public class UIManager : MonoBehaviour
     private GameObject option;
     private GameObject trophy;
     private GameObject dimObject;
+    private GameObject rankPopupObject;
 
     [Header("UI")]
     [SerializeField] private Slider bossHpSlider;
@@ -131,19 +133,24 @@ public class UIManager : MonoBehaviour
     //}
     
     private void FadeScene()
-    {
+    {        
         if (dimObject == null)
         {
-            dimObject = Instantiate(dim, menuCanvas.transform);
-            Image dimImg = dimObject.GetComponent<Image>();
-            Color color = dimImg.color;
-            color.a = 0f;
-            dimImg.color = color;
-
-            dimImg.DOFade(1f, fadeDelay)
-                .SetLink(gameObject)
-                .OnComplete(() => GameManager.instance.StartGame());
+            dimObject = Instantiate(dim, menuCanvas.transform);            
         }
+        else
+        {
+            dimObject.SetActive(true);
+        }
+
+        Image dimImg = dimObject.GetComponent<Image>();
+        Color color = dimImg.color;
+        color.a = 0f;
+        dimImg.color = color;
+
+        dimImg.DOFade(1f, fadeDelay)
+            .SetLink(gameObject)
+            .OnComplete(() => GameManager.instance.StartGame());
     }
 
     private void FadeScene_Load()
@@ -156,16 +163,21 @@ public class UIManager : MonoBehaviour
 
         if (dimObject == null)
         {
-            dimObject = Instantiate(dim, menuCanvas.transform);
-            Image dimImg = dimObject.GetComponent<Image>();
-            Color color = dimImg.color;
-            color.a = 0f;
-            dimImg.color = color;
-
-            dimImg.DOFade(1f, fadeDelay)
-                .SetLink(gameObject)
-                .OnComplete(() => GameManager.instance.LoadGame());
+            dimObject = Instantiate(dim, menuCanvas.transform);            
         }
+        else
+        {
+            dimObject.SetActive(true);
+        }
+
+        Image dimImg = dimObject.GetComponent<Image>();
+        Color color = dimImg.color;
+        color.a = 0f;
+        dimImg.color = color;
+
+        dimImg.DOFade(1f, fadeDelay)
+            .SetLink(gameObject)
+            .OnComplete(() => GameManager.instance.LoadGame());
     }
 
     public void OnGameOverText()
@@ -183,6 +195,37 @@ public class UIManager : MonoBehaviour
         timerText.text = $"{(int)sec / 3600:D2} : {(int)sec / 60 % 60:D2} : {(int)sec % 60:D2}";
     }
 
+    public void OpenRankPopup()
+    {
+
+        if (rankPopupObject == null)
+        {
+            rankPopupObject = Instantiate(rankPopup, menuCanvas.transform);
+        }
+        else
+        {
+            rankPopupObject.SetActive(true);
+        }
+
+        RankingPopup rank = rankPopupObject.GetComponent<RankingPopup>();
+
+        if (rank != null)
+        {
+            rank.UpdateRankPanel();
+        }
+
+        SetDimUI(menuCanvas.transform);
+
+        dimObject.transform.SetAsLastSibling();
+        rankPopupObject.transform.SetAsLastSibling();
+    }
+
+    public void CloseRankPopup()
+    {
+        rankPopupObject.SetActive(false);
+        dimObject.SetActive(false);
+    }
+
     public void OpenOptionPanel()
     {
         if (option == null)
@@ -194,7 +237,7 @@ public class UIManager : MonoBehaviour
             option.SetActive(true);
         }
 
-        SetDimUI();
+        SetDimUI(uiCanvas.transform);
 
         dimObject.transform.SetAsLastSibling();
         option.transform.SetAsLastSibling();
@@ -217,7 +260,7 @@ public class UIManager : MonoBehaviour
             trophy.SetActive(true);
         }
 
-        SetDimUI();
+        SetDimUI(uiCanvas.transform);
 
         dimObject.transform.SetAsLastSibling();
         trophy.transform.SetAsLastSibling();
@@ -261,7 +304,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClearUI()
     {
-        SetDimUI();
+        SetDimUI(uiCanvas.transform);
         centerText.text = "Game Clear!";
         restartBtn.gameObject.SetActive(true);
 
@@ -270,11 +313,11 @@ public class UIManager : MonoBehaviour
         restartBtn.transform.SetAsLastSibling();
     }
 
-    private void SetDimUI()
+    private void SetDimUI(Transform canvas)
     {
         if (dimObject == null)
         {
-            dimObject = Instantiate(dim, uiCanvas.transform);
+            dimObject = Instantiate(dim, canvas);
         }
         else
         {

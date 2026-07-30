@@ -28,6 +28,8 @@ public class SaveLoadManager : MonoBehaviour
         rankFileName = "rankData.json";
         savePath = Path.Combine(Application.persistentDataPath, fileName);
         rankSavePath = Path.Combine(Application.persistentDataPath, rankFileName);
+
+        LoadRank();
     }
 
     public void Save()
