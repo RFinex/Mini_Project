@@ -23,7 +23,7 @@ public class StageInit : MonoBehaviour
     [Header("Trigger")]
     [SerializeField] private Transform miniBossExit;
     [SerializeField] private Transform trophyRoomPos;
-    private void Start()
+    private void Awake()
     {
         UIManager.instance.Init_InGame(uiCanvas, worldCanvas, centerText, timerText, restartBtn, bossHpSlider, trophyInfoPanel);
 
