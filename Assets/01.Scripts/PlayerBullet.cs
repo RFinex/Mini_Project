@@ -42,6 +42,7 @@ public class PlayerBullet : Projectile
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer(ConstString.Ground))
         {
+            Debug.Log("Return");
             ReturnPool();
         }
 

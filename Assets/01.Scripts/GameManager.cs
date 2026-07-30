@@ -23,8 +23,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private PlayerController pc;
-
     private bool isStart = false;
 
     [Header("Speed run Trophy Info")]
@@ -45,7 +43,6 @@ public class GameManager : MonoBehaviour
     {
         if (player != null)
         {
-            pc = player.GetComponent<PlayerController>();
             if (SaveLoadManager.instance.SaveFileCheck())
             {
                 player.transform.position = DataManager.instance.CheckPos;
