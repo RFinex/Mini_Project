@@ -38,17 +38,16 @@ public class PlayerController : MonoBehaviour
     private bool isFlip;
     private bool isGround;
     private bool canDash;
-    private bool isDash;
     private bool isAntiGravity;
-    [SerializeField] private bool isDead;
-    [SerializeField] private bool isHold;
-    [SerializeField] private bool isLaunch;
 
     [Header("Ground Check Setting")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Vector2 boxSize = new Vector2(0.85f, 0.1f);
     [SerializeField] private float boxOffset = -0.08f;
     [SerializeField] private float boxDistance = 0.55f;
+
+    [Header("Criterion")]
+    [SerializeField] private float criterionVelocity = 0.1f;
 
     private PlayerWeapon rangeWeapon;
     private PlayerWeapon meleeWeapon;
@@ -72,11 +71,7 @@ public class PlayerController : MonoBehaviour
 
         speed = baseSpeed;
         isFlip = false;
-        isDead = false;
-        isHold = false;
-        isLaunch = false;
         canDash = false;
-        isDash = false;
         isAntiGravity = false;
         baseGravity = rb.gravityScale;
         currentState = PlayerState.Normal;
@@ -100,50 +95,90 @@ public class PlayerController : MonoBehaviour
         if (currentState == PlayerState.Die)
             return;
 
-        // 발사 장치에 접촉 시 해당 조작으로 변경
-        if (currentState == PlayerState.Hold)
+        switch (currentState)
         {
-            Vector2 launchDir = Vector2.zero;
+            case PlayerState.Normal:
+                NormalStateHandle();
+                break;
 
-            if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
-            {
-                launchDir.x = -1;
-            }
-            if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
-            {
-                launchDir.x = 1;
-            }
-            if (Keyboard.current.upArrowKey.wasPressedThisFrame)
-            {
-                launchDir.y = 1;
-            }
-            if (Keyboard.current.downArrowKey.wasPressedThisFrame)
-            {
-                launchDir.y = -1;
-            }
+            case PlayerState.Hold:
+                HoldStateHandle();
+                break;
+
+            case PlayerState.Launch:
+                LaunchStateHandle();
+                break;
+        }
+        //// 발사 장치에 접촉 시 해당 조작으로 변경
+        //if (currentState == PlayerState.Hold)
+        //{
+        //    Vector2 launchDir = Vector2.zero;
+
+        //    if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
+        //    {
+        //        launchDir.x = -1;
+        //    }
+        //    if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
+        //    {
+        //        launchDir.x = 1;
+        //    }
+        //    if (Keyboard.current.upArrowKey.wasPressedThisFrame)
+        //    {
+        //        launchDir.y = 1;
+        //    }
+        //    if (Keyboard.current.downArrowKey.wasPressedThisFrame)
+        //    {
+        //        launchDir.y = -1;
+        //    }
             
-            // 발사 성공 시 해당 방향으로 직선 발사
-            if (launchDir != Vector2.zero)
-            {
-                currentState = PlayerState.Launch;
-                rb.gravityScale = 0;
-                rb.linearVelocity = launchDir.normalized * speed * launchSpeed;
-                dir = 0;
-            }
-            return;
-        }
+        //    // 발사 성공 시 해당 방향으로 직선 발사
+        //    if (launchDir != Vector2.zero)
+        //    {
+        //        currentState = PlayerState.Launch;
+        //        rb.gravityScale = 0;
+        //        rb.linearVelocity = launchDir.normalized * speed * launchSpeed;
+        //        dir = 0;
+        //    }
+        //    return;
+        //}
 
-        // 발사 도중 아무 조작 입력 시 원상태로 복구
-        if (currentState == PlayerState.Launch)
-        {
-            // 현재 내 속도의 크기 계산
-            if (Keyboard.current.anyKey.wasPressedThisFrame || rb.linearVelocity.sqrMagnitude <= 0.1f)
-            {
-                RestoreGravity();
-                currentState = PlayerState.Normal;
-            }
-        }
+        //// 발사 도중 아무 조작 입력 시 원상태로 복구
+        //if (currentState == PlayerState.Launch)
+        //{
+        //    // 현재 내 속도의 크기 계산
+        //    if (Keyboard.current.anyKey.wasPressedThisFrame || rb.linearVelocity.sqrMagnitude <= criterionVelocity)
+        //    {
+        //        RestoreGravity();
+        //        currentState = PlayerState.Normal;
+        //    }
+        //}
 
+        //dir = 0;
+
+        //if (Keyboard.current.leftArrowKey.isPressed)
+        //{
+        //    dir += -1;
+        //}
+        //if (Keyboard.current.rightArrowKey.isPressed)
+        //{
+        //    dir += 1;
+        //}
+        //if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        //{
+        //    Jump();
+        //}
+        //if (Keyboard.current.shiftKey.wasPressedThisFrame && canDash)
+        //{
+        //    StartCoroutine(Dash());
+        //}
+        ////if (Keyboard.current.tabKey.wasPressedThisFrame)
+        ////{
+        ////    ChangeWeapon();
+        ////}
+    }
+
+    private void NormalStateHandle()
+    {
         dir = 0;
 
         if (Keyboard.current.leftArrowKey.isPressed)
@@ -162,11 +197,47 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
-        //if (Keyboard.current.tabKey.wasPressedThisFrame)
-        //{
-        //    ChangeWeapon();
-        //}
-    }    
+    }
+
+    private void HoldStateHandle()
+    {
+        Vector2 launchDir = Vector2.zero;
+
+        if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
+        {
+            launchDir.x = -1;
+        }
+        if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
+        {
+            launchDir.x = 1;
+        }
+        if (Keyboard.current.upArrowKey.wasPressedThisFrame)
+        {
+            launchDir.y = 1;
+        }
+        if (Keyboard.current.downArrowKey.wasPressedThisFrame)
+        {
+            launchDir.y = -1;
+        }
+
+        // 발사 성공 시 해당 방향으로 직선 발사
+        if (launchDir != Vector2.zero)
+        {
+            currentState = PlayerState.Launch;
+            rb.gravityScale = 0;
+            rb.linearVelocity = launchDir.normalized * speed * launchSpeed;
+            dir = 0;
+        }
+    }
+
+    private void LaunchStateHandle()
+    {
+        if (Keyboard.current.anyKey.wasPressedThisFrame || rb.linearVelocity.sqrMagnitude <= criterionVelocity)
+        {
+            RestoreGravity();
+            currentState = PlayerState.Normal;
+        }
+    }
 
     //private void ChangeWeapon()
     //{
@@ -310,7 +381,7 @@ public class PlayerController : MonoBehaviour
 
         isGround = hit.collider == null ? false : true;
 
-        if (isGround && Mathf.Abs(rb.linearVelocity.y) <= 0.1f)
+        if (isGround && Mathf.Abs(rb.linearVelocity.y) <= criterionVelocity)
         {
             jumpCount = 0;
             animator.SetBool(isFall, false);
@@ -319,7 +390,7 @@ public class PlayerController : MonoBehaviour
 
     private void FallCheck()
     {
-        bool isFalling = isAntiGravity ? rb.linearVelocity.y > 0.1f : rb.linearVelocity.y < -0.1f;
+        bool isFalling = isAntiGravity ? rb.linearVelocity.y > criterionVelocity : rb.linearVelocity.y < -criterionVelocity;
 
         animator.SetBool(isFall, isFalling);
 
@@ -344,7 +415,7 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        isDead = true;
+        currentState = PlayerState.Die;
 
         EffectManager.instance.ShowDeathParticle();
         sr.enabled = false;
