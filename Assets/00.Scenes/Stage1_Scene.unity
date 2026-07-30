@@ -13920,23 +13920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36243ed67d1b994b888a46acdf7a11c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  baseSpeed: 5
-  speed: 5
-  baseGravity: 0
-  jumpPower: 12
-  jumpCount: 0
-  jumpCountMax: 2
-  dashSpeed: 5
-  launchSpeed: 3
-  isDead: 0
-  isHold: 0
-  isLaunch: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  boxSize: {x: 0.85, y: 0.1}
-  boxOffset: -0.08
-  boxDistance: 0.55
+  data: {fileID: 11400000, guid: eaf44b1850322de408d3384f960464ec, type: 2}
 --- !u!95 &1033592709
 Animator:
   serializedVersion: 7
@@ -172559,7 +172543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2510407859085086636, guid: db58c4d9059fa634f95a4e0fd3dfdc02, type: 3}
       propertyPath: maxHp
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2510407859085086636, guid: db58c4d9059fa634f95a4e0fd3dfdc02, type: 3}
       propertyPath: dieDelay
@@ -172925,7 +172909,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2190346815241096127, guid: b52fd019715bc87409e49806624fcb8e, type: 3}
       propertyPath: maxHp
-      value: 50
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2190346815241096127, guid: b52fd019715bc87409e49806624fcb8e, type: 3}
       propertyPath: nowHp

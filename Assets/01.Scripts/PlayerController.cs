@@ -13,26 +13,25 @@ public enum PlayerState
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Player Data")]
+    [SerializeField] private PlayerDataSO data;
+
+    #region Component
     private Rigidbody2D rb;
     private Collider2D col;
     private SpriteRenderer sr;
     private Animator animator;
+    #endregion
 
-    private float dir;
-
+    #region Player Stats
     private PlayerState currentState = PlayerState.Normal;
+    private float dir;
+    private float speed;
+    private float baseGravity;
+    private int jumpCount;
+    #endregion
 
-    [Header("Player Stats")]
-    [SerializeField] private float baseSpeed = 5f;
-    [SerializeField] private float speed;
-    [SerializeField] private float baseGravity;
-    [SerializeField] private float jumpPower = 12f;
-    [SerializeField] private int jumpCount;
-    [SerializeField] private int jumpCountMax = 2;
-
-    [Header("Tempory Stats")]
-    [SerializeField] private float dashSpeed = 5f;
-    [SerializeField] private float launchSpeed = 3f;
+    private WaitForSeconds dashWait;
 
     // 상태 체크용
     private bool isFlip;
@@ -40,23 +39,15 @@ public class PlayerController : MonoBehaviour
     private bool canDash;
     private bool isAntiGravity;
 
-    [Header("Ground Check Setting")]
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private Vector2 boxSize = new Vector2(0.85f, 0.1f);
-    [SerializeField] private float boxOffset = -0.08f;
-    [SerializeField] private float boxDistance = 0.55f;
-
-    [Header("Criterion")]
-    [SerializeField] private float criterionVelocity = 0.1f;
-
     private PlayerWeapon rangeWeapon;
     private PlayerWeapon meleeWeapon;
-    private PlayerWeapon nowWeapon;    
+    private PlayerWeapon nowWeapon;
 
-    // 애니메이션 bool
+    #region Animation Hash
     private int isWalk;
     private int isJump;
     private int isFall;
+    #endregion
 
     private void Awake()
     {
@@ -69,12 +60,13 @@ public class PlayerController : MonoBehaviour
         meleeWeapon = GetComponentInChildren<PlayerMeleeWeapon>(true);
         nowWeapon = rangeWeapon;
 
-        speed = baseSpeed;
+        speed = data.baseSpeed;
         isFlip = false;
         canDash = false;
         isAntiGravity = false;
         baseGravity = rb.gravityScale;
         currentState = PlayerState.Normal;
+        dashWait = new WaitForSeconds(data.dashDelay);
     }
 
     private void Start()
@@ -108,73 +100,7 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Launch:
                 LaunchStateHandle();
                 break;
-        }
-        //// 발사 장치에 접촉 시 해당 조작으로 변경
-        //if (currentState == PlayerState.Hold)
-        //{
-        //    Vector2 launchDir = Vector2.zero;
-
-        //    if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
-        //    {
-        //        launchDir.x = -1;
-        //    }
-        //    if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
-        //    {
-        //        launchDir.x = 1;
-        //    }
-        //    if (Keyboard.current.upArrowKey.wasPressedThisFrame)
-        //    {
-        //        launchDir.y = 1;
-        //    }
-        //    if (Keyboard.current.downArrowKey.wasPressedThisFrame)
-        //    {
-        //        launchDir.y = -1;
-        //    }
-            
-        //    // 발사 성공 시 해당 방향으로 직선 발사
-        //    if (launchDir != Vector2.zero)
-        //    {
-        //        currentState = PlayerState.Launch;
-        //        rb.gravityScale = 0;
-        //        rb.linearVelocity = launchDir.normalized * speed * launchSpeed;
-        //        dir = 0;
-        //    }
-        //    return;
-        //}
-
-        //// 발사 도중 아무 조작 입력 시 원상태로 복구
-        //if (currentState == PlayerState.Launch)
-        //{
-        //    // 현재 내 속도의 크기 계산
-        //    if (Keyboard.current.anyKey.wasPressedThisFrame || rb.linearVelocity.sqrMagnitude <= criterionVelocity)
-        //    {
-        //        RestoreGravity();
-        //        currentState = PlayerState.Normal;
-        //    }
-        //}
-
-        //dir = 0;
-
-        //if (Keyboard.current.leftArrowKey.isPressed)
-        //{
-        //    dir += -1;
-        //}
-        //if (Keyboard.current.rightArrowKey.isPressed)
-        //{
-        //    dir += 1;
-        //}
-        //if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        //{
-        //    Jump();
-        //}
-        //if (Keyboard.current.shiftKey.wasPressedThisFrame && canDash)
-        //{
-        //    StartCoroutine(Dash());
-        //}
-        ////if (Keyboard.current.tabKey.wasPressedThisFrame)
-        ////{
-        ////    ChangeWeapon();
-        ////}
+        }        
     }
 
     private void NormalStateHandle()
@@ -225,14 +151,14 @@ public class PlayerController : MonoBehaviour
         {
             currentState = PlayerState.Launch;
             rb.gravityScale = 0;
-            rb.linearVelocity = launchDir.normalized * speed * launchSpeed;
+            rb.linearVelocity = launchDir.normalized * speed * data.launchSpeed;
             dir = 0;
         }
     }
 
     private void LaunchStateHandle()
     {
-        if (Keyboard.current.anyKey.wasPressedThisFrame || rb.linearVelocity.sqrMagnitude <= criterionVelocity)
+        if (Keyboard.current.anyKey.wasPressedThisFrame || rb.linearVelocity.sqrMagnitude <= data.criterionVelocity)
         {
             RestoreGravity();
             currentState = PlayerState.Normal;
@@ -304,10 +230,10 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (jumpCount >= jumpCountMax)
+        if (jumpCount >= data.jumpCountMax)
             return;
 
-        float gravityJump = isAntiGravity ? -jumpPower : jumpPower;
+        float gravityJump = isAntiGravity ? -data.jumpPower : data.jumpPower;
 
         if (currentState != PlayerState.Launch)
         {
@@ -351,9 +277,9 @@ public class PlayerController : MonoBehaviour
         canDash = false;
         currentState = PlayerState.Dash;
         rb.gravityScale = 0;
-        rb.linearVelocity = new Vector2(isFlip ? -speed * dashSpeed : speed * dashSpeed, 0);
+        rb.linearVelocity = new Vector2(isFlip ? -speed * data.dashSpeed : speed * data.dashSpeed, 0);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return dashWait;
 
         RestoreGravity();
         rb.linearVelocity = Vector2.zero;
@@ -375,13 +301,13 @@ public class PlayerController : MonoBehaviour
     private void GroundCheck()
     {
         Vector2 gravity = isAntiGravity ? Vector2.up : Vector2.down;
-        Vector2 check = new Vector2(transform.position.x + boxOffset, transform.position.y);
+        Vector2 check = new Vector2(transform.position.x + data.boxOffset, transform.position.y);
 
-        RaycastHit2D hit = Physics2D.BoxCast(check, boxSize, 0f, gravity, boxDistance, groundLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(check, data.boxSize, 0f, gravity, data.boxDistance, data.groundLayer);
 
         isGround = hit.collider == null ? false : true;
 
-        if (isGround && Mathf.Abs(rb.linearVelocity.y) <= criterionVelocity)
+        if (isGround && Mathf.Abs(rb.linearVelocity.y) <= data.criterionVelocity)
         {
             jumpCount = 0;
             animator.SetBool(isFall, false);
@@ -390,7 +316,7 @@ public class PlayerController : MonoBehaviour
 
     private void FallCheck()
     {
-        bool isFalling = isAntiGravity ? rb.linearVelocity.y > criterionVelocity : rb.linearVelocity.y < -criterionVelocity;
+        bool isFalling = isAntiGravity ? rb.linearVelocity.y > data.criterionVelocity : rb.linearVelocity.y < -data.criterionVelocity;
 
         animator.SetBool(isFall, isFalling);
 
@@ -402,10 +328,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        float gravityY = isAntiGravity ? -boxDistance : boxDistance;
+        float gravityY = isAntiGravity ? -data.boxDistance : data.boxDistance;
         Gizmos.color = Color.green;
-        Vector3 gizmos = new Vector3(transform.position.x + boxOffset, transform.position.y - gravityY, 0);
-        Gizmos.DrawCube(gizmos, boxSize);
+        Vector3 gizmos = new Vector3(transform.position.x + data.boxOffset, transform.position.y - gravityY, 0);
+        Gizmos.DrawCube(gizmos, data.boxSize);
     }
 
     public void TakeDamage()
