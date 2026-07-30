@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2340a37227dfa044498154f410cf9efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossPattern_11
+  data: {fileID: 0}
   isFinish: 0
   delayFrame: 0.75
   delay2Frame: 0.33333334
@@ -188,6 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a74b1851251a7fc4c9d1f22981aa3ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossPattern_2
+  data: {fileID: 0}
   isFinish: 0
   delayFrame: 0.75
   delay2Frame: 0.33333334
@@ -238,6 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a545dff7fcfd344ba40689f18f1ed07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossPattern_8
+  data: {fileID: 0}
   isFinish: 0
   delayFrame: 0.75
   delay2Frame: 0.33333334
@@ -449,6 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a54d5a56e25f214399fba36ab35e916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossPattern_3
+  data: {fileID: 0}
   isFinish: 0
   delayFrame: 0.75
   delay2Frame: 0.33333334
@@ -500,6 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b54efb821ce1a44580b06476efbc795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossPattern_9
+  data: {fileID: 0}
   isFinish: 0
   delayFrame: 0.75
   delay2Frame: 0.33333334
@@ -551,6 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa85b01cd0ab294a966c18bb54e586a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossPattern_12
+  data: {fileID: 0}
   isFinish: 0
   delayFrame: 0.75
   delay2Frame: 0.33333334
@@ -608,6 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e73478779a35d4c8047a396916b5ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossPattern_7
+  data: {fileID: 0}
   isFinish: 0
   delayFrame: 0.75
   delay2Frame: 0.33333334
@@ -680,6 +687,7 @@ MonoBehaviour:
   - {fileID: 217815818448834374}
   - {fileID: 1792059264340896389}
   currentPhase: 1
+  currentPattern: -1
   clearTrophyId: 1002
 --- !u!212 &1976890779553776625
 SpriteRenderer:
@@ -852,6 +860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c17ad38bfa360c4490d6a5c367de0aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossPattern_1
+  data: {fileID: 0}
   isFinish: 0
   delayFrame: 0.75
   delay2Frame: 0.33333334
@@ -902,6 +911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab19daf1eb2811c44852924691455ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossPattern_6
+  data: {fileID: 0}
   isFinish: 0
   delayFrame: 0.75
   delay2Frame: 0.33333334
@@ -954,6 +964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4155fc8807238e74288597aaaab3867b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossPattern_5
+  data: {fileID: 0}
   isFinish: 0
   delayFrame: 0.75
   delay2Frame: 0.33333334
@@ -1005,6 +1016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc17df96504a25f418ab058e61c92969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossPattern_10
+  data: {fileID: 0}
   isFinish: 0
   delayFrame: 0.75
   delay2Frame: 0.33333334
@@ -1013,7 +1025,6 @@ MonoBehaviour:
   attackCount: 30
   addAngle: 15
   attackDelay: 0.2
-  divideSpeed: 2
   bulCount: 4
 --- !u!1 &8374196816019136215
 GameObject:
@@ -1059,6 +1070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce83544057b44445809ee6345195605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossPattern_4
+  data: {fileID: 0}
   isFinish: 0
   delayFrame: 0.75
   delay2Frame: 0.33333334

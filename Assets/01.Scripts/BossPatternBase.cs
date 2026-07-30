@@ -3,19 +3,15 @@ using UnityEngine;
 
 public abstract class BossPatternBase : MonoBehaviour
 {
-    [Header("Boss Pattern Data")]
-    [SerializeField] BossPatternDataSO data;
+    protected BossPatternDataSO data;
 
     protected int randPattern;
     protected int currentPattern = 0;
     public bool isFinish;
-    [SerializeField] protected float delayFrame = (45f / 60f);
-    [SerializeField] protected float delay2Frame = (20f / 60f);
     protected WaitForSeconds wait;
     protected WaitForSeconds wait2;
     protected BossController boss;
     [SerializeField] protected float baseAngle;
-    [SerializeField] protected float angle;
 
     [SerializeField] protected int attackCount;
     
@@ -23,10 +19,15 @@ public abstract class BossPatternBase : MonoBehaviour
 
     protected Quaternion rotate;
 
-    private void Awake()
+    public void SetPatternData(BossPatternDataSO data)
     {
-        wait = new WaitForSeconds(delayFrame);
-        wait2 = new WaitForSeconds(delay2Frame);
+        this.data = data;
+
+        if (this.data != null)
+        {
+            wait = new WaitForSeconds(data.delayFrame);
+            wait2 = new WaitForSeconds(data.delay2Frame);
+        }
     }
 
     public void StartPattern(BossController obj)
@@ -50,5 +51,5 @@ public abstract class BossPatternBase : MonoBehaviour
     public void StopAttack()
     {
         StopAllCoroutines();
-    }
+    }    
 }

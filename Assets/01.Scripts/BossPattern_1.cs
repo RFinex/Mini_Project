@@ -5,7 +5,7 @@ public class BossPattern_1 : BossPatternBase
 {
     protected override IEnumerator Pattern()
     {
-        for (int i = 0; i < attackCount; i++)
+        for (int i = 0; i < data.p1_AttackCount; i++)
         {
             yield return wait;
             SoundManager.instance.PlaySFX(SFXType.Fireball);

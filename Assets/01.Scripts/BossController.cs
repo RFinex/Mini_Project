@@ -12,8 +12,13 @@ public enum BossState
 }
 
 public class BossController : BossEnemyController
-{   
+{
+    [Header("Pattern Data SO")]
+    [SerializeField] private BossPatternDataSO patternData;
+
+    [Header("Attack Position")]
     [SerializeField] private Transform attackPos;
+
     public Transform AttackPos
     {
         get
@@ -53,6 +58,7 @@ public class BossController : BossEnemyController
 
     private StateMachine<BossController> stateMachine;
 
+    [Header("Phase Handler")]
     [SerializeField] private List<BossPhaseHandler> phases;
 
     private List<BossPatternBase> patterns = new List<BossPatternBase>();
@@ -94,8 +100,8 @@ public class BossController : BossEnemyController
     private int isDie;
         
 
-    [SerializeField] private int currentPhase = 1;
-    [SerializeField] private int currentPattern = -1;
+    private int currentPhase = 1;
+    private int currentPattern = -1;
     public int CurrentPattern
     {
         get
@@ -119,6 +125,7 @@ public class BossController : BossEnemyController
         }
     }
 
+    [Header("Clear Trophy ID")]
     [SerializeField] private int clearTrophyId;
     private void Awake()
     {
@@ -138,6 +145,13 @@ public class BossController : BossEnemyController
 
     private void Start()
     {
+        List<BossPatternBase> patternList = new List<BossPatternBase>(GetComponentsInChildren<BossPatternBase>(true));
+
+        foreach (BossPatternBase pattern in patternList)
+        {
+            pattern.SetPatternData(patternData);
+        }
+
         isAttack = Animator.StringToHash("isAttack");
         isStun = Animator.StringToHash("isStun");
         isDie = Animator.StringToHash("isDie");
