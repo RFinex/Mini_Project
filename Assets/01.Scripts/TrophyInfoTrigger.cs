@@ -17,8 +17,8 @@ public class TrophyInfoTrigger : MonoBehaviour
     {
         if (DataManager.instance != null)
         {
-            DataManager.instance.trophyUpdate -= InitTrophyInfo;
-            DataManager.instance.trophyUpdate += InitTrophyInfo;
+            DataManager.instance.TrophyUpdate -= InitTrophyInfo;
+            DataManager.instance.TrophyUpdate += InitTrophyInfo;
         }
         
     }
@@ -27,7 +27,7 @@ public class TrophyInfoTrigger : MonoBehaviour
     {
         if (DataManager.instance != null)
         {
-            DataManager.instance.trophyUpdate -= InitTrophyInfo;
+            DataManager.instance.TrophyUpdate -= InitTrophyInfo;
         }        
     }
 

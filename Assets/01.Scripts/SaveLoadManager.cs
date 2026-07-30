@@ -9,6 +9,9 @@ public class SaveLoadManager : MonoBehaviour
     private string fileName;
     private string savePath;
 
+    private string rankFileName;
+    private string rankSavePath;
+
     private void Awake()
     {
         if (instance == null)
@@ -22,7 +25,9 @@ public class SaveLoadManager : MonoBehaviour
     {
         data = new GameData();
         fileName = "gameData.json";
+        rankFileName = "rankData.json";
         savePath = Path.Combine(Application.persistentDataPath, fileName);
+        rankSavePath = Path.Combine(Application.persistentDataPath, rankFileName);
     }
 
     public void Save()
@@ -77,4 +82,21 @@ public class SaveLoadManager : MonoBehaviour
 
         Save();
     }
+
+    public void SaveRank(Ranking rank)
+    {
+        string json = JsonUtility.ToJson(rank);
+        File.WriteAllText(rankSavePath, json);
+    }
+
+    public void LoadRank()
+    {
+        if (File.Exists(rankSavePath) == false)
+        {
+            Debug.Log("세이브 없음");
+            return;
+        }
+
+        string json = File.ReadAllText(rankSavePath);
+    }    
 }

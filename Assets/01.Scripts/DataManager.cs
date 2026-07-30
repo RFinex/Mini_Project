@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class DataManager : MonoBehaviour
 {
@@ -10,9 +11,14 @@ public class DataManager : MonoBehaviour
 
     [SerializeField] private TrophyData trophyData;
 
+    private Ranking rankData = new Ranking();
+    private int maxRankCount = 20;
+
     private Vector3 checkPos;
 
-    public event Action trophyUpdate;
+    public event Action TrophyUpdate;
+
+
 
     public Vector3 CheckPos
     {
@@ -47,6 +53,7 @@ public class DataManager : MonoBehaviour
         else
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
+
         LoadTrophyData();
     }
 
@@ -116,8 +123,20 @@ public class DataManager : MonoBehaviour
             {
                 trophys[id].isCollect = true;
                 UIManager.instance.OpenTrophyPanel(id);
-                trophyUpdate?.Invoke();
+                TrophyUpdate?.Invoke();
             }
         }
+    }
+
+    public void AddRanking(float time)
+    {
+        rankData.bestRank.Add(new RankData { clearTime = time });
+
+        rankData.bestRank = rankData.bestRank
+            .OrderBy(x => x.clearTime)
+            .Take(maxRankCount)
+            .ToList();
+
+        SaveLoadManager.instance.SaveRank(rankData);
     }
 }
