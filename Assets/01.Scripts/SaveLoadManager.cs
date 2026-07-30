@@ -98,5 +98,12 @@ public class SaveLoadManager : MonoBehaviour
         }
 
         string json = File.ReadAllText(rankSavePath);
+
+        Ranking rank = JsonUtility.FromJson<Ranking>(json);
+
+        if (rank != null && rank.bestRank != null)
+        {
+            DataManager.instance.SetRankData(rank);
+        }
     }    
 }

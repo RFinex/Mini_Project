@@ -18,7 +18,7 @@ public class DataManager : MonoBehaviour
 
     public event Action TrophyUpdate;
 
-
+    public List<RankData> rankList = new List<RankData>();
 
     public Vector3 CheckPos
     {
@@ -137,6 +137,22 @@ public class DataManager : MonoBehaviour
             .Take(maxRankCount)
             .ToList();
 
+        rankList = rankData.bestRank;
+
         SaveLoadManager.instance.SaveRank(rankData);
+    }
+
+    public void SetRankData(Ranking rank)
+    {
+        if (rank != null && rank.bestRank != null)
+        {
+            rankData = rank;
+            rankList = rankData.bestRank;
+        }
+    }
+
+    public List<RankData> GetRank()
+    {
+        return rankData.bestRank;
     }
 }
