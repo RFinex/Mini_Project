@@ -158,6 +158,12 @@ public class PlayerController : MonoBehaviour
 
     private void LaunchStateHandle()
     {
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            RestoreGravity();
+            currentState = PlayerState.Normal;
+            Jump();
+        }
         if (Keyboard.current.anyKey.wasPressedThisFrame || rb.linearVelocity.sqrMagnitude <= data.criterionVelocity)
         {
             RestoreGravity();

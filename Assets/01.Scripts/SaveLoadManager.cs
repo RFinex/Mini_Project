@@ -46,7 +46,7 @@ public class SaveLoadManager : MonoBehaviour
 
         File.WriteAllText(savePath, json);
 
-        Debug.Log(savePath);
+        //Debug.Log(savePath);
     }
 
     public void Load()

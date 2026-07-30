@@ -72,10 +72,8 @@ public class MiniBossWeapon : MonsterWeapon
         StopAllCoroutines();
     }
 
-    // 나중에 리스트로 정리 해볼 예정
     private IEnumerator Pattern_0()
     {
-        Debug.Log("패턴0 실행");
         angle = 30f;
         for (int i = 0; i < 10; i++)
         {
@@ -101,7 +99,6 @@ public class MiniBossWeapon : MonsterWeapon
     }
     private IEnumerator Pattern_1()
     {
-        Debug.Log("패턴1 실행");
         angle = 15f;
 
         for (int i = 0; i < 2; i++)
@@ -126,7 +123,6 @@ public class MiniBossWeapon : MonsterWeapon
     }
     private IEnumerator Pattern_2()
     {
-        Debug.Log("패턴2 실행");
         for (int i = 0; i < 20; i++)
         {
             SoundManager.instance.PlaySFX(SFXType.Shoot);
@@ -147,7 +143,6 @@ public class MiniBossWeapon : MonsterWeapon
 
     private IEnumerator Heavy_Pattern_0()
     {
-        Debug.Log("강력 패턴0 실행");
         for (int i = 0; i < 3; i++)
         {
             SetAngle(dirFunc.Invoke());
@@ -161,7 +156,6 @@ public class MiniBossWeapon : MonsterWeapon
     }
     private IEnumerator Heavy_Pattern_1()
     {
-        Debug.Log("강력 패턴1 실행");
         angle = 180f;
         for (int i = 0; i < RectArea.instance.minibossLaserArea.Count; i++)
         {
@@ -174,8 +168,6 @@ public class MiniBossWeapon : MonsterWeapon
     }
     private IEnumerator Heavy_Pattern_2()
     {
-        Debug.Log("강력 패턴2 실행");
-
         Tween moveTween = transform.DOMove(RectArea.instance.minibossMoveArea.center, 2f)
             .SetLink(gameObject)
             .SetEase(Ease.Linear);
