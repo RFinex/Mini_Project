@@ -3,6 +3,9 @@ using UnityEngine;
 
 public abstract class BossPatternBase : MonoBehaviour
 {
+    [Header("Boss Pattern Data")]
+    [SerializeField] BossPatternDataSO data;
+
     protected int randPattern;
     protected int currentPattern = 0;
     public bool isFinish;
