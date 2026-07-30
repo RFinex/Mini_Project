@@ -9,7 +9,7 @@ public class MenuInit : MonoBehaviour
     [SerializeField] private Button loadBtn;
 
     [SerializeField] private RectTransform eventArrow;
-    private void Awake()
+    private void Start()
     {
         UIManager.instance.Init_Menu(menuCanvas, startBtn, loadBtn, eventArrow);
 
