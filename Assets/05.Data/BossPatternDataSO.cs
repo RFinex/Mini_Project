@@ -12,6 +12,7 @@ public class BossPatternDataSO : ScriptableObject
 
     [Header("Pattern_2 Setting")]
     public int p2_AttackCount = 5;
+    public int p2_BulCount = 12;
     public float p2_Angle = 30f;
 
     [Header("Pattern_3 Setting")]

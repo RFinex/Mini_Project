@@ -10,9 +10,12 @@ public class BossPattern_1 : BossPatternBase
             yield return wait;
             SoundManager.instance.PlaySFX(SFXType.Fireball);
             GameObject fire = ObjectPoolManager.instance.GetObject(ConstString.bossBullet);
-            fire.transform.position = boss.AttackPos.position;
-            SetAngle(boss.GetAttackPosDirection());
-            fire.transform.rotation = Quaternion.Euler(0f, 0f, baseAngle);
+            if (fire != null)
+            {
+                fire.transform.position = boss.AttackPos.position;
+                float baseAngle = GetAngle(boss.GetAttackPosDirection());
+                fire.transform.rotation = Quaternion.Euler(0f, 0f, baseAngle);
+            }            
 
             yield return wait2;
         }

@@ -4,20 +4,11 @@ using System.Collections;
 
 public class BossPattern_11 : BossPatternBase
 {
-    [SerializeField] private float bulSpeed;
-    [SerializeField] private float patternDelay;
-    [SerializeField] private float patternDelay2;
-
-    private WaitForSeconds waitDelay;
-    private WaitForSeconds waitDelay2;
-
-    private void Awake()
-    {
-        waitDelay = new WaitForSeconds(patternDelay);
-        waitDelay2 = new WaitForSeconds(patternDelay2);
-    }
     protected override IEnumerator Pattern()
     {
+        WaitForSeconds waitDelay = new WaitForSeconds(data.p11_PatternDelay);
+        WaitForSeconds waitDelay2 = new WaitForSeconds(data.p11_PatternDelay2);
+
         for (int i = 0; i < RectArea.instance.bossMoveArea.Count; i++)
         {
             boss.BAnimator.SetBool(boss.IsAttack, false);
@@ -35,7 +26,8 @@ public class BossPattern_11 : BossPatternBase
             boss.BAnimator.SetBool(boss.IsAttack, true);
 
             SoundManager.instance.PlaySFX(SFXType.Fireball);
-            for (int j = 0; j < attackCount; j++)
+
+            for (int j = 0; j < data.p11_AttackCount; j++)
             {
                 Vector3 attackPos = boss.AttackPos.position;
                 attackPos.y = Random.Range(moveRect.yMin, moveRect.yMax);
@@ -44,7 +36,7 @@ public class BossPattern_11 : BossPatternBase
                 fire.transform.position = attackPos;
                 if (fire.TryGetComponent<BossBullet>(out BossBullet bul))
                 {
-                    bul.SetSpeed(bulSpeed);
+                    bul.SetSpeed(data.p11_BulSpeed);
                 }
 
                 yield return waitDelay2;

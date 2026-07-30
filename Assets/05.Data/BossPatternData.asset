@@ -21,7 +21,7 @@ MonoBehaviour:
   p3_BulCount: 5
   p3_RandAngle: 30
   p4_AttackCount: 40
-  p4_Angle: 40
+  p4_Angle: 10
   p4_PatternDelay: 0.05
   p5_AttackCount: 6
   p5_PatternDelay: 0.5
@@ -37,7 +37,7 @@ MonoBehaviour:
   p9_PatternDelay: 0.1
   p10_AttackCount: 30
   p10_BulCount: 4
-  p10_AngleOffset: 10
+  p10_AngleOffset: 15
   p10_PatternDelay: 0.2
   p11_AttackCount: 60
   p11_BulSpeed: 16

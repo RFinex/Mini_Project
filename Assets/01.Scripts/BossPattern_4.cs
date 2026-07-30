@@ -3,24 +3,18 @@ using System.Collections;
 
 public class BossPattern_4 : BossPatternBase
 {
-    [SerializeField] private float patternDelay;
-    private WaitForSeconds waitDelay;
-    private void Awake()
-    {
-        waitDelay = new WaitForSeconds(patternDelay);
-    }
-
     protected override IEnumerator Pattern()
     {
+        WaitForSeconds waitDelay = new WaitForSeconds(data.p4_PatternDelay);
+
         yield return wait;
-        angle = 10f;
-        for (int i = 0; i < attackCount; i++)
+        for (int i = 0; i < data.p4_AttackCount; i++)
         {
-            SetAngle(boss.GetAttackPosDirection());
+            float baseAngle = GetAngle(boss.GetAttackPosDirection());
             SoundManager.instance.PlaySFX(SFXType.Fireball);
             GameObject fire = ObjectPoolManager.instance.GetObject(ConstString.bossBullet);
             fire.transform.position = boss.AttackPos.position;
-            fire.transform.rotation = Quaternion.Euler(0f, 0f, baseAngle + i * angle);
+            fire.transform.rotation = Quaternion.Euler(0f, 0f, baseAngle + i * data.p4_Angle);
             yield return waitDelay;
         }
 

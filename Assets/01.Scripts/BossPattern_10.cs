@@ -4,20 +4,11 @@ using System.Collections;
 
 public class BossPattern_10 : BossPatternBase
 {
-    [SerializeField] private float addAngle;
-    [SerializeField] private float attackDelay;
-    [SerializeField] private int bulCount;
-
-    private WaitForSeconds waitDelay;
-
-    private void Awake()
-    {
-        waitDelay = new WaitForSeconds(attackDelay);
-    }
-
     protected override IEnumerator Pattern()
     {
-        if (bulCount <= 0)
+        WaitForSeconds waitDelay = new WaitForSeconds(data.p10_PatternDelay);
+
+        if (data.p10_BulCount <= 0)
         {
             Debug.Log("10번 패턴 실행 실패. bulCount가 0 이하");
             isFinish = true;
@@ -26,7 +17,7 @@ public class BossPattern_10 : BossPatternBase
 
         boss.BAnimator.SetBool(boss.IsAttack, false);
         float currentAngle = 0f;
-        float nextAngle = 360f / bulCount;
+        float nextAngle = 360f / data.p10_BulCount;
 
         Rect moveRect = RectArea.instance.bossMoveArea[Random.Range(0, RectArea.instance.bossMoveArea.Count)];
         Vector2 centerPos = moveRect.center;
@@ -38,12 +29,12 @@ public class BossPattern_10 : BossPatternBase
         boss.BAnimator.SetBool(boss.IsAttack, true);
         yield return wait;
         
-        for (int i = 0; i < attackCount; i++)
+        for (int i = 0; i < data.p10_AttackCount; i++)
         {
             SoundManager.instance.PlaySFX(SFXType.Fireball);
-            for (int j = 0; j < bulCount; j++)
+            for (int j = 0; j < data.p10_BulCount; j++)
             {
-                angle = j * nextAngle;
+                float angle = j * nextAngle;
                 GameObject fire = ObjectPoolManager.instance.GetObject(ConstString.bossBullet);
                 fire.transform.position = boss.AttackPos.position;
                 fire.transform.rotation = Quaternion.Euler(0f, 0f, currentAngle + angle);
@@ -53,7 +44,7 @@ public class BossPattern_10 : BossPatternBase
                 fire2.transform.rotation = Quaternion.Euler(0f, 0f, -currentAngle + angle);
             }
 
-            currentAngle += addAngle;
+            currentAngle += data.p10_AngleOffset;
 
             yield return waitDelay;
         }

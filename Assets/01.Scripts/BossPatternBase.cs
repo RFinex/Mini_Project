@@ -8,15 +8,12 @@ public abstract class BossPatternBase : MonoBehaviour
     protected int randPattern;
     protected int currentPattern = 0;
     public bool isFinish;
+
     protected WaitForSeconds wait;
     protected WaitForSeconds wait2;
     protected BossController boss;
-    [SerializeField] protected float baseAngle;
-
-    [SerializeField] protected int attackCount;
     
     protected Vector2 bulDir;
-
     protected Quaternion rotate;
 
     public void SetPatternData(BossPatternDataSO data)
@@ -43,9 +40,9 @@ public abstract class BossPatternBase : MonoBehaviour
 
     protected abstract IEnumerator Pattern();
 
-    public void SetAngle(Vector2 dir)
+    public float GetAngle(Vector2 dir)
     {
-        baseAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        return Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
     }
 
     public void StopAttack()
