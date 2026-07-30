@@ -22,7 +22,7 @@ public class MenuButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void Start()
     {
-        arrow = UIManager.instance.EventArrow;
+        GetArrow();
     }
 
     private void GetArrow()
