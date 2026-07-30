@@ -107,6 +107,7 @@ public class GameManager : MonoBehaviour
     {
         SoundManager.instance.PlayBGM(BGMType.Game);
 
+        DataManager.instance.AddRanking(DataManager.instance.PlayTime);
         if (DataManager.instance.PlayTime <= speedRunTimeLimit)
         {
             DataManager.instance.GetTrophy(speedRunTrophyId);
