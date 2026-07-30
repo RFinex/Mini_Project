@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
             currentState = PlayerState.Normal;
             Jump();
         }
-        if (Keyboard.current.anyKey.wasPressedThisFrame || rb.linearVelocity.sqrMagnitude <= data.criterionVelocity)
+        else if (Keyboard.current.anyKey.wasPressedThisFrame || rb.linearVelocity.sqrMagnitude <= data.criterionVelocity)
         {
             RestoreGravity();
             currentState = PlayerState.Normal;
