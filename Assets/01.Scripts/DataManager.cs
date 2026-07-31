@@ -9,10 +9,13 @@ public class DataManager : MonoBehaviour
 
     private Dictionary<int, Trophy> trophys = new Dictionary<int, Trophy>();
 
+    [Header("Data")]
     [SerializeField] private TrophyData trophyData;
 
-    private Ranking rankData = new Ranking();
+    [Header("Top Ranking Count")]
     [SerializeField] private int maxRankCount = 20;
+
+    private Ranking rankData = new Ranking();
 
     private Vector3 checkPos;
 
