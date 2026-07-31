@@ -12,7 +12,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] private TrophyData trophyData;
 
     private Ranking rankData = new Ranking();
-    private int maxRankCount = 20;
+    [SerializeField] private int maxRankCount = 20;
 
     private Vector3 checkPos;
 
