@@ -1496,6 +1496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2294a499deecf0418d965d8baea0597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
+  data: {fileID: 11400000, guid: 6c9dd90edae2e3843962902dfcfcc91b, type: 2}
   trophys: []
   inventory: {fileID: 6247376007230446043}
   slots:

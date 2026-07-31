@@ -2,21 +2,11 @@ using UnityEngine;
 using DG.Tweening;
 using TMPro;
 
-public class TrophyUIPanel : MonoBehaviour, IPoolable
+public class TrophyUIPanel : PopupBase, IPoolable
 {
-    [SerializeField] private float popupSize;
-    [SerializeField] private float openSize;
-    [SerializeField] private float closeSize;
-
-    [SerializeField] private float popupDelay;
     [SerializeField] private float closeDelay;
     [SerializeField] private TextMeshProUGUI trophyText;
-
-    private void OnEnable()
-    {
-        transform.localScale = Vector3.one * closeSize;
-    }
-
+    
     public void OpenPanel(string text)
     {
         SetUIText(text);
@@ -26,12 +16,14 @@ public class TrophyUIPanel : MonoBehaviour, IPoolable
 
     public void PopupOpenNClose()
     {
-        Sequence seq = DOTween.Sequence();
-        seq.Append(transform.DOScale(popupSize, popupDelay))
-            .Append(transform.DOScale(openSize, popupDelay))
+        seq?.Kill();
+
+        seq = DOTween.Sequence();
+        seq.Append(transform.DOScale(data.popupSize, data.popupDelay))
+            .Append(transform.DOScale(data.openSize, data.popupDelay))
             .AppendInterval(closeDelay)
-            .Append(transform.DOScale(popupSize, popupDelay))
-            .Append(transform.DOScale(closeSize, popupDelay))        
+            .Append(transform.DOScale(data.popupSize, data.popupDelay))
+            .Append(transform.DOScale(data.closeSize, data.popupDelay))        
             .SetLink(gameObject, LinkBehaviour.KillOnDisable)
             .OnComplete(ReturnPool);
     }

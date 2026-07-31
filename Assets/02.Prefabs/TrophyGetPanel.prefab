@@ -52,10 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dba10a9d9714ac44b48bd9c9d1c9d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrophyUIPanel
-  popupSize: 1.1
-  openSize: 1
-  closeSize: 0.1
-  popupDelay: 0.2
+  data: {fileID: 11400000, guid: 6c9dd90edae2e3843962902dfcfcc91b, type: 2}
   closeDelay: 3
   trophyText: {fileID: 1428034289134063294}
 --- !u!222 &4901237814469236508

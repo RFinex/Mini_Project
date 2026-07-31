@@ -1,10 +1,11 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class MenuButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private RectTransform arrow;
+    [SerializeField] private RectTransform arrow;
     private RectTransform rect;
 
     [SerializeField] private float popupSize;
@@ -22,6 +23,14 @@ public class MenuButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void Start()
     {
+        StartCoroutine(lateStart());
+    }
+
+    private IEnumerator lateStart()
+    {
+        yield return null;
+        yield return null;
+
         GetArrow();
     }
 

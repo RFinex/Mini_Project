@@ -1,8 +1,9 @@
-using UnityEngine;
+using DG.Tweening;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
+public class Inventory : PopupBase
 {
     public List<Trophy> trophys;
 
@@ -13,18 +14,40 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
-        closeBtn.onClick.AddListener(UIManager.instance.CloseTrophyInv);
+        closeBtn.onClick.AddListener(ClosePopup);
     }
 
     // 인스펙터 값 변경 시 호출
     private void OnValidate()
     {
         slots = inventory.GetComponentsInChildren<Slot>();
+    }       
+
+    public void Open()
+    {
+        OpenPopup();
+        GetTrophyData();
     }
 
-    private void OnEnable()
+    public void OpenPopup()
     {
-        GetTrophyData();
+        seq?.Kill();
+
+        seq = DOTween.Sequence();
+        seq.Append(transform.DOScale(data.popupSize, data.popupDelay))
+            .Append(transform.DOScale(data.openSize, data.popupDelay))
+            .SetLink(gameObject, LinkBehaviour.KillOnDisable);
+    }
+
+    public void ClosePopup()
+    {
+        seq?.Kill();
+
+        seq = DOTween.Sequence();
+        seq.Append(transform.DOScale(data.popupSize, data.popupDelay))
+            .Append(transform.DOScale(data.closeSize, data.popupDelay))
+            .SetLink(gameObject, LinkBehaviour.KillOnDisable)
+            .OnComplete(() => UIManager.instance.CloseTrophyInv());
     }
 
     private void GetTrophyData()

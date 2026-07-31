@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TrophyInfoPanel : MonoBehaviour
+public class TrophyInfoPanel : PopupBase
 {
     [Header("Panel UI")]
     [SerializeField] private Image trophyImage;
@@ -13,19 +13,7 @@ public class TrophyInfoPanel : MonoBehaviour
     [SerializeField] private Color collectColor;
     [SerializeField] private Color notCollectColor;
 
-    [SerializeField] private float popupSize;
-    [SerializeField] private float openSize;
-    [SerializeField] private float closeSize;
-    [SerializeField] private float popupDelay;
-
-    private Sequence seq;
-
     private Trophy trophy;
-
-    private void OnEnable()
-    {
-        transform.localScale = Vector3.one * closeSize;
-    }
 
     public void OpenPanel(int id)
     {
@@ -43,8 +31,8 @@ public class TrophyInfoPanel : MonoBehaviour
         seq?.Kill();
 
         seq = DOTween.Sequence();
-        seq.Append(transform.DOScale(popupSize, popupDelay))
-            .Append(transform.DOScale(openSize, popupDelay))
+        seq.Append(transform.DOScale(data.popupSize, data.popupDelay))
+            .Append(transform.DOScale(data.openSize, data.popupDelay))
             .SetLink(gameObject, LinkBehaviour.KillOnDisable);
     }
 
@@ -53,8 +41,8 @@ public class TrophyInfoPanel : MonoBehaviour
         seq?.Kill();
 
         seq = DOTween.Sequence();
-        seq.Append(transform.DOScale(popupSize, popupDelay))
-            .Append(transform.DOScale(closeSize, popupDelay))
+        seq.Append(transform.DOScale(data.popupSize, data.popupDelay))
+            .Append(transform.DOScale(data.closeSize, data.popupDelay))
             .SetLink(gameObject, LinkBehaviour.KillOnDisable)
             .OnComplete(() => gameObject.SetActive(false));
     }

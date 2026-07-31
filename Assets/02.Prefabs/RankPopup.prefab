@@ -808,6 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95ffb414cdb002b4ca15b9a4d05719db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RankingPopup
+  data: {fileID: 11400000, guid: 6c9dd90edae2e3843962902dfcfcc91b, type: 2}
   content: {fileID: 5040599376022622782}
   rankPanel: {fileID: 4165801948499005248, guid: 2dc49ce3ea808f443bf8cfe55b3c8526, type: 3}
   closeBtn: {fileID: 6687650687204983110}

@@ -211,7 +211,7 @@ public class UIManager : MonoBehaviour
 
         if (rank != null)
         {
-            rank.UpdateRankPanel();
+            rank.Open();
         }
 
         SetDimUI(menuCanvas.transform);
@@ -237,6 +237,12 @@ public class UIManager : MonoBehaviour
             option.SetActive(true);
         }
 
+        OptionPanel op = option.GetComponent<OptionPanel>();
+        if (op != null)
+        {
+            op.Open();
+        }
+
         SetDimUI(uiCanvas.transform);
 
         dimObject.transform.SetAsLastSibling();
@@ -258,6 +264,13 @@ public class UIManager : MonoBehaviour
         else
         {
             trophy.SetActive(true);
+        }
+
+        Inventory tInv = trophy.GetComponent<Inventory>();
+
+        if (tInv != null)
+        {
+            tInv.Open();
         }
 
         SetDimUI(uiCanvas.transform);

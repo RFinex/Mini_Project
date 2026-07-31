@@ -1,7 +1,8 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OptionPanel : MonoBehaviour
+public class OptionPanel : PopupBase
 {
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider sfxSlider;
@@ -13,12 +14,12 @@ public class OptionPanel : MonoBehaviour
     {
         bgmSlider.onValueChanged.AddListener(BGMVolumeChanged);
         sfxSlider.onValueChanged.AddListener(SFXVolumeChanged);
-        closeBtn.onClick.AddListener(UIManager.instance.CloseOptionPanel);
+        closeBtn.onClick.AddListener(ClosePopup);
         bgmMuteToggle.onValueChanged.AddListener(BGMMute);
         sfxMuteToggle.onValueChanged.AddListener(SFXMute);
-    }
+    }    
 
-    private void OnEnable()
+    private void UpdateSoundInfo()
     {
         bgmSlider.value = SoundManager.instance.GetBGMVolume();
         sfxSlider.value = SoundManager.instance.GetSFXVolume();
@@ -32,6 +33,33 @@ public class OptionPanel : MonoBehaviour
         {
             sfxMuteToggle.isOn = true;
         }
+    }
+
+    public void Open()
+    {
+        OpenPopup();
+        UpdateSoundInfo();
+    }
+
+    public void OpenPopup()
+    {
+        seq?.Kill();
+
+        seq = DOTween.Sequence();
+        seq.Append(transform.DOScale(data.popupSize, data.popupDelay))
+            .Append(transform.DOScale(data.openSize, data.popupDelay))
+            .SetLink(gameObject, LinkBehaviour.KillOnDisable);
+    }
+
+    public void ClosePopup()
+    {
+        seq?.Kill();
+
+        seq = DOTween.Sequence();
+        seq.Append(transform.DOScale(data.popupSize, data.popupDelay))
+            .Append(transform.DOScale(data.closeSize, data.popupDelay))
+            .SetLink(gameObject, LinkBehaviour.KillOnDisable)
+            .OnComplete(() => UIManager.instance.CloseOptionPanel());
     }
 
     private void BGMVolumeChanged(float vol)
