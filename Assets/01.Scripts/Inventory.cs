@@ -54,7 +54,7 @@ public class Inventory : PopupBase
     {
         trophys.Clear();
 
-        List<Trophy> trophyData = DataManager.instance.GetTrophyInfo();
+        List<Trophy> trophyData = DataManager.instance.GetTrophyList();
         foreach (Trophy trophy in trophyData)
         {
             if (trophy.isCollect)

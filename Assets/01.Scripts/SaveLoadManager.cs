@@ -41,7 +41,8 @@ public class SaveLoadManager : MonoBehaviour
 
         data.collectTrophy.Clear();
 
-        foreach (Trophy trophy in DataManager.instance.GetTrophyInfo())
+        // »πµÊ«— ∆Æ∑Œ«« ID∏¶ dataø° ≥—∞‹¡‹
+        foreach (Trophy trophy in DataManager.instance.GetTrophyList())
         {
             if (trophy.isCollect)
             {

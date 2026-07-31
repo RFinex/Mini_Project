@@ -70,17 +70,19 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    // 단일 트로피 정보 외부 참조용
     public Trophy GetTrophyData(int id)
     {
         return trophys.GetValueOrDefault(id);
     }
 
-    // 트로피 정보 외부 참조용
-    public List<Trophy> GetTrophyInfo()
+    // 모든 트로피 정보 외부 참조용
+    public List<Trophy> GetTrophyList()
     {
         return new List<Trophy>(trophys.Values);
     }
 
+    // 저장된 트로피 load할 때 가져오기
     public void SetCollectTrophy(List<int> trophyID)
     {
         if (trophyID == null)
