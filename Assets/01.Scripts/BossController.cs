@@ -13,11 +13,30 @@ public enum BossState
 
 public class BossController : BossEnemyController
 {
-    [Header("Pattern Data SO")]
+    [Header("Scriptable Object")]
     [SerializeField] private BossPatternDataSO patternData;
 
     [Header("Attack Position")]
     [SerializeField] private Transform attackPos;
+
+    [Header("Enter State")]
+    [SerializeField] private float moveDis = 17f;
+    [SerializeField] private float enterSpeed = 2f;
+
+    public float MoveDis
+    {
+        get
+        {
+            return moveDis;
+        }
+    }
+    public float EnterSpeed
+    {
+        get
+        {
+            return enterSpeed;
+        }
+    }
 
     public Transform AttackPos
     {
