@@ -86,7 +86,7 @@ public class SaveLoadManager : MonoBehaviour
         Save();
     }
 
-    public void SaveRank(Ranking rank)
+    public void SaveRank(BestRankingList rank)
     {
         string json = JsonUtility.ToJson(rank);
         File.WriteAllText(rankSavePath, json);
@@ -102,7 +102,7 @@ public class SaveLoadManager : MonoBehaviour
 
         string json = File.ReadAllText(rankSavePath);
 
-        Ranking rank = JsonUtility.FromJson<Ranking>(json);
+        BestRankingList rank = JsonUtility.FromJson<BestRankingList>(json);
 
         if (rank != null && rank.bestRank != null)
         {

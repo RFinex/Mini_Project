@@ -15,7 +15,7 @@ public class DataManager : MonoBehaviour
     [Header("Top Ranking Count")]
     [SerializeField] private int maxRankCount = 20;
 
-    private Ranking rankData = new Ranking();
+    private BestRankingList rankData = new BestRankingList();
 
     private Vector3 checkPos;
 
@@ -147,7 +147,7 @@ public class DataManager : MonoBehaviour
         SaveLoadManager.instance.SaveRank(rankData);
     }
 
-    public void SetRankData(Ranking rank)
+    public void SetRankData(BestRankingList rank)
     {
         if (rank != null && rank.bestRank != null)
         {

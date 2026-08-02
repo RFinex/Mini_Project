@@ -9,7 +9,7 @@ public class RankData
 }
 
 [Serializable]
-public class Ranking
+public class BestRankingList
 {
     public List<RankData> bestRank = new List<RankData>();
 }
