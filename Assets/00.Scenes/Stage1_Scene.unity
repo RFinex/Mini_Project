@@ -175084,7 +175084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2510407859085086636, guid: db58c4d9059fa634f95a4e0fd3dfdc02, type: 3}
       propertyPath: maxHp
-      value: 100
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 2510407859085086636, guid: db58c4d9059fa634f95a4e0fd3dfdc02, type: 3}
       propertyPath: dieDelay
@@ -175450,7 +175450,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2190346815241096127, guid: b52fd019715bc87409e49806624fcb8e, type: 3}
       propertyPath: maxHp
-      value: 60
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 2190346815241096127, guid: b52fd019715bc87409e49806624fcb8e, type: 3}
       propertyPath: nowHp
