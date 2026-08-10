@@ -46,6 +46,7 @@ public class UIManager : MonoBehaviour
     [Header("Setting")]
     [SerializeField] private Vector2 trophyGetPanelPos;
     [SerializeField] private float fadeDelay;
+    [SerializeField] private float lastSec = -1f;
 
     private void Awake()
     {
@@ -192,6 +193,11 @@ public class UIManager : MonoBehaviour
 
     public void UpdateTimerText(float sec)
     {
+        int currentSec = (int)sec;
+        if (currentSec == lastSec)
+            return;
+        lastSec = currentSec;
+
         timerText.text = $"{(int)sec / 3600:D2} : {(int)sec / 60 % 60:D2} : {(int)sec % 60:D2}";
     }
 
