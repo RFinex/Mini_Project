@@ -35,7 +35,7 @@ public class PlayerBullet : Projectile
 
     public override void ReturnPool()
     {        
-        ObjectPoolManager.instance.ReturnObject("playerBullet", this.gameObject);
+        ObjectPoolManager.instance.ReturnObject(ConstString.playerBullet, this.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -45,7 +45,7 @@ public class PlayerBullet : Projectile
             ReturnPool();
         }
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer(ConstString.Enemy))
         {
             SoundManager.instance.PlaySFX(SFXType.EnemyHit);
             collision.GetComponent<EnemyController>().TakeDamage();

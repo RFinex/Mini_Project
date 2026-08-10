@@ -10,12 +10,14 @@ public class ConstString
 
     public const string Player = "Player";
     public const string Ground = "Ground";
+    public const string Enemy = "Enemy";
 
     public const string monsterBullet = "monsterBullet";
     public const string minibossBullet = "minibossBullet";
     public const string laser = "laser";
     public const string warningSign = "warningSign";
     public const string bossBullet = "bossBullet";
+    public const string playerBullet = "playerBullet";
 
     public const string SaveCheckText = "SaveCheckText";
 

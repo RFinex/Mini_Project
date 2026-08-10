@@ -8,7 +8,7 @@ public class PlayerRangeWeapon : PlayerWeapon
         if (Keyboard.current.zKey.wasPressedThisFrame)
         {
             SoundManager.instance.PlaySFX(SFXType.Shoot);
-            GameObject bullet = ObjectPoolManager.instance.GetObject("playerBullet");
+            GameObject bullet = ObjectPoolManager.instance.GetObject(ConstString.playerBullet);
             bullet.transform.position = attackPos.position;
             PlayerBullet bCom = bullet.GetComponent<PlayerBullet>();
             bCom.SetDirection(dir);
