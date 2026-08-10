@@ -781,6 +781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00f10b1d9f77f747a3e1044da82890d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuButtonEvent
+  arrow: {fileID: 0}
   popupSize: 1.1
   normalSize: 1
   popupDelay: 0.1
@@ -1215,6 +1216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00f10b1d9f77f747a3e1044da82890d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuButtonEvent
+  arrow: {fileID: 0}
   popupSize: 1.1
   normalSize: 1
   popupDelay: 0.1
